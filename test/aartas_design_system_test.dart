@@ -1,23 +1,12 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:aartas_design_system/aartas_design_system.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('aartas_design_system');
-
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
-    });
-  });
-
-  tearDown(() {
-    channel.setMockMethodCallHandler(null);
-  });
-
-  test('getPlatformVersion', () async {
-    expect(await AartasDesignSystem.platformVersion, '42');
+  test('adds one to input values', () {
+    final calculator = Calculator();
+    expect(calculator.addOne(2), 3);
+    expect(calculator.addOne(-7), -6);
+    expect(calculator.addOne(0), 1);
   });
 }
