@@ -1,18 +1,17 @@
-library aartas_design_system;
+// You have generated a new plugin project without
+// specifying the `--platforms` flag. A plugin project supports no platforms is generated.
+// To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
+// directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
 
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-/// A Calculator is a calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+import 'package:flutter/services.dart';
 
-class Demoo extends StatelessWidget {
-  const Demoo({Key? key}) : super(key: key);
+class AartasDesignSystem {
+  static const MethodChannel _channel = MethodChannel('aartas_design_system');
 
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Your Demo is working");
+  static Future<String?> get platformVersion async {
+    final String? version = await _channel.invokeMethod('getPlatformVersion');
+    return version;
   }
 }
