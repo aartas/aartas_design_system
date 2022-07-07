@@ -1,28 +1,26 @@
 library aartas_design_system;
 
 import 'package:aartas_design_system/apis/patient_apis.dart';
-import 'package:aartas_design_system/models/patient_model.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AartasApp extends StatefulWidget {
+class AartasApiProvider extends StatefulWidget {
   final Widget child;
-  const AartasApp({
+  const AartasApiProvider({
     Key? key,
     required this.child,
   }) : super(key: key);
 
   @override
-  State<AartasApp> createState() => _AartasAppState();
+  State<AartasApiProvider> createState() => _AartasApiProviderState();
 }
 
-class _AartasAppState extends State<AartasApp> {
+class _AartasApiProviderState extends State<AartasApiProvider> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PatientApis()),
+        ChangeNotifierProvider(create: (_) => PatientProvider()),
       ],
       child: widget.child,
     );
