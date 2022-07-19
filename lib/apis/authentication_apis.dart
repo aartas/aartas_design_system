@@ -11,8 +11,8 @@ import 'package:path_provider/path_provider.dart';
 // --------------- AUTHENTICATION PROVIDER --------------
 class AuthenticationProvider extends ChangeNotifier {
   // --------------- DOCTOR AUTH PROVIDER --------------
-  DoctorResponse _doctorDetails = DoctorResponse();
-  DoctorResponse get doctorDetails => _doctorDetails;
+  DoctorResponse _doctorResponse = DoctorResponse();
+  DoctorResponse get doctorResponse => _doctorResponse;
 
   Future<DoctorResponse> doctorLogin(
       String phoneNumber, String passcode) async {
@@ -29,10 +29,10 @@ class AuthenticationProvider extends ChangeNotifier {
     );
 
     if (res.statusCode == 200) {
-      _doctorDetails = DoctorResponse.fromJson(json.decode(res.body));
+      _doctorResponse = DoctorResponse.fromJson(json.decode(res.body));
       _file.writeAsStringSync(res.body, flush: true, mode: FileMode.write);
       notifyListeners();
-      return _doctorDetails;
+      return _doctorResponse;
     } else {
       notifyListeners();
       return DoctorResponse(
