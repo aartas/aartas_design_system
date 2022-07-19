@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
@@ -15,9 +13,9 @@ class AppointmentProvider extends ChangeNotifier {
   AppointmentResponse get appointmentResponse => _appointmentResponse;
 
   Future<AppointmentResponse> getAppointments() async {
-    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
+    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
 
     final doctorID =
         DoctorResponse.fromJson(json.decode(_file.readAsStringSync()))

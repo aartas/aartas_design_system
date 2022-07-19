@@ -104,7 +104,7 @@ class DoctorData {
     rentAmount = json['rent_amount'];
     securityAmount = json['security_amount'];
     speciality = json['speciality'] != null
-        ? new Speciality.fromJson(json['speciality'])
+        ? Speciality.fromJson(json['speciality'])
         : null;
   }
 
