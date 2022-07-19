@@ -12,6 +12,10 @@ class AppointmentProvider extends ChangeNotifier {
   AppointmentResponse _appointmentResponse = AppointmentResponse();
   AppointmentResponse get appointmentResponse => _appointmentResponse;
 
+  Future<AppointmentResponse> appointmentResponseFuture() {
+    return Future<AppointmentResponse>.value(_appointmentResponse);
+  }
+
   Future<AppointmentResponse> getAppointments() async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
@@ -24,6 +28,7 @@ class AppointmentProvider extends ChangeNotifier {
 
     final res = (await http.post(_url, body: {"doctor_id": "$doctorID"})).body;
     _appointmentResponse = AppointmentResponse.fromJson(json.decode(res));
+    notifyListeners();
     return _appointmentResponse;
   }
 }

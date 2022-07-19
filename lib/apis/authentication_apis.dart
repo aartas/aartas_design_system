@@ -14,6 +14,10 @@ class AuthenticationProvider extends ChangeNotifier {
   DoctorResponse _doctorResponse = DoctorResponse();
   DoctorResponse get doctorResponse => _doctorResponse;
 
+  Future<DoctorResponse> appointmentResponseFuture() {
+    return Future<DoctorResponse>.value(_doctorResponse);
+  }
+
   Future<DoctorResponse> doctorLogin(
       String phoneNumber, String passcode) async {
     var dir = await getTemporaryDirectory();
