@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+// --------------- AUTHENTICATION PROVIDER --------------
 class AuthenticationProvider extends ChangeNotifier {
-  // --------------- DOCTOR AUTHENTICATION PROVIDER --------------
+  // --------------- DOCTOR AUTH PROVIDER --------------
   late SharedPreferences _sharedPreferences;
   DoctorResponse _doctorDetails = DoctorResponse();
   DoctorResponse get doctorDetails => _doctorDetails;
@@ -42,9 +43,11 @@ class AuthenticationProvider extends ChangeNotifier {
     return await _sharedPreferences.remove(doctorDetailsKey);
   }
 
-  // --------------- DOCTOR AUTHENTICATION PROVIDER -------------
+  // --------------- DOCTOR AUTH PROVIDER -------------
 
   // --------------- PATIENT AUTHENTICATION PROVIDER -------------
 
   // --------------- PATIENT AUTHENTICATION PROVIDER -------------
 }
+
+// --------------- AUTHENTICATION PROVIDER --------------
