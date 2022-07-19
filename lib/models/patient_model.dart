@@ -1,6 +1,6 @@
 import 'package:aartas_design_system/models/address_model.dart';
 
-class Patient {
+class PatientData {
   dynamic id;
   dynamic fullName;
   dynamic phoneCountryCode;
@@ -19,7 +19,7 @@ class Patient {
   dynamic membershipTypeId;
   List<Address>? address;
 
-  Patient(
+  PatientData(
       {this.id,
       this.fullName,
       this.phoneCountryCode,
@@ -38,7 +38,7 @@ class Patient {
       this.membershipTypeId,
       this.address});
 
-  Patient.fromJson(Map<String, dynamic> json) {
+  PatientData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['full_name'];
     phoneCountryCode = json['phone_country_code'];

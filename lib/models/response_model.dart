@@ -3,7 +3,7 @@ class Response {
 
   bool? status;
 
-  dynamic data;
+  List<dynamic>? data;
 
   Response({this.message, this.status, this.data});
 

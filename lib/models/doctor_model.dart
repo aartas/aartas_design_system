@@ -1,5 +1,34 @@
 import 'package:aartas_design_system/models/speciality_model.dart';
 
+class DoctorDetails {
+  String? message;
+  bool? status;
+  List<DoctorData>? data;
+
+  DoctorDetails({this.message, this.status, this.data});
+
+  DoctorDetails.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    status = json['status'];
+    if (json['data'] != null) {
+      data = <DoctorData>[];
+      json['data'].forEach((v) {
+        data!.add(DoctorData.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['status'] = status;
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
 class DoctorData {
   int? id;
   dynamic doctorName;
