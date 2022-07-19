@@ -17,9 +17,9 @@ class AppointmentProvider extends ChangeNotifier {
   }
 
   Future<AppointmentResponse> getAppointments() async {
+    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
-    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
 
     final doctorID =
         DoctorResponse.fromJson(json.decode(_file.readAsStringSync()))
@@ -27,6 +27,27 @@ class AppointmentProvider extends ChangeNotifier {
             .id;
 
     final res = (await http.post(_url, body: {"doctor_id": "$doctorID"})).body;
+    _appointmentResponse = AppointmentResponse.fromJson(json.decode(res));
+    notifyListeners();
+    return _appointmentResponse;
+  }
+
+  Future<AppointmentResponse> getPatientPreviousAppointment(
+      String patientId) async {
+    var dir = await getTemporaryDirectory();
+    File _file = File(dir.path + "/" + doctorDetailsFileName);
+    var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
+
+    final doctorID =
+        DoctorResponse.fromJson(json.decode(_file.readAsStringSync()))
+            .data![0]
+            .id;
+
+    final res = (await http.post(_url, body: {
+      "doctor_id": "$doctorID",
+      "patient_id": patientId,
+    }))
+        .body;
     _appointmentResponse = AppointmentResponse.fromJson(json.decode(res));
     notifyListeners();
     return _appointmentResponse;
