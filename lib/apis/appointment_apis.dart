@@ -10,6 +10,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppointmentProvider extends ChangeNotifier {
+  AppointmentResponse _appointmentResponse = AppointmentResponse();
+
+  AppointmentResponse get appointmentResponse => _appointmentResponse;
+
   Future<AppointmentResponse> getAppointments() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
