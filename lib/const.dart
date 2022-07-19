@@ -510,3 +510,6 @@ removeFocus(context) {
     FocusManager.instance.primaryFocus?.unfocus();
   }
 }
+
+// ------------------ String Key Variable Nomenclature -----------------
+String doctorDetailsKey = "doctor_details";
