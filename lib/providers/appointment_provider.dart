@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 
 class AppointmentProvider extends ChangeNotifier {
   AppointmentResponse response = AppointmentResponse();
+  List<AppointmentData> list = [];
   bool loading = false;
 
   Future<AppointmentResponse> getResponse() async {
     loading = true;
-    response = await AppointmentApis().getAppointments();
-    loading = false;
-    notifyListeners();
-    return response;
+    return response = await AppointmentApis().getAppointments().then((value) {
+      loading = false;
+      list.addAll(value.data!);
+      notifyListeners();
+      return value;
+    });
   }
 }
