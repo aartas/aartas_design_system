@@ -6,10 +6,11 @@ class AppointmentProvider extends ChangeNotifier {
   AppointmentResponse response = AppointmentResponse();
   bool loading = false;
 
-  getResponse() async {
+  Future<AppointmentResponse> getResponse() async {
     loading = true;
     response = await AppointmentApis().getAppointments();
     loading = false;
     notifyListeners();
+    return response;
   }
 }
