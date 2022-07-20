@@ -10,9 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 class AppointmentProvider extends ChangeNotifier {
   final List<AppointmentData> _appointmentList = [];
-  final List<AppointmentData> _previousAppointmentList = [];
   List<AppointmentData> get appointmentList => _appointmentList;
-  List<AppointmentData> get previousAppointmentList => _appointmentList;
 
   Future<List<AppointmentData>> getAppointments() async {
     var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
@@ -31,6 +29,8 @@ class AppointmentProvider extends ChangeNotifier {
     return _appointmentList;
   }
 
+  final List<AppointmentData> _previousAppointmentList = [];
+  List<AppointmentData> get previousAppointmentList => _appointmentList;
   Future<List<AppointmentData>> getPatientPreviousAppointment(
       String patientId) async {
     var dir = await getTemporaryDirectory();

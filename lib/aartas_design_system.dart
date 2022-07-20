@@ -22,11 +22,13 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => PatientProvider()),
         ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
         ChangeNotifierProvider(create: (_) => AppointmentProvider()),
+        ChangeNotifierProvider(create: (_) => PatientProvider()),
       ],
-      child: widget.child,
+      builder: (_, child) {
+        return widget.child;
+      },
     );
   }
 }
