@@ -25,6 +25,7 @@ class AppointmentProvider extends ChangeNotifier {
     final res = (await http.post(_url, body: {"doctor_id": "$doctorID"})).body;
     _appointmentList
         .addAll(AppointmentResponse.fromJson(json.decode(res)).data!);
+    print("LENGTH: ${_appointmentList.length}");
     notifyListeners();
     return _appointmentList;
   }
