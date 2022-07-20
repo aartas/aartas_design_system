@@ -9,14 +9,12 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class AppointmentProvider extends ChangeNotifier {
-  AppointmentResponse _appointmentResponse = AppointmentResponse();
-  AppointmentResponse get appointmentResponse => _appointmentResponse;
+  final List<AppointmentData> _appointmentList = [];
+  final List<AppointmentData> _previousAppointmentList = [];
+  List<AppointmentData> get appointmentList => _appointmentList;
+  List<AppointmentData> get previousAppointmentList => _appointmentList;
 
-  Future<AppointmentResponse> appointmentResponseFuture() {
-    return Future<AppointmentResponse>.value(_appointmentResponse);
-  }
-
-  Future<AppointmentResponse> getAppointments() async {
+  Future<List<AppointmentData>> getAppointments() async {
     var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
@@ -27,12 +25,13 @@ class AppointmentProvider extends ChangeNotifier {
             .id;
 
     final res = (await http.post(_url, body: {"doctor_id": "$doctorID"})).body;
-    _appointmentResponse = AppointmentResponse.fromJson(json.decode(res));
+    _appointmentList
+        .addAll(AppointmentResponse.fromJson(json.decode(res)).data!);
     notifyListeners();
-    return _appointmentResponse;
+    return _appointmentList;
   }
 
-  Future<AppointmentResponse> getPatientPreviousAppointment(
+  Future<List<AppointmentData>> getPatientPreviousAppointment(
       String patientId) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
@@ -48,8 +47,9 @@ class AppointmentProvider extends ChangeNotifier {
       "patient_id": patientId,
     }))
         .body;
-    _appointmentResponse = AppointmentResponse.fromJson(json.decode(res));
+    _previousAppointmentList
+        .addAll(AppointmentResponse.fromJson(json.decode(res)).data!);
     notifyListeners();
-    return _appointmentResponse;
+    return _previousAppointmentList;
   }
 }
