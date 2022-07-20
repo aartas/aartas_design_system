@@ -10,6 +10,7 @@ class AppointmentProvider extends ChangeNotifier {
   Future<AppointmentResponse> getResponse() async {
     loading = true;
     return response = await AppointmentApis().getAppointments().then((value) {
+      list.clear();
       loading = false;
       list.addAll(value.data!);
       notifyListeners();
