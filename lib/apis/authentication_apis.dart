@@ -56,8 +56,7 @@ class AuthenticationProvider extends ChangeNotifier {
 
   PatientResponse _patientResponse = PatientResponse();
 
-  Future<PatientResponse> patientLogin(
-      String phoneNumber, String passcode) async {
+  Future<PatientResponse> patientLogin(String phoneNumber) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + patientDetailsFileName);
 
@@ -66,7 +65,6 @@ class AuthenticationProvider extends ChangeNotifier {
       _url,
       body: {
         "phone_number": phoneNumber,
-        "passcode": passcode,
       },
     );
 
