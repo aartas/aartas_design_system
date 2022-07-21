@@ -1,8 +1,10 @@
-import 'package:aartas_design_system/models/patient_model.dart';
+import 'package:aartas_design_system/apis/appointment_apis.dart';
+import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 import 'package:aartas_design_system/models/vitals_model.dart';
+import 'package:flutter/material.dart';
 
-class AppointmentResponse {
+class AppointmentResponse extends ChangeNotifier {
   String? message;
   bool? status;
   List<AppointmentData>? data;

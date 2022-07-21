@@ -10,11 +10,17 @@ class PatientProvider extends ChangeNotifier {
     String search,
     String doctorId,
     String specialityId,
-    int limit,
-    int offset,
+    int? limit,
+    int? offset,
   ) async {
     var _url = Uri.parse(url);
-    final res = (await http.post(_url)).body;
+    final res = (await http.post(_url, body: {
+      "doctor_id": doctorId,
+      "search": search,
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+    }))
+        .body;
     return Response(
       message: json.decode(res)['message'],
       data: json.decode(res)['data'],
