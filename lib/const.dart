@@ -513,3 +513,4 @@ removeFocus(context) {
 
 // ------------------ String Key Variable Nomenclature -----------------
 String doctorDetailsFileName = "doctor_details.json";
+String patientDetailsFileName = "patient_details.json";
