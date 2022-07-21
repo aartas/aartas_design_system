@@ -56,22 +56,23 @@ class AuthenticationProvider extends ChangeNotifier {
 
   PatientResponse _patientResponse = PatientResponse();
 
-  Future<PatientResponse> patientLogin(String phoneNumber) async {
-    // var dir = await getTemporaryDirectory();
-    // File _file = File(dir.path + "/" + patientDetailsFileName);
+  Future<PatientResponse> patientLogin(
+      String phoneNumber, String passcode) async {
+    var dir = await getTemporaryDirectory();
+    File _file = File(dir.path + "/" + patientDetailsFileName);
 
     var _url = Uri.parse("$baseURL/login");
     final res = await http.post(
       _url,
       body: {
         "phone_number": phoneNumber,
+        "passcode": passcode,
       },
     );
 
     if (res.statusCode == 200) {
       _patientResponse = PatientResponse.fromJson(json.decode(res.body));
-      await getDir(patientDetailsFileName)
-          .writeAsStringSync(res.body, flush: true, mode: FileMode.write);
+      _file.writeAsStringSync(res.body, flush: true, mode: FileMode.write);
       notifyListeners();
       return _patientResponse;
     } else {
@@ -85,7 +86,9 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   Future<void> patientLogout() async {
-    return await getDir(patientDetailsFileName).deleteSync();
+    var dir = await getTemporaryDirectory();
+    File _file = File(dir.path + "/" + patientDetailsFileName);
+    return _file.deleteSync();
   }
   // --------------- PATIENT AUTHENTICATION PROVIDER -------------
 }

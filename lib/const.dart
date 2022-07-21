@@ -514,12 +514,6 @@ removeFocus(context) {
   }
 }
 
-getDir(pathName) async {
-  final _dir = await getTemporaryDirectory();
-  File file = File(_dir.path + "/" + pathName);
-  return file;
-}
-
 // ------------------ String Key Variable Nomenclature -----------------
 String doctorDetailsFileName = "doctor_details.json";
 String patientDetailsFileName = "patient_details.json";
