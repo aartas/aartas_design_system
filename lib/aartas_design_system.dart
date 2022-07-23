@@ -1,5 +1,6 @@
 library aartas_design_system;
 
+import 'package:aartas_design_system/apis/appointment_apis.dart';
 import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/apis/patient_apis.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
@@ -23,12 +24,6 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        FutureProvider<AppointmentResponse>(
-          create: (_) => Future.value(
-            AppointmentProvider().response,
-          ),
-          initialData: AppointmentResponse(message: "Loading..."),
-        ),
         ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
         ChangeNotifierProvider(create: (_) => AppointmentProvider()),
         ChangeNotifierProvider(create: (_) => PatientProvider()),

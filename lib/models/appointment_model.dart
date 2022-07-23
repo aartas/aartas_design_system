@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class AppointmentResponse extends ChangeNotifier {
   String? message;
-  bool? status;
-  List<AppointmentData>? data;
+  bool? status = false;
+  List<AppointmentData>? data = [];
 
   AppointmentResponse({this.message, this.status, this.data});
 

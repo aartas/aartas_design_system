@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:aartas_design_system/const.dart';
@@ -49,5 +50,51 @@ class AppointmentApis {
     _previousAppointmentList = AppointmentResponse.fromJson(json.decode(res));
 
     return _previousAppointmentList;
+  }
+
+  Future<List<AppointmentData>> getList(
+    String? patientID,
+    String? doctorID,
+    String? search,
+    String? date,
+    String? limit,
+    String? offset,
+  ) async {
+    var _url = Uri.parse("$baseURL/?");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+      "doctor_id": doctorID ?? "",
+      "search": search ?? "",
+      "date": date ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+    });
+    if (res.statusCode == 200) {
+      return AppointmentResponse.fromJson(json.decode(res.body)).data!;
+    } else {
+      String _message = "AppointmentApis(getList):${res.statusCode}";
+      log(_message);
+      return AppointmentResponse(message: _message).data!;
+    }
+  }
+
+  Future<List<AppointmentData>> previousAppointments(
+    String? patientID,
+    String? doctorID,
+  ) async {
+    var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "patient_id": patientID ?? "",
+    });
+
+    if (res.statusCode == 200) {
+      return AppointmentResponse.fromJson(json.decode(res.body)).data!;
+    } else {
+      String _message =
+          "AppointmentApis(previousAppointments):${res.statusCode}";
+      log(_message);
+      return AppointmentResponse(message: _message).data!;
+    }
   }
 }
