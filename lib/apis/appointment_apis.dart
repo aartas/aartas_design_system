@@ -59,8 +59,9 @@ class AppointmentApis {
     String? date,
     String? limit,
     String? offset,
+    String? type,
   ) async {
-    var _url = Uri.parse("$baseURL/?");
+    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
       "doctor_id": doctorID ?? "",
@@ -68,9 +69,12 @@ class AppointmentApis {
       "date": date ?? "",
       "limit": limit ?? "",
       "offset": offset ?? "",
+      "type": type ?? "",
     });
     if (res.statusCode == 200) {
-      return AppointmentResponse.fromJson(json.decode(res.body)).data!;
+      final _res = AppointmentResponse.fromJson(json.decode(res.body)).data!;
+
+      return _res;
     } else {
       String _message = "AppointmentApis(getList):${res.statusCode}";
       log(_message);
@@ -78,7 +82,7 @@ class AppointmentApis {
     }
   }
 
-  Future<List<AppointmentData>> previousAppointments(
+  Future<List<AppointmentData>> getPreviousAppointmentList(
     String? patientID,
     String? doctorID,
   ) async {

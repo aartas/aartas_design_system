@@ -1,0 +1,1 @@
+enum AppointmentType { next, last }
