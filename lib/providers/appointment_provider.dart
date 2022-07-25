@@ -22,12 +22,6 @@ class AppointmentProvider extends ChangeNotifier {
     return appointmentlist;
   }
 
-  setList(List<AppointmentData> _list) {
-    appointmentlist.clear();
-    appointmentlist.addAll(_list);
-    notifyListeners();
-  }
-
   Future<List<AppointmentData>> fetchList(
     String? patientID,
     String? doctorID,
@@ -41,10 +35,16 @@ class AppointmentProvider extends ChangeNotifier {
         .getList(patientID, doctorID, search, date, limit, offset, type)
         .then(
       (value) {
-        setList(value);
+        _setList(value);
         notifyListeners();
         return value;
       },
     );
+  }
+
+  _setList(List<AppointmentData> _list) {
+    appointmentlist.clear();
+    appointmentlist.addAll(_list);
+    notifyListeners();
   }
 }
