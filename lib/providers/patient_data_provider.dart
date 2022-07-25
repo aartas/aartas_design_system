@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class PatientDataProvider with ChangeNotifier {
   PatientData _patientData = PatientData();
-  List<PatientData> _patientList = [];
+  // final List<PatientData> _patientList = [];
 
   PatientData getData() {
     return _patientData;

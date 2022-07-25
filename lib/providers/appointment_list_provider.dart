@@ -6,7 +6,7 @@ import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AppointmentDataProvider extends ChangeNotifier {
+class AppointmentListProvider extends ChangeNotifier {
   List<AppointmentData> appointmentlist = [];
   bool loading = false;
 
@@ -14,7 +14,7 @@ class AppointmentDataProvider extends ChangeNotifier {
     return appointmentlist;
   }
 
-  Future<List<AppointmentData>> fetchList(
+  Future<AppointmentResponse> fetchList(
     String? patientID,
     String? doctorID,
     String? search,
@@ -22,6 +22,7 @@ class AppointmentDataProvider extends ChangeNotifier {
     String? limit,
     String? offset,
     String? type,
+    bool? manageState,
   ) async {
     var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     final res = await http.post(_url, body: {
@@ -34,15 +35,17 @@ class AppointmentDataProvider extends ChangeNotifier {
       "type": type ?? "",
     });
     if (res.statusCode == 200) {
-      final _res = AppointmentResponse.fromJson(json.decode(res.body)).data!;
-      appointmentlist.clear();
-      appointmentlist.addAll(_res);
-      notifyListeners();
+      final _res = AppointmentResponse.fromJson(json.decode(res.body));
+      if (manageState == null || manageState == true) {
+        appointmentlist.clear();
+        appointmentlist.addAll(_res.data!);
+        notifyListeners();
+      }
       return _res;
     } else {
-      String _message = "AppointmentApis(List):${res.statusCode}";
+      String _message = "AppointmentDataProvider:${res.statusCode}";
       log(_message);
-      return AppointmentResponse(message: _message).data!;
+      return AppointmentResponse(message: _message);
     }
   }
 }

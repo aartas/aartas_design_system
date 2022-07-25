@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aartas_design_system/components/glassmorphism.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

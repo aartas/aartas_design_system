@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/const.dart';
@@ -14,28 +15,23 @@ class DoctorDataProvider with ChangeNotifier {
     return _doctorData;
   }
 
-  Future<DoctorResponse> fetchData(String phoneNumber, String passcode) async {
+  Future<DoctorResponse> fetchData(
+      String phoneNumber, String passcode, bool? manageState) async {
     var _url = Uri.parse("$baseURL/doctor/login");
-    final res = await http.post(
-      _url,
-      body: {
-        "phone_number": phoneNumber,
-        "passcode": passcode,
-      },
-    );
+    final res = await http
+        .post(_url, body: {"phone_number": phoneNumber, "passcode": passcode});
 
     if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      _doctorData = _res.data![0];
-      notifyListeners();
+      if (manageState == null || manageState == true) {
+        _doctorData = _res.data![0];
+        notifyListeners();
+      }
       return _res;
     } else {
-      notifyListeners();
-      return DoctorResponse(
-        message: "${res.statusCode}",
-        status: false,
-        data: [],
-      );
+      String _message = "DoctorDataProvider:${res.statusCode}";
+      log(_message);
+      return DoctorResponse(message: _message);
     }
   }
 
