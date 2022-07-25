@@ -14,12 +14,12 @@ class DoctorDataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<DoctorData> fetchData(String phoneNumber, String passcode) {
+  Future<DoctorResponse> fetchData(String phoneNumber, String passcode) {
     return AuthenticationProvider().doctorLogin(phoneNumber, passcode).then(
       (value) {
         _setData(value.data![0]);
         notifyListeners();
-        return value.data![0];
+        return value;
       },
     );
   }
