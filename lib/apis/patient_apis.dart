@@ -4,7 +4,7 @@ import 'package:aartas_design_system/models/response_model.dart';
 import 'package:http/http.dart' as http;
 
 class PatientProvider {
-  Future<Response> getList(
+  Future<ResponseModel> getList(
     String url,
     String search,
     String doctorId,
@@ -20,7 +20,7 @@ class PatientProvider {
       "offset": offset ?? "",
     }))
         .body;
-    return Response(
+    return ResponseModel(
       message: json.decode(res)['message'],
       data: json.decode(res)['data'],
     );

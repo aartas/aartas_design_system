@@ -27,11 +27,11 @@ class AnalyticsApis {
       },
     );
     if (res.statusCode == 200) {
-      return Response.fromJson(json.decode(res.body));
+      return ResponseModel.fromJson(json.decode(res.body));
     } else {
       String _message = "Analytics(Capture Event):${res.statusCode}";
       log(_message);
-      return Response(message: _message);
+      return ResponseModel(message: _message);
     }
   }
 }

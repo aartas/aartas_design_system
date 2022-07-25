@@ -1,13 +1,13 @@
-class Response {
-  String? message;
+class ResponseModel {
+  String? message = "?";
 
-  bool? status;
+  bool? status = false;
 
-  List<dynamic>? data;
+  List<dynamic>? data = [];
 
-  Response({this.message, this.status, this.data});
+  ResponseModel({this.message, this.status, this.data});
 
-  Response.fromJson(Map<String, dynamic> json) {
+  ResponseModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
 
     status = json['status'];
