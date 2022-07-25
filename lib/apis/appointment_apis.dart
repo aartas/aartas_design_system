@@ -73,7 +73,6 @@ class AppointmentApis {
     });
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body)).data!;
-
       return _res;
     } else {
       String _message = "AppointmentApis(getList):${res.statusCode}";
