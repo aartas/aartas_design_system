@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aartas_design_system/components/glassmorphism.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -194,8 +196,12 @@ Gradient bgGradient(context, bool reverse) {
 // }
 enum MessageStyle { success, danger }
 
-snackBar(context, String? title, String? subtitle, Color? textColor,
-    Color? backgroundColor, MessageStyle? messageStyle) {
+snackBar(
+  context,
+  String? title,
+  String? subtitle,
+  MessageStyle? messageStyle,
+) {
   Color _messageStyleColor =
       messageStyle == MessageStyle.success ? greenColor : redColor;
   return ScaffoldMessenger.of(context).showSnackBar(
@@ -204,10 +210,9 @@ snackBar(context, String? title, String? subtitle, Color? textColor,
       width: mediaQuery(context).size.width / 3.5,
       // margin: EdgeInsets.only(bottom: 32),
       padding: EdgeInsets.zero,
-      // duration: duration * 15,
-      duration: duration * 5,
+      duration: duration * 10,
       backgroundColor: Colors.transparent,
-      elevation: 12,
+      elevation: 6,
       // backgroundColor: backgroundColor ?? Color(0xFF3C3C3E),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius / 2),
@@ -226,26 +231,17 @@ snackBar(context, String? title, String? subtitle, Color? textColor,
                   title ?? "",
                   style: textTheme(context).subtitle1?.apply(
                         fontWeightDelta: 1,
-                        color: textColor ?? whiteColor,
                       ),
                 ),
               ),
-              Text(
-                subtitle ?? "",
-                style: textTheme(context).caption?.apply(
-                      color: textColor ?? whiteColor,
-                    ),
-                overflow: TextOverflow.fade,
-                maxLines: 2,
-              ),
-              // subtitle != null
-              //     ? Text(
-              //         subtitle,
-              //         style: textTheme(context).subtitle2?.apply(
-              //               color: textColor ?? whiteColor,
-              //             ),
-              //       )
-              //     : Container(),
+              subtitle!.isNotEmpty
+                  ? Text(
+                      subtitle,
+                      style: textTheme(context).caption?.apply(),
+                      overflow: TextOverflow.fade,
+                      maxLines: 2,
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),

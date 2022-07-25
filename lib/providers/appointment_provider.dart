@@ -1,22 +1,14 @@
-import 'package:aartas_design_system/apis/appointment_apis.dart';
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class AppointmentProvider extends ChangeNotifier {
-  AppointmentResponse response = AppointmentResponse();
+class AppointmentDataProvider extends ChangeNotifier {
   List<AppointmentData> appointmentlist = [];
   bool loading = false;
-
-  Future<AppointmentResponse> getResponse() async {
-    loading = true;
-    return response = await AppointmentApis().getAppointments().then((value) {
-      // appointmentlist.clear();
-      // loading = false;
-      // appointmentlist.addAll(value.data!);
-      notifyListeners();
-      return value;
-    });
-  }
 
   List<AppointmentData> getList() {
     return appointmentlist;
@@ -31,20 +23,26 @@ class AppointmentProvider extends ChangeNotifier {
     String? offset,
     String? type,
   ) async {
-    return AppointmentApis()
-        .getList(patientID, doctorID, search, date, limit, offset, type)
-        .then(
-      (value) {
-        _setList(value);
-        notifyListeners();
-        return value;
-      },
-    );
-  }
-
-  _setList(List<AppointmentData> _list) {
-    appointmentlist.clear();
-    appointmentlist.addAll(_list);
-    notifyListeners();
+    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+      "doctor_id": doctorID ?? "",
+      "search": search ?? "",
+      "date": date ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+      "type": type ?? "",
+    });
+    if (res.statusCode == 200) {
+      final _res = AppointmentResponse.fromJson(json.decode(res.body)).data!;
+      appointmentlist.clear();
+      appointmentlist.addAll(_res);
+      notifyListeners();
+      return _res;
+    } else {
+      String _message = "AppointmentApis(List):${res.statusCode}";
+      log(_message);
+      return AppointmentResponse(message: _message).data!;
+    }
   }
 }
