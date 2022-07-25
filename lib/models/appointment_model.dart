@@ -1,6 +1,6 @@
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
-import 'package:aartas_design_system/models/vitals_model.dart';
+import 'package:aartas_design_system/models/patient_vitals_model.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentResponse extends ChangeNotifier {
@@ -63,7 +63,7 @@ class AppointmentData {
   dynamic whatsappSent;
   PatientData? patient;
   Timeslot? timeslot;
-  List<Vitals>? vitals;
+  List<PatientVitals>? vitals;
 
   AppointmentData(
       {this.id,
@@ -132,9 +132,9 @@ class AppointmentData {
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
     if (json['vitals'] != null) {
-      vitals = <Vitals>[];
+      vitals = <PatientVitals>[];
       json['vitals'].forEach((v) {
-        vitals!.add(Vitals.fromJson(v));
+        vitals!.add(PatientVitals.fromJson(v));
       });
     }
   }
