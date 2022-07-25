@@ -3,7 +3,7 @@ library aartas_design_system;
 import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/apis/patient_apis.dart';
 import 'package:aartas_design_system/providers/appointment_provider.dart';
-import 'package:aartas_design_system/providers/doctor_details_provider.dart';
+import 'package:aartas_design_system/providers/doctor_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
