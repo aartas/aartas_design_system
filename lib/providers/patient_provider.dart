@@ -66,7 +66,7 @@ class PatientProvider with ChangeNotifier {
     return _pastVisits;
   }
 
-  Future<AppointmentResponse> pastVisits(
+  Future<AppointmentResponse> fetchPastVisits(
     String? patientID,
     String? doctorID,
     String? limit,
