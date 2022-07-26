@@ -8,11 +8,34 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class DoctorDataProvider with ChangeNotifier {
+class DoctorProvider with ChangeNotifier {
   DoctorData _doctorData = DoctorData();
+  List<DoctorData> _list = [];
 
   DoctorData getData() {
     return _doctorData;
+  }
+
+  List<DoctorData> getList() {
+    return _list;
+  }
+
+  Future<DoctorResponse> fetchList(String patientID, bool? manageState) async {
+    var _url = Uri.parse("$baseURL/doctors");
+    final res = await http.post(_url, body: {"patient_id": patientID});
+
+    if (res.statusCode == 200) {
+      var _res = DoctorResponse.fromJson(json.decode(res.body));
+      if (manageState == null || manageState) {
+        _list = _res.data!;
+        notifyListeners();
+      }
+      return _res;
+    } else {
+      String _message = "DoctorListProvider:${res.statusCode}";
+      log(_message);
+      return DoctorResponse(message: "${res.statusCode}");
+    }
   }
 
   Future<DoctorResponse> fetchData(

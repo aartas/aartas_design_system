@@ -1,17 +1,33 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class PatientDataListProvider with ChangeNotifier {
+class PatientProvider with ChangeNotifier {
+  PatientData _patientData = PatientData();
   List<PatientData> _patientList = [];
+
+  PatientData getData() {
+    return _patientData;
+  }
 
   List<PatientData> getList() {
     return _patientList;
+  }
+
+  // final List<PatientData> _patientList = [];
+
+  Future<PatientData> fetchData(String? phoneNumber) {
+    return AuthenticationProvider().patientLogin(phoneNumber!).then((value) {
+      _patientData = value.data![0];
+      notifyListeners();
+      return value.data![0];
+    });
   }
 
   Future<PatientResponse> fetchList(

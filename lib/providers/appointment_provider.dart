@@ -6,13 +6,19 @@ import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AppointmentListProvider extends ChangeNotifier {
-  List<AppointmentData> appointmentlist = [];
-  bool loading = false;
+class AppointmentProvider extends ChangeNotifier {
+  AppointmentData _data = AppointmentData();
+  List<AppointmentData> _list = [];
+
+  AppointmentData getData() {
+    return _data;
+  }
 
   List<AppointmentData> getList() {
-    return appointmentlist;
+    return _list;
   }
+
+  // Future<AppointmentResponse> fetchData(){}
 
   Future<AppointmentResponse> fetchList(
     String? patientID,
@@ -37,8 +43,8 @@ class AppointmentListProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
-        appointmentlist.clear();
-        appointmentlist.addAll(_res.data!);
+        _list.clear();
+        _list.addAll(_res.data!);
         notifyListeners();
       }
       return _res;
