@@ -26,4 +26,23 @@ class VitalsProvider with ChangeNotifier {
       return VitalsResponse(message: _message);
     }
   }
+
+  Future<VitalsResponse> getPatientVitalList(
+      String? appointmentID, bool? manageState) async {
+    var _url = Uri.parse("$baseURL/appointment/vitals/list");
+    final res = await http.post(_url);
+    if (res.statusCode == 200) {
+      if (manageState == null && manageState == true) {
+        _vitals.clear();
+        _vitals = VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
+        notifyListeners();
+      }
+      return VitalsResponse.fromJson(json.decode(res.body));
+    } else {
+      String _message =
+          "VitalsProvider(getPatientVitalsList):${res.statusCode}";
+      log(_message);
+      return VitalsResponse(message: _message);
+    }
+  }
 }
