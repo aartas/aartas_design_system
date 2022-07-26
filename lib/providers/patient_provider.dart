@@ -39,10 +39,10 @@ class PatientProvider with ChangeNotifier {
   ) async {
     var _url = Uri.parse("$baseURL/patient/list");
     final res = await http.post(_url, body: {
-      "doctor_id": doctorID,
-      "search": search,
-      "limit": limit,
-      "offset": offset,
+      "doctor_id": doctorID ?? "",
+      "search": search ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
     });
 
     if (res.statusCode == 200) {
@@ -53,7 +53,7 @@ class PatientProvider with ChangeNotifier {
       }
       return _res;
     } else {
-      String _message = "DoctorListProvider:${res.statusCode}";
+      String _message = "PatientListProvider:${res.statusCode}";
       log(_message);
       return PatientResponse(message: "${res.statusCode}");
     }
