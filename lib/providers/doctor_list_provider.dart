@@ -20,7 +20,7 @@ class DoctorDataListProvider with ChangeNotifier {
 
     if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      if (manageState == null || manageState == true) {
+      if (manageState == null || manageState) {
         _doctorList = _res.data!;
         notifyListeners();
       }
