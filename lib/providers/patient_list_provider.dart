@@ -14,9 +14,20 @@ class PatientDataListProvider with ChangeNotifier {
     return _patientList;
   }
 
-  Future<PatientResponse> fetchList(String patientID, bool? manageState) async {
-    var _url = Uri.parse("$baseURL/doctors");
-    final res = await http.post(_url, body: {"patient_id": patientID});
+  Future<PatientResponse> fetchList(
+    String doctorID,
+    String search,
+    String limit,
+    String offset,
+    bool? manageState,
+  ) async {
+    var _url = Uri.parse("$baseURL/patient/list");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID,
+      "search": search,
+      "limit": limit,
+      "offset": offset,
+    });
 
     if (res.statusCode == 200) {
       var _res = PatientResponse.fromJson(json.decode(res.body));
