@@ -10,11 +10,11 @@ import 'package:http/http.dart' as http;
 class PatientDataListProvider with ChangeNotifier {
   List<PatientData> _patientList = [];
 
-  List<PatientData> getData() {
+  List<PatientData> getList() {
     return _patientList;
   }
 
-  Future<PatientResponse> fetchData(String patientID, bool? manageState) async {
+  Future<PatientResponse> fetchList(String patientID, bool? manageState) async {
     var _url = Uri.parse("$baseURL/doctors");
     final res = await http.post(_url, body: {"patient_id": patientID});
 
