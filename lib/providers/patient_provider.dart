@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/const.dart';
+import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +57,42 @@ class PatientProvider with ChangeNotifier {
       String _message = "PatientListProvider:${res.statusCode}";
       log(_message);
       return PatientResponse(message: "${res.statusCode}");
+    }
+  }
+
+  List<AppointmentData> _pastVisits = [];
+
+  List<AppointmentData> getPastVisits() {
+    return _pastVisits;
+  }
+
+  Future<AppointmentResponse> pastVisits(
+    String? patientID,
+    String? doctorID,
+    String? limit,
+    String? offset,
+    bool? manageState,
+  ) async {
+    var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+      "doctor_id": doctorID ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+    });
+    if (res.statusCode == 200) {
+      var _res = AppointmentResponse.fromJson(json.decode(res.body));
+      if (manageState == null || manageState) {
+        _pastVisits = _res.data!;
+        notifyListeners();
+      }
+      return _res;
+    } else {
+      String _message = "";
+      log(_message);
+      return AppointmentResponse(
+        message: _message,
+      );
     }
   }
 }
