@@ -15,10 +15,10 @@ class PatientDataListProvider with ChangeNotifier {
   }
 
   Future<PatientResponse> fetchList(
-    String doctorID,
-    String search,
-    String limit,
-    String offset,
+    String? doctorID,
+    String? search,
+    String? limit,
+    String? offset,
     bool? manageState,
   ) async {
     var _url = Uri.parse("$baseURL/patient/list");
