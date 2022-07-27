@@ -41,7 +41,7 @@ class VitalsProvider with ChangeNotifier {
     var _url = Uri.parse("$baseURL/appointment/vitals/list");
     final res = await http.post(_url);
     if (res.statusCode == 200) {
-      if (manageState == null && manageState == true) {
+      if (manageState == null || manageState == true) {
         _patientList.clear();
         _patientList =
             PatientVitalsReponse.fromJson(json.decode(res.body)).data!.vitals!;
