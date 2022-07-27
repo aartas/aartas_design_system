@@ -39,7 +39,8 @@ class VitalsProvider with ChangeNotifier {
   Future<PatientVitalsReponse> fetchPatientVitalList(
       String? appointmentID, bool? manageState) async {
     var _url = Uri.parse("$baseURL/appointment/vitals/list");
-    final res = await http.post(_url);
+    final res =
+        await http.post(_url, body: {"appointment_id": appointmentID ?? ""});
     if (res.statusCode == 200) {
       if (manageState == null || manageState == true) {
         _patientList.clear();
@@ -48,11 +49,9 @@ class VitalsProvider with ChangeNotifier {
         notifyListeners();
       }
       return PatientVitalsReponse.fromJson(json.decode(res.body));
-    } else {
-      String _message =
-          "VitalsProvider(getPatientVitalsList):${res.statusCode}";
-      log(_message);
-      return PatientVitalsReponse(message: _message);
     }
+    String _message = "VitalsProvider(getPatientVitalsList):${res.statusCode}";
+    log(_message);
+    return PatientVitalsReponse(message: _message);
   }
 }
