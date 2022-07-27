@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AppointmentProvider extends ChangeNotifier {
-  AppointmentData _data = AppointmentData();
+  final AppointmentData _data = AppointmentData();
   List<AppointmentData> _list = [];
 
   AppointmentData getData() {
@@ -44,14 +44,13 @@ class AppointmentProvider extends ChangeNotifier {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
         _list.clear();
-        _list.addAll(_res.data!);
+        _list = _res.data!;
         notifyListeners();
       }
       return _res;
-    } else {
-      String _message = "AppointmentDataProvider:${res.statusCode}";
-      log(_message);
-      return AppointmentResponse(message: _message);
     }
+    String _message = "AppointmentDataProvider:${res.statusCode}";
+    log(_message);
+    return AppointmentResponse(message: _message);
   }
 }
