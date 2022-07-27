@@ -31,12 +31,12 @@ class VitalsProvider with ChangeNotifier {
     }
   }
 
-  List<Vital> _patientList = [];
-  List<Vital> getPatientVitalsList() {
+  List<Vitals> _patientList = [];
+  List<Vitals> getPatientVitalsList() {
     return _patientList;
   }
 
-  Future<VitalsResponse> fetchPatientVitalList(
+  Future<PatientVitalsReponse> fetchPatientVitalList(
       String? appointmentID, bool? manageState) async {
     var _url = Uri.parse("$baseURL/appointment/vitals/list");
     final res = await http.post(_url);
@@ -44,15 +44,15 @@ class VitalsProvider with ChangeNotifier {
       if (manageState == null && manageState == true) {
         _patientList.clear();
         _patientList =
-            VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
+            PatientVitalsReponse.fromJson(json.decode(res.body)).data!.vitals!;
         notifyListeners();
       }
-      return VitalsResponse.fromJson(json.decode(res.body));
+      return PatientVitalsReponse.fromJson(json.decode(res.body));
     } else {
       String _message =
           "VitalsProvider(getPatientVitalsList):${res.statusCode}";
       log(_message);
-      return VitalsResponse(message: _message);
+      return PatientVitalsReponse(message: _message);
     }
   }
 }

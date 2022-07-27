@@ -1,11 +1,12 @@
 library aartas_design_system;
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
-import 'package:aartas_design_system/apis/patient_apis.dart';
+
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
+import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => AppointmentProvider()),
         ChangeNotifierProvider(create: (_) => DoctorProvider()),
         ChangeNotifierProvider(create: (_) => PatientProvider()),
+        ChangeNotifierProvider(create: (_) => VitalsProvider()),
       ],
       builder: (_, child) {
         return widget.child;

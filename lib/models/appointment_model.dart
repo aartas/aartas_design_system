@@ -63,7 +63,7 @@ class AppointmentData {
   dynamic whatsappSent;
   PatientData? patient;
   Timeslot? timeslot;
-  List<PatientVitals>? vitals;
+  List<PatientVitalsData>? vitals;
 
   AppointmentData(
       {this.id,
@@ -132,9 +132,9 @@ class AppointmentData {
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
     if (json['vitals'] != null) {
-      vitals = <PatientVitals>[];
+      vitals = <PatientVitalsData>[];
       json['vitals'].forEach((v) {
-        vitals!.add(PatientVitals.fromJson(v));
+        vitals!.add(PatientVitalsData.fromJson(v));
       });
     }
   }

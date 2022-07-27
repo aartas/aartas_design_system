@@ -1,14 +1,15 @@
-class PatientVitalsResponse {
+class PatientVitalsReponse {
   String? message;
   bool? status;
-  PatientVitals? data;
+  PatientVitalsData? data;
 
-  PatientVitalsResponse({this.message, this.status, this.data});
+  PatientVitalsReponse({this.message, this.status, this.data});
 
-  PatientVitalsResponse.fromJson(Map<String, dynamic> json) {
+  PatientVitalsReponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? PatientVitals.fromJson(json['data']) : null;
+    data =
+        json['data'] != null ? PatientVitalsData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,15 +23,38 @@ class PatientVitalsResponse {
   }
 }
 
-class PatientVitals {
+class PatientVitalsData {
+  List<Vitals>? vitals;
+
+  PatientVitalsData({this.vitals});
+
+  PatientVitalsData.fromJson(Map<String, dynamic> json) {
+    if (json['vitals'] != null) {
+      vitals = <Vitals>[];
+      json['vitals'].forEach((v) {
+        vitals!.add(Vitals.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (vitals != null) {
+      data['vitals'] = vitals!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Vitals {
   int? id;
-  dynamic appointmentId;
-  dynamic patientId;
-  dynamic vitalsId;
-  dynamic value;
+  int? appointmentId;
+  int? patientId;
+  int? vitalsId;
+  String? value;
   Vital? vital;
 
-  PatientVitals(
+  Vitals(
       {this.id,
       this.appointmentId,
       this.patientId,
@@ -38,7 +62,7 @@ class PatientVitals {
       this.value,
       this.vital});
 
-  PatientVitals.fromJson(Map<String, dynamic> json) {
+  Vitals.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     appointmentId = json['appointment_id'];
     patientId = json['patient_id'];
@@ -63,8 +87,8 @@ class PatientVitals {
 
 class Vital {
   int? id;
-  dynamic title;
-  dynamic unit;
+  String? title;
+  String? unit;
 
   Vital({this.id, this.title, this.unit});
 
