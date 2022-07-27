@@ -10,7 +10,11 @@ import 'package:http/http.dart' as http;
 class VitalsProvider with ChangeNotifier {
   List<Vital> _vitals = [];
 
-  Future<VitalsResponse> getVitalList(bool? manageState) async {
+  List<Vital> getVitalList() {
+    return _vitals;
+  }
+
+  Future<VitalsResponse> fetchVitalList(bool? manageState) async {
     var _url = Uri.parse("$baseURL/vitals/list");
     final res = await http.post(_url);
     if (res.statusCode == 200) {
@@ -27,7 +31,12 @@ class VitalsProvider with ChangeNotifier {
     }
   }
 
-  Future<VitalsResponse> getPatientVitalList(
+  List<Vital> _patientList = [];
+  List<Vital> getPatientVitalsList() {
+    return _patientList;
+  }
+
+  Future<VitalsResponse> fetchPatientVitalList(
       String? appointmentID, bool? manageState) async {
     var _url = Uri.parse("$baseURL/appointment/vitals/list");
     final res = await http.post(_url);
