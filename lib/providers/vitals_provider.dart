@@ -42,8 +42,9 @@ class VitalsProvider with ChangeNotifier {
     final res = await http.post(_url);
     if (res.statusCode == 200) {
       if (manageState == null && manageState == true) {
-        _vitals.clear();
-        _vitals = VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
+        _patientList.clear();
+        _patientList =
+            VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
         notifyListeners();
       }
       return VitalsResponse.fromJson(json.decode(res.body));
