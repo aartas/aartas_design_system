@@ -18,7 +18,7 @@ class VitalsProvider with ChangeNotifier {
     var _url = Uri.parse("$baseURL/vitals/list");
     final res = await http.post(_url);
     if (res.statusCode == 200) {
-      if (manageState == null && manageState == true) {
+      if (manageState == null || manageState == true) {
         _vitals.clear();
         _vitals = VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
         notifyListeners();
