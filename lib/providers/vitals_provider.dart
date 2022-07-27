@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/patient_vitals_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 import 'package:aartas_design_system/models/vitals_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,11 +25,10 @@ class VitalsProvider with ChangeNotifier {
         notifyListeners();
       }
       return VitalsResponse.fromJson(json.decode(res.body));
-    } else {
-      String _message = "VitalsProvider(getVitalsList):${res.statusCode}";
-      log(_message);
-      return VitalsResponse(message: _message);
     }
+    String _message = "VitalsProvider(getVitalsList):${res.statusCode}";
+    log(_message);
+    return VitalsResponse(message: _message);
   }
 
   List<Vitals> _patientList = [];
@@ -53,5 +53,28 @@ class VitalsProvider with ChangeNotifier {
     String _message = "VitalsProvider(getPatientVitalsList):${res.statusCode}";
     log(_message);
     return PatientVitalsReponse(message: _message);
+  }
+
+  Future<ResponseModel> updatePatientVitals(
+    String? appointmentID,
+    String? patientID,
+    String? oldID,
+    String? vitalsID,
+    String? value,
+  ) async {
+    var _url = Uri.parse("$baseURL/save/vitals");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID,
+      "patient_id": patientID,
+      "old_id": oldID,
+      "vitals_id": vitalsID,
+      "value": value,
+    });
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    }
+    String _message = "VitalsProvider(UpdatePatientVitals):${res.statusCode}";
+    log(_message);
+    return ResponseModel(message: _message);
   }
 }
