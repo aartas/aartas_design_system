@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/category_model.dart';
 import 'package:aartas_design_system/models/search_category_list.dart';
-import 'package:aartas_design_system/models/sub_category_options.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
