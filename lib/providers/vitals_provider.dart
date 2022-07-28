@@ -44,7 +44,9 @@ class VitalsProvider with ChangeNotifier {
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
     });
-    log("VitalsProvider(getPatientVitalsList) Parameters: appointmentID:$appointmentID, manageState:$manageState");
+    String _message =
+        "(${res.statusCode}) $_url: appointmentID:$appointmentID, manageState:$manageState";
+    log(_message);
     if (res.statusCode == 200) {
       if (manageState == null || manageState == true) {
         _patientList.clear();
@@ -54,8 +56,7 @@ class VitalsProvider with ChangeNotifier {
       }
       return PatientVitalsReponse.fromJson(json.decode(res.body));
     }
-    String _message = "VitalsProvider(getPatientVitalsList):${res.statusCode}";
-    log(_message);
+
     return PatientVitalsReponse(message: _message);
   }
 
@@ -67,7 +68,7 @@ class VitalsProvider with ChangeNotifier {
     String? value,
   ) async {
     var _url = Uri.parse("$baseURL/save/vitals");
-    log("VitalsProvider(UpdatePatientVitals) Parameters: appointmentID:$appointmentID, patientID:$patientID, oldID:$oldID, vitalsID:$vitalsID, value:$value");
+
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID,
       "patient_id": patientID,
@@ -75,9 +76,11 @@ class VitalsProvider with ChangeNotifier {
       "vitals_id": vitalsID,
       "value": value,
     });
-    String _message = "VitalsProvider(UpdatePatientVitals):${res.statusCode}";
+    String _message =
+        "(${res.statusCode}) $_url: appointmentID:$appointmentID, patientID:$patientID, oldID:$oldID, vitalsID:$vitalsID, value:$value";
     log(_message);
     if (res.statusCode == 200) {
+      notifyListeners();
       return ResponseModel.fromJson(json.decode(res.body));
     }
     return ResponseModel(message: _message);

@@ -17,13 +17,15 @@ class CategoryProvider extends ChangeNotifier {
   Future<CategoryResponse> fetchCategoryList() async {
     var _url = Uri.parse("$baseURL/clinishare/get/category/list");
     final res = await http.post(_url);
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
     if (res.statusCode == 200) {
       _categoryList = CategoryResponse.fromJson(json.decode(res.body)).data!;
       notifyListeners();
       return CategoryResponse.fromJson(json.decode(res.body));
     }
-    String _message = "CategoryProvider(fetchCategoryList):${res.statusCode}";
-    log(_message);
+
     return CategoryResponse(message: _message);
   }
 
@@ -38,15 +40,21 @@ class CategoryProvider extends ChangeNotifier {
     String? search,
   ) async {
     var _url = Uri.parse("$baseURL/clinishare/get/category/list");
-    final res = await http.post(_url);
+    final res = await http.post(_url, body: {
+      "id": subCategoryID ?? "",
+      "search": search ?? "",
+    });
+    String _message =
+        "(${res.statusCode}) $_url: subCategoryID:$subCategoryID, search:$search";
+    log(_message);
+
     if (res.statusCode == 200) {
       _categoryOptions =
           SubCategoryOptionsResponse.fromJson(json.decode(res.body)).data!;
       notifyListeners();
       return SubCategoryOptionsResponse.fromJson(json.decode(res.body));
     }
-    String _message = "CategoryProvider(fetchCategoryList):${res.statusCode}";
-    log(_message);
+
     return SubCategoryOptionsResponse(message: _message);
   }
 }
