@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:aartas_design_system/const.dart';
 import 'package:flutter/material.dart';
 
 class GlassMorphism extends StatelessWidget {
@@ -20,40 +21,46 @@ class GlassMorphism extends StatelessWidget {
   Widget build(BuildContext context) {
     BorderRadius _borderRadius =
         borderRadius != null ? borderRadius! : BorderRadius.zero;
-    if (enabled != null && !enabled!) {
-      return child;
-    }
-    return ClipRRect(
-      borderRadius: _borderRadius,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-        blendMode: blendMode != null ? blendMode! : BlendMode.srcOver,
-        child: Container(
-          decoration: BoxDecoration(
-            color: color != null
-                ? color!.withOpacity(0.1)
-                : const Color(0xFF1F1F1F).withOpacity(0.45),
-            borderRadius: _borderRadius,
-            // border: Border.all(
-            //   width: 1.5,
-            //   color: color != null
-            //       ? color!.withOpacity(0.2)
-            //       : const Color(0xFF1F1F1F).withOpacity(0),
-            // ),
-            // boxShadow: [
-            //   BoxShadow(
-            //     blurRadius: 50,
-            //     color: color != null
-            //         ? color!.withOpacity(0.1)
-            //         : const Color(0xFF1F1F1F).withOpacity(0.5),
-            //     blurStyle: BlurStyle.solid,
-            //     spreadRadius: 50,
-            //   )
-            // ],
-          ),
-          child: child,
-        ),
-      ),
+    // if (enabled != null && !enabled!) {
+    //   return child;
+    // }
+    return AnimatedOpacity(
+      duration: duration,
+      opacity: enabled != null && !enabled! ? 0 : 1,
+      child: enabled != null && !enabled!
+          ? child
+          : ClipRRect(
+              borderRadius: _borderRadius,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                blendMode: blendMode != null ? blendMode! : BlendMode.srcOver,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: color != null
+                        ? color!.withOpacity(0.1)
+                        : const Color(0xFF1F1F1F).withOpacity(0.45),
+                    borderRadius: _borderRadius,
+                    // border: Border.all(
+                    //   width: 1.5,
+                    //   color: color != null
+                    //       ? color!.withOpacity(0.2)
+                    //       : const Color(0xFF1F1F1F).withOpacity(0),
+                    // ),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     blurRadius: 50,
+                    //     color: color != null
+                    //         ? color!.withOpacity(0.1)
+                    //         : const Color(0xFF1F1F1F).withOpacity(0.5),
+                    //     blurStyle: BlurStyle.solid,
+                    //     spreadRadius: 50,
+                    //   )
+                    // ],
+                  ),
+                  child: child,
+                ),
+              ),
+            ),
     );
   }
 }
