@@ -1,14 +1,16 @@
 class SearchCategoryResponse {
   String? message;
   bool? status;
-  Data? data;
+  SearchCategoryDataList? data;
 
   SearchCategoryResponse({this.message, this.status, this.data});
 
   SearchCategoryResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? SearchCategoryDataList.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,12 +24,12 @@ class SearchCategoryResponse {
   }
 }
 
-class Data {
+class SearchCategoryDataList {
   List<SearchCategoryData>? complaints;
 
-  Data({this.complaints});
+  SearchCategoryDataList({this.complaints});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  SearchCategoryDataList.fromJson(Map<String, dynamic> json) {
     if (json['complaints'] != null) {
       complaints = <SearchCategoryData>[];
       json['complaints'].forEach((v) {
