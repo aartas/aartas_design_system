@@ -1,11 +1,11 @@
-class SubCategoryOptions {
+class SubCategoryOptionsResponse {
   String? message;
   bool? status;
   List<SubCategoryOptionsData>? data;
 
-  SubCategoryOptions({this.message, this.status, this.data});
+  SubCategoryOptionsResponse({this.message, this.status, this.data});
 
-  SubCategoryOptions.fromJson(Map<String, dynamic> json) {
+  SubCategoryOptionsResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     if (json['data'] != null) {

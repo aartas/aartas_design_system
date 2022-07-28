@@ -1,7 +1,7 @@
 class CategoryResponse {
   String? message;
-  bool? status;
-  List<CategoryData>? data;
+  bool? status = false;
+  List<CategoryData>? data = [];
 
   CategoryResponse({this.message, this.status, this.data});
 
