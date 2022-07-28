@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/category_model.dart';
+import 'package:aartas_design_system/models/search_category_list.dart';
 import 'package:aartas_design_system/models/sub_category_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -29,13 +30,13 @@ class CategoryProvider extends ChangeNotifier {
     return CategoryResponse(message: _message);
   }
 
-  List<SubCategoryOptionsData> _searchResponse = [];
+  List<SearchCategoryData> _searchResponse = [];
 
-  List<SubCategoryOptionsData> getSearchResponse() {
+  List<SearchCategoryData> getSearchResponse() {
     return _searchResponse;
   }
 
-  Future<SubCategoryOptionsResponse> fetchSearchResponse(
+  Future<SearchCategoryResponse> fetchSearchResponse(
     String? type,
     String? search,
   ) async {
@@ -48,11 +49,11 @@ class CategoryProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       _searchResponse =
-          SubCategoryOptionsResponse.fromJson(json.decode(res.body)).data!;
+          json.decode(res.body)['data'][type] as List<SearchCategoryData>;
       notifyListeners();
-      return SubCategoryOptionsResponse.fromJson(json.decode(res.body));
+      return SearchCategoryResponse.fromJson(json.decode(res.body));
     }
 
-    return SubCategoryOptionsResponse(message: _message);
+    return SearchCategoryResponse(message: _message);
   }
 }
