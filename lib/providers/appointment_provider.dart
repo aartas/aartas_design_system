@@ -40,6 +40,9 @@ class AppointmentProvider extends ChangeNotifier {
       "offset": offset ?? "",
       "type": type ?? "",
     });
+    String _message =
+        "(${res.statusCode}) $_url: patientID:$patientID, doctorID:$doctorID, search:$search, date:$date, limit:$limit, offset:$offset, type:$type";
+    log(_message);
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
@@ -49,8 +52,7 @@ class AppointmentProvider extends ChangeNotifier {
       }
       return _res;
     }
-    String _message = "AppointmentDataProvider:${res.statusCode}";
-    log(_message);
+
     return AppointmentResponse(message: _message);
   }
 }

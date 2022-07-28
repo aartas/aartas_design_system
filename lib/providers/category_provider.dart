@@ -29,27 +29,25 @@ class CategoryProvider extends ChangeNotifier {
     return CategoryResponse(message: _message);
   }
 
-  List<SubCategoryOptionsData> _categoryOptions = [];
+  List<SubCategoryOptionsData> _searchResponse = [];
 
-  List<SubCategoryOptionsData> getCategoryOptions() {
-    return _categoryOptions;
+  List<SubCategoryOptionsData> getSearchResponse() {
+    return _searchResponse;
   }
 
-  Future<SubCategoryOptionsResponse> fetchCategoryOptions(
-    String? subCategoryID,
+  Future<SubCategoryOptionsResponse> fetchSearchResponse(
+    String? type,
     String? search,
   ) async {
-    var _url = Uri.parse("$baseURL/get/sub-category/options");
+    var _url = Uri.parse("$baseURL/api/$type/list");
     final res = await http.post(_url, body: {
-      "id": subCategoryID ?? "",
       "search": search ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: subCategoryID:$subCategoryID, search:$search";
+    String _message = "(${res.statusCode}) $_url: type:$type, search:$search";
     log(_message);
 
     if (res.statusCode == 200) {
-      _categoryOptions =
+      _searchResponse =
           SubCategoryOptionsResponse.fromJson(json.decode(res.body)).data!;
       notifyListeners();
       return SubCategoryOptionsResponse.fromJson(json.decode(res.body));
