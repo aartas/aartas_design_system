@@ -48,6 +48,7 @@ class CategoryProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
+      log("TEST: ${json.decode(res.body)['data'][type]}");
       _searchResponse =
           json.decode(res.body)['data'][type] as List<SearchCategoryData>;
       notifyListeners();
