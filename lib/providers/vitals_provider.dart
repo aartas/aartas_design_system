@@ -62,6 +62,7 @@ class VitalsProvider with ChangeNotifier {
     String? vitalsID,
     String? value,
   ) async {
+    log("A_ID:$appointmentID,P_ID:$patientID,O_ID:$oldID,V_ID:$vitalsID,VALUE:$value");
     var _url = Uri.parse("$baseURL/save/vitals");
     log("VitalsProvider(UpdatePatientVitals) Parameters: appointmentID:$appointmentID, patientID:$patientID, oldID:$oldID, vitalsID:$vitalsID, value:$value");
     final res = await http.post(_url, body: {
