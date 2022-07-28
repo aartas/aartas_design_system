@@ -4,6 +4,7 @@ import 'package:aartas_design_system/apis/authentication_apis.dart';
 
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
+import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
 import 'package:aartas_design_system/providers/vitals_provider.dart';
@@ -32,6 +33,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => DoctorProvider()),
         ChangeNotifierProvider(create: (_) => PatientProvider()),
         ChangeNotifierProvider(create: (_) => VitalsProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
       ],
       builder: (_, child) {
         return widget.child;
