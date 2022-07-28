@@ -24,52 +24,43 @@ class GlassMorphism extends StatelessWidget {
     // if (enabled != null && !enabled!) {
     //   return child;
     // }
-    return Stack(
-      children: [
-        enabled != null && !enabled!
-            ? AnimatedOpacity(
-                duration: duration,
-                opacity: enabled != null && !enabled! ? 1 : 0,
-                child: child,
-              )
-            : AnimatedOpacity(
-                duration: duration,
-                opacity: enabled != null && !enabled! ? 0 : 1,
-                child: ClipRRect(
-                  borderRadius: _borderRadius,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                    blendMode:
-                        blendMode != null ? blendMode! : BlendMode.srcOver,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: color != null
-                            ? color!.withOpacity(0.1)
-                            : const Color(0xFF1F1F1F).withOpacity(0.45),
-                        borderRadius: _borderRadius,
-                        // border: Border.all(
-                        //   width: 1.5,
-                        //   color: color != null
-                        //       ? color!.withOpacity(0.2)
-                        //       : const Color(0xFF1F1F1F).withOpacity(0),
-                        // ),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     blurRadius: 50,
-                        //     color: color != null
-                        //         ? color!.withOpacity(0.1)
-                        //         : const Color(0xFF1F1F1F).withOpacity(0.5),
-                        //     blurStyle: BlurStyle.solid,
-                        //     spreadRadius: 50,
-                        //   )
-                        // ],
-                      ),
-                      child: child,
-                    ),
+    return AnimatedOpacity(
+      duration: duration,
+      opacity: enabled != null && !enabled! ? 0.1 : 1,
+      child: enabled != null && !enabled!
+          ? child
+          : ClipRRect(
+              borderRadius: _borderRadius,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                blendMode: blendMode != null ? blendMode! : BlendMode.srcOver,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: color != null
+                        ? color!.withOpacity(0.1)
+                        : const Color(0xFF1F1F1F).withOpacity(0.45),
+                    borderRadius: _borderRadius,
+                    // border: Border.all(
+                    //   width: 1.5,
+                    //   color: color != null
+                    //       ? color!.withOpacity(0.2)
+                    //       : const Color(0xFF1F1F1F).withOpacity(0),
+                    // ),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     blurRadius: 50,
+                    //     color: color != null
+                    //         ? color!.withOpacity(0.1)
+                    //         : const Color(0xFF1F1F1F).withOpacity(0.5),
+                    //     blurStyle: BlurStyle.solid,
+                    //     spreadRadius: 50,
+                    //   )
+                    // ],
                   ),
+                  child: child,
                 ),
               ),
-      ],
+            ),
     );
   }
 }
