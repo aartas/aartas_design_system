@@ -39,7 +39,7 @@ class CategoryProvider extends ChangeNotifier {
     String? subCategoryID,
     String? search,
   ) async {
-    var _url = Uri.parse("$baseURL/clinishare/get/category/list");
+    var _url = Uri.parse("$baseURL/get/sub-category/options");
     final res = await http.post(_url, body: {
       "id": subCategoryID ?? "",
       "search": search ?? "",
