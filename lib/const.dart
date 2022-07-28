@@ -277,6 +277,7 @@ String getMembershipTitle(int membershipTypeId) {
 Widget getAppointmentStatus(context, int status) {
   if (status == 1) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
@@ -294,6 +295,7 @@ Widget getAppointmentStatus(context, int status) {
   }
   if (status == 2) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
@@ -311,6 +313,7 @@ Widget getAppointmentStatus(context, int status) {
   }
   if (status == 3) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
@@ -342,6 +345,7 @@ Widget getAppointmentStatus(context, int status) {
   }
   if (status == 6) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
@@ -366,6 +370,7 @@ Widget getAppointmentStatus(context, int status) {
   }
   if (status == 8) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
@@ -383,6 +388,7 @@ Widget getAppointmentStatus(context, int status) {
   }
   if (status == 9) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: Text(
