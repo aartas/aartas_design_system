@@ -21,9 +21,9 @@ class GlassMorphism extends StatelessWidget {
   Widget build(BuildContext context) {
     BorderRadius _borderRadius =
         borderRadius != null ? borderRadius! : BorderRadius.zero;
-    // if (enabled != null && !enabled!) {
-    //   return child;
-    // }
+    if (enabled != null && !enabled!) {
+      return child;
+    }
     return AnimatedOpacity(
       duration: duration,
       opacity: enabled != null && !enabled! ? 0 : 1,
