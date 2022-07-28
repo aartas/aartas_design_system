@@ -1,11 +1,11 @@
-class SearchCategoryList {
+class SearchCategoryResponse {
   String? message;
   bool? status;
   Data? data;
 
-  SearchCategoryList({this.message, this.status, this.data});
+  SearchCategoryResponse({this.message, this.status, this.data});
 
-  SearchCategoryList.fromJson(Map<String, dynamic> json) {
+  SearchCategoryResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
@@ -23,15 +23,15 @@ class SearchCategoryList {
 }
 
 class Data {
-  List<SearchContentData>? complaints;
+  List<SearchCategoryData>? complaints;
 
   Data({this.complaints});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json['complaints'] != null) {
-      complaints = <SearchContentData>[];
+      complaints = <SearchCategoryData>[];
       json['complaints'].forEach((v) {
-        complaints!.add(SearchContentData.fromJson(v));
+        complaints!.add(SearchCategoryData.fromJson(v));
       });
     }
   }
@@ -45,13 +45,13 @@ class Data {
   }
 }
 
-class SearchContentData {
+class SearchCategoryData {
   int? id;
   String? title;
 
-  SearchContentData({this.id, this.title});
+  SearchCategoryData({this.id, this.title});
 
-  SearchContentData.fromJson(Map<String, dynamic> json) {
+  SearchCategoryData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }
