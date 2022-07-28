@@ -49,11 +49,15 @@ class CategoryProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       log("TEST: ${json.decode(res.body)['data'][type].length}");
-      _searchResponse.add(SearchCategoryData(
-        id: json.decode(res.body)['data'][type]['id'],
-        title: json.decode(res.body)['data'][type]['title'],
-      ));
-      notifyListeners();
+      for (var i = 0; i < json.decode(res.body)['data'][type].length; i++) {
+        _searchResponse.add(
+          SearchCategoryData(
+            id: json.decode(res.body)['data'][type][i]['id'],
+            title: json.decode(res.body)['data'][type][i]['title'],
+          ),
+        );
+        notifyListeners();
+      }
       return SearchCategoryResponse.fromJson(json.decode(res.body));
     }
 
