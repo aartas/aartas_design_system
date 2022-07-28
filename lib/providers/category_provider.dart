@@ -39,7 +39,7 @@ class CategoryProvider extends ChangeNotifier {
     String? type,
     String? search,
   ) async {
-    var _url = Uri.parse("$baseURL/api/$type/list");
+    var _url = Uri.parse("$baseURL/$type/list");
     final res = await http.post(_url, body: {
       "search": search ?? "",
     });
