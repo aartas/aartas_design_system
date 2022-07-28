@@ -63,6 +63,7 @@ class VitalsProvider with ChangeNotifier {
     String? value,
   ) async {
     var _url = Uri.parse("$baseURL/save/vitals");
+    log("VitalsProvider(UpdatePatientVitals) Parameters: appointmentID:$appointmentID, patientID:$patientID, oldID:$oldID, vitalsID:$vitalsID, value:$value");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID,
       "patient_id": patientID,
@@ -70,11 +71,11 @@ class VitalsProvider with ChangeNotifier {
       "vitals_id": vitalsID,
       "value": value,
     });
+    String _message = "VitalsProvider(UpdatePatientVitals):${res.statusCode}";
+    log(_message);
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    String _message = "VitalsProvider(UpdatePatientVitals):${res.statusCode}";
-    log(_message);
     return ResponseModel(message: _message);
   }
 }
