@@ -1,15 +1,15 @@
-class ComplaintResponse {
+class ComplaintsResponse {
   String? message;
   bool? status;
-  ComplaintResponseData? data;
+  ComplaintsResponseData? data;
 
-  ComplaintResponse({this.message, this.status, this.data});
+  ComplaintsResponse({this.message, this.status, this.data});
 
-  ComplaintResponse.fromJson(Map<String, dynamic> json) {
+  ComplaintsResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     data = json['data'] != null
-        ? ComplaintResponseData.fromJson(json['data'])
+        ? ComplaintsResponseData.fromJson(json['data'])
         : null;
   }
 
@@ -24,16 +24,16 @@ class ComplaintResponse {
   }
 }
 
-class ComplaintResponseData {
-  List<ComplaintsData>? complaints;
+class ComplaintsResponseData {
+  List<Complaints>? complaints;
 
-  ComplaintResponseData({this.complaints});
+  ComplaintsResponseData({this.complaints});
 
-  ComplaintResponseData.fromJson(Map<String, dynamic> json) {
+  ComplaintsResponseData.fromJson(Map<String, dynamic> json) {
     if (json['complaints'] != null) {
-      complaints = <ComplaintsData>[];
+      complaints = <Complaints>[];
       json['complaints'].forEach((v) {
-        complaints!.add(ComplaintsData.fromJson(v));
+        complaints!.add(Complaints.fromJson(v));
       });
     }
   }
@@ -47,13 +47,13 @@ class ComplaintResponseData {
   }
 }
 
-class ComplaintsData {
+class Complaints {
   int? id;
   String? title;
 
-  ComplaintsData({this.id, this.title});
+  Complaints({this.id, this.title});
 
-  ComplaintsData.fromJson(Map<String, dynamic> json) {
+  Complaints.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }

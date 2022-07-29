@@ -1,15 +1,15 @@
-class DaignosisResponse {
+class DiagnosisResponse {
   String? message;
-  bool? status;
-  ComplaintResponseData? data;
+  bool? status = false;
+  DiagnosisResponseData? data;
 
-  DaignosisResponse({this.message, this.status, this.data});
+  DiagnosisResponse({this.message, this.status, this.data});
 
-  DaignosisResponse.fromJson(Map<String, dynamic> json) {
+  DiagnosisResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     data = json['data'] != null
-        ? ComplaintResponseData.fromJson(json['data'])
+        ? DiagnosisResponseData.fromJson(json['data'])
         : null;
   }
 
@@ -24,36 +24,36 @@ class DaignosisResponse {
   }
 }
 
-class ComplaintResponseData {
-  List<ComplaintsData>? complaints;
+class DiagnosisResponseData {
+  List<Diagnosis>? diagnosis;
 
-  ComplaintResponseData({this.complaints});
+  DiagnosisResponseData({this.diagnosis});
 
-  ComplaintResponseData.fromJson(Map<String, dynamic> json) {
-    if (json['complaints'] != null) {
-      complaints = <ComplaintsData>[];
-      json['complaints'].forEach((v) {
-        complaints!.add(ComplaintsData.fromJson(v));
+  DiagnosisResponseData.fromJson(Map<String, dynamic> json) {
+    if (json['diagnosis'] != null) {
+      diagnosis = <Diagnosis>[];
+      json['diagnosis'].forEach((v) {
+        diagnosis!.add(Diagnosis.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (complaints != null) {
-      data['complaints'] = complaints!.map((v) => v.toJson()).toList();
+    if (diagnosis != null) {
+      data['diagnosis'] = diagnosis!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class ComplaintsData {
+class Diagnosis {
   int? id;
   String? title;
 
-  ComplaintsData({this.id, this.title});
+  Diagnosis({this.id, this.title});
 
-  ComplaintsData.fromJson(Map<String, dynamic> json) {
+  Diagnosis.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }
