@@ -91,7 +91,7 @@ class CategoryProvider extends ChangeNotifier {
     return ComplaintsResponse.fromJson(json.decode(res.body));
   }
 
-  Future<InvestigationsResponse> addComplaints(
+  Future<ComplaintsResponse> addComplaints(
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/add/complaints");
@@ -102,9 +102,9 @@ class CategoryProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return InvestigationsResponse.fromJson(json.decode(res.body));
+      return ComplaintsResponse.fromJson(json.decode(res.body));
     }
-    return InvestigationsResponse(message: _message);
+    return ComplaintsResponse(message: _message);
   }
 
   Future<ResponseModel> saveComplaints(
@@ -327,6 +327,5 @@ class CategoryProvider extends ChangeNotifier {
     }
     return ResponseModel(message: _message);
   }
-
   // -------------------------- Investigations -----------------------------------
 }
