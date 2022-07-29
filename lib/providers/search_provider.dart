@@ -1,70 +1,46 @@
+import 'dart:convert';
+
+import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
+import 'package:aartas_design_system/models/search_model.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class SearchResponse {
-  String? message;
-  bool? status;
-  SearchData? data;
+class SearchProvider extends ChangeNotifier {
+  List<AppointmentData> _appointmentList = [];
+  List<PatientData> _patientList = [];
+  List<DoctorData> _doctorList = [];
 
-  SearchResponse({this.message, this.status, this.data});
+  Future<SearchResponse> fetchSearchResults(
+    String? doctorID,
+    String? search,
+    String? offset,
+    String? limit,
+  ) async {
+    var _url = Uri.parse("$baseURL/global/search");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "search": search ?? "",
+      "offset": offset ?? "",
+      "limit": limit ?? "",
+    });
+    String _message =
+        "(${res.statusCode}) $_url: doctorID:$doctorID, search:$search, offset:$offset, limit:$limit";
 
-  SearchResponse.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    status = json['status'];
-    data = json['data'] != null ? SearchData.fromJson(json['data']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['message'] = message;
-    data['status'] = status;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    if (res.statusCode == 200) {
+      _appointmentList.clear();
+      _patientList.clear();
+      _doctorList.clear();
+      _appointmentList =
+          SearchResponse.fromJson(json.decode(res.body)).data!.appointments!;
+      _patientList =
+          SearchResponse.fromJson(json.decode(res.body)).data!.patients!;
+      _doctorList =
+          SearchResponse.fromJson(json.decode(res.body)).data!.doctors!;
+      return SearchResponse.fromJson(json.decode(res.body));
     }
-    return data;
-  }
-}
-
-class SearchData {
-  List<AppointmentData>? appointments;
-  List<PatientData>? patients;
-  List<DoctorData>? doctors;
-
-  SearchData({this.appointments, this.patients, this.doctors});
-
-  SearchData.fromJson(Map<String, dynamic> json) {
-    if (json['appointments'] != null) {
-      appointments = <AppointmentData>[];
-      json['appointments'].forEach((v) {
-        appointments!.add(AppointmentData.fromJson(v));
-      });
-    }
-    if (json['patients'] != null) {
-      patients = <PatientData>[];
-      json['patients'].forEach((v) {
-        patients!.add(PatientData.fromJson(v));
-      });
-    }
-    if (json['doctors'] != null) {
-      doctors = <DoctorData>[];
-      json['doctors'].forEach((v) {
-        doctors!.add(DoctorData.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (appointments != null) {
-      data['appointments'] = appointments!.map((v) => v.toJson()).toList();
-    }
-    if (patients != null) {
-      data['patients'] = patients!.map((v) => v.toJson()).toList();
-    }
-    if (doctors != null) {
-      data['doctors'] = doctors!.map((v) => v.toJson()).toList();
-    }
-    return data;
+    return SearchResponse(message: _message);
   }
 }
