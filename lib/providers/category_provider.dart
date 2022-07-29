@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/category_model.dart';
+import 'package:aartas_design_system/models/complaints_model.dart';
 import 'package:aartas_design_system/models/search_category_list.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -62,5 +63,66 @@ class CategoryProvider extends ChangeNotifier {
     }
 
     return SearchCategoryResponse(message: _message);
+  }
+
+  Future<ComplaintResponse> fetchComplaintList(
+    String? doctorID,
+    String? specialityID,
+    String? search,
+  ) async {
+    var _url = Uri.parse("$baseURL/complaints/list");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "speciality_id": specialityID ?? "",
+      "search": search ?? "",
+    });
+    String _message =
+        "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ComplaintResponse.fromJson(json.decode(res.body));
+    }
+    return ComplaintResponse.fromJson(json.decode(res.body));
+  }
+  Future<ComplaintResponse> fetchDaignosisList(
+    String? doctorID,
+    String? specialityID,
+    String? search,
+  ) async {
+    var _url = Uri.parse("$baseURL/daignosis/list");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "speciality_id": specialityID ?? "",
+      "search": search ?? "",
+    });
+    String _message =
+        "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ComplaintResponse.fromJson(json.decode(res.body));
+    }
+    return ComplaintResponse.fromJson(json.decode(res.body));
+  }
+  Future<ComplaintResponse> fetchInvestigationList(
+    String? doctorID,
+    String? specialityID,
+    String? search,
+  ) async {
+    var _url = Uri.parse("$baseURL/investigation/list");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "speciality_id": specialityID ?? "",
+      "search": search ?? "",
+    });
+    String _message =
+        "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ComplaintResponse.fromJson(json.decode(res.body));
+    }
+    return ComplaintResponse.fromJson(json.decode(res.body));
   }
 }
