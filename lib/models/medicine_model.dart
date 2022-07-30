@@ -8,8 +8,8 @@ class MedicineResponse {
   MedicineResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    medicineResponseData = json['medicine_response_data'] != null
-        ? MedicineResponseData.fromJson(json['medicine_response_data'])
+    medicineResponseData = json['data'] != null
+        ? MedicineResponseData.fromJson(json['data'])
         : null;
   }
 
@@ -18,7 +18,7 @@ class MedicineResponse {
     data['message'] = message;
     data['status'] = status;
     if (medicineResponseData != null) {
-      data['medicine_response_data'] = medicineResponseData!.toJson();
+      data['data'] = medicineResponseData!.toJson();
     }
     return data;
   }
