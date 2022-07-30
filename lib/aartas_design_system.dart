@@ -11,6 +11,7 @@ import 'package:aartas_design_system/providers/doctor_provider.dart';
 import 'package:aartas_design_system/providers/investigation_provider.dart';
 import 'package:aartas_design_system/providers/medicine_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
+import 'package:aartas_design_system/providers/procedure_provider.dart';
 import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,6 +43,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => DiagnosisProvder()),
         ChangeNotifierProvider(create: (_) => InvestigationProvider()),
         ChangeNotifierProvider(create: (_) => MedicineProvider()),
+        ChangeNotifierProvider(create: (_) => ProcedureProvider()),
       ],
       builder: (_, child) {
         return widget.child;
