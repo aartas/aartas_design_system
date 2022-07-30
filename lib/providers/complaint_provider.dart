@@ -48,6 +48,7 @@ class ComplaintProvider extends ChangeNotifier {
   Future<ResponseModel> saveComplaints(
     String? appointmentID,
     String? complaintID,
+    String? negativeSymptom,
     String? duration,
     String? durationType,
     String? severity,
@@ -59,6 +60,7 @@ class ComplaintProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "investigations_id": complaintID ?? "",
+      "negative_symptom": negativeSymptom ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",
       "severity": severity ?? "",
@@ -67,7 +69,7 @@ class ComplaintProvider extends ChangeNotifier {
       "old_id": oldID ?? "",
     });
     String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, duration:$duration, durationType:$durationType,severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
+        "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, negativeSymptom:$negativeSymptom, duration:$duration, durationType:$durationType,severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
     log(_message);
 
     if (res.statusCode == 200) {
