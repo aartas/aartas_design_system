@@ -59,7 +59,7 @@ class ComplaintProvider extends ChangeNotifier {
     var _url = Uri.parse("$baseURL/save/complaints");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
-      "investigations_id": complaintID ?? "",
+      "complaints_id": complaintID ?? "",
       "negative_symptom": negativeSymptom ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",
@@ -69,7 +69,7 @@ class ComplaintProvider extends ChangeNotifier {
       "old_id": oldID ?? "",
     });
     String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, negativeSymptom:$negativeSymptom, duration:$duration, durationType:$durationType,severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
+        "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, negativeSymptom:$negativeSymptom, duration:$duration, durationType:$durationType, severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
     log(_message);
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
