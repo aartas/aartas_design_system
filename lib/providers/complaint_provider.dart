@@ -71,11 +71,12 @@ class ComplaintProvider extends ChangeNotifier {
     String _message =
         "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, negativeSymptom:$negativeSymptom, duration:$duration, durationType:$durationType,severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
     log(_message);
-
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log("$res");
+      return ResponseModel(message: _message);
     }
-    return ResponseModel(message: _message);
   }
 
   Future<ResponseModel> removecomplaint(
