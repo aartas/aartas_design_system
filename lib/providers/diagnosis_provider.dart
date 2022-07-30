@@ -57,13 +57,11 @@ class DiagnosisProvder extends ChangeNotifier {
     String? diagnosisStatus,
     String? medication,
     String? oldID,
-    String? fastingState,
   ) async {
     var _url = Uri.parse("$baseURL/save/diagnosis");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "diagnosis_id": diagnosisID ?? "",
-      "fasting_state": fastingState ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",
       "diagnosis_status": diagnosisStatus ?? "",
@@ -71,7 +69,7 @@ class DiagnosisProvder extends ChangeNotifier {
       "old_id": oldID ?? "",
     });
     String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, diagnosisID:$diagnosisID, fastingState:$fastingState, duration:$duration, durationType:$durationType, diagnosisStatus:$diagnosisStatus, medication:$medication, oldID:$oldID";
+        "(${res.statusCode}) $_url: appointmentID:$appointmentID, diagnosisID:$diagnosisID, duration:$duration, durationType:$durationType, diagnosisStatus:$diagnosisStatus, medication:$medication, oldID:$oldID";
     log(_message);
 
     if (res.statusCode == 200) {

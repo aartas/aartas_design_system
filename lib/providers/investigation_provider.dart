@@ -13,7 +13,7 @@ class InvestigationProvider extends ChangeNotifier {
     String? specialityID,
     String? search,
   ) async {
-    var _url = Uri.parse("$baseURL/investigation/list");
+    var _url = Uri.parse("$baseURL/investigations/list");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",
       "speciality_id": specialityID ?? "",
