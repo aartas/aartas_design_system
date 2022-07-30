@@ -74,7 +74,7 @@ class ComplaintProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
-      log("${json.decode(res.body)}");
+      log(res.body);
       return ResponseModel(message: _message);
     }
   }
