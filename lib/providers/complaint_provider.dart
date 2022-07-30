@@ -56,7 +56,7 @@ class ComplaintProvider extends ChangeNotifier {
     String? oldID,
     String? notes,
   ) async {
-    var _url = Uri.parse("$baseURL/save/complaint");
+    var _url = Uri.parse("$baseURL/save/complaints");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "investigations_id": complaintID ?? "",
@@ -81,7 +81,7 @@ class ComplaintProvider extends ChangeNotifier {
   Future<ResponseModel> removecomplaint(
     String? id,
   ) async {
-    var _url = Uri.parse("$baseURL/remove/complaint");
+    var _url = Uri.parse("$baseURL/remove/complaints");
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });
