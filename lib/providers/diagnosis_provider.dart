@@ -25,8 +25,10 @@ class DiagnosisProvder extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return DiagnosisResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return DiagnosisResponse(message: _message);
     }
-    return DiagnosisResponse(message: _message);
   }
 
   Future<DiagnosisResponse> addDiagnosis(
@@ -41,19 +43,21 @@ class DiagnosisProvder extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return DiagnosisResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return DiagnosisResponse(message: _message);
     }
-    return DiagnosisResponse(message: _message);
   }
 
   Future<ResponseModel> saveDiagnosis(
     String? appointmentID,
     String? diagnosisID,
-    String? fastingState,
     String? duration,
     String? durationType,
     String? diagnosisStatus,
     String? medication,
     String? oldID,
+    String? fastingState,
   ) async {
     var _url = Uri.parse("$baseURL/save/diagnosis");
     final res = await http.post(_url, body: {
@@ -72,8 +76,10 @@ class DiagnosisProvder extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
     }
-    return ResponseModel(message: _message);
   }
 
   Future<ResponseModel> removeDiagnosis(
@@ -88,7 +94,9 @@ class DiagnosisProvder extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
     }
-    return ResponseModel(message: _message);
   }
 }

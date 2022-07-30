@@ -25,8 +25,10 @@ class ComplaintProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return ComplaintsResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ComplaintsResponse.fromJson(json.decode(res.body));
     }
-    return ComplaintsResponse.fromJson(json.decode(res.body));
   }
 
   Future<ComplaintsResponse> addComplaints(
@@ -41,8 +43,10 @@ class ComplaintProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return ComplaintsResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ComplaintsResponse(message: _message);
     }
-    return ComplaintsResponse(message: _message);
   }
 
   Future<ResponseModel> saveComplaints(
@@ -91,7 +95,9 @@ class ComplaintProvider extends ChangeNotifier {
 
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
     }
-    return ResponseModel(message: _message);
   }
 }
