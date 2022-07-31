@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/appointment_model.dart';
+
 class PatientVitalsReponse {
   String? message;
   bool? status;
@@ -42,67 +44,6 @@ class PatientVitalsData {
     if (vitals != null) {
       data['vitals'] = vitals!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Vitals {
-  int? id;
-  int? appointmentId;
-  int? patientId;
-  int? vitalsId;
-  String? value;
-  Vital? vital;
-
-  Vitals(
-      {this.id,
-      this.appointmentId,
-      this.patientId,
-      this.vitalsId,
-      this.value,
-      this.vital});
-
-  Vitals.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    appointmentId = json['appointment_id'];
-    patientId = json['patient_id'];
-    vitalsId = json['vitals_id'];
-    value = json['value'];
-    vital = json['vital'] != null ? Vital.fromJson(json['vital']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['appointment_id'] = appointmentId;
-    data['patient_id'] = patientId;
-    data['vitals_id'] = vitalsId;
-    data['value'] = value;
-    if (vital != null) {
-      data['vital'] = vital!.toJson();
-    }
-    return data;
-  }
-}
-
-class Vital {
-  int? id;
-  String? title;
-  String? unit;
-
-  Vital({this.id, this.title, this.unit});
-
-  Vital.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    unit = json['unit'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['unit'] = unit;
     return data;
   }
 }

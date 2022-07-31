@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_vitals_model.dart';
 
 class VitalsResponse {
