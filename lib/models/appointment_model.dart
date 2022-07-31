@@ -457,7 +457,7 @@ class AppointmentsComplaints {
   String? progress;
   String? notes;
   int? negativeSymptom;
-  Complaint? complaint;
+  IdTitle? complaint;
 
   AppointmentsComplaints(
       {this.id,
@@ -481,9 +481,8 @@ class AppointmentsComplaints {
     progress = json['progress'];
     notes = json['notes'];
     negativeSymptom = json['negative_symptom'];
-    complaint = json['complaint'] != null
-        ? Complaint.fromJson(json['complaint'])
-        : null;
+    complaint =
+        json['complaint'] != null ? IdTitle.fromJson(json['complaint']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -504,13 +503,13 @@ class AppointmentsComplaints {
   }
 }
 
-class Complaint {
+class IdTitle {
   int? id;
   String? title;
 
-  Complaint({this.id, this.title});
+  IdTitle({this.id, this.title});
 
-  Complaint.fromJson(Map<String, dynamic> json) {
+  IdTitle.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }
@@ -531,7 +530,7 @@ class AppointmentsDiagnosis {
   int? durationType;
   String? diagnosisStatus;
   int? medication;
-  Complaint? diagnosis;
+  IdTitle? diagnosis;
 
   AppointmentsDiagnosis(
       {this.id,
@@ -551,9 +550,8 @@ class AppointmentsDiagnosis {
     durationType = json['duration_type'];
     diagnosisStatus = json['diagnosis_status'];
     medication = json['medication'];
-    diagnosis = json['diagnosis'] != null
-        ? Complaint.fromJson(json['diagnosis'])
-        : null;
+    diagnosis =
+        json['diagnosis'] != null ? IdTitle.fromJson(json['diagnosis']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -581,7 +579,7 @@ class AppointmentsInvestigations {
   int? durationType;
   String? notes;
   String? results;
-  Complaint? investigation;
+  IdTitle? investigation;
 
   AppointmentsInvestigations(
       {this.id,
@@ -604,7 +602,7 @@ class AppointmentsInvestigations {
     notes = json['notes'];
     results = json['results'];
     investigation = json['investigation'] != null
-        ? Complaint.fromJson(json['investigation'])
+        ? IdTitle.fromJson(json['investigation'])
         : null;
   }
 
@@ -692,7 +690,7 @@ class AppointmentsMedicines {
   String? mealTake;
   String? timeOfTheDayDefaults;
   String? timeRange;
-  Complaint? unit;
+  IdTitle? unit;
 
   AppointmentsMedicines(
       {this.id,
@@ -726,7 +724,7 @@ class AppointmentsMedicines {
     mealTake = json['meal_take'];
     timeOfTheDayDefaults = json['time_of_the_day_defaults'];
     timeRange = json['time_range'];
-    unit = json['unit'] != null ? Complaint.fromJson(json['unit']) : null;
+    unit = json['unit'] != null ? IdTitle.fromJson(json['unit']) : null;
   }
 
   Map<String, dynamic> toJson() {

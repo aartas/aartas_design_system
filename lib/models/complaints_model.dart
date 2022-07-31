@@ -27,15 +27,15 @@ class ComplaintsResponse {
 }
 
 class ComplaintsResponseData {
-  List<Complaint>? complaints;
+  List<IdTitle>? complaints;
 
   ComplaintsResponseData({this.complaints});
 
   ComplaintsResponseData.fromJson(Map<String, dynamic> json) {
     if (json['complaints'] != null) {
-      complaints = <Complaint>[];
+      complaints = <IdTitle>[];
       json['complaints'].forEach((v) {
-        complaints!.add(Complaint.fromJson(v));
+        complaints!.add(IdTitle.fromJson(v));
       });
     }
   }
