@@ -678,7 +678,7 @@ class AppointmentsSuggestedProcedures {
 class AppointmentsMedicines {
   int? id;
   int? medicineId;
-  String? dose;
+  double? dose;
   int? unitId;
   int? qty;
   int? duration;
