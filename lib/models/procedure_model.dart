@@ -25,15 +25,15 @@ class ProcedureResponse {
 }
 
 class ProcedureResponseData {
-  List<ProcedureList>? procedureList;
+  List<Procedure>? procedureList;
 
   ProcedureResponseData({this.procedureList});
 
   ProcedureResponseData.fromJson(Map<String, dynamic> json) {
     if (json['procedure_list'] != null) {
-      procedureList = <ProcedureList>[];
+      procedureList = <Procedure>[];
       json['procedure_list'].forEach((v) {
-        procedureList!.add(ProcedureList.fromJson(v));
+        procedureList!.add(Procedure.fromJson(v));
       });
     }
   }
@@ -47,7 +47,7 @@ class ProcedureResponseData {
   }
 }
 
-class ProcedureList {
+class Procedure {
   int? id;
   int? doctorId;
   String? title;
@@ -58,7 +58,7 @@ class ProcedureList {
   int? showCost;
   int? isTaxable;
 
-  ProcedureList(
+  Procedure(
       {this.id,
       this.doctorId,
       this.title,
@@ -69,7 +69,7 @@ class ProcedureList {
       this.showCost,
       this.isTaxable});
 
-  ProcedureList.fromJson(Map<String, dynamic> json) {
+  Procedure.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     doctorId = json['doctor_id'];
     title = json['title'];

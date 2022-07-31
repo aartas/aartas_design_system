@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/appointment_model.dart';
+
 class ComplaintsResponse {
   String? message;
   bool? status;
@@ -25,15 +27,15 @@ class ComplaintsResponse {
 }
 
 class ComplaintsResponseData {
-  List<Complaints>? complaints;
+  List<Complaint>? complaints;
 
   ComplaintsResponseData({this.complaints});
 
   ComplaintsResponseData.fromJson(Map<String, dynamic> json) {
     if (json['complaints'] != null) {
-      complaints = <Complaints>[];
+      complaints = <Complaint>[];
       json['complaints'].forEach((v) {
-        complaints!.add(Complaints.fromJson(v));
+        complaints!.add(Complaint.fromJson(v));
       });
     }
   }
@@ -43,25 +45,6 @@ class ComplaintsResponseData {
     if (complaints != null) {
       data['complaints'] = complaints!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Complaints {
-  int? id;
-  String? title;
-
-  Complaints({this.id, this.title});
-
-  Complaints.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
     return data;
   }
 }
