@@ -56,6 +56,8 @@ class AppointmentProvider extends ChangeNotifier {
     return AppointmentResponse(message: _message);
   }
 
+  AppointmentResponse _appointmentData = AppointmentResponse();
+
   Future<AppointmentResponse> fetchAppointmentData(
     String? appointmentID,
   ) async {
@@ -67,10 +69,14 @@ class AppointmentProvider extends ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
+      _appointmentData = _res;
       notifyListeners();
       return _res;
     }
-
     return AppointmentResponse(message: _message);
+  }
+
+  AppointmentResponse getAppointmentData() {
+    return _appointmentData;
   }
 }
