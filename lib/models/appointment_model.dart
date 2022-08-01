@@ -75,48 +75,51 @@ class AppointmentData {
   List<AppointmentsNotes>? appointmentsNotes;
   List<AppointmentsSuggestedProcedures>? appointmentsSuggestedProcedures;
   List<AppointmentsMedicines>? appointmentsMedicines;
+  List<AppointmentsDocuments>? appointmentsDocuments;
 
-  AppointmentData(
-      {this.id,
-      this.billId,
-      this.doctorId,
-      this.patientId,
-      this.timeslotId,
-      this.clinicId,
-      this.paymentMethod,
-      this.paymentMethodDetails,
-      this.payId,
-      this.appointmentStatus,
-      this.paymentStatus,
-      this.consFee,
-      this.showConsFee,
-      this.consText,
-      this.docDiscount,
-      this.discount,
-      this.couponId,
-      this.appointmentType,
-      this.campId,
-      this.campDoctorId,
-      this.procedureId,
-      this.procedureCost,
-      this.patientBundlesId,
-      this.appointmentDate,
-      this.sGST,
-      this.cGST,
-      this.totalAmount,
-      this.patientRewardsHistoryId,
-      this.whatsappSent,
-      this.isConfirmed,
-      this.prescriptionFile,
-      this.patient,
-      this.timeslot,
-      this.vitals,
-      this.appointmentsComplaints,
-      this.appointmentsDiagnosis,
-      this.appointmentsInvestigations,
-      this.appointmentsNotes,
-      this.appointmentsSuggestedProcedures,
-      this.appointmentsMedicines});
+  AppointmentData({
+    this.id,
+    this.billId,
+    this.doctorId,
+    this.patientId,
+    this.timeslotId,
+    this.clinicId,
+    this.paymentMethod,
+    this.paymentMethodDetails,
+    this.payId,
+    this.appointmentStatus,
+    this.paymentStatus,
+    this.consFee,
+    this.showConsFee,
+    this.consText,
+    this.docDiscount,
+    this.discount,
+    this.couponId,
+    this.appointmentType,
+    this.campId,
+    this.campDoctorId,
+    this.procedureId,
+    this.procedureCost,
+    this.patientBundlesId,
+    this.appointmentDate,
+    this.sGST,
+    this.cGST,
+    this.totalAmount,
+    this.patientRewardsHistoryId,
+    this.whatsappSent,
+    this.isConfirmed,
+    this.prescriptionFile,
+    this.patient,
+    this.timeslot,
+    this.vitals,
+    this.appointmentsComplaints,
+    this.appointmentsDiagnosis,
+    this.appointmentsInvestigations,
+    this.appointmentsNotes,
+    this.appointmentsSuggestedProcedures,
+    this.appointmentsMedicines,
+    this.appointmentsDocuments,
+  });
 
   AppointmentData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -197,6 +200,12 @@ class AppointmentData {
         appointmentsMedicines!.add(AppointmentsMedicines.fromJson(v));
       });
     }
+    if (json['appointments_documents'] != null) {
+      appointmentsDocuments = <AppointmentsDocuments>[];
+      json['appointments_documents'].forEach((v) {
+        appointmentsDocuments!.add(AppointmentsDocuments.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -264,6 +273,10 @@ class AppointmentData {
     if (appointmentsMedicines != null) {
       data['appointments_medicines'] =
           appointmentsMedicines!.map((v) => v.toJson()).toList();
+    }
+    if (appointmentsDocuments != null) {
+      data['appointments_documents'] =
+          appointmentsDocuments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -755,6 +768,93 @@ class AppointmentsMedicines {
     if (medicine != null) {
       data['medicine'] = medicine!.toJson();
     }
+    return data;
+  }
+}
+
+class AppointmentDocument {
+  List<Document>? appointmentsDocuments;
+
+  AppointmentDocument({this.appointmentsDocuments});
+
+  AppointmentDocument.fromJson(Map<String, dynamic> json) {
+    if (json['appointments_documents'] != null) {
+      appointmentsDocuments = <Document>[];
+      json['appointments_documents'].forEach((v) {
+        appointmentsDocuments!.add(Document.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (appointmentsDocuments != null) {
+      data['appointments_documents'] =
+          appointmentsDocuments!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Document {
+  int? id;
+  int? appointmentId;
+  String? title;
+  String? file;
+  int? fileType;
+
+  Document({
+    this.id,
+    this.appointmentId,
+    this.title,
+    this.file,
+    this.fileType,
+  });
+
+  Document.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    appointmentId = json['appointment_id'];
+    title = json['title'];
+    file = json['file'];
+    fileType = json['file_type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['appointment_id'] = appointmentId;
+    data['title'] = title;
+    data['file'] = file;
+    data['file_type'] = fileType;
+    return data;
+  }
+}
+
+class AppointmentsDocuments {
+  int? id;
+  int? appointmentId;
+  String? title;
+  String? file;
+  int? fileType;
+
+  AppointmentsDocuments(
+      {this.id, this.appointmentId, this.title, this.file, this.fileType});
+
+  AppointmentsDocuments.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    appointmentId = json['appointment_id'];
+    title = json['title'];
+    file = json['file'];
+    fileType = json['file_type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['appointment_id'] = appointmentId;
+    data['title'] = title;
+    data['file'] = file;
+    data['file_type'] = fileType;
     return data;
   }
 }
