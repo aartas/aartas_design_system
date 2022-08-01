@@ -35,7 +35,7 @@ class AppointmentResponse {
 
 class AppointmentData {
   int? id;
-  String? billId;
+  dynamic billId;
   int? doctorId;
   int? patientId;
   int? timeslotId;
