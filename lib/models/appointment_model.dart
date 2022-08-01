@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
@@ -693,22 +694,24 @@ class AppointmentsMedicines {
   IdTitle? unit;
   Medicine? medicine;
 
-  AppointmentsMedicines(
-      {this.id,
-      this.medicineId,
-      this.dose,
-      this.unitId,
-      this.qty,
-      this.duration,
-      this.durationType,
-      this.startDate,
-      this.instructions,
-      this.appointmentId,
-      this.frequency,
-      this.mealTake,
-      this.timeOfTheDayDefaults,
-      this.timeRange,
-      this.unit});
+  AppointmentsMedicines({
+    this.id,
+    this.medicineId,
+    this.dose,
+    this.unitId,
+    this.qty,
+    this.duration,
+    this.durationType,
+    this.startDate,
+    this.instructions,
+    this.appointmentId,
+    this.frequency,
+    this.mealTake,
+    this.timeOfTheDayDefaults,
+    this.timeRange,
+    this.unit,
+    this.medicine,
+  });
 
   AppointmentsMedicines.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -726,6 +729,8 @@ class AppointmentsMedicines {
     timeOfTheDayDefaults = json['time_of_the_day_defaults'];
     timeRange = json['time_range'];
     unit = json['unit'] != null ? IdTitle.fromJson(json['unit']) : null;
+    medicine =
+        json['medicine'] != null ? Medicine.fromJson(json['medicine']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -747,91 +752,9 @@ class AppointmentsMedicines {
     if (unit != null) {
       data['unit'] = unit!.toJson();
     }
-    return data;
-  }
-}
-
-class Medicine {
-  int? id;
-  String? displayName;
-  String? name;
-  String? saltName;
-  String? manufacturer;
-  dynamic strength;
-  dynamic unitId;
-  dynamic packaging;
-  dynamic packagingTypeId;
-  dynamic medicineFormId;
-  dynamic schedule;
-  dynamic image;
-  dynamic hsnCode;
-  dynamic rackNumber;
-  int? maxStockCount;
-  int? minStockCount;
-  int? alertStockCount;
-  dynamic medicineForm;
-
-  Medicine(
-      {this.id,
-      this.displayName,
-      this.name,
-      this.saltName,
-      this.manufacturer,
-      this.strength,
-      this.unitId,
-      this.packaging,
-      this.packagingTypeId,
-      this.medicineFormId,
-      this.schedule,
-      this.image,
-      this.hsnCode,
-      this.rackNumber,
-      this.maxStockCount,
-      this.minStockCount,
-      this.alertStockCount,
-      this.medicineForm});
-
-  Medicine.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    displayName = json['display_name'];
-    name = json['name'];
-    saltName = json['salt_name'];
-    manufacturer = json['manufacturer'];
-    strength = json['strength'];
-    unitId = json['unit_id'];
-    packaging = json['packaging'];
-    packagingTypeId = json['packaging_type_id'];
-    medicineFormId = json['medicine_form_id'];
-    schedule = json['schedule'];
-    image = json['image'];
-    hsnCode = json['hsn_code'];
-    rackNumber = json['rack_number'];
-    maxStockCount = json['max_stock_count'];
-    minStockCount = json['min_stock_count'];
-    alertStockCount = json['alert_stock_count'];
-    medicineForm = json['medicine_form'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['display_name'] = displayName;
-    data['name'] = name;
-    data['salt_name'] = saltName;
-    data['manufacturer'] = manufacturer;
-    data['strength'] = strength;
-    data['unit_id'] = unitId;
-    data['packaging'] = packaging;
-    data['packaging_type_id'] = packagingTypeId;
-    data['medicine_form_id'] = medicineFormId;
-    data['schedule'] = schedule;
-    data['image'] = image;
-    data['hsn_code'] = hsnCode;
-    data['rack_number'] = rackNumber;
-    data['max_stock_count'] = maxStockCount;
-    data['min_stock_count'] = minStockCount;
-    data['alert_stock_count'] = alertStockCount;
-    data['medicine_form'] = medicineForm;
+    if (medicine != null) {
+      data['medicine'] = medicine!.toJson();
+    }
     return data;
   }
 }
