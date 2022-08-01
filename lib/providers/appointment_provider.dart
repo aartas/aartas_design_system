@@ -58,13 +58,6 @@ class AppointmentProvider extends ChangeNotifier {
 
   Future<AppointmentResponse> fetchAppointmentData(
     String? appointmentID,
-    String? doctorID,
-    String? search,
-    String? date,
-    String? limit,
-    String? offset,
-    String? type,
-    bool? manageState,
   ) async {
     var _url = Uri.parse("$baseURL/appointment/details");
     final res = await http.post(_url, body: {
@@ -74,11 +67,7 @@ class AppointmentProvider extends ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
-      if (manageState == null || manageState == true) {
-        _list.clear();
-        _list = _res.data!;
-        notifyListeners();
-      }
+      notifyListeners();
       return _res;
     }
 
