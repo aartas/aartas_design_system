@@ -31,7 +31,7 @@ class DiagnosisProvder extends ChangeNotifier {
     }
   }
 
-  Future<DiagnosisResponse> addDiagnosis(
+  Future<ResponseModel> addDiagnosis(
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/add/diagnosis");
@@ -42,10 +42,10 @@ class DiagnosisProvder extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return DiagnosisResponse.fromJson(json.decode(res.body));
+      return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return DiagnosisResponse(message: _message);
+      return ResponseModel(message: _message);
     }
   }
 

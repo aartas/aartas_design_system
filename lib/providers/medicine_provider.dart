@@ -50,6 +50,22 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> addMedicine(
+    String? title,
+  ) async {
+    var _url = Uri.parse("$baseURL/add/medicine");
+    final res = await http.post(_url, body: {
+      "title": title ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: title:$title";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    }
+    return ResponseModel(message: _message);
+  }
+
   Future<ResponseModel> saveMedicine(
     String? appointmentID,
     String? medicineID,

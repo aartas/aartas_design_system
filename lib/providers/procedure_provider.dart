@@ -57,6 +57,22 @@ class ProcedureProvider extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> addProcedure(
+    String? title,
+  ) async {
+    var _url = Uri.parse("$baseURL/add/procedure");
+    final res = await http.post(_url, body: {
+      "title": title ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: title:$title";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    }
+    return ResponseModel(message: _message);
+  }
+
   Future<ResponseModel> removeProcedure(
     String? id,
   ) async {

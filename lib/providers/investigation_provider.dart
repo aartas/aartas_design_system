@@ -29,7 +29,7 @@ class InvestigationProvider extends ChangeNotifier {
     return InvestigationsResponse(message: _message);
   }
 
-  Future<InvestigationsResponse> addInvestigation(
+  Future<ResponseModel> addInvestigation(
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/add/investigations");
@@ -40,9 +40,9 @@ class InvestigationProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return InvestigationsResponse.fromJson(json.decode(res.body));
+      return ResponseModel.fromJson(json.decode(res.body));
     }
-    return InvestigationsResponse(message: _message);
+    return ResponseModel(message: _message);
   }
 
   Future<ResponseModel> saveInvestigation(

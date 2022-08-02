@@ -31,7 +31,7 @@ class ComplaintProvider extends ChangeNotifier {
     }
   }
 
-  Future<ComplaintsResponse> addComplaints(
+  Future<ResponseModel> addComplaints(
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/add/complaints");
@@ -42,10 +42,10 @@ class ComplaintProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ComplaintsResponse.fromJson(json.decode(res.body));
+      return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ComplaintsResponse(message: _message);
+      return ResponseModel(message: _message);
     }
   }
 
