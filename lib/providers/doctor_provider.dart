@@ -12,6 +12,12 @@ class DoctorProvider with ChangeNotifier {
   DoctorData _doctorData = DoctorData();
   List<DoctorData> _list = [];
 
+  DateTime _loginTime = DateTime.now();
+
+  DateTime sessionTime() {
+    return _loginTime;
+  }
+
   DoctorData getData() {
     return _doctorData;
   }
@@ -45,6 +51,7 @@ class DoctorProvider with ChangeNotifier {
         .post(_url, body: {"phone_number": phoneNumber, "passcode": passcode});
 
     if (res.statusCode == 200) {
+      _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
         _doctorData = _res.data![0];
