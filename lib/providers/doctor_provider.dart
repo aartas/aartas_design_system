@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -38,7 +38,7 @@ class DoctorProvider with ChangeNotifier {
     }
   }
 
-  Future<DoctorResponse> fetchData(
+  Future<DoctorResponse> login(
       String phoneNumber, String passcode, bool? manageState) async {
     var _url = Uri.parse("$baseURL/doctor/login");
     final res = await http
@@ -58,10 +58,18 @@ class DoctorProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> logout() {
-    return AuthenticationProvider().doctorLogout().then((value) {
-      _doctorData = DoctorData();
-      return Future.value(true);
+  Future<ResponseModel> logout(String? doctorID) async {
+    var _url = Uri.parse("$baseURL/doctor/logout");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
     });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
   }
 }
