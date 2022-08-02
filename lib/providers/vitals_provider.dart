@@ -92,7 +92,7 @@ class VitalsProvider with ChangeNotifier {
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });
-    String _message = "(${res.statusCode}) $_url ${res.reasonPhrase}";
+    String _message = "(${res.statusCode}) $_url ${res.headers}";
     log(_message);
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
