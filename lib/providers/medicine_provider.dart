@@ -93,4 +93,22 @@ class MedicineProvider extends ChangeNotifier {
       return ResponseModel(message: _message);
     }
   }
+
+  Future<ResponseModel> removeMedicine(
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/remove/medicine");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
 }
