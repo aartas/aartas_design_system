@@ -3,10 +3,11 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/response_model.dart';
+import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class FollowUpDateProvider {
+class FollowUpDateProvider extends ChangeNotifier {
   Future<ResponseModel> saveFollowUp(
     String? appointmentID,
     String? followUpDate,

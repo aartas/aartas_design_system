@@ -8,6 +8,7 @@ import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/complaint_provider.dart';
 import 'package:aartas_design_system/providers/diagnosis_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
+import 'package:aartas_design_system/providers/follow_up_date_provider.dart';
 import 'package:aartas_design_system/providers/instruction_provider.dart';
 import 'package:aartas_design_system/providers/investigation_provider.dart';
 import 'package:aartas_design_system/providers/medicine_provider.dart';
@@ -48,6 +49,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => ProcedureProvider()),
         ChangeNotifierProvider(create: (_) => NotesProvider()),
         ChangeNotifierProvider(create: (_) => PDFProvider()),
+        ChangeNotifierProvider(create: (_) => FollowUpDateProvider()),
       ],
       builder: (_, child) {
         return widget.child;
