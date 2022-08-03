@@ -11,11 +11,13 @@ class NotesProvider extends ChangeNotifier {
   Future<ResponseModel> saveNote(
     String? appointmentID,
     String? note,
+    String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/save/appointment/instructions");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "note": note ?? "",
+      "old_id": oldID ?? "",
     });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
