@@ -44,7 +44,7 @@ class ProcedureProvider extends ChangeNotifier {
     var _url = Uri.parse("$baseURL/save/appointment/procedure");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
-      "doctor_procesure_id": procedureID ?? "",
+      "doctor_procedure_id": procedureID ?? "",
       "sessions": session ?? "",
       "old_id": oldID ?? ""
     });
