@@ -59,6 +59,7 @@ class AppointmentData {
   String? cGST;
   String? totalAmount;
   String? patientRewardsHistoryId;
+  String? followUpDate;
   int? whatsappSent;
   int? isConfirmed;
   String? prescriptionFile;
@@ -103,6 +104,7 @@ class AppointmentData {
     this.totalAmount,
     this.patientRewardsHistoryId,
     this.whatsappSent,
+    this.followUpDate,
     this.isConfirmed,
     this.prescriptionFile,
     this.patient,
@@ -138,6 +140,8 @@ class AppointmentData {
     appointmentType = json['appointment_type'];
     campId = json['camp_id'];
     campDoctorId = json['camp_doctor_id'];
+    followUpDate =
+        json['follow_up_date'] != null ? json['follow_up_date']! : "?";
     procedureId = json['procedure_id'];
     procedureCost = json['procedure_cost'];
     patientBundlesId = json['patient_bundles_id'];
@@ -222,6 +226,7 @@ class AppointmentData {
     data['cons_text'] = consText;
     data['doc_discount'] = docDiscount;
     data['discount'] = discount;
+    data['follow_up_date'] = followUpDate;
     data['coupon_id'] = couponId;
     data['appointment_type'] = appointmentType;
     data['camp_id'] = campId;
