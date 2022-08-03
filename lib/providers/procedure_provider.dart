@@ -38,12 +38,14 @@ class ProcedureProvider extends ChangeNotifier {
   Future<ResponseModel> saveProcedure(
     String? appointmentID,
     String? procedureID,
+    String? session,
     String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/save/appointment/procedure");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "medicine_id": procedureID ?? "",
+      "session": session ?? "",
       "old_id": oldID ?? ""
     });
 
