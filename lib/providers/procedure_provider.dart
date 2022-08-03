@@ -45,7 +45,7 @@ class ProcedureProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "doctor_procesure_id": procedureID ?? "",
-      "session": session ?? "",
+      "sessions": session ?? "",
       "old_id": oldID ?? ""
     });
 
