@@ -3,10 +3,11 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/pdf_model.dart';
+import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class PDFProvider {
+class PDFProvider extends ChangeNotifier {
   Future<PdfGenerateResponse> generate(
     String? appointmentID,
   ) async {
