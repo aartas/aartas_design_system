@@ -66,7 +66,7 @@ class Medicine {
   dynamic minStockCount;
   dynamic alertStockCount;
   MedicineForm? medicineForm;
-  MedicineForm? medicineUnit;
+  MedicineUnit? medicineUnit;
 
   Medicine(
       {this.id,
@@ -111,7 +111,7 @@ class Medicine {
         ? MedicineForm.fromJson(json['medicine_form'])
         : null;
     medicineUnit = json['medicine_unit'] != null
-        ? MedicineForm.fromJson(json['medicine_unit'])
+        ? MedicineUnit.fromJson(json['medicine_unit'])
         : null;
   }
 
@@ -151,6 +151,25 @@ class MedicineForm {
   MedicineForm({this.id, this.title});
 
   MedicineForm.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    return data;
+  }
+}
+
+class MedicineUnit {
+  int? id;
+  String? title;
+
+  MedicineUnit({this.id, this.title});
+
+  MedicineUnit.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
   }
