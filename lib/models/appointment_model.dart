@@ -58,7 +58,7 @@ class AppointmentData {
   String? sGST;
   String? cGST;
   String? totalAmount;
-  String? patientRewardsHistoryId;
+  dynamic patientRewardsHistoryId;
   String? followUpDate;
   int? whatsappSent;
   int? isConfirmed;
