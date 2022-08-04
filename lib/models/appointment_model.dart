@@ -705,7 +705,7 @@ class AppointmentsMedicines {
   String? mealTake;
   String? timeOfTheDayDefaults;
   String? timeRange;
-  IdTitle? unit;
+  MedicineUnit? unit;
   Medicine? medicine;
 
   AppointmentsMedicines({
@@ -742,7 +742,7 @@ class AppointmentsMedicines {
     mealTake = json['meal_take'];
     timeOfTheDayDefaults = json['time_of_the_day_defaults'];
     timeRange = json['time_range'];
-    unit = json['unit'] != null ? IdTitle.fromJson(json['unit']) : null;
+    unit = json['unit'] != null ? MedicineUnit.fromJson(json['unit']) : null;
     medicine =
         json['medicine'] != null ? Medicine.fromJson(json['medicine']) : null;
   }
