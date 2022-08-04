@@ -53,7 +53,7 @@ class MedicineProvider extends ChangeNotifier {
   Future<ResponseModel> addMedicine(
     String? title,
   ) async {
-    var _url = Uri.parse("$baseURL/add/medicine");
+    var _url = Uri.parse("$baseURL/save/medicine");
     final res = await http.post(_url, body: {
       "title": title ?? "",
     });
