@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
@@ -26,9 +27,8 @@ class SearchProvider extends ChangeNotifier {
       "offset": offset ?? "",
       "limit": limit ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: doctorID:$doctorID, search:$search, offset:$offset, limit:$limit";
-
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
     if (res.statusCode == 200) {
       _appointmentList.clear();
       _patientList.clear();
@@ -40,7 +40,9 @@ class SearchProvider extends ChangeNotifier {
       _doctorList =
           SearchResponse.fromJson(json.decode(res.body)).data!.doctors!;
       return SearchResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return SearchResponse(message: _message);
     }
-    return SearchResponse(message: _message);
   }
 }
