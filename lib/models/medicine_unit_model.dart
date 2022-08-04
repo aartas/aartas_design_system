@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/medicine_model.dart';
+
 class MedicineUnitResponse {
   String? message;
   bool? status;
@@ -25,15 +27,15 @@ class MedicineUnitResponse {
 }
 
 class MedicineUnitResponseData {
-  List<MedicineUnits>? medicineUnits;
+  List<MedicineUnit>? medicineUnits;
 
   MedicineUnitResponseData({this.medicineUnits});
 
   MedicineUnitResponseData.fromJson(Map<String, dynamic> json) {
     if (json['medicine_units'] != null) {
-      medicineUnits = <MedicineUnits>[];
+      medicineUnits = <MedicineUnit>[];
       json['medicine_units'].forEach((v) {
-        medicineUnits!.add(MedicineUnits.fromJson(v));
+        medicineUnits!.add(MedicineUnit.fromJson(v));
       });
     }
   }
@@ -43,25 +45,6 @@ class MedicineUnitResponseData {
     if (medicineUnits != null) {
       data['medicine_units'] = medicineUnits!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class MedicineUnits {
-  int? id;
-  String? title;
-
-  MedicineUnits({this.id, this.title});
-
-  MedicineUnits.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
     return data;
   }
 }
