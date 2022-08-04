@@ -55,7 +55,7 @@ class MedicineProvider extends ChangeNotifier {
   ) async {
     var _url = Uri.parse("$baseURL/save/medicine");
     final res = await http.post(_url, body: {
-      "title": title ?? "",
+      "name": title ?? "",
     });
     String _message = "(${res.statusCode}) $_url: title:$title";
     log(_message);
