@@ -67,27 +67,29 @@ class Medicine {
   dynamic alertStockCount;
   MedicineForm? medicineForm;
   MedicineUnit? medicineUnit;
-
-  Medicine(
-      {this.id,
-      this.displayName,
-      this.name,
-      this.saltName,
-      this.manufacturer,
-      this.strength,
-      this.unitId,
-      this.packaging,
-      this.packagingTypeId,
-      this.medicineFormId,
-      this.schedule,
-      this.image,
-      this.hsnCode,
-      this.rackNumber,
-      this.maxStockCount,
-      this.minStockCount,
-      this.alertStockCount,
-      this.medicineForm,
-      this.medicineUnit});
+  List<MedicineTimings>? medicineTimings;
+  Medicine({
+    this.id,
+    this.displayName,
+    this.name,
+    this.saltName,
+    this.manufacturer,
+    this.strength,
+    this.unitId,
+    this.packaging,
+    this.packagingTypeId,
+    this.medicineFormId,
+    this.schedule,
+    this.image,
+    this.hsnCode,
+    this.rackNumber,
+    this.maxStockCount,
+    this.minStockCount,
+    this.alertStockCount,
+    this.medicineForm,
+    this.medicineUnit,
+    this.medicineTimings,
+  });
 
   Medicine.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -113,6 +115,12 @@ class Medicine {
     medicineUnit = json['medicine_unit'] != null
         ? MedicineUnit.fromJson(json['medicine_unit'])
         : null;
+    if (json['medicine_timings'] != null) {
+      medicineTimings = <MedicineTimings>[];
+      json['medicine_timings'].forEach((v) {
+        medicineTimings!.add(MedicineTimings.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -139,6 +147,10 @@ class Medicine {
     }
     if (medicineUnit != null) {
       data['medicine_unit'] = medicineUnit!.toJson();
+    }
+    if (medicineTimings != null) {
+      data['medicine_timings'] =
+          medicineTimings!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -178,6 +190,32 @@ class MedicineUnit {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
+    return data;
+  }
+}
+
+class MedicineTimings {
+  int? id;
+  String? takeTime;
+  int? appointmentsMedicinesId;
+
+  MedicineTimings({
+    this.id,
+    this.takeTime,
+    this.appointmentsMedicinesId,
+  });
+
+  MedicineTimings.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    takeTime = json['take_time'];
+    appointmentsMedicinesId = json['appointments_medicines_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['take_time'] = takeTime;
+    data['appointments_medicines_id'] = appointmentsMedicinesId;
     return data;
   }
 }
