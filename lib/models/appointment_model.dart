@@ -295,7 +295,7 @@ class Patient {
   String? dob;
   int? age;
   String? relation;
-  String? linkId;
+  dynamic linkId;
   String? location;
   String? latitude;
   String? longitude;
