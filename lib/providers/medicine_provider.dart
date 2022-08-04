@@ -61,7 +61,10 @@ class MedicineProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return ResponseModel(
+        message: json.decode(res.body)['message'],
+        status: json.decode(res.body)['status'],
+      );
     } else {
       log(res.body);
       return ResponseModel(message: _message);
