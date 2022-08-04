@@ -65,6 +65,8 @@ class Medicine {
   dynamic maxStockCount;
   dynamic minStockCount;
   dynamic alertStockCount;
+  MedicineForm? medicineForm;
+  MedicineForm? medicineUnit;
 
   Medicine(
       {this.id,
@@ -83,7 +85,9 @@ class Medicine {
       this.rackNumber,
       this.maxStockCount,
       this.minStockCount,
-      this.alertStockCount});
+      this.alertStockCount,
+      this.medicineForm,
+      this.medicineUnit});
 
   Medicine.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -103,6 +107,12 @@ class Medicine {
     maxStockCount = json['max_stock_count'];
     minStockCount = json['min_stock_count'];
     alertStockCount = json['alert_stock_count'];
+    medicineForm = json['medicine_form'] != null
+        ? MedicineForm.fromJson(json['medicine_form'])
+        : null;
+    medicineUnit = json['medicine_unit'] != null
+        ? MedicineForm.fromJson(json['medicine_unit'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -124,6 +134,31 @@ class Medicine {
     data['max_stock_count'] = maxStockCount;
     data['min_stock_count'] = minStockCount;
     data['alert_stock_count'] = alertStockCount;
+    if (medicineForm != null) {
+      data['medicine_form'] = medicineForm!.toJson();
+    }
+    if (medicineUnit != null) {
+      data['medicine_unit'] = medicineUnit!.toJson();
+    }
+    return data;
+  }
+}
+
+class MedicineForm {
+  int? id;
+  String? title;
+
+  MedicineForm({this.id, this.title});
+
+  MedicineForm.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
     return data;
   }
 }
