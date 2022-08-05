@@ -57,7 +57,7 @@ class DoctorProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200 && json.decode(res.body)['status'] != null) {
       _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
       _doctorData = _res.data![0];
