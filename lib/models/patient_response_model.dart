@@ -1,6 +1,6 @@
 class PatientResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   List<PatientData>? data;
 
   PatientResponse({this.message, this.status, this.data});

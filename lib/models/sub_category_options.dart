@@ -1,6 +1,6 @@
 class SubCategoryOptionsResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   List<SubCategoryOptionsData>? data;
 
   SubCategoryOptionsResponse({this.message, this.status, this.data});

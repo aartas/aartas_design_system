@@ -1,6 +1,6 @@
 class MedicineResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   MedicineResponseData? medicineResponseData;
 
   MedicineResponse({this.message, this.status, this.medicineResponseData});

@@ -1,6 +1,6 @@
 class SearchCategoryResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   SearchCategoryDataList? data;
 
   SearchCategoryResponse({this.message, this.status, this.data});

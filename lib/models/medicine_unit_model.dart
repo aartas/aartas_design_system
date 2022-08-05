@@ -2,7 +2,7 @@ import 'package:aartas_design_system/models/medicine_model.dart';
 
 class MedicineUnitResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   MedicineUnitResponseData? data;
 
   MedicineUnitResponse({this.message, this.status, this.data});

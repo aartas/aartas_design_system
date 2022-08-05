@@ -2,7 +2,7 @@ import 'package:aartas_design_system/models/appointment_model.dart';
 
 class ComplaintsResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   ComplaintsResponseData? data;
 
   ComplaintsResponse({this.message, this.status, this.data});

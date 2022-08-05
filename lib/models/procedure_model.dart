@@ -1,6 +1,6 @@
 class ProcedureResponse {
   String? message;
-  bool? status;
+  bool? status = false;
   ProcedureResponseData? data;
 
   ProcedureResponse({this.message, this.status, this.data});

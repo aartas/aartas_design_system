@@ -1,8 +1,6 @@
 class PdfGenerateResponse {
   String? message;
-
-  bool? status;
-
+  bool? status = false;
   PdfGenerateResponseData? data;
 
   PdfGenerateResponse({this.message, this.status, this.data});

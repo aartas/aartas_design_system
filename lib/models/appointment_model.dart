@@ -3,8 +3,8 @@ import 'package:aartas_design_system/models/procedure_model.dart';
 
 class AppointmentResponse {
   String? message;
-  bool? status;
-  List<AppointmentData>? data;
+  bool? status = false;
+  List<AppointmentData>? data = [];
 
   AppointmentResponse({this.message, this.status, this.data});
 

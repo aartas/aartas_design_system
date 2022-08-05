@@ -2,7 +2,7 @@ import 'package:aartas_design_system/models/appointment_model.dart';
 
 class PatientVitalsReponse {
   String? message;
-  bool? status;
+  bool? status = false;
   PatientVitalsData? data;
 
   PatientVitalsReponse({this.message, this.status, this.data});
