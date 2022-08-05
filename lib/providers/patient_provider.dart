@@ -10,91 +10,98 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PatientProvider with ChangeNotifier {
-  // PatientData _patientData = PatientData();
-  // List<PatientData> _patientList = [];
+  PatientData _patientData = PatientData();
+  List<PatientData> _patientList = [];
 
-  // PatientData getData() {
-  //   return _patientData;
-  // }
+  PatientData getData() {
+    return _patientData;
+  }
 
-  // List<PatientData> getList() {
-  //   return _patientList;
-  // }
+  List<PatientData> getList() {
+    return _patientList;
+  }
 
-  // // final List<PatientData> _patientList = [];
+  // final List<PatientData> _patientList = [];
 
-  // Future<PatientData> fetchData(String? phoneNumber) {
-  //   return AuthenticationProvider().patientLogin(phoneNumber!).then((value) {
-  //     _patientData = value.data![0];
-  //     notifyListeners();
-  //     return value.data![0];
-  //   });
-  // }
+  Future<PatientData> fetchData(
+    String baseURL,
+    String? phoneNumber,
+  ) {
+    return AuthenticationProvider()
+        .patientLogin(baseURL, phoneNumber!)
+        .then((value) {
+      _patientData = value.data![0];
+      notifyListeners();
+      return value.data![0];
+    });
+  }
 
-  // Future<PatientResponse> fetchList(
-  //   String? doctorID,
-  //   String? search,
-  //   String? limit,
-  //   String? offset,
-  //   bool? manageState,
-  // ) async {
-  //   var _url = Uri.parse("$baseURL/patient/list");
-  //   final res = await http.post(_url, body: {
-  //     "doctor_id": doctorID ?? "",
-  //     "search": search ?? "",
-  //     "limit": limit ?? "",
-  //     "offset": offset ?? "",
-  //   });
+  Future<PatientResponse> fetchList(
+    String baseURL,
+    String? doctorID,
+    String? search,
+    String? limit,
+    String? offset,
+    bool? manageState,
+  ) async {
+    var _url = Uri.parse("$baseURL/patient/list");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "search": search ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+    });
 
-  //   if (res.statusCode == 200) {
-  //     var _res = PatientResponse.fromJson(json.decode(res.body));
-  //     if (manageState == null || manageState == true) {
-  //       _patientList = _res.data!;
-  //       notifyListeners();
-  //     }
-  //     return _res;
-  //   } else {
-  //     String _message = "PatientListProvider:${res.statusCode}";
-  //     log(_message);
-  //     return PatientResponse(message: "${res.statusCode}");
-  //   }
-  // }
+    if (res.statusCode == 200) {
+      var _res = PatientResponse.fromJson(json.decode(res.body));
+      if (manageState == null || manageState == true) {
+        _patientList = _res.data!;
+        notifyListeners();
+      }
+      return _res;
+    } else {
+      String _message = "PatientListProvider:${res.statusCode}";
+      log(_message);
+      return PatientResponse(message: "${res.statusCode}");
+    }
+  }
 
-  // List<AppointmentData> _pastVisits = [];
+  List<AppointmentData> _pastVisits = [];
 
-  // List<AppointmentData> getPastVisits() {
-  //   return _pastVisits;
-  // }
+  List<AppointmentData> getPastVisits() {
+    return _pastVisits;
+  }
 
-  // Future<AppointmentResponse> fetchPastVisits(
-  //   String? patientID,
-  //   String? doctorID,
-  //   String? limit,
-  //   String? offset,
-  //   bool? manageState,
-  // ) async {
-  //   var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
-  //   final res = await http.post(_url, body: {
-  //     "patient_id": patientID ?? "",
-  //     "doctor_id": doctorID ?? "",
-  //     "limit": limit ?? "",
-  //     "offset": offset ?? "",
-  //   });
-  //   if (res.statusCode == 200) {
-  //     var _res = AppointmentResponse.fromJson(json.decode(res.body));
-  //     if (manageState == null || manageState) {
-  //       _pastVisits = _res.data!;
-  //       notifyListeners();
-  //     }
-  //     return _res;
-  //   } else {
-  //     String _message = "";
-  //     log(_message);
-  //     return AppointmentResponse(
-  //       message: _message,
-  //     );
-  //   }
-  // }
+  Future<AppointmentResponse> fetchPastVisits(
+    String baseURL,
+    String? patientID,
+    String? doctorID,
+    String? limit,
+    String? offset,
+    bool? manageState,
+  ) async {
+    var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+      "doctor_id": doctorID ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
+    });
+    if (res.statusCode == 200) {
+      var _res = AppointmentResponse.fromJson(json.decode(res.body));
+      if (manageState == null || manageState) {
+        _pastVisits = _res.data!;
+        notifyListeners();
+      }
+      return _res;
+    } else {
+      String _message = "";
+      log(_message);
+      return AppointmentResponse(
+        message: _message,
+      );
+    }
+  }
 }
 
 
