@@ -2,8 +2,8 @@ import 'package:aartas_design_system/models/speciality_model.dart';
 
 class DoctorResponse {
   String? message;
-  bool? status;
-  List<DoctorData>? data;
+  bool? status = false;
+  List<DoctorData>? data = [];
 
   DoctorResponse({this.message, this.status, this.data});
 
