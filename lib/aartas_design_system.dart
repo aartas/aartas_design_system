@@ -25,11 +25,10 @@ enum DevelopmentType { redev, uat, production }
 
 class AartasApiProvider extends StatefulWidget {
   final Widget child;
-  final DevelopmentType? developmentType;
+
   const AartasApiProvider({
     Key? key,
     required this.child,
-    this.developmentType,
   }) : super(key: key);
 
   @override
@@ -37,25 +36,6 @@ class AartasApiProvider extends StatefulWidget {
 }
 
 class _AartasApiProviderState extends State<AartasApiProvider> {
-  @override
-  void initState() {
-    _getDevelopmentType(widget.developmentType);
-    super.initState();
-  }
-
-  _getDevelopmentType(_development) {
-    if (_development == DevelopmentType.uat) {
-      baseURL = uatURL;
-    }
-    if (_development == DevelopmentType.redev) {
-      baseURL = redevURL;
-    }
-    if (_development == DevelopmentType.production) {
-      baseURL = liveURL;
-    }
-    return baseURL = uatURL;
-  }
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
