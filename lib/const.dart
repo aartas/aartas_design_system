@@ -31,7 +31,7 @@ String uatURL =
 String liveURL = "https://aartas.com/v1/public/api";
 
 //? BASE URL
-String baseURL = uatURL;
+String baseURL = liveURL;
 
 String docImageURL = "$baseURL/../assets/scanned_documents";
 String labelImageURL = "$baseURL/../assets/vaccine_labels";
