@@ -707,6 +707,7 @@ class AppointmentsMedicines {
   String? timeRange;
   MedicineUnit? unit;
   Medicine? medicine;
+  List<MedicineTimings>? medicineTimings;
 
   AppointmentsMedicines({
     this.id,
@@ -725,6 +726,7 @@ class AppointmentsMedicines {
     this.timeRange,
     this.unit,
     this.medicine,
+    this.medicineTimings,
   });
 
   AppointmentsMedicines.fromJson(Map<String, dynamic> json) {
@@ -745,6 +747,12 @@ class AppointmentsMedicines {
     unit = json['unit'] != null ? MedicineUnit.fromJson(json['unit']) : null;
     medicine =
         json['medicine'] != null ? Medicine.fromJson(json['medicine']) : null;
+    if (json['medicine_timings'] != null) {
+      medicineTimings = <MedicineTimings>[];
+      json['medicine_timings'].forEach((v) {
+        medicineTimings!.add(MedicineTimings.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -768,6 +776,10 @@ class AppointmentsMedicines {
     }
     if (medicine != null) {
       data['medicine'] = medicine!.toJson();
+    }
+    if (medicineTimings != null) {
+      data['medicine_timings'] =
+          medicineTimings!.map((v) => v.toJson()).toList();
     }
     return data;
   }

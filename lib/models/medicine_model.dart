@@ -67,7 +67,7 @@ class Medicine {
   dynamic alertStockCount;
   MedicineForm? medicineForm;
   MedicineUnit? medicineUnit;
-  List<MedicineTimings>? medicineTimings;
+
   Medicine({
     this.id,
     this.displayName,
@@ -88,7 +88,6 @@ class Medicine {
     this.alertStockCount,
     this.medicineForm,
     this.medicineUnit,
-    this.medicineTimings,
   });
 
   Medicine.fromJson(Map<String, dynamic> json) {
@@ -115,12 +114,6 @@ class Medicine {
     medicineUnit = json['medicine_unit'] != null
         ? MedicineUnit.fromJson(json['medicine_unit'])
         : null;
-    if (json['medicine_timings'] != null) {
-      medicineTimings = <MedicineTimings>[];
-      json['medicine_timings'].forEach((v) {
-        medicineTimings!.add(MedicineTimings.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -148,10 +141,7 @@ class Medicine {
     if (medicineUnit != null) {
       data['medicine_unit'] = medicineUnit!.toJson();
     }
-    if (medicineTimings != null) {
-      data['medicine_timings'] =
-          medicineTimings!.map((v) => v.toJson()).toList();
-    }
+
     return data;
   }
 }
