@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class NotesProvider extends ChangeNotifier {
   Future<ResponseModel> saveNote(
+    String baseURL,
     String? appointmentID,
     String? note,
     String? oldID,

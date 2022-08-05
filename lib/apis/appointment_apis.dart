@@ -13,7 +13,9 @@ class AppointmentApis {
   AppointmentResponse _appointmentResponse = AppointmentResponse();
   AppointmentResponse get appointmentList => _appointmentResponse;
 
-  Future<AppointmentResponse> getAppointments() async {
+  Future<AppointmentResponse> getAppointments(
+    String baseURL,
+  ) async {
     var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
@@ -32,7 +34,9 @@ class AppointmentApis {
   AppointmentResponse _previousAppointmentList = AppointmentResponse();
   AppointmentResponse get previousAppointmentList => _previousAppointmentList;
   Future<AppointmentResponse> getPatientPreviousAppointment(
-      String patientId) async {
+    String baseURL,
+    String patientId,
+  ) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
     var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
@@ -53,6 +57,7 @@ class AppointmentApis {
   }
 
   Future<List<AppointmentData>> getList(
+    String baseURL,
     String? patientID,
     String? doctorID,
     String? search,
@@ -82,6 +87,7 @@ class AppointmentApis {
   }
 
   Future<List<AppointmentData>> getPreviousAppointmentList(
+    String baseURL,
     String? patientID,
     String? doctorID,
   ) async {

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +20,7 @@ class AppointmentProvider extends ChangeNotifier {
   // Future<AppointmentResponse> fetchData(){}
 
   Future<AppointmentResponse> fetchList(
+    String baseUrl,
     String? patientID,
     String? doctorID,
     String? search,
@@ -30,7 +30,7 @@ class AppointmentProvider extends ChangeNotifier {
     String? type,
     bool? manageState,
   ) async {
-    var _url = Uri.parse("$baseURL/clinishare/doctor/appointment/list");
+    var _url = Uri.parse("$baseUrl/clinishare/doctor/appointment/list");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
       "doctor_id": doctorID ?? "",
@@ -40,8 +40,7 @@ class AppointmentProvider extends ChangeNotifier {
       "offset": offset ?? "",
       "type": type ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: patientID:$patientID, doctorID:$doctorID, search:$search, date:$date, limit:$limit, offset:$offset, type:$type";
+    String _message = "(${res.statusCode}) $_url:";
     log(_message);
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
@@ -51,14 +50,16 @@ class AppointmentProvider extends ChangeNotifier {
         notifyListeners();
       }
       return _res;
+    } else {
+      log(res.body);
+      return AppointmentResponse(message: _message);
     }
-
-    return AppointmentResponse(message: _message);
   }
 
   AppointmentResponse _appointmentData = AppointmentResponse();
 
   Future<AppointmentResponse> fetchAppointmentData(
+    String? baseURL,
     String? appointmentID,
   ) async {
     var _url = Uri.parse("$baseURL/appointment/details");
@@ -72,8 +73,9 @@ class AppointmentProvider extends ChangeNotifier {
       _appointmentData = _res;
       notifyListeners();
       return _res;
+    } else {
+      return AppointmentResponse(message: _message);
     }
-    return AppointmentResponse(message: _message);
   }
 
   AppointmentResponse getAppointmentData() {

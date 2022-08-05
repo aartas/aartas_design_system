@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class ProcedureProvider extends ChangeNotifier {
   Future<ProcedureResponse> fetchProcedureList(
+    String baseURL,
     String? doctorID,
     String? specialityID,
     String? search,
@@ -36,6 +37,7 @@ class ProcedureProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> saveProcedure(
+    String baseURL,
     String? appointmentID,
     String? procedureID,
     String? session,
@@ -60,6 +62,7 @@ class ProcedureProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> addProcedure(
+    String baseURL,
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/add/procedure");
@@ -76,6 +79,7 @@ class ProcedureProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> removeProcedure(
+    String baseURL,
     String? id,
   ) async {
     var _url = Uri.parse("$baseURL/remove/procedure");

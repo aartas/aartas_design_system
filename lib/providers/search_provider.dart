@@ -15,6 +15,7 @@ class SearchProvider extends ChangeNotifier {
   List<DoctorData> _doctorList = [];
 
   Future<SearchResponse> fetchSearchResults(
+    String baseURL,
     String? doctorID,
     String? search,
     String? offset,

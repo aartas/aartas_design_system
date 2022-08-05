@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class PDFProvider extends ChangeNotifier {
   Future<PdfGenerateResponse> generate(
+    String baseURL,
     String? appointmentID,
   ) async {
     var _url = Uri.parse("$baseURL/swift/pdf");

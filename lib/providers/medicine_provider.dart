@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class MedicineProvider extends ChangeNotifier {
-  Future<MedicineUnitResponse> fetchUnitList() async {
+  Future<MedicineUnitResponse> fetchUnitList(
+    String baseURL,
+  ) async {
     var _url = Uri.parse("$baseURL/medicine/unit/list");
     final res = await http.post(_url);
 
@@ -24,6 +26,7 @@ class MedicineProvider extends ChangeNotifier {
   }
 
   Future<MedicineResponse> fetchMedicineList(
+    String baseURL,
     String? doctorID,
     String? specialityID,
     String? search,
@@ -51,6 +54,7 @@ class MedicineProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> addMedicine(
+    String baseURL,
     String? title,
   ) async {
     var _url = Uri.parse("$baseURL/save/medicine");
@@ -72,6 +76,7 @@ class MedicineProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> saveMedicine(
+    String baseURL,
     String? appointmentID,
     String? medicineID,
     String? dose,
@@ -116,6 +121,7 @@ class MedicineProvider extends ChangeNotifier {
   }
 
   Future<ResponseModel> removeMedicine(
+    String baseURL,
     String? id,
   ) async {
     var _url = Uri.parse("$baseURL/remove/medicine");

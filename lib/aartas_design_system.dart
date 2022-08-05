@@ -21,8 +21,6 @@ import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum DevelopmentType { redev, uat, production }
-
 class AartasApiProvider extends StatefulWidget {
   final Widget child;
 

@@ -21,20 +21,6 @@ MediaQueryData mediaQuery(context) {
 //-----------------URLS--------------------
 String apiKey = "AIzaSyC4wk5k8E6jKkpJClZlXZ8oavuPyi0AMVE";
 
-// REDEV TESTING URL
-String redevURL =
-    "https://aartas-qaapp-as.azurewebsites.net/aartas_redev/public/api";
-// UAT TESTING URL
-String uatURL =
-    "https://aartas-qaapp-as.azurewebsites.net/aartas_uat/public/api";
-// LIVE PRODUCTION URL
-String liveURL = "https://aartas.com/v1/public/api";
-
-//? BASE URL
-String baseURL = liveURL;
-
-String docImageURL = "$baseURL/../assets/scanned_documents";
-String labelImageURL = "$baseURL/../assets/vaccine_labels";
 // String iconImageURL = "$baseURL/../assets/icons";
 // String doctorImageURL = "$baseURL/../assets/doctor";
 // String homeFeedImageURL = "$baseURL/../assets/home_feed";

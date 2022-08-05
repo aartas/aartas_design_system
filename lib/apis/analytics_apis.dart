@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:http/http.dart' as http;
 
 class AnalyticsApis {
   captureEvent(
+    String? baseURL,
     String? patientID,
     String? doctorID,
     String? specialityID,

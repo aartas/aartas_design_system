@@ -16,7 +16,10 @@ class AuthenticationProvider extends ChangeNotifier {
   DoctorResponse get doctorResponse => _doctorResponse;
 
   Future<DoctorResponse> doctorLogin(
-      String phoneNumber, String passcode) async {
+    String baseURL,
+    String phoneNumber,
+    String passcode,
+  ) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
 
@@ -56,7 +59,10 @@ class AuthenticationProvider extends ChangeNotifier {
 
   PatientResponse _patientResponse = PatientResponse();
 
-  Future<PatientResponse> patientLogin(String phoneNumber) async {
+  Future<PatientResponse> patientLogin(
+    String baseURL,
+    String phoneNumber,
+  ) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + patientDetailsFileName);
 

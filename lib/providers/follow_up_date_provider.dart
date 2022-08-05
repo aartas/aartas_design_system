@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class FollowUpDateProvider extends ChangeNotifier {
   Future<ResponseModel> saveFollowUp(
+    String baseURL,
     String? appointmentID,
     String? followUpDate,
   ) async {

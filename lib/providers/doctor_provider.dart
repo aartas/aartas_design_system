@@ -26,16 +26,19 @@ class DoctorProvider with ChangeNotifier {
     return _list;
   }
 
-  Future<DoctorResponse> fetchList(String patientID, bool? manageState) async {
+  Future<DoctorResponse> fetchList(
+    String baseURL,
+    String patientID,
+  ) async {
     var _url = Uri.parse("$baseURL/doctors");
     final res = await http.post(_url, body: {"patient_id": patientID});
 
     if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      if (manageState == null || manageState) {
-        _list = _res.data!;
-        notifyListeners();
-      }
+
+      _list = _res.data!;
+      notifyListeners();
+
       return _res;
     } else {
       String _message = "DoctorListProvider:${res.statusCode}";
@@ -45,7 +48,10 @@ class DoctorProvider with ChangeNotifier {
   }
 
   Future<DoctorResponse> login(
-      String phoneNumber, String passcode, bool? manageState) async {
+    String baseURL,
+    String phoneNumber,
+    String passcode,
+  ) async {
     var _url = Uri.parse("$baseURL/doctor/login");
     final res = await http
         .post(_url, body: {"phone_number": phoneNumber, "passcode": passcode});
@@ -53,10 +59,10 @@ class DoctorProvider with ChangeNotifier {
     if (res.statusCode == 200) {
       _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      if (manageState == null || manageState == true) {
-        _doctorData = _res.data![0];
-        notifyListeners();
-      }
+
+      _doctorData = _res.data![0];
+      notifyListeners();
+
       return _res;
     } else {
       String _message = "DoctorDataProvider:${res.statusCode}";
@@ -65,7 +71,10 @@ class DoctorProvider with ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> logout(String? doctorID) async {
+  Future<ResponseModel> logout(
+    String baseURL,
+    String? doctorID,
+  ) async {
     var _url = Uri.parse("$baseURL/doctor/logout");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",

@@ -15,7 +15,9 @@ class CategoryProvider extends ChangeNotifier {
     return _categoryList;
   }
 
-  Future<CategoryResponse> fetchCategoryList() async {
+  Future<CategoryResponse> fetchCategoryList(
+    String baseURL,
+  ) async {
     var _url = Uri.parse("$baseURL/clinishare/get/category/list");
     final res = await http.post(_url);
     String _message = "(${res.statusCode}) $_url";
@@ -37,6 +39,7 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   Future<SearchCategoryResponse> fetchSearchResponse(
+    String baseURL,
     String? type,
     String? search,
   ) async {

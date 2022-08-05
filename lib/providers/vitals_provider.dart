@@ -16,20 +16,21 @@ class VitalsProvider with ChangeNotifier {
     return _vitals;
   }
 
-  Future<VitalsResponse> fetchVitalList(bool? manageState) async {
+  Future<VitalsResponse> fetchVitalList(String? baseURL) async {
     var _url = Uri.parse("$baseURL/vitals/list");
     final res = await http.post(_url);
-    if (res.statusCode == 200) {
-      if (manageState == null || manageState == true) {
-        _vitals.clear();
-        _vitals = VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
-        notifyListeners();
-      }
-      return VitalsResponse.fromJson(json.decode(res.body));
-    }
     String _message = "VitalsProvider(getVitalsList):${res.statusCode}";
     log(_message);
-    return VitalsResponse(message: _message);
+    if (res.statusCode == 200) {
+      _vitals.clear();
+      _vitals = VitalsResponse.fromJson(json.decode(res.body)).data!.vitals!;
+      notifyListeners();
+
+      return VitalsResponse.fromJson(json.decode(res.body));
+    } else {
+      log(_message);
+      return VitalsResponse(message: _message);
+    }
   }
 
   List<Vitals> _patientList = [];
@@ -38,6 +39,7 @@ class VitalsProvider with ChangeNotifier {
   }
 
   Future<PatientVitalsReponse> fetchPatientVitalList(
+    String baseURL,
     String? appointmentID,
     bool? manageState,
   ) async {
@@ -62,6 +64,7 @@ class VitalsProvider with ChangeNotifier {
   }
 
   Future<ResponseModel> updatePatientVitals(
+    String baseURL,
     String? appointmentID,
     String? patientID,
     String? oldID,
@@ -87,7 +90,10 @@ class VitalsProvider with ChangeNotifier {
     return ResponseModel(message: _message);
   }
 
-  Future<ResponseModel> removeVital(String? id) async {
+  Future<ResponseModel> removeVital(
+    String baseURL,
+    String? id,
+  ) async {
     var _url = Uri.parse("$baseURL/remove/vitals");
     final res = await http.post(_url, body: {
       "id": id ?? "",
