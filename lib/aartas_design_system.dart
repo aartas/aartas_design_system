@@ -37,14 +37,13 @@ class AartasApiProvider extends StatefulWidget {
 }
 
 class _AartasApiProviderState extends State<AartasApiProvider> {
-  late DevelopmentType _development;
   @override
   void initState() {
-    _getDevelopmentType();
+    _getDevelopmentType(widget.developmentType);
     super.initState();
   }
 
-  _getDevelopmentType() {
+  _getDevelopmentType(_development) {
     if (_development == DevelopmentType.uat) {
       baseURL = uatURL;
     }
