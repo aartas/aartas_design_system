@@ -19,7 +19,6 @@ MediaQueryData mediaQuery(context) {
 }
 
 //-----------------URLS--------------------
-//? BASE URL
 String apiKey = "AIzaSyC4wk5k8E6jKkpJClZlXZ8oavuPyi0AMVE";
 
 // REDEV TESTING URL
@@ -31,6 +30,7 @@ String uatURL =
 // LIVE PRODUCTION URL
 String liveURL = "https://aartas.com/v1/public/api";
 
+//? BASE URL
 String baseURL = uatURL;
 
 String docImageURL = "$baseURL/../assets/scanned_documents";

@@ -1,6 +1,7 @@
 library aartas_design_system;
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
+import 'package:aartas_design_system/const.dart';
 
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
@@ -20,11 +21,15 @@ import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+enum DevelopmentType { redev, uat, production }
+
 class AartasApiProvider extends StatefulWidget {
   final Widget child;
+  final DevelopmentType? developmentType;
   const AartasApiProvider({
     Key? key,
     required this.child,
+    this.developmentType,
   }) : super(key: key);
 
   @override
@@ -32,6 +37,26 @@ class AartasApiProvider extends StatefulWidget {
 }
 
 class _AartasApiProviderState extends State<AartasApiProvider> {
+  late DevelopmentType _development;
+  @override
+  void initState() {
+    _getDevelopmentType();
+    super.initState();
+  }
+
+  _getDevelopmentType() {
+    if (_development == DevelopmentType.uat) {
+      baseURL = uatURL;
+    }
+    if (_development == DevelopmentType.redev) {
+      baseURL = redevURL;
+    }
+    if (_development == DevelopmentType.production) {
+      baseURL = liveURL;
+    }
+    return baseURL = uatURL;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
