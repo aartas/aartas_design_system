@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/category_model.dart';
 import 'package:aartas_design_system/models/search_category_list.dart';
 

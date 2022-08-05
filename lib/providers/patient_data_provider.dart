@@ -1,5 +1,3 @@
-import 'package:aartas_design_system/apis/authentication_apis.dart';
-import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:flutter/material.dart';
 
 class PatientDataProvider with ChangeNotifier {

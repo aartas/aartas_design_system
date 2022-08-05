@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
@@ -55,18 +54,17 @@ class DoctorProvider with ChangeNotifier {
     var _url = Uri.parse("$baseURL/doctor/login");
     final res = await http
         .post(_url, body: {"phone_number": phoneNumber, "passcode": passcode});
+    String _message = "(${res.statusCode})";
+    log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-
       _doctorData = _res.data![0];
       notifyListeners();
-
       return _res;
     } else {
-      String _message = "DoctorDataProvider:${res.statusCode}";
-      log(_message);
+      log(res.body);
       return DoctorResponse(message: _message);
     }
   }

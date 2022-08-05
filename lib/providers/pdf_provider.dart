@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/const.dart';
 import 'package:aartas_design_system/models/pdf_model.dart';
 import 'package:flutter/material.dart';
 
