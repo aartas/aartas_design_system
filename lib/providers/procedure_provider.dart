@@ -40,6 +40,7 @@ class ProcedureProvider extends ChangeNotifier {
     String? appointmentID,
     String? procedureID,
     String? session,
+    String? notes,
     String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/save/appointment/procedure");
@@ -47,6 +48,7 @@ class ProcedureProvider extends ChangeNotifier {
       "appointment_id": appointmentID ?? "",
       "doctor_procedure_id": procedureID ?? "",
       "sessions": session ?? "",
+      "notes": notes ?? "",
       "old_id": oldID ?? ""
     });
 
