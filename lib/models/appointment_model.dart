@@ -664,7 +664,7 @@ class AppointmentsSuggestedProcedures {
   int? id;
   int? doctorProcedureId;
   int? appointmentId;
-  String? sessions;
+  int? sessions;
   String? notes;
   Procedure? procedure;
 
