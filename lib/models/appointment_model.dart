@@ -664,15 +664,25 @@ class AppointmentsSuggestedProcedures {
   int? id;
   int? doctorProcedureId;
   int? appointmentId;
+  String? sessions;
+  String? notes;
   Procedure? procedure;
 
-  AppointmentsSuggestedProcedures(
-      {this.id, this.doctorProcedureId, this.appointmentId, this.procedure});
+  AppointmentsSuggestedProcedures({
+    this.id,
+    this.doctorProcedureId,
+    this.appointmentId,
+    this.sessions,
+    this.notes,
+    this.procedure,
+  });
 
   AppointmentsSuggestedProcedures.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     doctorProcedureId = json['doctor_procedure_id'];
     appointmentId = json['appointment_id'];
+    sessions = json['sessions'];
+    notes = json['notes'];
     procedure = json['procedure'] != null
         ? Procedure.fromJson(json['procedure'])
         : null;
@@ -683,6 +693,8 @@ class AppointmentsSuggestedProcedures {
     data['id'] = id;
     data['doctor_procedure_id'] = doctorProcedureId;
     data['appointment_id'] = appointmentId;
+    data['sessions'] = sessions;
+    data['notes'] = notes;
     if (procedure != null) {
       data['procedure'] = procedure!.toJson();
     }
