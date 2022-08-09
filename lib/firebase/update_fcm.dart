@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:package_info_plus/package_info_plus.dart';
 
 Future<ResponseModel> updateFcmToken(
   String baseURL,
@@ -13,10 +11,10 @@ Future<ResponseModel> updateFcmToken(
   String? location,
   String? latitude,
   String? longitude,
+  String? platform,
+  String? version,
 ) async {
   var _url = Uri.parse("$baseURL/patient/update/fcm/token");
-  PackageInfo _packageInfo = await PackageInfo.fromPlatform();
-  String? _platform = Platform.operatingSystem;
   if (token != null && token != "") {
     final res = await http.post(_url, body: {
       "user_id": userID,
@@ -24,8 +22,8 @@ Future<ResponseModel> updateFcmToken(
       "location": location,
       "latitude": latitude,
       "longitude": longitude,
-      "version": _packageInfo.version,
-      "platform": _platform,
+      "version": version,
+      "platform": platform,
     });
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
