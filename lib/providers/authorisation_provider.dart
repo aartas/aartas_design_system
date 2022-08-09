@@ -50,15 +50,17 @@ class AuthorisationProvider with ChangeNotifier {
         "version": version,
         "platform": platform,
       });
+      String _message = "(${res.statusCode}) $_url";
+      log(_message);
       if (res.statusCode == 200) {
         return ResponseModel.fromJson(json.decode(res.body));
       } else {
-        String _message = "Update FCM Token:${res.statusCode}";
         log(_message);
         return ResponseModel(message: _message);
       }
     } else {
       String _message = "FCM Token is null!";
+      log(_message);
       return ResponseModel(message: _message);
     }
   }
