@@ -218,7 +218,7 @@ snackBar(
                       ),
                 ),
               ),
-              subtitle!.isNotEmpty
+              subtitle != null && subtitle.isNotEmpty
                   ? Text(
                       subtitle,
                       style: textTheme(context).caption?.apply(),
