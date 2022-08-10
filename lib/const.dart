@@ -234,6 +234,7 @@ snackBar(
   );
 }
 
+//
 Color getMembershipColor(int membershipTypeId) {
   if (membershipTypeId == 1) {
     return greyColor;
