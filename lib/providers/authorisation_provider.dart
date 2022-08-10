@@ -40,7 +40,7 @@ class AuthorisationProvider with ChangeNotifier {
     String? version,
   ) async {
     var _url = Uri.parse("$baseURL/patient/update/fcm/token");
-    if (token != null && token != "") {
+    if (token != null && token != "" && token != "null") {
       final res = await http.post(_url, body: {
         "user_id": userID,
         "fcm_token": token,
