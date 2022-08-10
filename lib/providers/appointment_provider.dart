@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/models/appointment_model.dart';
-import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,8 +16,6 @@ class AppointmentProvider extends ChangeNotifier {
   List<AppointmentData> getList() {
     return _list;
   }
-
-  // Future<AppointmentResponse> fetchData(){}
 
   Future<AppointmentResponse> fetchList(
     String baseUrl,
