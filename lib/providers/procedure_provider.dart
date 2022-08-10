@@ -97,4 +97,36 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel(message: _message);
     }
   }
+
+  Future<ResponseModel> fetchQuickActionList(String baseURL) async {
+    var _url = Uri.parse("$baseURL/quick/action/list");
+    final res = await http.post(_url);
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
+
+  Future<ResponseModel> addQuickActionValue(
+    String baseURL,
+    String? appointmenID,
+    String? quickActionID,
+  ) async {
+    var _url = Uri.parse("$baseURL/quick/action/add");
+    final res = await http.post(_url);
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
 }
