@@ -317,10 +317,21 @@ Widget getAppointmentStatus(context, int status) {
     );
   }
   if (status == 4) {
-    return Text(
-      // "QR",
-      "",
-      style: textTheme(context).subtitle1?.apply(color: blueColor),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: Text(
+            "Confirm",
+            style: textTheme(context).subtitle1?.apply(color: greenColor),
+          ),
+        ),
+        Icon(
+          CupertinoIcons.check_mark_circled,
+          color: greenColor,
+          size: textTheme(context).headline6?.apply().fontSize,
+        ),
+      ],
     );
   }
   if (status == 5) {
