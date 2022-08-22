@@ -19,7 +19,7 @@ class HealthProgramProvider with ChangeNotifier {
     String? patientID,
     bool? manageState,
   ) async {
-    var _url = Uri.parse("$baseURL/patient/list");
+    var _url = Uri.parse("$baseURL/bundle/list");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
     });
