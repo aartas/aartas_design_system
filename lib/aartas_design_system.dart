@@ -4,11 +4,13 @@ import 'package:aartas_design_system/apis/authentication_apis.dart';
 
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
+import 'package:aartas_design_system/providers/book_appointment_provider.dart';
 import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/complaint_provider.dart';
 import 'package:aartas_design_system/providers/coupons_provider.dart';
 import 'package:aartas_design_system/providers/diagnosis_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
+import 'package:aartas_design_system/providers/family_member_provider.dart';
 import 'package:aartas_design_system/providers/follow_up_date_provider.dart';
 import 'package:aartas_design_system/providers/health_program_provider.dart';
 import 'package:aartas_design_system/providers/home_feed_provider.dart';
@@ -61,6 +63,8 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => CouponProvider()),
         ChangeNotifierProvider(create: (_) => SpecialityProvider()),
         ChangeNotifierProvider(create: (_) => HomeFeedProvider()),
+        ChangeNotifierProvider(create: (_) => FamilyMembersProvider()),
+        ChangeNotifierProvider(create: (_) => BookAppointmentProvider()),
       ],
       builder: (_, child) {
         return widget.child;

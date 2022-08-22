@@ -1,5 +1,6 @@
 import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
+import 'package:aartas_design_system/models/timeslot_model.dart';
 
 class AppointmentResponse {
   String? message;
@@ -356,47 +357,6 @@ class Patient {
     data['latitude'] = latitude;
     data['longitude'] = longitude;
     data['membership_type_id'] = membershipTypeId;
-    return data;
-  }
-}
-
-class Timeslot {
-  int? id;
-  int? doctorId;
-  String? date;
-  String? timeFrom;
-  String? timeTo;
-  int? clinicId;
-  int? bookingStatus;
-
-  Timeslot(
-      {this.id,
-      this.doctorId,
-      this.date,
-      this.timeFrom,
-      this.timeTo,
-      this.clinicId,
-      this.bookingStatus});
-
-  Timeslot.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    doctorId = json['doctor_id'];
-    date = json['date'];
-    timeFrom = json['time_from'];
-    timeTo = json['time_to'];
-    clinicId = json['clinic_id'];
-    bookingStatus = json['booking_status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['doctor_id'] = doctorId;
-    data['date'] = date;
-    data['time_from'] = timeFrom;
-    data['time_to'] = timeTo;
-    data['clinic_id'] = clinicId;
-    data['booking_status'] = bookingStatus;
     return data;
   }
 }

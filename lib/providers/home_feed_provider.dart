@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:aartas_design_system/models/home_feed_like_model.dart';
 import 'package:aartas_design_system/models/home_feed_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
-import 'package:aartas_design_system/models/speciality_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
