@@ -1,3 +1,53 @@
+class SpecialityResponse {
+  String? message;
+  bool? status;
+  SpecialityData? data;
+
+  SpecialityResponse({this.message, this.status, this.data});
+
+  SpecialityResponse.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    status = json['status'] != null ? json['status']! : null;
+    data = json['data'] != null ? SpecialityData.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['status'] = status;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class SpecialityData {
+  List<Speciality>? specialityList;
+  String? imageUrl;
+
+  SpecialityData({this.specialityList, this.imageUrl});
+
+  SpecialityData.fromJson(Map<String, dynamic> json) {
+    if (json['speciality_list'] != null) {
+      specialityList = <Speciality>[];
+      json['speciality_list'].forEach((v) {
+        specialityList!.add(Speciality.fromJson(v));
+      });
+    }
+    imageUrl = json['image_url'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (specialityList != null) {
+      data['speciality_list'] = specialityList!.map((v) => v.toJson()).toList();
+    }
+    data['image_url'] = imageUrl;
+    return data;
+  }
+}
+
 class Speciality {
   int? id;
   dynamic name;

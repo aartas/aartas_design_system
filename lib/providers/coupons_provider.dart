@@ -30,9 +30,9 @@ class CouponProvider with ChangeNotifier {
     final res = await http.post(
       _url,
       body: {
-        "user_id": userId,
-        "doctor_id": doctorId,
-        "speciality_id": specialityId,
+        "user_id": userId ?? "",
+        "doctor_id": doctorId ?? "",
+        "speciality_id": specialityId ?? "",
       },
     );
     String _message = "(${res.statusCode}) $_url";
@@ -60,10 +60,10 @@ class CouponProvider with ChangeNotifier {
     final res = await http.post(
       _url,
       body: {
-        "user_id": userId,
-        "coupon_name": couponName,
-        "doctor_id": doctorId,
-        "speciality_id": specialityId,
+        "user_id": userId ?? "",
+        "coupon_name": couponName ?? "",
+        "doctor_id": doctorId ?? "",
+        "speciality_id": specialityId ?? "",
       },
     );
     String _message = "(${res.statusCode}) $_url";
