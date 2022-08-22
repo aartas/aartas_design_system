@@ -12,17 +12,13 @@ class HealthProgramProvider with ChangeNotifier {
     return _healthProgramList;
   }
 
-  // final List<PatientData> _patientList = [];
-
   Future<HealthProgramResponse> fetchList(
     String baseURL,
     String? patientID,
     bool? manageState,
   ) async {
     var _url = Uri.parse("$baseURL/bundle/list");
-    final res = await http.post(_url, body: {
-      "patient_id": patientID ?? "",
-    });
+    final res = await http.get(_url);
 
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
