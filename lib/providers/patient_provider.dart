@@ -22,17 +22,24 @@ class PatientProvider with ChangeNotifier {
 
   // final List<PatientData> _patientList = [];
 
-  Future<PatientData> fetchData(
+  Future<PatientResponse> fetchData(
     String baseURL,
     String? phoneNumber,
-  ) {
-    return AuthenticationProvider()
-        .patientLogin(baseURL, phoneNumber!)
-        .then((value) {
-      _patientData = value.data![0];
+  ) async {
+    var _url = Uri.parse("$baseURL/login");
+    final res = await http.post(_url, body: {"phone_number": phoneNumber});
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+      var _res = PatientResponse.fromJson(json.decode(res.body));
+      _patientData = _res.data![0];
       notifyListeners();
-      return value.data![0];
-    });
+      return _res;
+    } else {
+      log(res.body);
+      return PatientResponse(message: _message);
+    }
   }
 
   Future<PatientResponse> fetchList(
