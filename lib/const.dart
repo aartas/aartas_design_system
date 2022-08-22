@@ -218,7 +218,7 @@ snackBar(
                       ),
                 ),
               ),
-              subtitle!.isNotEmpty
+              subtitle != null && subtitle.isNotEmpty
                   ? Text(
                       subtitle,
                       style: textTheme(context).caption?.apply(),
@@ -234,6 +234,7 @@ snackBar(
   );
 }
 
+//
 Color getMembershipColor(int membershipTypeId) {
   if (membershipTypeId == 1) {
     return greyColor;
@@ -316,10 +317,21 @@ Widget getAppointmentStatus(context, int status) {
     );
   }
   if (status == 4) {
-    return Text(
-      // "QR",
-      "",
-      style: textTheme(context).subtitle1?.apply(color: blueColor),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(
+          child: Text(
+            "Confirm",
+            style: textTheme(context).subtitle1?.apply(color: greenColor),
+          ),
+        ),
+        Icon(
+          CupertinoIcons.check_mark_circled,
+          color: greenColor,
+          size: textTheme(context).headline6?.apply().fontSize,
+        ),
+      ],
     );
   }
   if (status == 5) {
