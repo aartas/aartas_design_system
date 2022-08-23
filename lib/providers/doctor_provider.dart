@@ -30,19 +30,22 @@ class DoctorProvider with ChangeNotifier {
     String patientID,
   ) async {
     var _url = Uri.parse("$baseURL/doctors");
-    final res = await http.post(_url, body: {"patient_id": patientID});
+    final res = await http.get(
+      _url,
+      //  body: {"patient_id": patientID}
+    );
 
-    if (res.statusCode == 200) {
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-
       _list = _res.data!;
       notifyListeners();
-
       return _res;
     } else {
-      String _message = "DoctorListProvider:${res.statusCode}";
-      log(_message);
-      return DoctorResponse(message: "${res.statusCode}");
+      log(res.body);
+      return DoctorResponse(message: _message);
     }
   }
 
