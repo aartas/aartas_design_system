@@ -75,52 +75,52 @@ class DoctorData {
   List<Procedure>? procedure;
   Speciality? speciality;
   Timeslot? latestTimeSlot;
-
-  DoctorData({
-    this.id,
-    this.clinicId,
-    this.roomId,
-    this.doctorName,
-    this.email,
-    this.fcmToken,
-    this.gender,
-    this.address,
-    this.cityId,
-    this.languages,
-    this.specialityId,
-    this.registrationNum,
-    this.medicalAuthorityId,
-    this.degreeSuffix,
-    this.expertiseSubSpecialty,
-    this.image,
-    this.scheduleDays,
-    this.scheduleTimings,
-    this.hoursPerMonth,
-    this.agreementFile,
-    this.agreementRenewDate,
-    this.consulationFee,
-    this.timePerPatient,
-    this.appointmentPhoneNumber,
-    this.website,
-    this.instagram,
-    this.facebook,
-    this.profileShareCount,
-    this.profileVerified,
-    this.profileStatus,
-    this.resetToken,
-    this.onRequest,
-    this.prePayEnrolled,
-    this.prePayDiscount,
-    this.totalExperience,
-    this.status,
-    this.rentAmount,
-    this.securityAmount,
-    this.imageUrl,
-    this.timeslots,
-    this.procedure,
-    this.speciality,
-    this.latestTimeSlot,
-  });
+  List<Timings>? timings;
+  DoctorData(
+      {this.id,
+      this.clinicId,
+      this.roomId,
+      this.doctorName,
+      this.email,
+      this.fcmToken,
+      this.gender,
+      this.address,
+      this.cityId,
+      this.languages,
+      this.specialityId,
+      this.registrationNum,
+      this.medicalAuthorityId,
+      this.degreeSuffix,
+      this.expertiseSubSpecialty,
+      this.image,
+      this.scheduleDays,
+      this.scheduleTimings,
+      this.hoursPerMonth,
+      this.agreementFile,
+      this.agreementRenewDate,
+      this.consulationFee,
+      this.timePerPatient,
+      this.appointmentPhoneNumber,
+      this.website,
+      this.instagram,
+      this.facebook,
+      this.profileShareCount,
+      this.profileVerified,
+      this.profileStatus,
+      this.resetToken,
+      this.onRequest,
+      this.prePayEnrolled,
+      this.prePayDiscount,
+      this.totalExperience,
+      this.status,
+      this.rentAmount,
+      this.securityAmount,
+      this.imageUrl,
+      this.timeslots,
+      this.procedure,
+      this.speciality,
+      this.latestTimeSlot,
+      this.timings});
 
   DoctorData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -180,6 +180,12 @@ class DoctorData {
     latestTimeSlot = json['latest_timeslot'] != null
         ? Timeslot.fromJson(json['latest_timeslot'])
         : null;
+    if (json['timings'] != null) {
+      timings = <Timings>[];
+      json['timings'].forEach((v) {
+        timings!.add(Timings.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -232,51 +238,137 @@ class DoctorData {
     if (speciality != null) {
       data['speciality'] = speciality!.toJson();
     }
+    if (timings != null) {
+      data['timings'] = timings!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
 
-// class Timeslot {
-//   int? id;
-//   int? doctorId;
-//   String? date;
-//   String? timeFrom;
-//   String? timeTo;
-//   int? clinicId;
-//   int? bookingStatus;
-//   int? status;
+class Timings {
+  int? id;
+  int? doctorId;
+  String? scheduleDays;
+  String? scheduleTimings;
+  dynamic timePerPatient;
+  int? clinicId;
+  int? createdBy;
+  int? updatedBy;
+  String? createdAt;
+  String? updatedAt;
+  int? status;
+  Clinic? clinic;
 
-//   Timeslot(
-//       {this.id,
-//       this.doctorId,
-//       this.date,
-//       this.timeFrom,
-//       this.timeTo,
-//       this.clinicId,
-//       this.bookingStatus,
-//       this.status});
+  Timings(
+      {this.id,
+      this.doctorId,
+      this.scheduleDays,
+      this.scheduleTimings,
+      this.timePerPatient,
+      this.clinicId,
+      this.createdBy,
+      this.updatedBy,
+      this.createdAt,
+      this.updatedAt,
+      this.status,
+      this.clinic});
 
-//   Timeslot.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     doctorId = json['doctor_id'];
-//     date = json['date'];
-//     timeFrom = json['time_from'];
-//     timeTo = json['time_to'];
-//     clinicId = json['clinic_id'];
-//     bookingStatus = json['booking_status'];
-//     status = json['status'];
-//   }
+  Timings.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    doctorId = json['doctor_id'];
+    scheduleDays = json['scheduleDays'];
+    scheduleTimings = json['scheduleTimings'];
+    timePerPatient = json['time_per_patient'];
+    clinicId = json['clinic_id'];
+    createdBy = json['created_by'];
+    updatedBy = json['updated_by'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    status = json['status'];
+    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+  }
 
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['id'] = id;
-//     data['doctor_id'] = doctorId;
-//     data['date'] = date;
-//     data['time_from'] = timeFrom;
-//     data['time_to'] = timeTo;
-//     data['clinic_id'] = clinicId;
-//     data['booking_status'] = bookingStatus;
-//     data['status'] = status;
-//     return data;
-//   }
-// }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['doctor_id'] = doctorId;
+    data['scheduleDays'] = scheduleDays;
+    data['scheduleTimings'] = scheduleTimings;
+    data['time_per_patient'] = timePerPatient;
+    data['clinic_id'] = clinicId;
+    data['created_by'] = createdBy;
+    data['updated_by'] = updatedBy;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['status'] = status;
+    if (clinic != null) {
+      data['clinic'] = clinic!.toJson();
+    }
+    return data;
+  }
+}
+
+class Clinic {
+  int? id;
+  String? title;
+  String? address;
+  int? totalRoooms;
+  String? phoneNumber;
+  dynamic gSTIN;
+  dynamic stateCode;
+  String? ipAddressList;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic createdBy;
+  dynamic updatedBy;
+  int? status;
+
+  Clinic(
+      {this.id,
+      this.title,
+      this.address,
+      this.totalRoooms,
+      this.phoneNumber,
+      this.gSTIN,
+      this.stateCode,
+      this.ipAddressList,
+      this.createdAt,
+      this.updatedAt,
+      this.createdBy,
+      this.updatedBy,
+      this.status});
+
+  Clinic.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    address = json['address'];
+    totalRoooms = json['total_roooms'];
+    phoneNumber = json['phone_number'];
+    gSTIN = json['GSTIN'];
+    stateCode = json['state_code'];
+    ipAddressList = json['ip_address_list'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    createdBy = json['created_by'];
+    updatedBy = json['updated_by'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['address'] = address;
+    data['total_roooms'] = totalRoooms;
+    data['phone_number'] = phoneNumber;
+    data['GSTIN'] = gSTIN;
+    data['state_code'] = stateCode;
+    data['ip_address_list'] = ipAddressList;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['created_by'] = createdBy;
+    data['updated_by'] = updatedBy;
+    data['status'] = status;
+    return data;
+  }
+}
