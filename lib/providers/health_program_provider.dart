@@ -20,7 +20,7 @@ class HealthProgramProvider with ChangeNotifier {
     var _url = Uri.parse("$baseURL/bundle/list");
     final res = await http.get(_url);
 
-    String _message = "(${res.statusCode}) $_url:";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
       final _res = HealthProgramResponse.fromJson(json.decode(res.body));
