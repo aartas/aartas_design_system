@@ -89,4 +89,21 @@ class DoctorProvider with ChangeNotifier {
       return ResponseModel(message: _message);
     }
   }
+
+  Future<DoctorResponse> fetchData(
+      String baseURL, String? patientID, String? doctorID) async {
+    var _url = Uri.parse("$baseURL/doctor");
+    final res = await http.post(_url,
+        body: {"user_id": patientID ?? "", "doctor_id": doctorID ?? ""});
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = DoctorResponse.fromJson(json.decode(res.body));
+      _doctorData = _res.data!.first;
+      return _res;
+    } else {
+      log(res.body);
+      return DoctorResponse(message: _message);
+    }
+  }
 }
