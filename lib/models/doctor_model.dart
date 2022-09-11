@@ -60,6 +60,7 @@ class DoctorData {
   String? instagram;
   String? facebook;
   String? profileShareCount;
+  String? startDate;
   int? profileVerified;
   int? profileStatus;
   String? resetToken;
@@ -105,6 +106,7 @@ class DoctorData {
       this.instagram,
       this.facebook,
       this.profileShareCount,
+      this.startDate,
       this.profileVerified,
       this.profileStatus,
       this.resetToken,
@@ -153,6 +155,7 @@ class DoctorData {
     profileShareCount = json['profile_share_count'];
     profileVerified = json['profile_verified'];
     profileStatus = json['profile_status'];
+    startDate = json['start_date'];
     resetToken = json['reset_token'];
     onRequest = json['on_request'];
     prePayEnrolled = json['pre_pay_enrolled'];
@@ -217,6 +220,7 @@ class DoctorData {
     data['website'] = website;
     data['instagram'] = instagram;
     data['facebook'] = facebook;
+    data['start_date'] = startDate;
     data['profile_share_count'] = profileShareCount;
     data['profile_verified'] = profileVerified;
     data['profile_status'] = profileStatus;
