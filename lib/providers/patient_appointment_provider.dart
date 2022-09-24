@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 class PatientAppointmentProvider extends ChangeNotifier {
   List<PatientAppointmentData> _list = [];
+  List<PatientAppointmentData> _filteredList = [];
 
   List<PatientAppointmentData> getList() {
     return _list;
@@ -50,6 +51,41 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       return PatientAppointmentResponse(message: _message);
+    }
+  }
+
+  updateFilterAppointments(int _selected) {
+    if (_selected == 0) {
+      // Upcoming
+      _filteredList.clear();
+      for (var i = 0; i < _list.length; i++) {
+        if (_list[i].appointmentStatus != 1 &&
+            _list[i].appointmentStatus != 3 &&
+            _list[i].appointmentStatus != 8 &&
+            _list[i].appointmentStatus != 9) {
+          _filteredList.add(_list[i]);
+          notifyListeners();
+        }
+      }
+    }
+    if (_selected == 1) {
+      // Completed
+      for (var i = 0; i < _list.length; i++) {
+        if (_list[i].appointmentStatus == 8 ||
+            _list[i].appointmentStatus == 9) {
+          _filteredList.add(_list[i]);
+          notifyListeners();
+        }
+      }
+    }
+    if (_selected == 2) {
+      // Previous
+      for (var i = 0; i < _list.length; i++) {
+        if (_list[i].appointmentStatus == 3) {
+          _filteredList.add(_list[i]);
+          notifyListeners();
+        }
+      }
     }
   }
 
