@@ -17,6 +17,10 @@ class PatientAppointmentProvider extends ChangeNotifier {
     return _list;
   }
 
+  List<PatientAppointmentData> getFilteredList() {
+    return _filteredList;
+  }
+
   Future<PatientAppointmentResponse> fetchList(
     String baseUrl,
     String? patientID,
@@ -55,9 +59,9 @@ class PatientAppointmentProvider extends ChangeNotifier {
   }
 
   updateFilterAppointments(int _selected) {
+    _filteredList.clear();
     if (_selected == 0) {
       // Upcoming
-      _filteredList.clear();
       for (var i = 0; i < _list.length; i++) {
         if (_list[i].appointmentStatus != 1 &&
             _list[i].appointmentStatus != 3 &&
