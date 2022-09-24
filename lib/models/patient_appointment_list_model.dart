@@ -2,14 +2,14 @@ import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/family_members_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 
-class PatientAppointment {
+class PatientAppointmentResponse {
   String? message;
   bool? status;
   List<PatientAppointmentData>? data;
 
-  PatientAppointment({this.message, this.status, this.data});
+  PatientAppointmentResponse({this.message, this.status, this.data});
 
-  PatientAppointment.fromJson(Map<String, dynamic> json) {
+  PatientAppointmentResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
     if (json['data'] != null) {

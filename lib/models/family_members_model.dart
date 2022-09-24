@@ -1,7 +1,7 @@
 class FamilyMemberResponse {
   String? message;
-  bool? status;
-  List<FamilyMemberData>? data;
+  bool? status = false;
+  List<FamilyMemberData>? data = [];
 
   FamilyMemberResponse({this.message, this.status, this.data});
 
