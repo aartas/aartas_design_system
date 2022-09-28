@@ -35,7 +35,7 @@ class PatientData {
   String? email;
   String? gender;
   // String? pinCode;
-  // String? fcmToken;
+  String? fcmToken;
   String? dob;
   //int
   dynamic age;
@@ -61,7 +61,7 @@ class PatientData {
     this.age,
     // this.phoneCountryCode,
     // this.pinCode,
-    // this.fcmToken,
+    this.fcmToken,
     // this.relation,
     // this.linkId,
     // this.location,
@@ -85,7 +85,7 @@ class PatientData {
     age = json['age'];
     // phoneCountryCode = json['phone_country_code'];
     // pinCode = json['pin_code'];
-    // fcmToken = json['fcm_token'];
+    fcmToken = json['fcm_token'];
     // relation = json['relation'];
     // linkId = json['link_id'];
     // location = json['location'];
@@ -110,7 +110,7 @@ class PatientData {
     data['age'] = age;
     // data['phone_country_code'] = phoneCountryCode;
     // data['pin_code'] = pinCode;
-    // data['fcm_token'] = fcmToken;
+    data['fcm_token'] = fcmToken;
     // data['relation'] = relation;
     // data['link_id'] = linkId;
     // data['location'] = location;
