@@ -73,24 +73,25 @@ class PatientAppointmentProvider extends ChangeNotifier {
       }
     }
     if (_selected == 1) {
-      // Completed
+      // Completed , Payment Done, Cancelled
       for (var i = 0; i < _list.length; i++) {
         if (_list[i].appointmentStatus == 8 ||
-            _list[i].appointmentStatus == 9) {
+            _list[i].appointmentStatus == 9 ||
+            _list[i].appointmentStatus == 3) {
           _filteredList.add(_list[i]);
           notifyListeners();
         }
       }
     }
-    if (_selected == 2) {
-      // Previous
-      for (var i = 0; i < _list.length; i++) {
-        if (_list[i].appointmentStatus == 3) {
-          _filteredList.add(_list[i]);
-          notifyListeners();
-        }
-      }
-    }
+    // if (_selected == 2) {
+    //   // Previous
+    //   for (var i = 0; i < _list.length; i++) {
+    //     if (_list[i].appointmentStatus == 3) {
+    //       _filteredList.add(_list[i]);
+    //       notifyListeners();
+    //     }
+    //   }
+    // }
   }
 
   Future<UnconfirmedAppointment> unconfirmedAppointment(
