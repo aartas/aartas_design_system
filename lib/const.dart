@@ -125,20 +125,20 @@ EdgeInsets listPadding(length, i, direction) {
             defaultPadding,
             defaultPadding / 2,
             defaultPadding / 3,
-            defaultPadding,
+            defaultPadding / 2,
           )
         : i == length - 1
             ? EdgeInsets.fromLTRB(
                 defaultPadding / 4,
                 defaultPadding / 2,
                 defaultPadding,
-                defaultPadding,
+                defaultPadding / 2,
               )
             : EdgeInsets.fromLTRB(
                 defaultPadding / 3,
                 defaultPadding / 2,
                 defaultPadding / 3,
-                defaultPadding,
+                defaultPadding / 2,
               );
   } else {
     return EdgeInsets.fromLTRB(
