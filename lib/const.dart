@@ -31,20 +31,77 @@ String apiKey = "AIzaSyC4wk5k8E6jKkpJClZlXZ8oavuPyi0AMVE";
 //-----------------URLS--------------------
 String rupeeIcon = "₹";
 
-//! Colors
-Color primaryColor = Colors.orange;
-Color yellowColor = Colors.orange[300]!;
-Color redColor = Colors.red[400]!;
-Color blueColor = Colors.blue[400]!;
-Color greenColor = Colors.green[400]!;
-Color greyColor = Colors.grey[500]!;
-// Color backgroundColor = const Color(0xff1c1c1e);
-// Color backgroundColor = Colors.grey[900]!;
-// Color backgroundColor = const Color(0xff0a0a0a);
-// Color cardColor = Colors.grey[900]!;
-// Color cardColor = const Color(0xff2c2c2e);
-Color whiteColor = Colors.white.withOpacity(0.9);
-Color blackColor = Colors.black;
+//? Primary Colors ---------------------------------
+
+// Primary Color - Aartas Design System
+// Pearl: 0xffffffff
+Color pearlColor = const Color(0xffffffff);
+
+// Primary Color - Aartas Design System
+// Burnt Umber: 0xff96351e
+Color burntUmberColor = const Color(0xff96351e);
+
+// Primary Color - Aartas Design System
+// Brandy: 0xffdbb98f
+Color brandyColor = const Color(0xffdbb98f);
+
+// Primary Color - Aartas Design System
+// Raffia: 0xffddc6a8
+Color raffiaColor = const Color(0xffddc6a8);
+
+// Primary Color - Aartas Design System
+// Sea Shell: 0xfff2f2f2
+Color seaShellColor = const Color(0xfff2f2f2);
+
+// Primary Color - Aartas Design System
+// Graphite: 0xff29272B
+Color graphiteColor = const Color(0xff29272B);
+
+// Primary Color - Aartas Design System
+// Charcoal:0xff222023
+Color charcoalColor = const Color(0xff222023);
+
+//? Secondary Colors ------------------------------
+
+// Secondary Color - Aartas Design System
+// Copper Red: 0xffC57857
+Color redColor = const Color(0xffC57857);
+
+// Secondary Color - Aartas Design System
+// Pastel Pink: 0xffE8AD9B
+Color pinkColor = const Color(0xffE8AD9B);
+
+// Secondary Color - Aartas Design System
+// Silver Pink: 0xffC2B1A1
+Color clayColor = const Color(0xffC2B1A1);
+
+// Secondary Color - Aartas Design System
+// Cadet Blue: 0xffA2B9C9
+Color blueColor = const Color(0xffA2B9C9);
+
+// Secondary Color - Aartas Design System
+// Cadet Grey: 0xff95B3AB
+Color greenColor = const Color(0xff95B3AB);
+
+// Secondary Color - Aartas Design System
+// Dark Vanilla: 0xffDEC7A8
+Color sandColor = const Color(0xffDEC7A8);
+
+// Secondary Color - Aartas Design System
+// Pale Taupe: 0xffB9967A
+Color walnutColor = const Color(0xffB9967A);
+
+// Secondary Color - Aartas Design System
+// Quick Silver:0xffA9AC9B
+Color greyColor = const Color(0xffA9AC9B);
+
+// Secondary Color - Aartas Design System
+// fawn: 0xffD5AD70
+Color brownColor = const Color(0xffD5AD70);
+
+// Secondary Color - Aartas Design System
+// buff: 0xffEFD78D
+Color yellowColor = const Color(0xffEFD78D);
 
 //! EdgeInsets - Padding
 
@@ -243,9 +300,9 @@ Color getMembershipColor(int membershipTypeId) {
     return yellowColor;
   }
   if (membershipTypeId == 3) {
-    return Colors.blueGrey;
+    return greyColor;
   }
-  return whiteColor;
+  return clayColor;
 }
 
 String getMembershipTitle(int membershipTypeId) {
@@ -269,12 +326,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirmation Pending",
-            style: textTheme(context).subtitle1?.apply(color: whiteColor),
+            style: textTheme(context).subtitle1?.apply(color: pearlColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
-          color: whiteColor,
+          color: pearlColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
@@ -287,12 +344,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirm",
-            style: textTheme(context).subtitle1?.apply(color: whiteColor),
+            style: textTheme(context).subtitle1?.apply(color: pearlColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
-          color: whiteColor,
+          color: pearlColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
@@ -436,8 +493,6 @@ Widget getAppointmentStatus(context, int status) {
 //     );
 //   }
 // }
-
-
 
 removeFocus(context) {
   FocusScopeNode currentFocus = FocusScope.of(context);
