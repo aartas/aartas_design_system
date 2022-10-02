@@ -68,44 +68,44 @@ Color greyColor = const Color(0xff222023).withOpacity(0.5);
 //? Secondary Colors ------------------------------
 
 // Secondary Color - Aartas Design System
-// Copper Red: 0xffC57857
-Color redColor = const Color(0xffC57857);
+// CoppercopperRedColor Red: 0xffC57857
+Color copperRedColor = const Color(0xffC57857);
 
 // Secondary Color - Aartas Design System
 // Pastel Pink: 0xffE8AD9B
-Color pinkColor = const Color(0xffE8AD9B);
+Color pastelPinkColor = const Color(0xffE8AD9B);
 
 // Secondary Color - Aartas Design System
 // Silver Pink: 0xffC2B1A1
-Color clayColor = const Color(0xffC2B1A1);
+Color silverPinkColor = const Color(0xffC2B1A1);
 
 // Secondary Color - Aartas Design System
 // Cadet Blue: 0xffA2B9C9
-Color blueColor = const Color(0xffA2B9C9);
+Color cadetBlueColor = const Color(0xffA2B9C9);
 
 // Secondary Color - Aartas Design System
 // Cadet Grey: 0xff95B3AB
-Color greenColor = const Color(0xff95B3AB);
+Color cadetGreyColor = const Color(0xff95B3AB);
 
 // Secondary Color - Aartas Design System
 // Dark Vanilla: 0xffDEC7A8
-Color sandColor = const Color(0xffDEC7A8);
+Color darkVanillaColor = const Color(0xffDEC7A8);
 
 // Secondary Color - Aartas Design System
 // Pale Taupe: 0xffB9967A
-Color walnutColor = const Color(0xffB9967A);
+Color paleTaupeColor = const Color(0xffB9967A);
 
 // Secondary Color - Aartas Design System
 // Quick Silver:0xffA9AC9B
-Color silverColor = const Color(0xffA9AC9B);
+Color quickSilverColor = const Color(0xffA9AC9B);
 
 // Secondary Color - Aartas Design System
 // fawn: 0xffD5AD70
-Color brownColor = const Color(0xffD5AD70);
+Color fawnColor = const Color(0xffD5AD70);
 
 // Secondary Color - Aartas Design System
 // buff: 0xffEFD78D
-Color yellowColor = const Color(0xffEFD78D);
+Color buffColor = const Color(0xffEFD78D);
 
 //! EdgeInsets - Padding
 
@@ -248,7 +248,7 @@ snackBar(
   MessageStyle? messageStyle,
 ) {
   Color _messageStyleColor =
-      messageStyle == MessageStyle.success ? greenColor : redColor;
+      messageStyle == MessageStyle.success ? cadetGreyColor : copperRedColor;
   return ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
@@ -301,12 +301,12 @@ Color getMembershipColor(int membershipTypeId) {
     return greyColor;
   }
   if (membershipTypeId == 2) {
-    return yellowColor;
+    return buffColor;
   }
   if (membershipTypeId == 3) {
     return greyColor;
   }
-  return clayColor;
+  return cadetBlueColor;
 }
 
 String getMembershipTitle(int membershipTypeId) {
@@ -366,12 +366,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Cancelled",
-            style: textTheme(context).subtitle1?.apply(color: redColor),
+            style: textTheme(context).subtitle1?.apply(color: copperRedColor),
           ),
         ),
         Icon(
           CupertinoIcons.clear_circled,
-          color: redColor,
+          color: copperRedColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
@@ -384,12 +384,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirm",
-            style: textTheme(context).subtitle1?.apply(color: greenColor),
+            style: textTheme(context).subtitle1?.apply(color: cadetGreyColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
-          color: greenColor,
+          color: cadetGreyColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
@@ -399,7 +399,7 @@ Widget getAppointmentStatus(context, int status) {
     return Text(
       // "Check In",
       "",
-      style: textTheme(context).subtitle1?.apply(color: blueColor),
+      style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
     );
   }
   if (status == 6) {
@@ -409,12 +409,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Vitals Done",
-            style: textTheme(context).subtitle1?.apply(color: blueColor),
+            style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
           ),
         ),
         Icon(
           CupertinoIcons.thermometer,
-          color: blueColor,
+          color: cadetBlueColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
@@ -424,7 +424,7 @@ Widget getAppointmentStatus(context, int status) {
     return Text(
       // "In Appointment",
       "Currently Consulting...",
-      style: textTheme(context).subtitle1?.apply(color: blueColor),
+      style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
     );
   }
   if (status == 8) {
@@ -434,12 +434,12 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Completed",
-            style: textTheme(context).subtitle1?.apply(color: greenColor),
+            style: textTheme(context).subtitle1?.apply(color: cadetGreyColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
-          color: greenColor,
+          color: cadetGreyColor,
           size: textTheme(context).headline6?.apply().fontSize,
         ),
       ],
