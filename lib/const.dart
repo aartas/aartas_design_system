@@ -61,6 +61,10 @@ Color graphiteColor = const Color(0xff29272B);
 // Charcoal:0xff222023
 Color charcoalColor = const Color(0xff222023);
 
+// Primary Color - Aartas Design System
+// Charcoal :0xff222023 50% Opacity
+Color greyColor = const Color(0xff222023).withOpacity(0.5);
+
 //? Secondary Colors ------------------------------
 
 // Secondary Color - Aartas Design System
@@ -93,7 +97,7 @@ Color walnutColor = const Color(0xffB9967A);
 
 // Secondary Color - Aartas Design System
 // Quick Silver:0xffA9AC9B
-Color greyColor = const Color(0xffA9AC9B);
+Color silverColor = const Color(0xffA9AC9B);
 
 // Secondary Color - Aartas Design System
 // fawn: 0xffD5AD70
