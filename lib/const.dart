@@ -63,7 +63,7 @@ Color charcoalColor = const Color(0xff222023);
 
 // Primary Color - Aartas Design System
 // Charcoal :0xff222023 50% Opacity
-Color greyColor = const Color(0xff222023).withOpacity(0.5);
+Color greyColor = charcoalColor.withOpacity(0.5);
 
 //? Secondary Colors ------------------------------
 
