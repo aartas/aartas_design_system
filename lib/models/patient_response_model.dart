@@ -1,6 +1,6 @@
 class PatientResponse {
   String? message;
-  bool? status = false;
+  bool? status;
   List<PatientData>? data;
 
   PatientResponse({this.message, this.status, this.data});
@@ -37,56 +37,56 @@ class PatientData {
   // String? pinCode;
   String? fcmToken;
   String? dob;
-  //int
-  dynamic age;
-  // dynamic relation;
-  // dynamic linkId;
+  int? age;
+  String? relation;
+  // Null? linkId;
   // String? location;
   // String? latitude;
   // String? longitude;
   // int? membershipTypeId;
   // String? createdAt;
   // String? updatedAt;
-  // dynamic createdBy;
-  // dynamic updatedBy;
+  // Null? createdBy;
+  // Null? updatedBy;
   // String? status;
+  Membership? membership;
 
-  PatientData({
-    this.id,
-    this.fullName,
-    this.phoneNumber,
-    this.email,
-    this.gender,
-    this.dob,
-    this.age,
-    // this.phoneCountryCode,
-    // this.pinCode,
-    this.fcmToken,
-    // this.relation,
-    // this.linkId,
-    // this.location,
-    // this.latitude,
-    // this.longitude,
-    // this.membershipTypeId,
-    // this.createdAt,
-    // this.updatedAt,
-    // this.createdBy,
-    // this.updatedBy,
-    // this.status,
-  });
+  PatientData(
+      {this.id,
+      this.fullName,
+      // this.phoneCountryCode,
+      this.phoneNumber,
+      this.email,
+      this.gender,
+      // this.pinCode,
+      this.fcmToken,
+      this.dob,
+      this.age,
+      this.relation,
+      // this.linkId,
+      // this.location,
+      // this.latitude,
+      // this.longitude,
+      // this.membershipTypeId,
+      // this.createdAt,
+      // this.updatedAt,
+      // this.createdBy,
+      // this.updatedBy,
+      // this.status,
+      this.membership});
 
   PatientData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fullName = json['full_name'];
+    // phoneCountryCode = json['phone_country_code'];
     phoneNumber = json['phone_number'];
     email = json['email'];
     gender = json['gender'];
-    dob = json['dob'];
-    age = json['age'];
-    // phoneCountryCode = json['phone_country_code'];
     // pinCode = json['pin_code'];
     fcmToken = json['fcm_token'];
-    // relation = json['relation'];
+    dob = json['dob'];
+    age = json['age'];
+    relation = json['relation'];
     // linkId = json['link_id'];
     // location = json['location'];
     // latitude = json['latitude'];
@@ -97,21 +97,24 @@ class PatientData {
     // createdBy = json['created_by'];
     // updatedBy = json['updated_by'];
     // status = json['status'];
+    membership = json['membership'] != null
+        ? Membership.fromJson(json['membership'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['full_name'] = fullName;
+    // data['phone_country_code'] = phoneCountryCode;
     data['phone_number'] = phoneNumber;
     data['email'] = email;
     data['gender'] = gender;
-    data['dob'] = dob;
-    data['age'] = age;
-    // data['phone_country_code'] = phoneCountryCode;
     // data['pin_code'] = pinCode;
     data['fcm_token'] = fcmToken;
-    // data['relation'] = relation;
+    data['dob'] = dob;
+    data['age'] = age;
+    data['relation'] = relation;
     // data['link_id'] = linkId;
     // data['location'] = location;
     // data['latitude'] = latitude;
@@ -122,6 +125,58 @@ class PatientData {
     // data['created_by'] = createdBy;
     // data['updated_by'] = updatedBy;
     // data['status'] = status;
+    if (membership != null) {
+      data['membership'] = membership!.toJson();
+    }
+    return data;
+  }
+}
+
+class Membership {
+  int? id;
+  String? title;
+  String? details;
+  String? criteria;
+  // String? createdAt;
+  // String? updatedAt;
+  // Null? createdBy;
+  // Null? updatedBy;
+  int? status;
+
+  Membership(
+      {this.id,
+      this.title,
+      this.details,
+      this.criteria,
+      // this.createdAt,
+      // this.updatedAt,
+      // this.createdBy,
+      // this.updatedBy,
+      this.status});
+
+  Membership.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    details = json['details'];
+    criteria = json['criteria'];
+    // createdAt = json['created_at'];
+    // updatedAt = json['updated_at'];
+    // createdBy = json['created_by'];
+    // updatedBy = json['updated_by'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['details'] = details;
+    data['criteria'] = criteria;
+    // data['created_at'] = createdAt;
+    // data['updated_at'] = updatedAt;
+    // data['created_by'] = createdBy;
+    // data['updated_by'] = updatedBy;
+    data['status'] = status;
     return data;
   }
 }
