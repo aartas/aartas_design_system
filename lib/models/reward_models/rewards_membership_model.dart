@@ -24,16 +24,14 @@ class MembershipResponse {
 
 class MembershipData {
   UserCountData? userCountData;
-  LoginData? patientData;
 
-  MembershipData({this.userCountData, this.patientData});
+  MembershipData({
+    this.userCountData,
+  });
 
   MembershipData.fromJson(Map<String, dynamic> json) {
     userCountData = json['user_count_data'] != null
         ? UserCountData.fromJson(json['user_count_data'])
-        : null;
-    patientData = json['patient_data'] != null
-        ? LoginData.fromJson(json['patient_data'])
         : null;
   }
 
@@ -42,9 +40,7 @@ class MembershipData {
     if (userCountData != null) {
       data['user_count_data'] = userCountData!.toJson();
     }
-    if (patientData != null) {
-      data['patient_data'] = patientData!.toJson();
-    }
+
     return data;
   }
 }
