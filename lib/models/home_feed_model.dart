@@ -4,14 +4,19 @@ import 'package:aartas_design_system/models/speciality_model.dart';
 class HomeFeedResponse {
   String? message;
   bool? status;
-  HFData? data;
+  List<HomeFeed>? data;
 
   HomeFeedResponse({this.message, this.status, this.data});
 
   HomeFeedResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? HFData.fromJson(json['data']) : null;
+    if (json['data'] != null) {
+      data = <HomeFeed>[];
+      json['data'].forEach((v) {
+        data!.add(HomeFeed.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -19,34 +24,8 @@ class HomeFeedResponse {
     data['message'] = message;
     data['status'] = status;
     if (this.data != null) {
-      data['data'] = this.data!.toJson();
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class HFData {
-  List<HomeFeed>? homeFeedData;
-  String? imageUrl;
-
-  HFData({this.homeFeedData, this.imageUrl});
-
-  HFData.fromJson(Map<String, dynamic> json) {
-    if (json['home_feed_data'] != null) {
-      homeFeedData = <HomeFeed>[];
-      json['home_feed_data'].forEach((v) {
-        homeFeedData!.add(HomeFeed.fromJson(v));
-      });
-    }
-    imageUrl = json['image_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (homeFeedData != null) {
-      data['home_feed_data'] = homeFeedData!.map((v) => v.toJson()).toList();
-    }
-    data['image_url'] = imageUrl;
     return data;
   }
 }

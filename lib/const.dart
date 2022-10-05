@@ -466,38 +466,6 @@ Widget getAppointmentStatus(context, int status) {
   return const Text("...");
 }
 
-// EdgeInsets listPadding(length, i, direction) {
-//   if (direction == Axis.horizontal) {
-//     return i == 0
-//         ? EdgeInsets.fromLTRB(
-//             defaultPadding,
-//             defaultPadding / 2,
-//             defaultPadding / 3,
-//             defaultPadding,
-//           )
-//         : i == length - 1
-//             ? EdgeInsets.fromLTRB(
-//                 defaultPadding / 4,
-//                 defaultPadding / 2,
-//                 defaultPadding,
-//                 defaultPadding,
-//               )
-//             : EdgeInsets.fromLTRB(
-//                 defaultPadding / 3,
-//                 defaultPadding / 2,
-//                 defaultPadding / 3,
-//                 defaultPadding,
-//               );
-//   } else {
-//     return EdgeInsets.fromLTRB(
-//       defaultPadding,
-//       i == 0 ? defaultPadding / 2 : defaultPadding / 2,
-//       defaultPadding,
-//       i == length - 1 ? defaultPadding / 2 : defaultPadding / 2,
-//     );
-//   }
-// }
-
 removeFocus(context) {
   FocusScopeNode currentFocus = FocusScope.of(context);
   if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {

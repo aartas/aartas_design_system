@@ -34,7 +34,7 @@ class HomeFeedProvider with ChangeNotifier {
 
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
-      _homeFeedList = _res.data!.homeFeedData!;
+      _homeFeedList = _res.data!;
       notifyListeners();
       return _res;
     } else {
@@ -60,7 +60,7 @@ class HomeFeedProvider with ChangeNotifier {
     log(_message);
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
-      _homeFeedData = _res.data!.homeFeedData!.first;
+      _homeFeedData = _res.data!.first;
       notifyListeners();
       return _res;
     } else {
