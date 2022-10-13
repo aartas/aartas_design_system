@@ -57,21 +57,21 @@ class PatientAppointmentProvider extends ChangeNotifier {
     }
   }
 
-  List<PatientAppointmentData> todaysAppointment() {
-    List<PatientAppointmentData> _res = [];
-    DateTime _todayDate = DateTime.now();
-    for (var i = 0; i < _list.length; i++) {
-      var _appointmentDate = DateFormat("yyyy-MM-dd").format(
-        DateFormat().parse(_list[i].timeslot!.date!),
-      );
-      notifyListeners();
-      if ("$_todayDate" == _appointmentDate) {
-        log("RES $_todayDate  -  $_appointmentDate");
-        _res.add(_list[i]);
-      }
-    }
-    return _res;
-  }
+  // List<PatientAppointmentData> todaysAppointment() {
+  //   List<PatientAppointmentData> _res = [];
+  //   DateTime _todayDate = DateTime.now();
+  //   for (var i = 0; i < _list.length; i++) {
+  //     var _appointmentDate = DateFormat("yyyy-MM-dd").format(
+  //       DateFormat().parse(_list[i].timeslot!.date!),
+  //     );
+  //     notifyListeners();
+  //     if ("$_todayDate" == _appointmentDate) {
+  //       log("RES $_todayDate  -  $_appointmentDate");
+  //       _res.add(_list[i]);
+  //     }
+  //   }
+  //   return _res;
+  // }
 
   updateFilterAppointments(int _selected) {
     _filteredList.clear();
