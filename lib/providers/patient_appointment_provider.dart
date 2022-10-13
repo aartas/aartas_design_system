@@ -1,17 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'package:aartas_design_system/models/confirm_appointment_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 import 'package:aartas_design_system/models/unconfirmed_appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
+import 'package:intl/intl.dart';
 
 class PatientAppointmentProvider extends ChangeNotifier {
   List<PatientAppointmentData> _list = [];
-  List<PatientAppointmentData> _filteredList = [];
+  final List<PatientAppointmentData> _filteredList = [];
 
   List<PatientAppointmentData> getList() {
     return _list;
@@ -58,6 +57,19 @@ class PatientAppointmentProvider extends ChangeNotifier {
     }
   }
 
+  List<PatientAppointmentData> todaysAppointment() {
+    List<PatientAppointmentData> _res = [];
+    DateTime _todayDate = DateTime.now();
+    for (var i = 0; i < _list.length; i++) {
+      var _appointmentDate = DateFormat("yyyy-MM-dd").format(
+        DateFormat().parse(_list[i].timeslot!.date!),
+      );
+      print("$_todayDate  -  $_appointmentDate");
+      // if ("$_todayDate" == _appointmentDate) {}
+    }
+    return _res;
+  }
+
   updateFilterAppointments(int _selected) {
     _filteredList.clear();
     if (_selected == 0) {
@@ -83,15 +95,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
         }
       }
     }
-    // if (_selected == 2) {
-    //   // Previous
-    //   for (var i = 0; i < _list.length; i++) {
-    //     if (_list[i].appointmentStatus == 3) {
-    //       _filteredList.add(_list[i]);
-    //       notifyListeners();
-    //     }
-    //   }
-    // }
   }
 
   Future<UnconfirmedAppointment> unconfirmedAppointment(
@@ -121,7 +124,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? rewardAmount,
   ) async {
     var _url = Uri.parse("$baseURL/confirm/appointment");
-    print("BUNDLE ID: $bundleId");
+    // print("BUNDLE ID: $bundleId");
     final res = (await http.post(_url, body: {
       "appointment_id": appointmentId,
       "coupon_id": couponId,
