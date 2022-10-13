@@ -7,6 +7,7 @@ import 'package:aartas_design_system/providers/authorisation_provider.dart';
 import 'package:aartas_design_system/providers/book_appointment_provider.dart';
 import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/complaint_provider.dart';
+import 'package:aartas_design_system/providers/consultation_provider.dart';
 import 'package:aartas_design_system/providers/coupons_provider.dart';
 import 'package:aartas_design_system/providers/diagnosis_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
@@ -18,9 +19,11 @@ import 'package:aartas_design_system/providers/instruction_provider.dart';
 import 'package:aartas_design_system/providers/investigation_provider.dart';
 import 'package:aartas_design_system/providers/medicine_provider.dart';
 import 'package:aartas_design_system/providers/patient_appointment_provider.dart';
+import 'package:aartas_design_system/providers/patient_location_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
 import 'package:aartas_design_system/providers/pdf_provider.dart';
 import 'package:aartas_design_system/providers/procedure_provider.dart';
+import 'package:aartas_design_system/providers/qr_code_provider.dart';
 import 'package:aartas_design_system/providers/rewards_provider.dart';
 import 'package:aartas_design_system/providers/search_provider.dart';
 import 'package:aartas_design_system/providers/speciality_provider.dart';
@@ -69,6 +72,9 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => BookAppointmentProvider()),
         ChangeNotifierProvider(create: (_) => RewardProvider()),
         ChangeNotifierProvider(create: (_) => PatientAppointmentProvider()),
+        ChangeNotifierProvider(create: (_) => PatientLocationProvider()),
+        ChangeNotifierProvider(create: (_) => PatientTrackerProvider()),
+        ChangeNotifierProvider(create: (_) => ConsultationProvider()),
       ],
       builder: (_, child) {
         return widget.child;
