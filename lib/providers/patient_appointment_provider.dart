@@ -9,8 +9,13 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class PatientAppointmentProvider extends ChangeNotifier {
+  bool _isLoading = false;
   List<PatientAppointmentData> _list = [];
   final List<PatientAppointmentData> _filteredList = [];
+
+  bool isLoading() {
+    return _isLoading;
+  }
 
   List<PatientAppointmentData> getList() {
     return _list;
@@ -31,6 +36,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? type,
     bool? manageState,
   ) async {
+    _isLoading = true;
+    notifyListeners();
     var _url = Uri.parse("$baseUrl/patient/all/appointments");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -48,30 +55,17 @@ class PatientAppointmentProvider extends ChangeNotifier {
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
+        _isLoading = false;
         notifyListeners();
       }
       return _res;
     } else {
+      _isLoading = false;
+      notifyListeners();
       log(res.body);
       return PatientAppointmentResponse(message: _message);
     }
   }
-
-  // List<PatientAppointmentData> todaysAppointment() {
-  //   List<PatientAppointmentData> _res = [];
-  //   DateTime _todayDate = DateTime.now();
-  //   for (var i = 0; i < _list.length; i++) {
-  //     var _appointmentDate = DateFormat("yyyy-MM-dd").format(
-  //       DateFormat().parse(_list[i].timeslot!.date!),
-  //     );
-  //     notifyListeners();
-  //     if ("$_todayDate" == _appointmentDate) {
-  //       log("RES $_todayDate  -  $_appointmentDate");
-  //       _res.add(_list[i]);
-  //     }
-  //   }
-  //   return _res;
-  // }
 
   updateFilterAppointments(int _selected) {
     _filteredList.clear();
