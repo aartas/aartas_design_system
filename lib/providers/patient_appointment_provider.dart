@@ -64,7 +64,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       var _appointmentDate = DateFormat("yyyy-MM-dd").format(
         DateFormat().parse(_list[i].timeslot!.date!),
       );
-      print("RES $_todayDate  -  $_appointmentDate");
+      log("RES $_todayDate  -  $_appointmentDate");
       // if ("$_todayDate" == _appointmentDate) {}
     }
     return _res;
