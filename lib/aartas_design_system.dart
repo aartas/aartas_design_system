@@ -21,6 +21,7 @@ import 'package:aartas_design_system/providers/medicine_provider.dart';
 import 'package:aartas_design_system/providers/patient_appointment_provider.dart';
 import 'package:aartas_design_system/providers/patient_location_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
+import 'package:aartas_design_system/providers/patient_vitals_trend_provider.dart';
 import 'package:aartas_design_system/providers/pdf_provider.dart';
 import 'package:aartas_design_system/providers/procedure_provider.dart';
 import 'package:aartas_design_system/providers/qr_code_provider.dart';
@@ -75,6 +76,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => PatientLocationProvider()),
         ChangeNotifierProvider(create: (_) => PatientTrackerProvider()),
         ChangeNotifierProvider(create: (_) => ConsultationProvider()),
+        ChangeNotifierProvider(create: (_) => PatientVitalsTrendProvider()),
       ],
       builder: (_, child) {
         return widget.child;
