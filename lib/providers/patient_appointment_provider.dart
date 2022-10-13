@@ -9,10 +9,10 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class PatientAppointmentProvider extends ChangeNotifier {
-  bool _isLoading = false;
   List<PatientAppointmentData> _list = [];
   final List<PatientAppointmentData> _filteredList = [];
 
+  bool _isLoading = false;
   bool isLoading() {
     return _isLoading;
   }

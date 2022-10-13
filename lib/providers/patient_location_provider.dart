@@ -12,6 +12,11 @@ class PatientLocationProvider extends ChangeNotifier {
     return _data;
   }
 
+  bool _isLoading = false;
+  bool isLoading() {
+    return _isLoading;
+  }
+
   Future<ResponseModel> fetchData(
     String baseURL,
     String? userID,
@@ -19,6 +24,8 @@ class PatientLocationProvider extends ChangeNotifier {
     String? latitude,
     String? longitude,
   ) async {
+    _isLoading = true;
+    notifyListeners();
     var _url = Uri.parse("$baseURL/patient/update/location");
     final res = await http.post(_url, body: {
       "user_id": userID,
@@ -33,10 +40,13 @@ class PatientLocationProvider extends ChangeNotifier {
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = ResponseModel.fromJson(json.decode(res.body));
       _data = _res;
+      _isLoading = false;
       notifyListeners();
       return _res;
     } else {
       log(res.body);
+      _isLoading = false;
+      notifyListeners();
       return ResponseModel(message: _message);
     }
   }
