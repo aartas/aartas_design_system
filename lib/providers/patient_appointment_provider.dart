@@ -7,7 +7,6 @@ import 'package:aartas_design_system/models/patient_appointment_list_model.dart'
 import 'package:aartas_design_system/models/unconfirmed_appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 
 class PatientAppointmentProvider extends ChangeNotifier {
   List<PatientAppointmentData> _list = [];
@@ -52,7 +51,9 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
     if (res.statusCode == 200) {
-      final _res = PatientAppointmentResponse.fromJson(json.decode(res.body));
+      final _res = PatientAppointmentResponse.fromJson(
+        json.decode(res.body),
+      );
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
