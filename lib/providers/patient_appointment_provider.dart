@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:aartas_design_system/models/confirm_appointment_model.dart';
+import 'package:aartas_design_system/models/patient_ahead_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 import 'package:aartas_design_system/models/unconfirmed_appointment_model.dart';
@@ -168,6 +169,31 @@ class PatientAppointmentProvider extends ChangeNotifier {
 
     log("Network:${json.decode(res)['message']}");
     return json.decode(res);
+  }
+
+  Future<PatientAheadResponse> getPatientsAhead(
+    String baseUrl,
+    String? appointmentID,
+  ) async {
+    _isLoading = true;
+    notifyListeners();
+    var _url = Uri.parse("$baseUrl/patient/all/appointments");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      final _res = PatientAheadResponse.fromJson(json.decode(res.body));
+      _isLoading = false;
+      notifyListeners();
+      return _res;
+    } else {
+      _isLoading = false;
+      notifyListeners();
+      log(res.body);
+      return PatientAheadResponse(message: _message);
+    }
   }
 }
 
