@@ -3,14 +3,14 @@ import 'package:aartas_design_system/models/patient_appointment_list_model.dart'
 class CheckinQRCodeResponse {
   String? message;
   bool? status;
-  Data? data;
+  CheckinData? data;
 
   CheckinQRCodeResponse({this.message, this.status, this.data});
 
   CheckinQRCodeResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? CheckinData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -24,13 +24,13 @@ class CheckinQRCodeResponse {
   }
 }
 
-class Data {
+class CheckinData {
   List<PatientAppointmentData>? appointments;
   List<int>? patientToCheckin;
 
-  Data({this.appointments, this.patientToCheckin});
+  CheckinData({this.appointments, this.patientToCheckin});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  CheckinData.fromJson(Map<String, dynamic> json) {
     if (json['appointments'] != null) {
       appointments = <PatientAppointmentData>[];
       json['appointments'].forEach((v) {
