@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/checkinQRCode_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     return _isLoading;
   }
 
-  Future<ResponseModel> scanQR(
+  Future<CheckinQRCodeResponse> scanQR(
     String baseURL,
     String? patientID,
     String? locationID,
@@ -30,13 +31,13 @@ class PatientTrackerProvider extends ChangeNotifier {
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       _isLoading = false;
       notifyListeners();
-      var _res = ResponseModel.fromJson(json.decode(res.body));
+      var _res = CheckinQRCodeResponse.fromJson(json.decode(res.body));
       return _res;
     } else {
       _isLoading = false;
       notifyListeners();
       log(res.body);
-      return ResponseModel(message: _message);
+      return CheckinQRCodeResponse(message: _message);
     }
   }
 
