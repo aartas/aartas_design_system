@@ -110,7 +110,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "timeslot_id": slotId
     }))
         .body;
-
+    notifyListeners();
     log("Network:${json.decode(res)['message']}");
     return UnconfirmedAppointment.fromJson(json.decode(res));
   }
@@ -133,6 +133,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
         .body;
 
     log("Network:$res");
+    notifyListeners();
     return ConfirmAppointment.fromJson(json.decode(res));
   }
 
@@ -150,7 +151,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       },
     ))
         .body;
-
+    notifyListeners();
     log("Network:${json.decode(res)['message']}");
     return json.decode(res);
   }
@@ -167,7 +168,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       },
     ))
         .body;
-
+    notifyListeners();
     log("Network:${json.decode(res)['message']}");
     return json.decode(res);
   }
