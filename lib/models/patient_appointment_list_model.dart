@@ -234,7 +234,7 @@ class Bundles {
   int? isComplete;
   int? status;
   Bundle? bundle;
-  List<Appointments>? appointments;
+  List<BundleAppointments>? appointments;
 
   Bundles(
       {this.id,
@@ -253,9 +253,9 @@ class Bundles {
     status = json['status'];
     bundle = json['bundle'] != null ? Bundle.fromJson(json['bundle']) : null;
     if (json['appointments'] != null) {
-      appointments = <Appointments>[];
+      appointments = <BundleAppointments>[];
       json['appointments'].forEach((v) {
-        appointments!.add(Appointments.fromJson(v));
+        appointments!.add(BundleAppointments.fromJson(v));
       });
     }
   }
@@ -413,14 +413,14 @@ class Doctors {
   }
 }
 
-class Appointments {
+class BundleAppointments {
   int? id;
   int? doctorId;
   int? patientBundlesId;
 
-  Appointments({this.id, this.doctorId, this.patientBundlesId});
+  BundleAppointments({this.id, this.doctorId, this.patientBundlesId});
 
-  Appointments.fromJson(Map<String, dynamic> json) {
+  BundleAppointments.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     doctorId = json['doctor_id'];
     patientBundlesId = json['patient_bundles_id'];
