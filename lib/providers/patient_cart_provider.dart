@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/patient_cart_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,13 @@ class PatientCartProvider extends ChangeNotifier {
     return _isLoading;
   }
 
-  Future<ResponseModel> fetchCartDetails(
+  PatientCartData _data = PatientCartData();
+
+  PatientCartData getCartDetails() {
+    return _data;
+  }
+
+  Future<PatientCartResponse> fetchCartDetails(
     String baseURL,
     String? patientID,
   ) async {
@@ -26,12 +33,13 @@ class PatientCartProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      var _res = ResponseModel.fromJson(json.decode(res.body));
+      var _res = PatientCartResponse.fromJson(json.decode(res.body));
+      _data = _res.data!;
       notifyListeners();
       return _res;
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return PatientCartResponse(message: _message);
     }
   }
 
