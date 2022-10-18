@@ -212,7 +212,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
   ) async {
     _isLoading = true;
     notifyListeners();
-    var _url = Uri.parse("$baseUrl/patient/all/appointments");
+    var _url = Uri.parse("$baseUrl/appointment/get/patient/ahead");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
     });

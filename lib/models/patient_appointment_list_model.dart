@@ -1,6 +1,5 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
-import 'package:aartas_design_system/models/health_program_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 
 class PatientAppointmentResponse {
