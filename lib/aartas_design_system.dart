@@ -1,6 +1,7 @@
 library aartas_design_system;
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
+import 'package:aartas_design_system/models/patient_cart_model.dart';
 
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
@@ -19,6 +20,7 @@ import 'package:aartas_design_system/providers/instruction_provider.dart';
 import 'package:aartas_design_system/providers/investigation_provider.dart';
 import 'package:aartas_design_system/providers/medicine_provider.dart';
 import 'package:aartas_design_system/providers/patient_appointment_provider.dart';
+import 'package:aartas_design_system/providers/patient_cart_provider.dart';
 import 'package:aartas_design_system/providers/patient_location_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
 import 'package:aartas_design_system/providers/patient_tracker_provider.dart';
@@ -77,6 +79,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => PatientTrackerProvider()),
         ChangeNotifierProvider(create: (_) => ConsultationProvider()),
         ChangeNotifierProvider(create: (_) => PatientVitalsTrendProvider()),
+        ChangeNotifierProvider(create: (_) => PatientCartProvider()),
       ],
       builder: (_, child) {
         return widget.child;
