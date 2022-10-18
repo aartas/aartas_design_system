@@ -1,5 +1,6 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
+import 'package:aartas_design_system/models/health_program_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 
 class PatientAppointmentResponse {
@@ -75,6 +76,7 @@ class PatientAppointmentData {
   Patient? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
+  Bundles? bundle;
   List<AppointmentsMedicines>? appointmentsMedicines;
 
   PatientAppointmentData({
@@ -121,6 +123,7 @@ class PatientAppointmentData {
     this.patient,
     this.timeslot,
     this.vitals,
+    this.bundle,
     this.appointmentsMedicines,
   });
 
@@ -170,6 +173,7 @@ class PatientAppointmentData {
         json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
+    bundle = json['bundle'] != null ? Bundles.fromJson(json['bundle']) : null;
     if (json['vitals'] != null) {
       vitals = <Vitals>[];
       json['vitals'].forEach((v) {
@@ -234,6 +238,9 @@ class PatientAppointmentData {
     if (timeslot != null) {
       data['timeslot'] = timeslot!.toJson();
     }
+    if (bundle != null) {
+      data['bundle'] = bundle!.toJson();
+    }
     if (vitals != null) {
       data['vitals'] = vitals!.map((v) => v.toJson()).toList();
     }
@@ -241,6 +248,214 @@ class PatientAppointmentData {
       data['appointments_medicines'] =
           appointmentsMedicines!.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+}
+
+class Bundles {
+  int? id;
+  int? patientId;
+  int? bundleId;
+  int? isComplete;
+  int? status;
+  Bundle? bundle;
+  List<Appointments>? appointments;
+
+  Bundles(
+      {this.id,
+      this.patientId,
+      this.bundleId,
+      this.isComplete,
+      this.status,
+      this.bundle,
+      this.appointments});
+
+  Bundles.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    patientId = json['patient_id'];
+    bundleId = json['bundle_id'];
+    isComplete = json['is_complete'];
+    status = json['status'];
+    bundle = json['bundle'] != null ? Bundle.fromJson(json['bundle']) : null;
+    if (json['appointments'] != null) {
+      appointments = <Appointments>[];
+      json['appointments'].forEach((v) {
+        appointments!.add(Appointments.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['patient_id'] = patientId;
+    data['bundle_id'] = bundleId;
+    data['is_complete'] = isComplete;
+    data['status'] = status;
+    if (bundle != null) {
+      data['bundle'] = bundle!.toJson();
+    }
+    if (appointments != null) {
+      data['appointments'] = appointments!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Bundle {
+  int? id;
+  String? title;
+  String? description;
+  String? image;
+  String? fees;
+  String? ageFrom;
+  String? ageTo;
+  String? gender;
+  String? diseases;
+  String? symptoms;
+  String? whatsIncluded;
+  int? duration;
+  int? durationType;
+  String? createdAt;
+  String? updatedAt;
+  String? createdBy;
+  String? updatedBy;
+  int? status;
+  List<Doctors>? doctors;
+
+  Bundle(
+      {this.id,
+      this.title,
+      this.description,
+      this.image,
+      this.fees,
+      this.ageFrom,
+      this.ageTo,
+      this.gender,
+      this.diseases,
+      this.symptoms,
+      this.whatsIncluded,
+      this.duration,
+      this.durationType,
+      this.createdAt,
+      this.updatedAt,
+      this.createdBy,
+      this.updatedBy,
+      this.status,
+      this.doctors});
+
+  Bundle.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    image = json['image'];
+    fees = json['fees'];
+    ageFrom = json['age_from'];
+    ageTo = json['age_to'];
+    gender = json['gender'];
+    diseases = json['diseases'];
+    symptoms = json['symptoms'];
+    whatsIncluded = json['whats_included'];
+    duration = json['duration'];
+    durationType = json['duration_type'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    createdBy = json['created_by'];
+    updatedBy = json['updated_by'];
+    status = json['status'];
+    if (json['doctors'] != null) {
+      doctors = <Doctors>[];
+      json['doctors'].forEach((v) {
+        doctors!.add(Doctors.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['description'] = description;
+    data['image'] = image;
+    data['fees'] = fees;
+    data['age_from'] = ageFrom;
+    data['age_to'] = ageTo;
+    data['gender'] = gender;
+    data['diseases'] = diseases;
+    data['symptoms'] = symptoms;
+    data['whats_included'] = whatsIncluded;
+    data['duration'] = duration;
+    data['duration_type'] = durationType;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['created_by'] = createdBy;
+    data['updated_by'] = updatedBy;
+    data['status'] = status;
+    if (doctors != null) {
+      data['doctors'] = doctors!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Doctors {
+  int? id;
+  int? doctorId;
+  int? bundlesId;
+  String? symptoms;
+  DoctorData? doctor;
+  int? appointmentDone;
+
+  Doctors(
+      {this.id,
+      this.doctorId,
+      this.bundlesId,
+      this.symptoms,
+      this.doctor,
+      this.appointmentDone});
+
+  Doctors.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    doctorId = json['doctor_id'];
+    bundlesId = json['bundles_id'];
+    symptoms = json['symptoms'];
+    doctor =
+        json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
+    appointmentDone = json['appointment_done'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['doctor_id'] = doctorId;
+    data['bundles_id'] = bundlesId;
+    data['symptoms'] = symptoms;
+    if (doctor != null) {
+      data['doctor'] = doctor!.toJson();
+    }
+    data['appointment_done'] = appointmentDone;
+    return data;
+  }
+}
+
+class Appointments {
+  int? id;
+  int? doctorId;
+  int? patientBundlesId;
+
+  Appointments({this.id, this.doctorId, this.patientBundlesId});
+
+  Appointments.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    doctorId = json['doctor_id'];
+    patientBundlesId = json['patient_bundles_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['doctor_id'] = doctorId;
+    data['patient_bundles_id'] = patientBundlesId;
     return data;
   }
 }
