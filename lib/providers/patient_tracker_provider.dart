@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/models/checkinQRCode_model.dart';
+import 'package:aartas_design_system/models/checkin_qr_code_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
