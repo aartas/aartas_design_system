@@ -1,13 +1,16 @@
 class Address {
   int? id;
-  dynamic patientId;
-  dynamic fullName;
-  dynamic addressLine1;
-  dynamic addressLine2;
-  dynamic zipCode;
-  dynamic country;
-  dynamic state;
-  dynamic city;
+  int? patientId;
+  String? fullName;
+  String? addressLine1;
+  String? addressLine2;
+  String? zipCode;
+  String? country;
+  String? state;
+  String? city;
+  String? createdAt;
+  String? updatedAt;
+  int? status;
 
   Address(
       {this.id,
@@ -18,7 +21,10 @@ class Address {
       this.zipCode,
       this.country,
       this.state,
-      this.city});
+      this.city,
+      this.createdAt,
+      this.updatedAt,
+      this.status});
 
   Address.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -30,6 +36,9 @@ class Address {
     country = json['country'];
     state = json['state'];
     city = json['city'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
@@ -43,6 +52,9 @@ class Address {
     data['country'] = country;
     data['state'] = state;
     data['city'] = city;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['status'] = status;
     return data;
   }
 }
