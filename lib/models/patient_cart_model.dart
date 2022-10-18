@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/appointment_model.dart';
+
 class PatientCartResponse {
   String? message;
   bool? status;
@@ -27,7 +29,7 @@ class PatientCartData {
   int? patientId;
   String? cartTotal;
   int? status;
-  List<Appointment>? appointment;
+  List<Appointments>? appointment;
   List<Medicines>? medicines;
   List<Vaccines>? vaccines;
 
@@ -44,12 +46,11 @@ class PatientCartData {
     id = json['id'];
     patientId = json['patient_id'];
     cartTotal = json['cart_total'];
-
     status = json['status'];
     if (json['appointment'] != null) {
-      appointment = <Appointment>[];
+      appointment = <Appointments>[];
       json['appointment'].forEach((v) {
-        appointment!.add(Appointment.fromJson(v));
+        appointment!.add(Appointments.fromJson(v));
       });
     }
     if (json['medicines'] != null) {
@@ -85,26 +86,31 @@ class PatientCartData {
   }
 }
 
-class Appointment {
+class Appointments {
   int? id;
   int? patientCartId;
   int? appointmentId;
   int? totalAmount;
   int? status;
+  AppointmentData? appointment;
 
-  Appointment(
+  Appointments(
       {this.id,
       this.patientCartId,
       this.appointmentId,
       this.totalAmount,
-      this.status});
+      this.status,
+      this.appointment});
 
-  Appointment.fromJson(Map<String, dynamic> json) {
+  Appointments.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     patientCartId = json['patient_cart_id'];
     appointmentId = json['appointment_id'];
     totalAmount = json['total_amount'];
     status = json['status'];
+    appointment = json['appointment'] != null
+        ? AppointmentData.fromJson(json['appointment'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -114,6 +120,9 @@ class Appointment {
     data['appointment_id'] = appointmentId;
     data['total_amount'] = totalAmount;
     data['status'] = status;
+    if (appointment != null) {
+      data['appointment'] = appointment!.toJson();
+    }
     return data;
   }
 }
@@ -125,7 +134,7 @@ class Medicines {
   int? mediciesStocksId;
   int? medicineId;
   int? qty;
-  int? discount;
+  dynamic discount;
   int? discMrp;
   int? mainMrp;
   String? sGST;
@@ -137,6 +146,7 @@ class Medicines {
   int? totalAmount;
   int? buyStatus;
   int? isStockAvailable;
+
   int? status;
   Medicine? medicine;
   MedicineStocks? medicineStocks;
@@ -240,10 +250,7 @@ class Medicine {
   int? maxStockCount;
   int? minStockCount;
   int? alertStockCount;
-  String? createdAt;
-  String? updatedAt;
-  dynamic createdBy;
-  dynamic updatedBy;
+
   int? status;
 
   Medicine(
@@ -264,10 +271,6 @@ class Medicine {
       this.maxStockCount,
       this.minStockCount,
       this.alertStockCount,
-      this.createdAt,
-      this.updatedAt,
-      this.createdBy,
-      this.updatedBy,
       this.status});
 
   Medicine.fromJson(Map<String, dynamic> json) {
@@ -288,10 +291,6 @@ class Medicine {
     maxStockCount = json['max_stock_count'];
     minStockCount = json['min_stock_count'];
     alertStockCount = json['alert_stock_count'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
     status = json['status'];
   }
 
@@ -314,10 +313,6 @@ class Medicine {
     data['max_stock_count'] = maxStockCount;
     data['min_stock_count'] = minStockCount;
     data['alert_stock_count'] = alertStockCount;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
     data['status'] = status;
     return data;
   }
@@ -346,6 +341,7 @@ class MedicineStocks {
   String? tradeDiscount;
   int? currentStock;
   String? totalAmount;
+
   int? status;
 
   MedicineStocks(
@@ -445,6 +441,7 @@ class Vaccines {
   String? iGST;
   String? iGSTRate;
   int? totalAmount;
+
   int? status;
   Vaccine? vaccine;
   VaccineStocks? vaccineStocks;
@@ -538,6 +535,10 @@ class Vaccine {
   int? maxStockCount;
   int? minStockCount;
   int? alertStockCount;
+  dynamic createdAt;
+  dynamic updatedAt;
+  dynamic createdBy;
+  dynamic updatedBy;
   int? status;
 
   Vaccine(
@@ -617,6 +618,7 @@ class VaccineStocks {
   String? tradeDiscount;
   int? currentStock;
   String? totalAmount;
+
   int? status;
 
   VaccineStocks(
