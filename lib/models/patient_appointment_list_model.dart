@@ -54,6 +54,7 @@ class PatientAppointmentData {
   int? patientBundlesId;
   String? appointmentDate;
   String? totalAmount;
+  String? billFile;
   String? prescriptionFile;
   String? createdAt;
   String? updatedAt;
@@ -86,6 +87,7 @@ class PatientAppointmentData {
       this.patientBundlesId,
       this.appointmentDate,
       this.totalAmount,
+      this.billFile,
       this.prescriptionFile,
       this.createdAt,
       this.updatedAt,
@@ -118,6 +120,7 @@ class PatientAppointmentData {
     patientBundlesId = json['patient_bundles_id'];
     appointmentDate = json['appointment_date'];
     totalAmount = json['total_amount'];
+    billFile = json['bill_file'];
     prescriptionFile = json['prescription_file'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -155,6 +158,7 @@ class PatientAppointmentData {
     data['procedure_cost'] = procedureCost;
     data['patient_bundles_id'] = patientBundlesId;
     data['appointment_date'] = appointmentDate;
+    data['bill_file'] = billFile;
     data['prescription_file'] = prescriptionFile;
     data['total_amount'] = totalAmount;
     data['created_at'] = createdAt;
@@ -175,238 +179,6 @@ class PatientAppointmentData {
     return data;
   }
 }
-
-// class Speciality {
-//   int? id;
-//   String? name;
-//   String? iconUrl;
-//   int? status;
-//   String? description;
-//   String? conditions;
-//   String? createdAt;
-//   String? updatedAt;
-//   String? bgColor1;
-//   String? bgColor2;
-//   String? iconColor;
-//   String? createdBy;
-//   String? updatedBy;
-
-//   Speciality(
-//       {this.id,
-//       this.name,
-//       this.iconUrl,
-//       this.status,
-//       this.description,
-//       this.conditions,
-//       this.createdAt,
-//       this.updatedAt,
-//       this.bgColor1,
-//       this.bgColor2,
-//       this.iconColor,
-//       this.createdBy,
-//       this.updatedBy});
-
-//   Speciality.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     name = json['name'];
-//     iconUrl = json['icon_url'];
-//     status = json['status'];
-//     description = json['description'];
-//     conditions = json['conditions'];
-//     createdAt = json['created_at'];
-//     updatedAt = json['updated_at'];
-//     bgColor1 = json['bg_color1'];
-//     bgColor2 = json['bg_color2'];
-//     iconColor = json['icon_color'];
-//     createdBy = json['created_by'];
-//     updatedBy = json['updated_by'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['id'] = id;
-//     data['name'] = name;
-//     data['icon_url'] = iconUrl;
-//     data['status'] = status;
-//     data['description'] = description;
-//     data['conditions'] = conditions;
-//     data['created_at'] = createdAt;
-//     data['updated_at'] = updatedAt;
-//     data['bg_color1'] = bgColor1;
-//     data['bg_color2'] = bgColor2;
-//     data['icon_color'] = iconColor;
-//     data['created_by'] = createdBy;
-//     data['updated_by'] = updatedBy;
-//     return data;
-//   }
-// }
-
-// class Procedure {
-//   int? id;
-//   int? doctorId;
-//   String? title;
-//   String? description;
-//   String? cost;
-//   String? totalSessions;
-//   String? sacNo;
-//   int? showCost;
-//   int? status;
-
-//   Procedure(
-//       {this.id,
-//       this.doctorId,
-//       this.title,
-//       this.description,
-//       this.cost,
-//       this.totalSessions,
-//       this.sacNo,
-//       this.showCost,
-//       this.status});
-
-//   Procedure.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     doctorId = json['doctor_id'];
-//     title = json['title'];
-//     description = json['description'];
-//     cost = json['cost'];
-//     totalSessions = json['total_sessions'];
-//     sacNo = json['sac_no'];
-//     showCost = json['show_cost'];
-//     status = json['status'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['id'] = id;
-//     data['doctor_id'] = doctorId;
-//     data['title'] = title;
-//     data['description'] = description;
-//     data['cost'] = cost;
-//     data['total_sessions'] = totalSessions;
-//     data['sac_no'] = sacNo;
-//     data['show_cost'] = showCost;
-//     data['status'] = status;
-//     return data;
-//   }
-// }
-
-// class FamilyMemberData {
-//   int? id;
-//   String? fullName;
-//   String? phoneNumber;
-//   String? email;
-//   String? gender;
-//   String? pinCode;
-//   String? fcmToken;
-//   String? dob;
-//   int? age;
-//   String? relation;
-//   int? linkId;
-//   String? location;
-//   String? latitude;
-//   String? longitude;
-//   String? status;
-
-//   FamilyMemberData(
-//       {this.id,
-//       this.fullName,
-//       this.phoneNumber,
-//       this.email,
-//       this.gender,
-//       this.pinCode,
-//       this.fcmToken,
-//       this.dob,
-//       this.age,
-//       this.relation,
-//       this.linkId,
-//       this.location,
-//       this.latitude,
-//       this.longitude,
-//       this.status});
-
-//   FamilyMemberData.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     fullName = json['full_name'];
-//     phoneNumber = json['phone_number'];
-//     email = json['email'];
-//     gender = json['gender'];
-//     pinCode = json['pin_code'];
-//     fcmToken = json['fcm_token'];
-//     dob = json['dob'];
-//     age = json['age'];
-//     relation = json['relation'];
-//     linkId = json['link_id'];
-//     location = json['location'];
-//     latitude = json['latitude'];
-//     longitude = json['longitude'];
-//     status = json['status'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['id'] = id;
-//     data['full_name'] = fullName;
-//     data['phone_number'] = phoneNumber;
-//     data['email'] = email;
-//     data['gender'] = gender;
-//     data['pin_code'] = pinCode;
-//     data['fcm_token'] = fcmToken;
-//     data['dob'] = dob;
-//     data['age'] = age;
-//     data['relation'] = relation;
-//     data['link_id'] = linkId;
-//     data['location'] = location;
-//     data['latitude'] = latitude;
-//     data['longitude'] = longitude;
-//     data['status'] = status;
-//     return data;
-//   }
-// }
-
-// class Timeslots {
-//   int? id;
-//   int? doctorId;
-//   String? date;
-//   String? timeFrom;
-//   String? timeTo;
-//   int? clinicId;
-//   int? bookingStatus;
-//   int? status;
-
-//   Timeslots(
-//       {this.id,
-//       this.doctorId,
-//       this.date,
-//       this.timeFrom,
-//       this.timeTo,
-//       this.clinicId,
-//       this.bookingStatus,
-//       this.status});
-
-//   Timeslots.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     doctorId = json['doctor_id'];
-//     date = json['date'];
-//     timeFrom = json['time_from'];
-//     timeTo = json['time_to'];
-//     clinicId = json['clinic_id'];
-//     bookingStatus = json['booking_status'];
-//     status = json['status'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['id'] = id;
-//     data['doctor_id'] = doctorId;
-//     data['date'] = date;
-//     data['time_from'] = timeFrom;
-//     data['time_to'] = timeTo;
-//     data['clinic_id'] = clinicId;
-//     data['booking_status'] = bookingStatus;
-//     data['status'] = status;
-//     return data;
-//   }
-// }
 
 class Bundles {
   int? id;
