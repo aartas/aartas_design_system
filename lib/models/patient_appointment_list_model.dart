@@ -48,11 +48,9 @@ class PatientAppointmentData {
   String? consText;
   String? docDiscount;
   String? discount;
-  String? couponId;
+  int? couponId;
   int? appointmentType;
-  String? campId;
-  String? campDoctorId;
-  String? procedureId;
+  int? procedureId;
   String? procedureCost;
   String? patientBundlesId;
   String? appointmentDate;
@@ -93,8 +91,6 @@ class PatientAppointmentData {
     this.discount,
     this.couponId,
     this.appointmentType,
-    this.campId,
-    this.campDoctorId,
     this.procedureId,
     this.procedureCost,
     this.patientBundlesId,
@@ -137,8 +133,6 @@ class PatientAppointmentData {
     discount = json['discount'];
     couponId = json['coupon_id'];
     appointmentType = json['appointment_type'];
-    campId = json['camp_id'];
-    campDoctorId = json['camp_doctor_id'];
     procedureId = json['procedure_id'];
     procedureCost = json['procedure_cost'];
     patientBundlesId = json['patient_bundles_id'];
@@ -195,8 +189,6 @@ class PatientAppointmentData {
     data['discount'] = discount;
     data['coupon_id'] = couponId;
     data['appointment_type'] = appointmentType;
-    data['camp_id'] = campId;
-    data['camp_doctor_id'] = campDoctorId;
     data['procedure_id'] = procedureId;
     data['procedure_cost'] = procedureCost;
     data['patient_bundles_id'] = patientBundlesId;
