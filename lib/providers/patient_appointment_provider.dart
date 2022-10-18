@@ -12,9 +12,15 @@ class PatientAppointmentProvider extends ChangeNotifier {
   List<PatientAppointmentData> _list = [];
   final List<PatientAppointmentData> _filteredList = [];
 
+  PatientAppointmentData? _data;
+
   bool _isLoading = false;
   bool isLoading() {
     return _isLoading;
+  }
+
+  PatientAppointmentData getData() {
+    return _data!;
   }
 
   List<PatientAppointmentData> getList() {
@@ -23,6 +29,33 @@ class PatientAppointmentProvider extends ChangeNotifier {
 
   List<PatientAppointmentData> getFilteredList() {
     return _filteredList;
+  }
+
+  Future<PatientAppointmentResponse> fetchData(
+    String baseUrl,
+    String? appointmentID,
+  ) async {
+    _data = null;
+    _isLoading = true;
+    notifyListeners();
+    var _url = Uri.parse("$baseUrl/appointment/$appointmentID");
+    final res = await http.get(_url);
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      final _res = PatientAppointmentResponse.fromJson(
+        json.decode(res.body),
+      );
+      _data = _res.data!.first;
+      _isLoading = false;
+      notifyListeners();
+      return _res;
+    } else {
+      _isLoading = false;
+      notifyListeners();
+      log(res.body);
+      return PatientAppointmentResponse(message: _message);
+    }
   }
 
   Future<PatientAppointmentResponse> fetchList(
@@ -48,7 +81,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "offset": offset ?? "",
       "type": type ?? "",
     });
-    String _message = "(${res.statusCode}) $_url:";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
       final _res = PatientAppointmentResponse.fromJson(
