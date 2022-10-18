@@ -76,7 +76,7 @@ class PatientAppointmentData {
   Patient? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
-  Bundles? bundle;
+  Bundles? bundles;
   List<AppointmentsMedicines>? appointmentsMedicines;
 
   PatientAppointmentData({
@@ -123,7 +123,7 @@ class PatientAppointmentData {
     this.patient,
     this.timeslot,
     this.vitals,
-    this.bundle,
+    this.bundles,
     this.appointmentsMedicines,
   });
 
@@ -173,7 +173,7 @@ class PatientAppointmentData {
         json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
-    bundle = json['bundle'] != null ? Bundles.fromJson(json['bundle']) : null;
+    bundles = json['bundle'] != null ? Bundles.fromJson(json['bundle']) : null;
     if (json['vitals'] != null) {
       vitals = <Vitals>[];
       json['vitals'].forEach((v) {
@@ -238,8 +238,8 @@ class PatientAppointmentData {
     if (timeslot != null) {
       data['timeslot'] = timeslot!.toJson();
     }
-    if (bundle != null) {
-      data['bundle'] = bundle!.toJson();
+    if (bundles != null) {
+      data['bundle'] = bundles!.toJson();
     }
     if (vitals != null) {
       data['vitals'] = vitals!.map((v) => v.toJson()).toList();
