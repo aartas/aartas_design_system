@@ -67,10 +67,6 @@ class PatientAppointmentData {
   String? consStartTime;
   String? consEndTime;
   String? followUpDate;
-  String? createdAt;
-  String? updatedAt;
-  String? createdBy;
-  String? updatedBy;
   int? status;
   DoctorData? doctor;
   Patient? patient;
@@ -114,10 +110,6 @@ class PatientAppointmentData {
     this.consStartTime,
     this.consEndTime,
     this.followUpDate,
-    this.createdAt,
-    this.updatedAt,
-    this.createdBy,
-    this.updatedBy,
     this.status,
     this.doctor,
     this.patient,
@@ -162,10 +154,6 @@ class PatientAppointmentData {
     consStartTime = json['cons_start_time'];
     consEndTime = json['cons_end_time'];
     followUpDate = json['follow_up_date'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
     status = json['status'];
     doctor =
         json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
@@ -224,10 +212,6 @@ class PatientAppointmentData {
     data['cons_start_time'] = consStartTime;
     data['cons_end_time'] = consEndTime;
     data['follow_up_date'] = followUpDate;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
     data['status'] = status;
     if (doctor != null) {
       data['doctor'] = doctor!.toJson();
