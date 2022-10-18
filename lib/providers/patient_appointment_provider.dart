@@ -35,7 +35,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String baseUrl,
     String? appointmentID,
   ) async {
-    _data = null;
     _isLoading = true;
     notifyListeners();
     var _url = Uri.parse("$baseUrl/appointment/$appointmentID");
@@ -231,38 +230,3 @@ class PatientAppointmentProvider extends ChangeNotifier {
     }
   }
 }
-
-
-
-// Future<PatientAppointment> getPatientsAppointment(
-//   String? baseURL,
-//   String? patientId,
-// ) async {
-//   var _url = Uri.parse("$baseURL/patient/all/appointments");
-//   String? fileName = "appointments.json";
-//   var dir = await getTemporaryDirectory();
-//   File file = File(dir.path + "/" + fileName);
-//   return checkConn.then((value) async {
-//     if (value) {
-//       if (file.existsSync()) {
-//         // Cached
-//         final data = file.readAsStringSync();
-//         log("Cached:${json.decode(data)['message']}");
-//         return PatientAppointment.fromJson(json.decode(data));
-//       } else {
-//         // Network
-//         final res =
-//             (await http.post(_url, body: {"patient_id": patientId})).body;
-//         log("Network:${json.decode(res)['message']}");
-//         file.writeAsStringSync(res, flush: true, mode: FileMode.write);
-//         return PatientAppointment.fromJson(json.decode(res));
-//       }
-//     } else {
-//       // Network
-//       final res = (await http.post(_url, body: {"patient_id": patientId})).body;
-//       log("Network:${json.decode(res)['message']}");
-//       file.writeAsStringSync(res, flush: true, mode: FileMode.write);
-//       return PatientAppointment.fromJson(json.decode(res));
-//     }
-//   });
-// }
