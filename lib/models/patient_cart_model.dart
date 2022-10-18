@@ -1,4 +1,5 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
+import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 class PatientCartResponse {
   String? message;
@@ -92,7 +93,7 @@ class Appointments {
   int? appointmentId;
   int? totalAmount;
   int? status;
-  AppointmentData? appointment;
+  PatientAppointmentData? appointment;
 
   Appointments(
       {this.id,
@@ -109,7 +110,7 @@ class Appointments {
     totalAmount = json['total_amount'];
     status = json['status'];
     appointment = json['appointment'] != null
-        ? AppointmentData.fromJson(json['appointment'])
+        ? PatientAppointmentData.fromJson(json['appointment'])
         : null;
   }
 
