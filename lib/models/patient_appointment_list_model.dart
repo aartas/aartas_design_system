@@ -52,7 +52,7 @@ class PatientAppointmentData {
   int? appointmentType;
   int? procedureId;
   String? procedureCost;
-  String? patientBundlesId;
+  int? patientBundlesId;
   String? appointmentDate;
   String? sGST;
   String? cGST;
