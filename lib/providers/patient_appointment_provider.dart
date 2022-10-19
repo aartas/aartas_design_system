@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PatientAppointmentProvider extends ChangeNotifier {
+  PatientAppointmentData _data = PatientAppointmentData();
   List<PatientAppointmentData> _list = [];
   final List<PatientAppointmentData> _filteredList = [];
-
-  PatientAppointmentData? _data;
 
   bool _isLoading = false;
   bool isLoading() {
@@ -20,7 +19,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
   }
 
   PatientAppointmentData getData() {
-    return _data!;
+    return _data;
   }
 
   List<PatientAppointmentData> getList() {
