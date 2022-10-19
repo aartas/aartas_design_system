@@ -19,17 +19,10 @@ class PatientProvider with ChangeNotifier {
     return _patientList;
   }
 
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   Future<PatientResponse> fetchData(
     String baseURL,
     String? phoneNumber,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/login");
     final res = await http.post(_url, body: {"phone_number": phoneNumber});
     String _message = "(${res.statusCode}) $_url";
@@ -38,11 +31,10 @@ class PatientProvider with ChangeNotifier {
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = PatientResponse.fromJson(json.decode(res.body));
       _patientData = _res.data![0];
-      _isLoading = false;
+
       notifyListeners();
       return _res;
     } else {
-      _isLoading = false;
       notifyListeners();
       log(res.body);
       return PatientResponse(message: _message);
@@ -57,8 +49,6 @@ class PatientProvider with ChangeNotifier {
     String? offset,
     bool? manageState,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/patient/list");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",
@@ -68,7 +58,6 @@ class PatientProvider with ChangeNotifier {
     });
 
     if (res.statusCode == 200) {
-      _isLoading = false;
       notifyListeners();
       var _res = PatientResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
@@ -77,7 +66,6 @@ class PatientProvider with ChangeNotifier {
       }
       return _res;
     } else {
-      _isLoading = false;
       notifyListeners();
       String _message = "PatientListProvider:${res.statusCode}";
       log(_message);
@@ -99,8 +87,6 @@ class PatientProvider with ChangeNotifier {
     String? offset,
     bool? manageState,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/clinishare/get/patient/past/visits");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -109,7 +95,6 @@ class PatientProvider with ChangeNotifier {
       "offset": offset ?? "",
     });
     if (res.statusCode == 200) {
-      _isLoading = false;
       notifyListeners();
       var _res = AppointmentResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState) {
@@ -118,10 +103,9 @@ class PatientProvider with ChangeNotifier {
       }
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       String _message = "";
       log(_message);
+      notifyListeners();
       return AppointmentResponse(
         message: _message,
       );

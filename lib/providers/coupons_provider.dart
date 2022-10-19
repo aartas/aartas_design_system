@@ -45,6 +45,7 @@ class CouponProvider with ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return CouponResponse(message: _message);
     }
   }
@@ -75,6 +76,7 @@ class CouponProvider with ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return CouponResponse(message: _message);
     }
   }

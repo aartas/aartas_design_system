@@ -24,6 +24,7 @@ class ConsultationProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return ResponseModel(message: _message);
     }
   }
@@ -46,6 +47,7 @@ class ConsultationProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return ResponseModel(message: _message);
     }
   }

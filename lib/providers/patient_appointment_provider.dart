@@ -12,12 +12,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
   PatientAppointmentData _data = PatientAppointmentData();
   List<PatientAppointmentData> _list = [];
   final List<PatientAppointmentData> _filteredList = [];
-
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   PatientAppointmentData getData() {
     return _data;
   }
@@ -34,7 +28,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String baseUrl,
     String? appointmentID,
   ) async {
-    _isLoading = true;
     var _url = Uri.parse("$baseUrl/appointment/$appointmentID");
     final res = await http.get(_url);
     String _message = "(${res.statusCode}) $_url";
@@ -44,13 +37,11 @@ class PatientAppointmentProvider extends ChangeNotifier {
         json.decode(res.body),
       );
       _data = _res.data!.first;
-      _isLoading = false;
       notifyListeners();
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
+      notifyListeners();
       return PatientAppointmentResponse(message: _message);
     }
   }
@@ -66,8 +57,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? type,
     bool? manageState,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseUrl/patient/all/appointments");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -84,17 +73,16 @@ class PatientAppointmentProvider extends ChangeNotifier {
       final _res = PatientAppointmentResponse.fromJson(
         json.decode(res.body),
       );
+      notifyListeners();
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
-        _isLoading = false;
         notifyListeners();
       }
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
+      notifyListeners();
       return PatientAppointmentResponse(message: _message);
     }
   }
@@ -140,8 +128,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "timeslot_id": slotId
     }))
         .body;
-    notifyListeners();
     log("Network:${json.decode(res)['message']}");
+    notifyListeners();
     return UnconfirmedAppointment.fromJson(json.decode(res));
   }
 
@@ -181,8 +169,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
       },
     ))
         .body;
-    notifyListeners();
     log("Network:${json.decode(res)['message']}");
+    notifyListeners();
     return json.decode(res);
   }
 
@@ -198,8 +186,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
       },
     ))
         .body;
-    notifyListeners();
     log("Network:${json.decode(res)['message']}");
+    notifyListeners();
     return json.decode(res);
   }
 
@@ -207,8 +195,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String baseUrl,
     String? appointmentID,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseUrl/appointment/get/patient/ahead");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
@@ -216,14 +202,12 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
     if (res.statusCode == 200) {
-      final _res = PatientAheadResponse.fromJson(json.decode(res.body));
-      _isLoading = false;
       notifyListeners();
+      final _res = PatientAheadResponse.fromJson(json.decode(res.body));
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
+      notifyListeners();
       return PatientAheadResponse(message: _message);
     }
   }

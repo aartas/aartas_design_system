@@ -7,19 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class BookAppointmentProvider extends ChangeNotifier {
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   Future<UnconfirmedAppointment> unconfirmedAppointment(
     String baseURL,
     String? patientId,
     String? doctorId,
     String? slotId,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/book/appointment");
     log("Unconfirm Appointment: $patientId, $doctorId, $slotId");
     final res = (await http.post(_url, body: {
@@ -30,7 +23,6 @@ class BookAppointmentProvider extends ChangeNotifier {
         .body;
 
     log("Network:${json.decode(res)['message']}");
-    _isLoading = false;
     notifyListeners();
     return UnconfirmedAppointment.fromJson(json.decode(res));
   }
@@ -42,8 +34,6 @@ class BookAppointmentProvider extends ChangeNotifier {
     String? bundleId,
     String? rewardAmount,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/confirm/appointment");
     final res = (await http.post(_url, body: {
       "appointment_id": appointmentId ?? "",
@@ -54,7 +44,6 @@ class BookAppointmentProvider extends ChangeNotifier {
         .body;
 
     log("Network:$res");
-    _isLoading = false;
     notifyListeners();
     return ConfirmAppointment.fromJson(json.decode(res));
   }
@@ -64,8 +53,6 @@ class BookAppointmentProvider extends ChangeNotifier {
     String? appointmentId,
     String? timeslotId,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/reschedule/appointment");
     final res = (await http.post(_url, body: {
       "appointment_id": appointmentId ?? '',
@@ -74,7 +61,6 @@ class BookAppointmentProvider extends ChangeNotifier {
         .body;
 
     log("Network:${json.decode(res)['message']}");
-    _isLoading = false;
     notifyListeners();
     return json.decode(res);
   }
@@ -83,8 +69,6 @@ class BookAppointmentProvider extends ChangeNotifier {
     String baseURL,
     String? appointmentId,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/cancel/appointment");
     final res = (await http.post(_url, body: {
       "appointment_id": appointmentId ?? '',
@@ -92,7 +76,6 @@ class BookAppointmentProvider extends ChangeNotifier {
         .body;
 
     log("Network:${json.decode(res)['message']}");
-    _isLoading = false;
     notifyListeners();
     return json.decode(res);
   }

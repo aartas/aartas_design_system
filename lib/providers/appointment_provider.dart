@@ -17,11 +17,6 @@ class AppointmentProvider extends ChangeNotifier {
     return _list;
   }
 
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   Future<AppointmentResponse> fetchList(
     String baseUrl,
     String? patientID,
@@ -33,8 +28,6 @@ class AppointmentProvider extends ChangeNotifier {
     String? type,
     bool? manageState,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseUrl/clinishare/doctor/appointment/list");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -49,17 +42,16 @@ class AppointmentProvider extends ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
+      notifyListeners();
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
-        _isLoading = false;
         notifyListeners();
       }
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
+      notifyListeners();
       return AppointmentResponse(message: _message);
     }
   }
@@ -70,8 +62,6 @@ class AppointmentProvider extends ChangeNotifier {
     String? baseURL,
     String? appointmentID,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/appointment/details");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
@@ -79,13 +69,11 @@ class AppointmentProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
+      notifyListeners();
       final _res = AppointmentResponse.fromJson(json.decode(res.body));
       _appointmentData = _res;
-      _isLoading = false;
-      notifyListeners();
       return _res;
     } else {
-      _isLoading = false;
       notifyListeners();
       return AppointmentResponse(message: _message);
     }

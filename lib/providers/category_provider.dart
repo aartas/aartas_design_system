@@ -26,9 +26,11 @@ class CategoryProvider extends ChangeNotifier {
       _categoryList = CategoryResponse.fromJson(json.decode(res.body)).data!;
       notifyListeners();
       return CategoryResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      notifyListeners();
+      return CategoryResponse(message: _message);
     }
-
-    return CategoryResponse(message: _message);
   }
 
   final List<SearchCategoryData> _searchResponse = [];

@@ -28,6 +28,7 @@ class VitalsProvider with ChangeNotifier {
       return VitalsResponse.fromJson(json.decode(res.body));
     } else {
       log(_message);
+      notifyListeners();
       return VitalsResponse(message: _message);
     }
   }

@@ -20,17 +20,10 @@ class HomeFeedProvider with ChangeNotifier {
     return _homeFeedList;
   }
 
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   Future<HomeFeedResponse> fetchList(
     String baseURL,
     String? patientId,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/home");
     final res = await http.post(
       _url,
@@ -40,16 +33,13 @@ class HomeFeedProvider with ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      _isLoading = false;
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
       _homeFeedList = _res.data!;
-      notifyListeners();
       return _res;
     } else {
-      log(res.body);
-      _isLoading = false;
       notifyListeners();
+      log(res.body);
       return HomeFeedResponse(message: _message);
     }
   }
@@ -59,8 +49,6 @@ class HomeFeedProvider with ChangeNotifier {
     String? patientID,
     String? homeFeedId,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/home/details");
     final res = await http.post(
       _url,
@@ -72,15 +60,13 @@ class HomeFeedProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      _isLoading = false;
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
       _homeFeedData = _res.data!.first;
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
+      notifyListeners();
       return HomeFeedResponse(message: _message);
     }
   }
@@ -90,7 +76,6 @@ class HomeFeedProvider with ChangeNotifier {
     String? patientID,
     String? homeFeedId,
   ) async {
-    _isLoading = true;
     notifyListeners();
     var _url = Uri.parse("$baseURL/home/like");
     final res = await http.post(
@@ -103,13 +88,9 @@ class HomeFeedProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      _isLoading = false;
-      notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
       return ResponseModel(message: _message);
     }
@@ -120,7 +101,6 @@ class HomeFeedProvider with ChangeNotifier {
     String? patientID,
     String? homeFeedId,
   ) async {
-    _isLoading = true;
     notifyListeners();
     var _url = Uri.parse("$baseURL/home/like");
     final res = await http.post(
@@ -133,13 +113,9 @@ class HomeFeedProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      _isLoading = false;
-      notifyListeners();
       var _res = HomeFeedLikeResponse.fromJson(json.decode(res.body));
       return _res;
     } else {
-      _isLoading = false;
-      notifyListeners();
       log(res.body);
       return HomeFeedLikeResponse(message: _message);
     }

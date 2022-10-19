@@ -7,11 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PatientCartProvider extends ChangeNotifier {
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   PatientCartData _data = PatientCartData();
 
   PatientCartData getCartDetails() {
@@ -22,8 +17,6 @@ class PatientCartProvider extends ChangeNotifier {
     String baseURL,
     String? patientID,
   ) async {
-    _isLoading = false;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/patient/cart");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -39,6 +32,7 @@ class PatientCartProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return PatientCartResponse(message: _message);
     }
   }
@@ -48,8 +42,6 @@ class PatientCartProvider extends ChangeNotifier {
     String? patientID,
     String? payID,
   ) async {
-    _isLoading = false;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/patient/cart/checkout");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -65,6 +57,7 @@ class PatientCartProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return ResponseModel(message: _message);
     }
   }
@@ -75,8 +68,6 @@ class PatientCartProvider extends ChangeNotifier {
     String? buyStatus,
     String? cartMedicineId,
   ) async {
-    _isLoading = false;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/patient/change/cart/medicine/status");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
@@ -93,6 +84,7 @@ class PatientCartProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
+      notifyListeners();
       return ResponseModel(message: _message);
     }
   }

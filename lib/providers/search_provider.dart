@@ -13,11 +13,6 @@ class SearchProvider extends ChangeNotifier {
   List<PatientData> _patientList = [];
   List<DoctorData> _doctorList = [];
 
-  bool _isLoading = false;
-  bool isLoading() {
-    return _isLoading;
-  }
-
   Future<SearchResponse> fetchSearchResults(
     String baseURL,
     String? doctorID,
@@ -25,8 +20,6 @@ class SearchProvider extends ChangeNotifier {
     String? offset,
     String? limit,
   ) async {
-    _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseURL/global/search");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",
@@ -37,7 +30,6 @@ class SearchProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
     if (res.statusCode == 200) {
-      _isLoading = false;
       notifyListeners();
       _appointmentList.clear();
       _patientList.clear();
@@ -50,7 +42,6 @@ class SearchProvider extends ChangeNotifier {
           SearchResponse.fromJson(json.decode(res.body)).data!.doctors!;
       return SearchResponse.fromJson(json.decode(res.body));
     } else {
-      _isLoading = false;
       notifyListeners();
       log(res.body);
       return SearchResponse(message: _message);
