@@ -1,18 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/patient_vitals_trend_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PatientVitalsTrendProvider extends ChangeNotifier {
-  ResponseModel _data = ResponseModel();
+  PatientVitalsTrendData _data = PatientVitalsTrendData();
 
-  ResponseModel getData() {
+  PatientVitalsTrendData getData() {
     return _data;
   }
 
-  Future<ResponseModel> fetchData(
+  Future<PatientVitalsTrendResponse> fetchData(
     String baseURL,
     String? patientId,
   ) async {
@@ -25,14 +26,14 @@ class PatientVitalsTrendProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
-      var _res = ResponseModel.fromJson(json.decode(res.body));
-      _data = _res;
+      var _res = PatientVitalsTrendResponse.fromJson(json.decode(res.body));
+      _data = _res.data!;
       notifyListeners();
       return _res;
     } else {
       log(res.body);
       notifyListeners();
-      return ResponseModel(message: _message);
+      return PatientVitalsTrendResponse(message: _message);
     }
   }
 }

@@ -1,16 +1,18 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
 
-class PatientVitalsResponse {
+class PatientVitalsTrendResponse {
   String? message;
   bool? status;
-  Data? data;
+  PatientVitalsTrendData? data;
 
-  PatientVitalsResponse({this.message, this.status, this.data});
+  PatientVitalsTrendResponse({this.message, this.status, this.data});
 
-  PatientVitalsResponse.fromJson(Map<String, dynamic> json) {
+  PatientVitalsTrendResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? PatientVitalsTrendData.fromJson(json['data'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -24,7 +26,7 @@ class PatientVitalsResponse {
   }
 }
 
-class Data {
+class PatientVitalsTrendData {
   List<Vitals>? sBP;
   List<Vitals>? dBP;
   List<Vitals>? temperature;
@@ -36,7 +38,7 @@ class Data {
   List<Vitals>? glucose;
   List<Vitals>? headCircumference;
 
-  Data(
+  PatientVitalsTrendData(
       {this.sBP,
       this.dBP,
       this.temperature,
@@ -48,7 +50,7 @@ class Data {
       this.glucose,
       this.headCircumference});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  PatientVitalsTrendData.fromJson(Map<String, dynamic> json) {
     if (json['SBP'] != null) {
       sBP = <Vitals>[];
       json['SBP'].forEach((v) {
