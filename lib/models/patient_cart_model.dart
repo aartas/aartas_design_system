@@ -1,4 +1,3 @@
-import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 class PatientCartResponse {

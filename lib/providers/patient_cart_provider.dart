@@ -67,12 +67,14 @@ class PatientCartProvider extends ChangeNotifier {
     String? patientID,
     String? buyStatus,
     String? cartMedicineId,
+    String? qty,
   ) async {
     var _url = Uri.parse("$baseURL/patient/change/cart/medicine/status");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
       "buy_status": buyStatus ?? "",
       "cart_medicine_id": cartMedicineId ?? "",
+      "qty": qty ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";

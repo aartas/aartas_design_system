@@ -1,7 +1,6 @@
 library aartas_design_system;
 
 import 'package:aartas_design_system/apis/authentication_apis.dart';
-import 'package:aartas_design_system/models/patient_cart_model.dart';
 
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorisation_provider.dart';
