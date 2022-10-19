@@ -70,6 +70,7 @@ class PatientAppointmentData {
   Timeslot? timeslot;
   List<Vitals>? vitals;
   Bundles? bundles;
+  List<OtherCharges>? otherCharges;
   List<AppointmentsMedicines>? appointmentsMedicines;
 
   PatientAppointmentData({
@@ -111,6 +112,7 @@ class PatientAppointmentData {
     this.timeslot,
     this.vitals,
     this.bundles,
+    this.otherCharges,
     this.appointmentsMedicines,
   });
 
@@ -159,6 +161,12 @@ class PatientAppointmentData {
       vitals = <Vitals>[];
       json['vitals'].forEach((v) {
         vitals!.add(Vitals.fromJson(v));
+      });
+    }
+    if (json['other_charges'] != null) {
+      otherCharges = <OtherCharges>[];
+      json['other_charges'].forEach((v) {
+        otherCharges!.add(OtherCharges.fromJson(v));
       });
     }
     if (json['appointments_medicines'] != null) {
@@ -218,6 +226,9 @@ class PatientAppointmentData {
     }
     if (vitals != null) {
       data['vitals'] = vitals!.map((v) => v.toJson()).toList();
+    }
+    if (otherCharges != null) {
+      data['other_charges'] = otherCharges!.map((v) => v.toJson()).toList();
     }
     if (appointmentsMedicines != null) {
       data['appointments_medicines'] =
@@ -431,6 +442,50 @@ class BundleAppointments {
     data['id'] = id;
     data['doctor_id'] = doctorId;
     data['patient_bundles_id'] = patientBundlesId;
+    return data;
+  }
+}
+
+class OtherCharges {
+  int? id;
+  int? appointmentId;
+  String? description;
+  String? totalAmount;
+  String? discount;
+  String? amount;
+
+  int? status;
+
+  OtherCharges(
+      {this.id,
+      this.appointmentId,
+      this.description,
+      this.totalAmount,
+      this.discount,
+      this.amount,
+      this.status});
+
+  OtherCharges.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    appointmentId = json['appointment_id'];
+    description = json['description'];
+    totalAmount = json['total_amount'];
+    discount = json['discount'];
+    amount = json['amount'];
+
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['appointment_id'] = appointmentId;
+    data['description'] = description;
+    data['total_amount'] = totalAmount;
+    data['discount'] = discount;
+    data['amount'] = amount;
+
+    data['status'] = status;
     return data;
   }
 }
