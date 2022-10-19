@@ -368,14 +368,15 @@ class Vitals {
   int? vitalsId;
   String? value;
   Vital? vital;
-
+  String? createdAt;
   Vitals(
       {this.id,
       this.appointmentId,
       this.patientId,
       this.vitalsId,
       this.value,
-      this.vital});
+      this.vital,
+      this.createdAt});
 
   Vitals.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -383,6 +384,7 @@ class Vitals {
     patientId = json['patient_id'];
     vitalsId = json['vitals_id'];
     value = json['value'];
+    createdAt = json['created_at'];
     vital = json['vital'] != null ? Vital.fromJson(json['vital']) : null;
   }
 
@@ -393,6 +395,7 @@ class Vitals {
     data['patient_id'] = patientId;
     data['vitals_id'] = vitalsId;
     data['value'] = value;
+    data['created_at'] = createdAt;
     if (vital != null) {
       data['vital'] = vital!.toJson();
     }
