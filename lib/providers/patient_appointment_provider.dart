@@ -36,7 +36,6 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? appointmentID,
   ) async {
     _isLoading = true;
-    notifyListeners();
     var _url = Uri.parse("$baseUrl/appointment/$appointmentID");
     final res = await http.get(_url);
     String _message = "(${res.statusCode}) $_url";
