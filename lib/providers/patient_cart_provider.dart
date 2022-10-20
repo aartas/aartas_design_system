@@ -41,11 +41,17 @@ class PatientCartProvider extends ChangeNotifier {
     String baseURL,
     String? patientID,
     String? payID,
+    String? deliver,
+    String? shippingAddressID,
+    String? billingAddressID,
   ) async {
     var _url = Uri.parse("$baseURL/patient/cart/checkout");
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
       "pay_id": payID ?? "",
+      "deliver": deliver ?? "",
+      "shipping_address_id": shippingAddressID ?? "",
+      "billing_address_id": billingAddressID ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
