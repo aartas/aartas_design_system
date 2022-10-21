@@ -67,22 +67,22 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "offset": offset ?? "",
       "type": type ?? "",
     });
+    notifyListeners();
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
       final _res = PatientAppointmentResponse.fromJson(
         json.decode(res.body),
       );
-      notifyListeners();
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
-        notifyListeners();
+        updateFilterAppointments(0);
       }
       return _res;
     } else {
       log(res.body);
-      notifyListeners();
+
       return PatientAppointmentResponse(message: _message);
     }
   }
