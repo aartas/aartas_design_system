@@ -69,7 +69,7 @@ class FamilyMemberData {
     fcmToken = json['fcm_token'];
     dob = json['dob'];
     age = json['age'];
-    relation = json['relation'];
+    relation = json['relation'];    
     linkId = json['link_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
