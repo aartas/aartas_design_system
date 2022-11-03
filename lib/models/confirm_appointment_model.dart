@@ -81,6 +81,8 @@ class AppointmentData {
   int? couponId;
   int? status;
   String? consFee;
+  String? paymentMethod;
+  String? paymentMethodDetails;
   FamilyMemberData? patient;
   Timeslot? timeslot;
   DoctorData? doctor;
@@ -95,6 +97,8 @@ class AppointmentData {
     this.couponId,
     this.status,
     this.consFee,
+    this.paymentMethod,
+    this.paymentMethodDetails,
     this.patient,
     this.timeslot,
     this.doctor,
@@ -110,6 +114,8 @@ class AppointmentData {
     couponId = json['coupon_id'];
     status = json['status'];
     consFee = json['cons_fee'];
+    paymentMethod = json['payment_method'];
+    paymentMethodDetails = json['payment_method_details'];
     patient = json['patient'] != null
         ? FamilyMemberData.fromJson(json['patient'])
         : null;
@@ -130,6 +136,8 @@ class AppointmentData {
     data['coupon_id'] = couponId;
     data['status'] = status;
     data['cons_fee'] = consFee;
+    data['payment_method'] = paymentMethod;
+    data['payment_method_details'] = paymentMethodDetails;
     if (patient != null) {
       data['patient'] = patient!.toJson();
     }
