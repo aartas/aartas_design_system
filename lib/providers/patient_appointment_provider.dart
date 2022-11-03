@@ -146,7 +146,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "appointment_id": appointmentId,
       "coupon_id": couponId,
       "bundle_id": bundleId != 'null' ? bundleId : "",
-      "reward_points": rewardAmount != "null" ? rewardAmount : ""
+      "redeem_points": rewardAmount != "null" ? rewardAmount : ""
     }))
         .body;
 
