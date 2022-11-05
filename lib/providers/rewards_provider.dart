@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/models/coupon_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 import 'package:aartas_design_system/models/reward_models/rewards_history_model.dart';
 import 'package:aartas_design_system/models/reward_models/rewards_membership_model.dart';
 import 'package:aartas_design_system/models/reward_models/rewards_points_model.dart';
@@ -152,6 +153,32 @@ class RewardProvider extends ChangeNotifier {
       notifyListeners();
       log(res.body);
       return CouponResponse(message: _message);
+    }
+  }
+
+  Future<ResponseModel> redeemPoints(
+    String baseURL,
+    String? patientID,
+    String? couponID,
+  ) async {
+    var _url = Uri.parse("$baseURL/redeem/points");
+    var res = await http.post(_url, body: {
+      "patient_id": patientID ?? '',
+      "coupon_id": couponID ?? '',
+    });
+
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+      notifyListeners();
+      var _res = ResponseModel.fromJson(json.decode(res.body));
+      notifyListeners();
+      return _res;
+    } else {
+      notifyListeners();
+      log(res.body);
+      return ResponseModel(message: _message);
     }
   }
 }
