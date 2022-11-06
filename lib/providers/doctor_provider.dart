@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 class DoctorProvider with ChangeNotifier {
   DoctorData _doctorData = DoctorData();
   List<DoctorData> _list = [];
+  List<DoctorData> _recommendedList = [];
 
   DateTime _loginTime = DateTime.now();
 
@@ -38,7 +39,34 @@ class DoctorProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
+      var _res = DoctorResponse.fromJson(json.decode(res.body));
+      _list = _res.data!;
+      notifyListeners();
+      return _res;
+    } else {
+      log(res.body);
+      notifyListeners();
+      return DoctorResponse(message: _message);
+    }
+  }
+
+  List<DoctorData> getRecommendedList() {
+    return _list;
+  }
+
+  Future<DoctorResponse> fetchRecommendedList(
+    String baseURL,
+  ) async {
+    var _url = Uri.parse("$baseURL/recommended/doctors");
+    final res = await http.post(
+      _url,
+    );
+
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
       _list = _res.data!;
       notifyListeners();
@@ -61,7 +89,7 @@ class DoctorProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
       _doctorData = _res.data![0];
