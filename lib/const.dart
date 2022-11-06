@@ -309,9 +309,35 @@ Color getMembershipColor(int membershipTypeId) {
   return cadetBlueColor;
 }
 
+Color getMembershipVisitColor(int membershipTypeId) {
+  if (membershipTypeId == 1) {
+    return burntUmberColor;
+  }
+  if (membershipTypeId == 2) {
+    return buffColor;
+  }
+  if (membershipTypeId == 3) {
+    return cadetBlueColor;
+  }
+  return Colors.black;
+}
+
+Color getMembershipSpecialityColor(int membershipTypeId) {
+  if (membershipTypeId == 1) {
+    return pastelPinkColor;
+  }
+  if (membershipTypeId == 2) {
+    return brandyColor;
+  }
+  if (membershipTypeId == 3) {
+    return cadetBlueColor;
+  }
+  return Colors.black;
+}
+
 String getMembershipTitle(int membershipTypeId) {
   if (membershipTypeId == 1) {
-    return "SILVER";
+    return "MEMBER";
   }
   if (membershipTypeId == 2) {
     return "GOLD";
@@ -319,7 +345,7 @@ String getMembershipTitle(int membershipTypeId) {
   if (membershipTypeId == 3) {
     return "PLATINUM";
   }
-  return "TITANIUM";
+  return "AMBASSADOR";
 }
 
 Widget getAppointmentStatus(context, int status) {
