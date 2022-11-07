@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:aartas_design_system/models/confirm_appointment_model.dart';
 import 'package:aartas_design_system/models/patient_ahead_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 
 import 'package:aartas_design_system/models/unconfirmed_appointment_model.dart';
 import 'package:flutter/material.dart';
@@ -209,6 +210,27 @@ class PatientAppointmentProvider extends ChangeNotifier {
       log(res.body);
       notifyListeners();
       return PatientAheadResponse(message: _message);
+    }
+  }
+
+  Future<ResponseModel> confirmArrival(
+    String baseUrl,
+    String? appointmentID,
+  ) async {
+    var _url = Uri.parse("$baseUrl/appointment/confirm/arrival");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      notifyListeners();
+      return ResponseModel(message: _message);
     }
   }
 }
