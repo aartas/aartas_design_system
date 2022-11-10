@@ -77,52 +77,55 @@ class DoctorData {
   Speciality? speciality;
   Timeslot? latestTimeSlot;
   List<Timings>? timings;
-  DoctorData(
-      {this.id,
-      this.clinicId,
-      this.roomId,
-      this.doctorName,
-      this.email,
-      this.fcmToken,
-      this.gender,
-      this.address,
-      this.cityId,
-      this.languages,
-      this.specialityId,
-      this.registrationNum,
-      this.medicalAuthorityId,
-      this.degreeSuffix,
-      this.expertiseSubSpecialty,
-      this.image,
-      this.scheduleDays,
-      this.scheduleTimings,
-      this.hoursPerMonth,
-      this.agreementFile,
-      this.agreementRenewDate,
-      this.consulationFee,
-      this.timePerPatient,
-      this.appointmentPhoneNumber,
-      this.website,
-      this.instagram,
-      this.facebook,
-      this.profileShareCount,
-      this.startDate,
-      this.profileVerified,
-      this.profileStatus,
-      this.resetToken,
-      this.onRequest,
-      this.prePayEnrolled,
-      this.prePayDiscount,
-      this.totalExperience,
-      this.status,
-      this.rentAmount,
-      this.securityAmount,
-      this.imageUrl,
-      this.timeslots,
-      this.procedure,
-      this.speciality,
-      this.latestTimeSlot,
-      this.timings});
+  List<DoctorImages>? doctorImages;
+  DoctorData({
+    this.id,
+    this.clinicId,
+    this.roomId,
+    this.doctorName,
+    this.email,
+    this.fcmToken,
+    this.gender,
+    this.address,
+    this.cityId,
+    this.languages,
+    this.specialityId,
+    this.registrationNum,
+    this.medicalAuthorityId,
+    this.degreeSuffix,
+    this.expertiseSubSpecialty,
+    this.image,
+    this.scheduleDays,
+    this.scheduleTimings,
+    this.hoursPerMonth,
+    this.agreementFile,
+    this.agreementRenewDate,
+    this.consulationFee,
+    this.timePerPatient,
+    this.appointmentPhoneNumber,
+    this.website,
+    this.instagram,
+    this.facebook,
+    this.profileShareCount,
+    this.startDate,
+    this.profileVerified,
+    this.profileStatus,
+    this.resetToken,
+    this.onRequest,
+    this.prePayEnrolled,
+    this.prePayDiscount,
+    this.totalExperience,
+    this.status,
+    this.rentAmount,
+    this.securityAmount,
+    this.imageUrl,
+    this.timeslots,
+    this.procedure,
+    this.speciality,
+    this.latestTimeSlot,
+    this.timings,
+    this.doctorImages,
+  });
 
   DoctorData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -189,6 +192,12 @@ class DoctorData {
         timings!.add(Timings.fromJson(v));
       });
     }
+    if (json['doctor_images'] != null) {
+      doctorImages = <DoctorImages>[];
+      json['doctor_images'].forEach((v) {
+        doctorImages!.add(DoctorImages.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -244,6 +253,9 @@ class DoctorData {
     }
     if (timings != null) {
       data['timings'] = timings!.map((v) => v.toJson()).toList();
+    }
+    if (doctorImages != null) {
+      data['doctor_images'] = doctorImages!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -372,6 +384,72 @@ class Clinic {
     data['updated_at'] = updatedAt;
     data['created_by'] = createdBy;
     data['updated_by'] = updatedBy;
+    data['status'] = status;
+    return data;
+  }
+}
+
+class DoctorImages {
+  int? id;
+  int? doctorId;
+  int? sectionId;
+  String? image;
+  String? pattern;
+  int? status;
+  Section? section;
+
+  DoctorImages(
+      {this.id,
+      this.doctorId,
+      this.sectionId,
+      this.image,
+      this.pattern,
+      this.status,
+      this.section});
+
+  DoctorImages.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    doctorId = json['doctor_id'];
+    sectionId = json['section_id'];
+    image = json['image'];
+    pattern = json['pattern'];
+    status = json['status'];
+    section =
+        json['section'] != null ? Section.fromJson(json['section']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['doctor_id'] = doctorId;
+    data['section_id'] = sectionId;
+    data['image'] = image;
+    data['pattern'] = pattern;
+    data['status'] = status;
+    if (section != null) {
+      data['section'] = section!.toJson();
+    }
+    return data;
+  }
+}
+
+class Section {
+  int? id;
+  String? title;
+  int? status;
+
+  Section({this.id, this.title, this.status});
+
+  Section.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
     data['status'] = status;
     return data;
   }
