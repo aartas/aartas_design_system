@@ -1,3 +1,32 @@
+class AddressResponse {
+  String? message;
+  bool? status;
+  List<Address>? data;
+
+  AddressResponse({this.message, this.status, this.data});
+
+  AddressResponse.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    status = json['status'];
+    if (json['data'] != null) {
+      data = <Address>[];
+      json['data'].forEach((v) {
+        data!.add(Address.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['status'] = status;
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
 class Address {
   int? id;
   int? patientId;

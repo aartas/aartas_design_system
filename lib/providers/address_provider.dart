@@ -1,11 +1,41 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/address_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AddressProvider extends ChangeNotifier {
+  List<Address> _list = [];
+
+  List<Address> getData() {
+    return _list;
+  }
+
+  Future<AddressResponse> fetchList(
+    String baseURL,
+    String? patientID,
+  ) async {
+    var _url = Uri.parse("$baseURL/patient/address/list");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+    });
+    if (res.statusCode == 200) {
+      notifyListeners();
+      var _res = AddressResponse.fromJson(json.decode(res.body));
+      _list = _res.data!;
+      return _res;
+    } else {
+      String _message = "";
+      log(_message);
+      notifyListeners();
+      return AddressResponse(
+        message: _message,
+      );
+    }
+  }
+
   Future<ResponseModel> addAddress(
     String baseURL,
     String? patientID,
