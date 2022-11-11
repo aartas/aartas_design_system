@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -107,6 +108,40 @@ class PatientProvider with ChangeNotifier {
       log(_message);
       notifyListeners();
       return AppointmentResponse(
+        message: _message,
+      );
+    }
+  }
+
+  Future<ResponseModel> updateProfile(
+    String baseURL,
+    String? patientID,
+    String? fullName,
+    String? phoneNumber,
+    String? email,
+    String? gender,
+    String? dob,
+    String? relation,
+  ) async {
+    var _url = Uri.parse("$baseURL/patient/update/profile");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+      "full_name": fullName ?? "",
+      "phone_number": phoneNumber ?? "",
+      "email": email ?? "",
+      "gender": gender ?? "",
+      "dob": dob ?? "",
+      "relation": relation ?? "",
+    });
+    if (res.statusCode == 200) {
+      notifyListeners();
+      var _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      String _message = "";
+      log(_message);
+      notifyListeners();
+      return ResponseModel(
         message: _message,
       );
     }
