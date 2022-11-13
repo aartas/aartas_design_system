@@ -119,6 +119,51 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> saveQuickActionMedicine(
+    String baseURL,
+    String? doctorQuickActionID,
+    String? medicineID,
+    String? dose,
+    String? unitID,
+    String? qty,
+    String? frequency,
+    String? duration,
+    String? durationType,
+    String? startDate,
+    String? instructions,
+    String? timeOfTheDayDefaults,
+    String? timeOfTheDay,
+    String? timeRange,
+    String? oldID,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/investigation");
+    final res = await http.post(_url, body: {
+      "doctor_quickaction_id": doctorQuickActionID ?? "",
+      "medicine_id": medicineID ?? "",
+      "dose": dose ?? "",
+      "unit_id": unitID ?? "",
+      "qty": qty ?? "",
+      "frequency": frequency ?? "",
+      "duration": duration ?? "",
+      "duration_type": durationType ?? "",
+      "start_date": startDate ?? "",
+      "instructions": instructions ?? "",
+      "time_of_the_day_defaults": timeOfTheDayDefaults ?? "",
+      "time_of_the_day": timeOfTheDay ?? "",
+      "time_range": timeRange ?? "",
+      "old_id": oldID ?? ""
+    });
+
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
+
   Future<ResponseModel> removeMedicine(
     String baseURL,
     String? id,

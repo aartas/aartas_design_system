@@ -52,7 +52,7 @@ class DoctorProvider with ChangeNotifier {
   }
 
   List<DoctorData> getRecommendedList() {
-    return _list;
+    return _recommendedList;
   }
 
   Future<DoctorResponse> fetchRecommendedList(
@@ -68,7 +68,7 @@ class DoctorProvider with ChangeNotifier {
 
     if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      _list = _res.data!;
+      _recommendedList = _res.data!;
       notifyListeners();
       return _res;
     } else {

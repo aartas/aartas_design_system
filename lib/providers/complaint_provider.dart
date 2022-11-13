@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ComplaintProvider extends ChangeNotifier {
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
   Future<ComplaintsResponse> fetchComplaintList(
+    BuildContext context,
     String baseURL,
     String? doctorID,
     String? specialityID,
@@ -19,8 +23,7 @@ class ComplaintProvider extends ChangeNotifier {
       "speciality_id": specialityID ?? "",
       "search": search ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
@@ -74,8 +77,7 @@ class ComplaintProvider extends ChangeNotifier {
       "notes": notes ?? "",
       "old_id": oldID ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, complaintID:$complaintID, negativeSymptom:$negativeSymptom, duration:$duration, durationType:$durationType, severity:$severity, progress:$progress, notes:$notes, oldID:$oldID";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
@@ -93,20 +95,6 @@ class ComplaintProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });
-    String _message = "(${res.statusCode}) $_url: id:$id";
-    log(_message);
-
-    if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
-    } else {
-      log(res.body);
-      return ResponseModel(message: _message);
-    }
-  }
-
-  Future<ResponseModel> fetchQuickActionList(String baseURL) async {
-    var _url = Uri.parse("$baseURL/quick/action/list");
-    final res = await http.post(_url);
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
@@ -118,21 +106,73 @@ class ComplaintProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> addQuickActionValue(
+  Future<ResponseModel> addQuickActionComplaint(
     String baseURL,
-    String? appointmenID,
-    String? quickActionID,
+    String? doctorQuickActionID,
+    String? complaintID,
+    String? negativeSymptom,
+    String? duration,
+    String? durationType,
+    String? severity,
+    String? progress,
+    String? oldID,
+    String? notes,
   ) async {
-    var _url = Uri.parse("$baseURL/quick/action/add");
-    final res = await http.post(_url);
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/complaint");
+    final res = await http.post(_url, body: {
+      "doctor_quickaction_id": doctorQuickActionID ?? "",
+      "complaints_id": complaintID ?? "",
+      "negative_symptom": negativeSymptom ?? "",
+      "duration": duration ?? "",
+      "duration_type": durationType ?? "",
+      "severity": severity ?? "",
+      "progress": progress ?? "",
+      "notes": notes ?? "",
+      "old_id": oldID ?? "",
+    });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-
     if (res.statusCode == 200) {
+      _isLoading = false;
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      _isLoading = false;
+      return ResponseModel(
+        message: "(${res.statusCode}) Something went wrong.",
+      );
     }
   }
+
+  // Future<ResponseModel> fetchQuickActionList(String baseURL) async {
+  //   var _url = Uri.parse("$baseURL/quick/action/list");
+  //   final res = await http.post(_url);
+  //   String _message = "(${res.statusCode}) $_url";
+  //   log(_message);
+
+  //   if (res.statusCode == 200) {
+  //     return ResponseModel.fromJson(json.decode(res.body));
+  //   } else {
+  //     log(res.body);
+  //     return ResponseModel(message: _message);
+  //   }
+  // }
+
+  // Future<ResponseModel> addQuickActionValue(
+  //   String baseURL,
+  //   String? appointmenID,
+  //   String? quickActionID,
+  // ) async {
+  //   var _url = Uri.parse("$baseURL/quick/action/add");
+  //   final res = await http.post(_url);
+  //   String _message = "(${res.statusCode}) $_url";
+  //   log(_message);
+
+  //   if (res.statusCode == 200) {
+  //     return ResponseModel.fromJson(json.decode(res.body));
+  //   } else {
+  //     log(res.body);
+  //     return ResponseModel(message: _message);
+  //   }
+  // }
 }

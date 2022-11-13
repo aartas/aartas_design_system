@@ -62,6 +62,33 @@ class ProcedureProvider extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> saveQuickActionProcedure(
+    String baseURL,
+    String? doctorQuickActionID,
+    String? procedureID,
+    String? session,
+    String? notes,
+    String? oldID,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/procedure");
+    final res = await http.post(_url, body: {
+      "doctor_quickaction_id": doctorQuickActionID ?? "",
+      "doctor_procedure_id": procedureID ?? "",
+      "sessions": session ?? "",
+      "notes": notes ?? "",
+      "old_id": oldID ?? ""
+    });
+
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
+
   Future<ResponseModel> addProcedure(
     String baseURL,
     String? title,

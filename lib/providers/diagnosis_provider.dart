@@ -82,6 +82,37 @@ class DiagnosisProvder extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> saveQuickActionDiagnosis(
+    String baseURL,
+    String? doctorQuickActionID,
+    String? diagnosisID,
+    String? duration,
+    String? durationType,
+    String? diagnosisStatus,
+    String? medication,
+    String? oldID,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/diagnosis");
+    final res = await http.post(_url, body: {
+      "doctor_quickaction_id": doctorQuickActionID ?? "",
+      "diagnosis_id": diagnosisID ?? "",
+      "duration": duration ?? "",
+      "duration_type": durationType ?? "",
+      "diagnosis_status": diagnosisStatus ?? "",
+      "medication": medication ?? "",
+      "old_id": oldID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: _message);
+    }
+  }
+
   Future<ResponseModel> removeDiagnosis(
     String baseURL,
     String? id,

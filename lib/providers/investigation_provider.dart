@@ -68,8 +68,38 @@ class InvestigationProvider extends ChangeNotifier {
       "results": results ?? "",
       "old_id": oldID ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, investigationID:$investigationID, fastingState:$fastingState, duration:$duration, durationType:$durationType, notes:$notes, results:$results, oldID:$oldID";
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    }
+    return ResponseModel(message: _message);
+  }
+
+  Future<ResponseModel> saveQuickActionInvestigation(
+    String baseURL,
+    String? doctorQuickActionID,
+    String? investigationID,
+    String? fastingState,
+    String? duration,
+    String? durationType,
+    String? notes,
+    String? results,
+    String? oldID,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/investigation");
+    final res = await http.post(_url, body: {
+      "doctor_quickaction_id": doctorQuickActionID ?? "",
+      "investigations_id": investigationID ?? "",
+      "fasting_state": fastingState ?? "",
+      "duration": duration ?? "",
+      "duration_type": durationType ?? "",
+      "notes": notes ?? "",
+      "results": results ?? "",
+      "old_id": oldID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
