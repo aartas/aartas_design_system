@@ -322,6 +322,7 @@ Color getMembershipVisitColor(int membershipTypeId) {
   return Colors.black;
 }
 
+//
 Color getMembershipSpecialityColor(int membershipTypeId) {
   if (membershipTypeId == 1) {
     return pastelPinkColor;
