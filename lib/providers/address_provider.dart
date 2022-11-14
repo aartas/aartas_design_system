@@ -112,7 +112,7 @@ class AddressProvider extends ChangeNotifier {
   ) async {
     var _url = Uri.parse("$baseURL/patient/delete/address");
     final res = await http.post(_url, body: {
-      "address_id": addressID ?? "",
+      "id": addressID ?? "",
     });
     log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
