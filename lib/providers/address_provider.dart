@@ -21,18 +21,16 @@ class AddressProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "patient_id": patientID ?? "",
     });
+    log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
       notifyListeners();
       var _res = AddressResponse.fromJson(json.decode(res.body));
       _list = _res.data!;
       return _res;
     } else {
-      String _message = "";
-      log(_message);
+      log(res.body);
       notifyListeners();
-      return AddressResponse(
-        message: _message,
-      );
+      return AddressResponse();
     }
   }
 
@@ -58,16 +56,16 @@ class AddressProvider extends ChangeNotifier {
       "state": state ?? "",
       "city": city ?? "",
     });
+    log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
       notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
-      String _message = "";
-      log(_message);
+      log(res.body);
       notifyListeners();
       return ResponseModel(
-        message: _message,
+        message: "${res.statusCode} Something went wrong.",
       );
     }
   }
@@ -94,16 +92,16 @@ class AddressProvider extends ChangeNotifier {
       "state": state ?? "",
       "city": city ?? "",
     });
+    log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
       notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
-      String _message = "";
-      log(_message);
+      log(res.body);
       notifyListeners();
       return ResponseModel(
-        message: _message,
+        message: "${res.statusCode} Something went wrong.",
       );
     }
   }
@@ -116,16 +114,14 @@ class AddressProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "address_id": addressID ?? "",
     });
+    log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
-      notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
-      String _message = "";
-      log(_message);
-      notifyListeners();
+      log(res.body);
       return ResponseModel(
-        message: _message,
+        message: "${res.statusCode} Something went wrong.",
       );
     }
   }
