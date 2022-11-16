@@ -68,8 +68,7 @@ class PatientProvider with ChangeNotifier {
       return _res;
     } else {
       notifyListeners();
-      String _message = "PatientListProvider:${res.statusCode}";
-      log(_message);
+      log(res.body);
       return PatientResponse(message: "${res.statusCode}");
     }
   }
@@ -140,6 +139,7 @@ class PatientProvider with ChangeNotifier {
       return _res;
     } else {
       notifyListeners();
+      log(res.body);
       return ResponseModel(
         message: "Something went wrong",
       );
