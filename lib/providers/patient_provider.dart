@@ -133,16 +133,15 @@ class PatientProvider with ChangeNotifier {
       "dob": dob ?? "",
       "relation": relation ?? "",
     });
+    log("(${res.statusCode}) $_url");
     if (res.statusCode == 200) {
       notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
-      String _message = "";
-      log(_message);
       notifyListeners();
       return ResponseModel(
-        message: _message,
+        message: "Something went wrong",
       );
     }
   }
