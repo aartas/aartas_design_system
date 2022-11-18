@@ -50,30 +50,33 @@ class PatientData {
   // Null? updatedBy;
   // String? status;
   Membership? membership;
+  CheckInDetails? checkInDetails;
 
-  PatientData(
-      {this.id,
-      this.fullName,
-      // this.phoneCountryCode,
-      this.phoneNumber,
-      this.email,
-      this.gender,
-      // this.pinCode,
-      this.fcmToken,
-      this.dob,
-      this.age,
-      this.relation,
-      // this.linkId,
-      // this.location,
-      // this.latitude,
-      // this.longitude,
-      // this.membershipTypeId,
-      // this.createdAt,
-      // this.updatedAt,
-      // this.createdBy,
-      // this.updatedBy,
-      // this.status,
-      this.membership});
+  PatientData({
+    this.id,
+    this.fullName,
+    // this.phoneCountryCode,
+    this.phoneNumber,
+    this.email,
+    this.gender,
+    // this.pinCode,
+    this.fcmToken,
+    this.dob,
+    this.age,
+    this.relation,
+    // this.linkId,
+    // this.location,
+    // this.latitude,
+    // this.longitude,
+    // this.membershipTypeId,
+    // this.createdAt,
+    // this.updatedAt,
+    // this.createdBy,
+    // this.updatedBy,
+    // this.status,
+    this.membership,
+    this.checkInDetails,
+  });
 
   PatientData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -99,6 +102,9 @@ class PatientData {
     // status = json['status'];
     membership = json['membership'] != null
         ? Membership.fromJson(json['membership'])
+        : null;
+    checkInDetails = json['check_in_details'] != null
+        ? CheckInDetails.fromJson(json['check_in_details'])
         : null;
   }
 
@@ -127,6 +133,9 @@ class PatientData {
     // data['status'] = status;
     if (membership != null) {
       data['membership'] = membership!.toJson();
+    }
+    if (checkInDetails != null) {
+      data['check_in_details'] = checkInDetails!.toJson();
     }
     return data;
   }
@@ -176,6 +185,63 @@ class Membership {
     // data['updated_at'] = updatedAt;
     // data['created_by'] = createdBy;
     // data['updated_by'] = updatedBy;
+    data['status'] = status;
+    return data;
+  }
+}
+
+class CheckInDetails {
+  int? id;
+  int? clinicId;
+  int? userId;
+  int? patientId;
+  String? visitDate;
+  String? checkIn;
+  String? checkOut;
+  int? purpose;
+  String? purposeDetails;
+  String? visitCheckoutDetails;
+  int? status;
+
+  CheckInDetails(
+      {this.id,
+      this.clinicId,
+      this.userId,
+      this.patientId,
+      this.visitDate,
+      this.checkIn,
+      this.checkOut,
+      this.purpose,
+      this.purposeDetails,
+      this.visitCheckoutDetails,
+      this.status});
+
+  CheckInDetails.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    clinicId = json['clinic_id'];
+    userId = json['user_id'];
+    patientId = json['patient_id'];
+    visitDate = json['visit_date'];
+    checkIn = json['check_in'];
+    checkOut = json['check_out'];
+    purpose = json['purpose'];
+    purposeDetails = json['purpose_details'];
+    visitCheckoutDetails = json['visit_checkout_details'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['clinic_id'] = clinicId;
+    data['user_id'] = userId;
+    data['patient_id'] = patientId;
+    data['visit_date'] = visitDate;
+    data['check_in'] = checkIn;
+    data['check_out'] = checkOut;
+    data['purpose'] = purpose;
+    data['purpose_details'] = purposeDetails;
+    data['visit_checkout_details'] = visitCheckoutDetails;
     data['status'] = status;
     return data;
   }
