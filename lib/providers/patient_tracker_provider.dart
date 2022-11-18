@@ -62,7 +62,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     String? patientID,
     String? locationID,
   ) async {
-    var _url = Uri.parse("$baseURL/patient/check/in");
+    var _url = Uri.parse("$baseURL/patient/check/out");
     final res = await http.post(_url, body: {
       "patient_id": patientID,
       "location_id": locationID,
