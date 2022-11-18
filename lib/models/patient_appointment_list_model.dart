@@ -1,5 +1,6 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
+import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 
 class PatientAppointmentResponse {
@@ -66,7 +67,7 @@ class PatientAppointmentData {
   String? followUpDate;
   int? status;
   DoctorData? doctor;
-  Patient? patient;
+  PatientData? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
   Bundles? bundles;
@@ -153,7 +154,7 @@ class PatientAppointmentData {
     doctor =
         json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
     patient =
-        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+        json['patient'] != null ? PatientData.fromJson(json['patient']) : null;
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
     bundles = json['bundle'] != null ? Bundles.fromJson(json['bundle']) : null;

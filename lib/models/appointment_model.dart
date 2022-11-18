@@ -1,4 +1,5 @@
 import 'package:aartas_design_system/models/medicine_model.dart';
+import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
 
@@ -64,7 +65,7 @@ class AppointmentData {
   int? whatsappSent;
   int? isConfirmed;
   String? prescriptionFile;
-  Patient? patient;
+  PatientData? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
   List<AppointmentsComplaints>? appointmentsComplaints;
@@ -155,7 +156,7 @@ class AppointmentData {
     isConfirmed = json['is_confirmed'];
     prescriptionFile = json['prescription_file'];
     patient =
-        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+        json['patient'] != null ? PatientData.fromJson(json['patient']) : null;
     timeslot =
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
     if (json['vitals'] != null) {
@@ -280,83 +281,6 @@ class AppointmentData {
       data['appointments_documents'] =
           appointmentsDocuments!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Patient {
-  int? id;
-  String? fullName;
-  String? phoneCountryCode;
-  String? phoneNumber;
-  String? email;
-  String? gender;
-  String? pinCode;
-  String? fcmToken;
-  String? dob;
-  int? age;
-  String? relation;
-  dynamic linkId;
-  String? location;
-  String? latitude;
-  String? longitude;
-  int? membershipTypeId;
-
-  Patient(
-      {this.id,
-      this.fullName,
-      this.phoneCountryCode,
-      this.phoneNumber,
-      this.email,
-      this.gender,
-      this.pinCode,
-      this.fcmToken,
-      this.dob,
-      this.age,
-      this.relation,
-      this.linkId,
-      this.location,
-      this.latitude,
-      this.longitude,
-      this.membershipTypeId});
-
-  Patient.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    fullName = json['full_name'];
-    phoneCountryCode = json['phone_country_code'];
-    phoneNumber = json['phone_number'];
-    email = json['email'];
-    gender = json['gender'];
-    pinCode = json['pin_code'];
-    fcmToken = json['fcm_token'];
-    dob = json['dob'];
-    age = json['age'];
-    relation = json['relation'];
-    linkId = json['link_id'];
-    location = json['location'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    membershipTypeId = json['membership_type_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['full_name'] = fullName;
-    data['phone_country_code'] = phoneCountryCode;
-    data['phone_number'] = phoneNumber;
-    data['email'] = email;
-    data['gender'] = gender;
-    data['pin_code'] = pinCode;
-    data['fcm_token'] = fcmToken;
-    data['dob'] = dob;
-    data['age'] = age;
-    data['relation'] = relation;
-    data['link_id'] = linkId;
-    data['location'] = location;
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    data['membership_type_id'] = membershipTypeId;
     return data;
   }
 }
