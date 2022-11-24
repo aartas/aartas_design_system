@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 class PatientCartResponse {
@@ -228,92 +229,6 @@ class Medicines {
     if (medicineStocks != null) {
       data['medicine_stocks'] = medicineStocks!.toJson();
     }
-    return data;
-  }
-}
-
-class Medicine {
-  int? id;
-  String? displayName;
-  String? name;
-  String? saltName;
-  dynamic manufacturer;
-  String? strength;
-  int? unitId;
-  int? packaging;
-  int? packagingTypeId;
-  int? medicineFormId;
-  dynamic schedule;
-  dynamic image;
-  dynamic hsnCode;
-  dynamic rackNumber;
-  int? maxStockCount;
-  int? minStockCount;
-  int? alertStockCount;
-
-  int? status;
-
-  Medicine(
-      {this.id,
-      this.displayName,
-      this.name,
-      this.saltName,
-      this.manufacturer,
-      this.strength,
-      this.unitId,
-      this.packaging,
-      this.packagingTypeId,
-      this.medicineFormId,
-      this.schedule,
-      this.image,
-      this.hsnCode,
-      this.rackNumber,
-      this.maxStockCount,
-      this.minStockCount,
-      this.alertStockCount,
-      this.status});
-
-  Medicine.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    displayName = json['display_name'];
-    name = json['name'];
-    saltName = json['salt_name'];
-    manufacturer = json['manufacturer'];
-    strength = json['strength'];
-    unitId = json['unit_id'];
-    packaging = json['packaging'];
-    packagingTypeId = json['packaging_type_id'];
-    medicineFormId = json['medicine_form_id'];
-    schedule = json['schedule'];
-    image = json['image'];
-    hsnCode = json['hsn_code'];
-    rackNumber = json['rack_number'];
-    maxStockCount = json['max_stock_count'];
-    minStockCount = json['min_stock_count'];
-    alertStockCount = json['alert_stock_count'];
-    status = json['status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['display_name'] = displayName;
-    data['name'] = name;
-    data['salt_name'] = saltName;
-    data['manufacturer'] = manufacturer;
-    data['strength'] = strength;
-    data['unit_id'] = unitId;
-    data['packaging'] = packaging;
-    data['packaging_type_id'] = packagingTypeId;
-    data['medicine_form_id'] = medicineFormId;
-    data['schedule'] = schedule;
-    data['image'] = image;
-    data['hsn_code'] = hsnCode;
-    data['rack_number'] = rackNumber;
-    data['max_stock_count'] = maxStockCount;
-    data['min_stock_count'] = minStockCount;
-    data['alert_stock_count'] = alertStockCount;
-    data['status'] = status;
     return data;
   }
 }
