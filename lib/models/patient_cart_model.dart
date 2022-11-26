@@ -144,7 +144,7 @@ class Medicines {
   String? cGSTRate;
   String? iGST;
   String? iGSTRate;
-  double? totalAmount;
+  dynamic totalAmount;
   int? buyStatus;
   int? isStockAvailable;
   int? status;
