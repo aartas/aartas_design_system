@@ -136,8 +136,8 @@ class Medicines {
   int? medicineId;
   int? qty;
   dynamic discount;
-  double? discMrp;
-  double? mainMrp;
+  dynamic discMrp;
+  dynamic mainMrp;
   String? sGST;
   String? sGSTRate;
   String? cGST;
@@ -147,7 +147,6 @@ class Medicines {
   double? totalAmount;
   int? buyStatus;
   int? isStockAvailable;
-
   int? status;
   Medicine? medicine;
   MedicineStocks? medicineStocks;
