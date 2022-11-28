@@ -30,6 +30,7 @@ import 'package:aartas_design_system/providers/rewards_provider.dart';
 import 'package:aartas_design_system/providers/search_provider.dart';
 import 'package:aartas_design_system/providers/speciality_provider.dart';
 import 'package:aartas_design_system/providers/vitals_provider.dart';
+import 'package:aartas_design_system/themes_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -80,6 +81,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => PatientVitalsTrendProvider()),
         ChangeNotifierProvider(create: (_) => PatientCartProvider()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       builder: (_, child) {
         return widget.child;
