@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:aartas_design_system/components/adaptive_widgets/adaptive_button.dart';
-import 'package:aartas_design_system/components/glassmorphism.dart';
 import 'package:aartas_design_system/const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -152,8 +151,8 @@ class _LoadingDialogState extends State<LoadingDialog> {
   }
 }
 
-class _SlimLoader extends StatelessWidget {
-  const _SlimLoader({Key? key}) : super(key: key);
+class SlimLoader extends StatelessWidget {
+  const SlimLoader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +198,14 @@ class _SlimLoader extends StatelessWidget {
 // ------------------- Loading -------------------
 
 // ------------------- Modal ---------------------
-modal(BuildContext context, Icon? icon, String? title, String? discrption) {
+modal(
+  BuildContext context,
+  Icon? icon,
+  String? title,
+  String? discrption,
+  String? buttonName,
+  Function()? onTap,
+) {
   showModalBottomSheet(
     backgroundColor: themeData(context).backgroundColor,
     shape: const RoundedRectangleBorder(
@@ -214,6 +220,8 @@ modal(BuildContext context, Icon? icon, String? title, String? discrption) {
       icon: icon,
       title: title,
       discription: discrption,
+      onTap: onTap,
+      buttonName: buttonName,
     ),
   );
 }
@@ -222,11 +230,16 @@ class ModalLoadingDialog extends StatefulWidget {
   final Icon? icon;
   final String? title;
   final String? discription;
+  final String? buttonName;
+  final Function()? onTap;
+
   const ModalLoadingDialog({
     Key? key,
     this.icon,
     this.title,
     this.discription,
+    this.buttonName,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -264,7 +277,7 @@ class _ModalLoadingDialogState extends State<ModalLoadingDialog> {
         padding: EdgeInsets.fromLTRB(
             32, 16, 32, mediaQuery(context).padding.bottom + 8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             widget.icon != null
@@ -301,8 +314,14 @@ class _ModalLoadingDialogState extends State<ModalLoadingDialog> {
               height: 24,
             ),
             AdaptiveButton(
-              label: "Ok, Got it!",
-              onTap: () => Navigator.pop(context),
+              label: widget.buttonName != null
+                  ? widget.buttonName!
+                  : "Ok, Got it!",
+              onTap: widget.onTap != null
+                  ? () {
+                      widget.onTap!();
+                    }
+                  : () => Navigator.pop(context),
             )
           ],
         ),
