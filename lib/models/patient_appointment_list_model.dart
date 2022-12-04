@@ -48,6 +48,7 @@ class PatientAppointmentData {
   int? showConsFee;
   String? consText;
   String? docDiscount;
+  String? aartasDiscount;
   String? discount;
   int? couponId;
   int? appointmentType;
@@ -90,6 +91,7 @@ class PatientAppointmentData {
     this.showConsFee,
     this.consText,
     this.docDiscount,
+    this.aartasDiscount,
     this.discount,
     this.couponId,
     this.appointmentType,
@@ -135,6 +137,7 @@ class PatientAppointmentData {
     consText = json['cons_text'];
     docDiscount = json['doc_discount'];
     discount = json['discount'];
+    aartasDiscount = json['aartas_discount'];
     couponId = json['coupon_id'];
     appointmentType = json['appointment_type'];
     procedureId = json['procedure_id'];
@@ -199,6 +202,7 @@ class PatientAppointmentData {
     data['show_cons_fee'] = showConsFee;
     data['cons_text'] = consText;
     data['doc_discount'] = docDiscount;
+    data['aartas_discount'] = aartasDiscount;
     data['discount'] = discount;
     data['coupon_id'] = couponId;
     data['appointment_type'] = appointmentType;
