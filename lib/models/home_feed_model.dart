@@ -1,22 +1,16 @@
 import 'package:aartas_design_system/models/doctor_model.dart';
-import 'package:aartas_design_system/models/speciality_model.dart';
 
 class HomeFeedResponse {
   String? message;
   bool? status;
-  List<HomeFeed>? data;
+  Data? data;
 
   HomeFeedResponse({this.message, this.status, this.data});
 
   HomeFeedResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    if (json['data'] != null) {
-      data = <HomeFeed>[];
-      json['data'].forEach((v) {
-        data!.add(HomeFeed.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -24,54 +18,95 @@ class HomeFeedResponse {
     data['message'] = message;
     data['status'] = status;
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
 }
 
-class HomeFeed {
+class Data {
+  List<HomeFeedData>? homeFeedData;
+
+  Data({this.homeFeedData});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    if (json['home_feed_data'] != null) {
+      homeFeedData = <HomeFeedData>[];
+      json['home_feed_data'].forEach((v) {
+        homeFeedData!.add(HomeFeedData.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (homeFeedData != null) {
+      data['home_feed_data'] = homeFeedData!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class HomeFeedData {
   int? id;
   String? title;
   String? description;
   String? image;
+  String? redirectUrl;
+  String? alignment;
+  String? timeFrom;
+  String? timeTo;
+  String? location;
+  String? latitude;
+  String? longitude;
+  int? ageFrom;
+  int? ageTo;
+  String? gender;
+  String? platform;
   int? isSponsored;
   int? doctorId;
-  int? specialityId;
-  int? totalLikesCount;
-  int? isUserLiked;
   DoctorData? doctor;
-  Speciality? speciality;
 
-  HomeFeed({
-    this.id,
-    this.title,
-    this.description,
-    this.image,
-    this.isSponsored,
-    this.doctorId,
-    this.specialityId,
-    this.totalLikesCount,
-    this.isUserLiked,
-    this.doctor,
-    this.speciality,
-  });
+  HomeFeedData(
+      {this.id,
+      this.title,
+      this.description,
+      this.image,
+      this.redirectUrl,
+      this.alignment,
+      this.timeFrom,
+      this.timeTo,
+      this.location,
+      this.latitude,
+      this.longitude,
+      this.ageFrom,
+      this.ageTo,
+      this.gender,
+      this.platform,
+      this.isSponsored,
+      this.doctorId,
+      this.doctor});
 
-  HomeFeed.fromJson(Map<String, dynamic> json) {
+  HomeFeedData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
     image = json['image'];
+    redirectUrl = json['redirect_url'];
+    alignment = json['alignment'];
+    timeFrom = json['time_from'];
+    timeTo = json['time_to'];
+    location = json['location'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    ageFrom = json['age_from'];
+    ageTo = json['age_to'];
+    gender = json['gender'];
+    platform = json['platform'];
     isSponsored = json['is_sponsored'];
     doctorId = json['doctor_id'];
-    specialityId = json['speciality_id'];
-    totalLikesCount = json['total_likes_count'];
-    isUserLiked = json['is_user_liked_count'];
     doctor =
         json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
-    speciality = json['speciality'] != null
-        ? Speciality.fromJson(json['speciality'])
-        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -80,16 +115,21 @@ class HomeFeed {
     data['title'] = title;
     data['description'] = description;
     data['image'] = image;
+    data['redirect_url'] = redirectUrl;
+    data['alignment'] = alignment;
+    data['time_from'] = timeFrom;
+    data['time_to'] = timeTo;
+    data['location'] = location;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    data['age_from'] = ageFrom;
+    data['age_to'] = ageTo;
+    data['gender'] = gender;
+    data['platform'] = platform;
     data['is_sponsored'] = isSponsored;
     data['doctor_id'] = doctorId;
-    data['speciality_id'] = specialityId;
-    data['total_likes_count'] = totalLikesCount;
-    data['is_user_liked_count'] = isUserLiked;
     if (doctor != null) {
       data['doctor'] = doctor!.toJson();
-    }
-    if (speciality != null) {
-      data['speciality'] = speciality!.toJson();
     }
     return data;
   }

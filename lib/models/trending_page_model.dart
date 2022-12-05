@@ -26,9 +26,9 @@ class TrendingResponse {
 }
 
 class TrendingData {
-  List<HomeFeed>? homeFeedData;
+  List<HomeFeedData>? homeFeedData;
   List<DoctorData>? doctors;
-  List<HomeFeed>? testimonials;
+  List<HomeFeedData>? testimonials;
   String? homeFeedImageUrl;
   String? doctorImageUrl;
 
@@ -41,9 +41,9 @@ class TrendingData {
 
   TrendingData.fromJson(Map<String, dynamic> json) {
     if (json['home_feed_data'] != null) {
-      homeFeedData = <HomeFeed>[];
+      homeFeedData = <HomeFeedData>[];
       json['home_feed_data'].forEach((v) {
-        homeFeedData!.add(HomeFeed.fromJson(v));
+        homeFeedData!.add(HomeFeedData.fromJson(v));
       });
     }
     if (json['doctors'] != null) {
@@ -53,9 +53,9 @@ class TrendingData {
       });
     }
     if (json['testimonials'] != null) {
-      testimonials = <HomeFeed>[];
+      testimonials = <HomeFeedData>[];
       json['testimonials'].forEach((v) {
-        testimonials!.add(HomeFeed.fromJson(v));
+        testimonials!.add(HomeFeedData.fromJson(v));
       });
     }
     homeFeedImageUrl = json['home_feed_image_url'];

@@ -32,7 +32,7 @@ class ConfirmAppointment {
 class ConfirmAppointmentData {
   AppointmentData? appointmentData;
   List<DoctorData>? suggestedDoctors;
-  List<HomeFeed>? homeFeedData;
+  List<HomeFeedData>? homeFeedData;
 
   ConfirmAppointmentData(
       {this.appointmentData, this.suggestedDoctors, this.homeFeedData});
@@ -48,9 +48,9 @@ class ConfirmAppointmentData {
       });
     }
     if (json['home_feed_data'] != null) {
-      homeFeedData = <HomeFeed>[];
+      homeFeedData = <HomeFeedData>[];
       json['home_feed_data'].forEach((v) {
-        homeFeedData!.add(HomeFeed.fromJson(v));
+        homeFeedData!.add(HomeFeedData.fromJson(v));
       });
     }
   }

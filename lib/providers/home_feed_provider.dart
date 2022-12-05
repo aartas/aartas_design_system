@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HomeFeedProvider with ChangeNotifier {
-  HomeFeed _homeFeedData = HomeFeed();
-  List<HomeFeed> _homeFeedList = [];
+  HomeFeedData _homeFeedData = HomeFeedData();
+  List<HomeFeedData> _homeFeedList = [];
 
-  HomeFeed getData() {
+  HomeFeedData getData() {
     return _homeFeedData;
   }
 
-  List<HomeFeed> getList() {
+  List<HomeFeedData> getList() {
     return _homeFeedList;
   }
 
@@ -35,7 +35,7 @@ class HomeFeedProvider with ChangeNotifier {
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
-      _homeFeedList = _res.data!;
+      _homeFeedList = _res.data!.homeFeedData!;
       return _res;
     } else {
       notifyListeners();
@@ -62,7 +62,7 @@ class HomeFeedProvider with ChangeNotifier {
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
-      _homeFeedData = _res.data!.first;
+      _homeFeedData = _res.data!.homeFeedData!.first;
       return _res;
     } else {
       log(res.body);
