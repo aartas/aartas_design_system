@@ -29,7 +29,7 @@ class PatientProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = PatientResponse.fromJson(json.decode(res.body));
       _patientData = _res.data![0];
 

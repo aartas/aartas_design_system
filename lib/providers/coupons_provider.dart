@@ -38,7 +38,7 @@ class CouponProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = CouponResponse.fromJson(json.decode(res.body));
       _couponList = _res.data!.coupon!;
       notifyListeners();
@@ -69,7 +69,7 @@ class CouponProvider with ChangeNotifier {
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = CouponResponse.fromJson(json.decode(res.body));
       _couponData = _res.data!.coupon![0];
       notifyListeners();

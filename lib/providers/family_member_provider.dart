@@ -20,7 +20,7 @@ class FamilyMembersProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {"patient_id": patientId ?? ''});
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = FamilyMemberResponse.fromJson(json.decode(res.body));
       _familyMemberDataList = _res.data!;
       notifyListeners();

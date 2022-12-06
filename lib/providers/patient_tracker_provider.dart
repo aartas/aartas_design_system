@@ -21,7 +21,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       notifyListeners();
       var _res = CheckinQRCodeResponse.fromJson(json.decode(res.body));
       return _res;
@@ -46,7 +46,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
@@ -71,7 +71,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       notifyListeners();
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;

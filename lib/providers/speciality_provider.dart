@@ -29,7 +29,7 @@ class SpecialityProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = SpecialityResponse.fromJson(json.decode(res.body));
       _specialityList = _res.data!.specialityList!;
       notifyListeners();
@@ -56,7 +56,7 @@ class SpecialityProvider with ChangeNotifier {
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = SpecialityResponse.fromJson(json.decode(res.body));
       _specialityData = _res.data!.specialityList!.first;
       notifyListeners();

@@ -18,7 +18,7 @@ class ConsultationProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = ResponseModel.fromJson(json.decode(res.body));
       notifyListeners();
       return _res;
@@ -41,7 +41,7 @@ class ConsultationProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = ResponseModel.fromJson(json.decode(res.body));
       notifyListeners();
       return _res;

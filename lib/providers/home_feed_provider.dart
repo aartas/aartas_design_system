@@ -32,7 +32,7 @@ class HomeFeedProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
       _homeFeedList = _res.data!;
@@ -59,7 +59,7 @@ class HomeFeedProvider with ChangeNotifier {
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       notifyListeners();
       var _res = HomeFeedResponse.fromJson(json.decode(res.body));
       _homeFeedData = _res.data!.first;
@@ -87,7 +87,7 @@ class HomeFeedProvider with ChangeNotifier {
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
@@ -112,7 +112,7 @@ class HomeFeedProvider with ChangeNotifier {
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = HomeFeedLikeResponse.fromJson(json.decode(res.body));
       return _res;
     } else {
