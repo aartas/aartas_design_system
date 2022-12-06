@@ -3,14 +3,19 @@ import 'package:aartas_design_system/models/doctor_model.dart';
 class HomeFeedResponse {
   String? message;
   bool? status;
-  Data? data;
+  List<HomeFeedData>? data;
 
   HomeFeedResponse({this.message, this.status, this.data});
 
   HomeFeedResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    if (json['data'] != null) {
+      data = <HomeFeedData>[];
+      json['data'].forEach((v) {
+        data!.add(HomeFeedData.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -18,30 +23,7 @@ class HomeFeedResponse {
     data['message'] = message;
     data['status'] = status;
     if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    return data;
-  }
-}
-
-class Data {
-  List<HomeFeedData>? homeFeedData;
-
-  Data({this.homeFeedData});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    if (json['home_feed_data'] != null) {
-      homeFeedData = <HomeFeedData>[];
-      json['home_feed_data'].forEach((v) {
-        homeFeedData!.add(HomeFeedData.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (homeFeedData != null) {
-      data['home_feed_data'] = homeFeedData!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
   }
