@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/coupon_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/family_members_model.dart';
 import 'package:aartas_design_system/models/home_feed_model.dart';
@@ -86,7 +87,7 @@ class AppointmentData {
   FamilyMemberData? patient;
   Timeslot? timeslot;
   DoctorData? doctor;
-
+  Coupon? coupon;
   AppointmentData({
     this.id,
     this.doctorId,
@@ -102,6 +103,7 @@ class AppointmentData {
     this.patient,
     this.timeslot,
     this.doctor,
+    this.coupon,
   });
 
   AppointmentData.fromJson(Map<String, dynamic> json) {
@@ -123,6 +125,7 @@ class AppointmentData {
         json['timeslot'] != null ? Timeslot.fromJson(json['timeslot']) : null;
     doctor =
         json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
+    coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -146,6 +149,9 @@ class AppointmentData {
     }
     if (doctor != null) {
       data['doctor'] = doctor!.toJson();
+    }
+    if (coupon != null) {
+      data['coupon'] = coupon!.toJson();
     }
     return data;
   }
