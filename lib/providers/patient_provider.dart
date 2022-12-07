@@ -29,7 +29,7 @@ class PatientProvider with ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = PatientResponse.fromJson(json.decode(res.body));
       _patientData = _res.data![0];
 
@@ -58,7 +58,7 @@ class PatientProvider with ChangeNotifier {
       "offset": offset ?? "",
     });
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = PatientResponse.fromJson(json.decode(res.body));
       if (manageState == null || manageState == true) {
