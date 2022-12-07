@@ -28,7 +28,7 @@ class FamilyMembersProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return FamilyMemberResponse(message: _message);
+      return FamilyMemberResponse(message: json.decode(res.body)['message']);
     }
     // return FamilyMemberResponse.fromJson(json.decode(res.body));
   }

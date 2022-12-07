@@ -26,7 +26,7 @@ class InvestigationProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return InvestigationsResponse.fromJson(json.decode(res.body));
     }
-    return InvestigationsResponse(message: _message);
+    return InvestigationsResponse(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> addInvestigation(
@@ -43,7 +43,7 @@ class InvestigationProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> saveInvestigation(
@@ -74,7 +74,7 @@ class InvestigationProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> saveQuickActionInvestigation(
@@ -105,7 +105,7 @@ class InvestigationProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> removeInvestigation(
@@ -122,7 +122,7 @@ class InvestigationProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> fetchQuickActionList(String baseURL) async {
@@ -135,7 +135,7 @@ class InvestigationProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -153,7 +153,7 @@ class InvestigationProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

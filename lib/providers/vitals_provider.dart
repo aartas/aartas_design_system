@@ -29,7 +29,7 @@ class VitalsProvider with ChangeNotifier {
     } else {
       log(_message);
       notifyListeners();
-      return VitalsResponse(message: _message);
+      return VitalsResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -60,7 +60,7 @@ class VitalsProvider with ChangeNotifier {
       return PatientVitalsReponse.fromJson(json.decode(res.body));
     }
 
-    return PatientVitalsReponse(message: _message);
+    return PatientVitalsReponse(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> updatePatientVitals(
@@ -87,7 +87,7 @@ class VitalsProvider with ChangeNotifier {
       notifyListeners();
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> removeVital(
@@ -104,7 +104,7 @@ class VitalsProvider with ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

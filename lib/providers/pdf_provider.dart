@@ -21,7 +21,7 @@ class PDFProvider extends ChangeNotifier {
       return PdfGenerateResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return PdfGenerateResponse(message: _message);
+      return PdfGenerateResponse(message: json.decode(res.body)['message']);
     }
   }
 }

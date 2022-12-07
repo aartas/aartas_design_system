@@ -30,7 +30,7 @@ class AnalyticsApis {
     } else {
       String _message = "Analytics(Capture Event):${res.statusCode}";
       log(_message);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

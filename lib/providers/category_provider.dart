@@ -29,7 +29,7 @@ class CategoryProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return CategoryResponse(message: _message);
+      return CategoryResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -66,7 +66,7 @@ class CategoryProvider extends ChangeNotifier {
       return SearchCategoryResponse.fromJson(json.decode(res.body));
     }
 
-    return SearchCategoryResponse(message: _message);
+    return SearchCategoryResponse(message: json.decode(res.body)['message']);
   }
 
   // -------------------------- Complaints -----------------------------------

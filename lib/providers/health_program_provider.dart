@@ -33,7 +33,7 @@ class HealthProgramProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return HealthProgramResponse(message: _message);
+      return HealthProgramResponse(message: json.decode(res.body)['message']);
     }
   }
 }

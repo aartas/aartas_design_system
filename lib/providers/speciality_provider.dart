@@ -37,7 +37,7 @@ class SpecialityProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return SpecialityResponse(message: _message);
+      return SpecialityResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -64,7 +64,7 @@ class SpecialityProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return SpecialityResponse(message: _message);
+      return SpecialityResponse(message: json.decode(res.body)['message']);
     }
   }
 }

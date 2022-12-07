@@ -23,7 +23,7 @@ class FollowUpDateProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

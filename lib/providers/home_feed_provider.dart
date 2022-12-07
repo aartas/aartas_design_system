@@ -40,7 +40,7 @@ class HomeFeedProvider with ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return HomeFeedResponse(message: _message);
+      return HomeFeedResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -67,7 +67,7 @@ class HomeFeedProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return HomeFeedResponse(message: _message);
+      return HomeFeedResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -92,7 +92,7 @@ class HomeFeedProvider with ChangeNotifier {
       return _res;
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -117,7 +117,7 @@ class HomeFeedProvider with ChangeNotifier {
       return _res;
     } else {
       log(res.body);
-      return HomeFeedLikeResponse(message: _message);
+      return HomeFeedLikeResponse(message: json.decode(res.body)['message']);
     }
   }
 }

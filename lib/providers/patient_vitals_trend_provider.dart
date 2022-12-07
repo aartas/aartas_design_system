@@ -32,7 +32,8 @@ class PatientVitalsTrendProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return PatientVitalsTrendResponse(message: _message);
+      return PatientVitalsTrendResponse(
+          message: json.decode(res.body)['message']);
     }
   }
 }

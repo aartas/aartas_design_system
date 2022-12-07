@@ -38,7 +38,7 @@ class PatientProvider with ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return PatientResponse(message: _message);
+      return PatientResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -107,7 +107,7 @@ class PatientProvider with ChangeNotifier {
       log(_message);
       notifyListeners();
       return AppointmentResponse(
-        message: _message,
+        message: json.decode(res.body)['message'],
       );
     }
   }

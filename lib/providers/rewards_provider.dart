@@ -38,7 +38,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return RewardPointsResponse(message: _message);
+      return RewardPointsResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -66,7 +66,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return RewardHistoryResponse(message: _message);
+      return RewardHistoryResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -93,7 +93,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return RewardTypeListResponse(message: _message);
+      return RewardTypeListResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -122,7 +122,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return MembershipResponse(message: _message);
+      return MembershipResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -152,7 +152,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return CouponResponse(message: _message);
+      return CouponResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -178,7 +178,7 @@ class RewardProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

@@ -82,7 +82,8 @@ class AppointmentApis {
     } else {
       String _message = "AppointmentApis(getList):${res.statusCode}";
       log(_message);
-      return AppointmentResponse(message: _message).data!;
+      return AppointmentResponse(message: json.decode(res.body)['message'])
+          .data!;
     }
   }
 
@@ -103,7 +104,8 @@ class AppointmentApis {
       String _message =
           "AppointmentApis(previousAppointments):${res.statusCode}";
       log(_message);
-      return AppointmentResponse(message: _message).data!;
+      return AppointmentResponse(message: json.decode(res.body)['message'])
+          .data!;
     }
   }
 }

@@ -28,7 +28,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return CheckinQRCodeResponse(message: _message);
+      return CheckinQRCodeResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -53,7 +53,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -78,7 +78,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

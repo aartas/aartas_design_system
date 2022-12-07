@@ -20,7 +20,7 @@ class MedicineProvider extends ChangeNotifier {
       return MedicineUnitResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return MedicineUnitResponse(message: _message);
+      return MedicineUnitResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -48,7 +48,7 @@ class MedicineProvider extends ChangeNotifier {
       return MedicineResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return MedicineResponse(message: _message);
+      return MedicineResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -70,7 +70,7 @@ class MedicineProvider extends ChangeNotifier {
       );
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -115,7 +115,7 @@ class MedicineProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -160,7 +160,7 @@ class MedicineProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -179,7 +179,7 @@ class MedicineProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

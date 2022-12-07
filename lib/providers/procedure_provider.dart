@@ -31,7 +31,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ProcedureResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ProcedureResponse(message: _message);
+      return ProcedureResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -58,7 +58,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -85,7 +85,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -103,7 +103,7 @@ class ProcedureProvider extends ChangeNotifier {
     if (res.statusCode == 200) {
       return ResponseModel.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: _message);
+    return ResponseModel(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> removeProcedure(
@@ -121,7 +121,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -135,7 +135,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -153,7 +153,7 @@ class ProcedureProvider extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

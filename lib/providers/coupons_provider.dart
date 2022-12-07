@@ -46,7 +46,7 @@ class CouponProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return CouponResponse(message: _message);
+      return CouponResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -77,7 +77,7 @@ class CouponProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return CouponResponse(message: _message);
+      return CouponResponse(message: json.decode(res.body)['message']);
     }
   }
 }

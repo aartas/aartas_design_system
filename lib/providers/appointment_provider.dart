@@ -52,7 +52,7 @@ class AppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return AppointmentResponse(message: _message);
+      return AppointmentResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -75,7 +75,7 @@ class AppointmentProvider extends ChangeNotifier {
       return _res;
     } else {
       notifyListeners();
-      return AppointmentResponse(message: _message);
+      return AppointmentResponse(message: json.decode(res.body)['message']);
     }
   }
 

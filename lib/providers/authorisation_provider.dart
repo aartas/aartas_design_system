@@ -27,7 +27,7 @@ class AuthorisationProvider with ChangeNotifier {
           "AuthorisationProvider(generatePasscode):${res.statusCode}";
       log(_message);
       notifyListeners();
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -59,7 +59,7 @@ class AuthorisationProvider with ChangeNotifier {
         return ResponseModel.fromJson(json.decode(res.body));
       } else {
         log(_message);
-        return ResponseModel(message: _message);
+        return ResponseModel(message: json.decode(res.body)['message']);
       }
     } else {
       String _message = "FCM Token is null!";

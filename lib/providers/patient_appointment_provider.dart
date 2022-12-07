@@ -43,7 +43,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return PatientAppointmentResponse(message: _message);
+      return PatientAppointmentResponse(
+          message: json.decode(res.body)['message']);
     }
   }
 
@@ -84,7 +85,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
 
-      return PatientAppointmentResponse(message: _message);
+      return PatientAppointmentResponse(
+          message: json.decode(res.body)['message']);
     }
   }
 
@@ -209,7 +211,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return PatientAheadResponse(message: _message);
+      return PatientAheadResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -230,7 +232,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }

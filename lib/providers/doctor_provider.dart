@@ -47,7 +47,7 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return DoctorResponse(message: _message);
+      return DoctorResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -74,7 +74,7 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return DoctorResponse(message: _message);
+      return DoctorResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -98,7 +98,7 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return DoctorResponse(message: _message);
+      return DoctorResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -118,7 +118,7 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -137,7 +137,7 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return DoctorResponse(message: _message);
+      return DoctorResponse(message: json.decode(res.body)['message']);
     }
   }
 }

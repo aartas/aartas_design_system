@@ -44,7 +44,7 @@ class SearchProvider extends ChangeNotifier {
     } else {
       notifyListeners();
       log(res.body);
-      return SearchResponse(message: _message);
+      return SearchResponse(message: json.decode(res.body)['message']);
     }
   }
 }

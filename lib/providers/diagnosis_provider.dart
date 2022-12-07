@@ -27,7 +27,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return DiagnosisResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return DiagnosisResponse(message: _message);
+      return DiagnosisResponse(message: json.decode(res.body)['message']);
     }
   }
 
@@ -46,7 +46,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -78,7 +78,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -109,7 +109,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -128,7 +128,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -142,7 +142,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
@@ -160,7 +160,7 @@ class DiagnosisProvder extends ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: _message);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }
