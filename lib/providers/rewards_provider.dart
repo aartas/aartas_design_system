@@ -30,7 +30,7 @@ class RewardProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = RewardPointsResponse.fromJson(json.decode(res.body));
       _rewardPointsData = _res.data!;
@@ -58,7 +58,7 @@ class RewardProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = RewardHistoryResponse.fromJson(json.decode(res.body));
       _rewardHistoryData = _res.data!;
@@ -85,7 +85,7 @@ class RewardProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = RewardTypeListResponse.fromJson(json.decode(res.body));
       _rewardTypeListData = _res.data!;
@@ -113,7 +113,7 @@ class RewardProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = MembershipResponse.fromJson(json.decode(res.body));
       _membershipData = _res.data!;
@@ -143,7 +143,7 @@ class RewardProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = CouponResponse.fromJson(json.decode(res.body));
       _rewardCouponList = _res.data!.coupon!;

@@ -21,7 +21,7 @@ class PatientTrackerProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = CheckinQRCodeResponse.fromJson(json.decode(res.body));
       return _res;

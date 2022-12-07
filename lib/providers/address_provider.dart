@@ -22,7 +22,7 @@ class AddressProvider extends ChangeNotifier {
       "patient_id": patientID ?? "",
     });
     log("(${res.statusCode}) $_url");
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       var _res = AddressResponse.fromJson(json.decode(res.body));
       _list = _res.data!;

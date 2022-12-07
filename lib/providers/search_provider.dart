@@ -29,7 +29,7 @@ class SearchProvider extends ChangeNotifier {
     });
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
-    if (res.statusCode == 200) {
+    if (res.statusCode == 200 && json.decode(res.body)['status']) {
       notifyListeners();
       _appointmentList.clear();
       _patientList.clear();
