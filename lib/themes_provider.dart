@@ -174,7 +174,7 @@ class ThemeProvider extends ChangeNotifier {
 
   _load() async {
     await _initSharedPreferences();
-    _isDarkTheme = _sharedPreferences!.getBool(_themeKey) ?? true;
+    _isDarkTheme = _sharedPreferences!.getBool(_themeKey) ?? false;
     notifyListeners();
   }
 
