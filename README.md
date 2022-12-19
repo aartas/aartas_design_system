@@ -28,29 +28,34 @@ Step 1:
 Add provider to the project dependencies.
 NOTE: This package will not work without provider package.
 
+```dart
+dependencies:
+  provider: any
+```
+
 Step 2:
 Add AartasApiProvider to the top level functions.
 
 ```dart
-    const AartasApiProvider(
-        child: MaterialApp(),
-    );
+const AartasApiProvider(
+    child: MaterialApp(),
+);
 ```
 
 Step 3:
 Fetch & Get API Response.
 
 ```dart
-    // This is a Future Response.
+// This is a Future Response.
 
-    // Fetch APIs
-    // use {listen: false} if the provider called inside the functions.
-    Provider.of<[PROVIDER_NAME]>(context, listen: false).fetchList(baseURL, patientID);
+// Fetch APIs
+// use {listen: false} if the provider called inside the functions.
+Provider.of<[PROVIDER_NAME]>(context, listen: false).fetchList(baseURL, patientID);
 
 
-    // Get APIs
-    // No listen parameter required for the get function as it will always called inside override BuildContext.
-    Provider.of<[PROVIDER_NAME]>(context).getList();
+// Get APIs
+// No listen parameter required for the get function as it will always called inside override BuildContext.
+Provider.of<[PROVIDER_NAME]>(context).getList();
 ```
 
 ## Usage
@@ -140,9 +145,7 @@ class CusWidg extends StatelessWidget {
 
 ```
 
-## IMPORTANT NOTE
-
-This is private project which only associates with aartas, using or sharing of any of the code outside the aartas ecosystem might came under an offensive action.
+## IMPORTANT NOTE : This is private project which only associates with aartas, using or sharing of any of the code outside the aartas ecosystem might came under an offensive action.
 
 ## List Of Providers/Models
 
