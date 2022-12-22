@@ -31,8 +31,7 @@ class PatientProvider with ChangeNotifier {
 
     if (res.statusCode == 200 && json.decode(res.body)['status']) {
       var _res = PatientResponse.fromJson(json.decode(res.body));
-      _patientData = _res.data![0];
-
+      _patientData = _res.data!.first;
       notifyListeners();
       return _res;
     } else {
@@ -144,5 +143,10 @@ class PatientProvider with ChangeNotifier {
         message: "Something went wrong",
       );
     }
+  }
+
+  Future<void> logout() async {
+    _patientData = PatientData();
+    notifyListeners();
   }
 }
