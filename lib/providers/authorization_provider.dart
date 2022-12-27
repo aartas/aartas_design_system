@@ -5,7 +5,7 @@ import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class AuthorisationProvider with ChangeNotifier {
+class AuthorizationProvider with ChangeNotifier {
 // Reset Passcode
   Future<ResponseModel> generatePasscode(
     String? baseURL,
@@ -24,33 +24,74 @@ class AuthorisationProvider with ChangeNotifier {
       return ResponseModel.fromJson(json.decode(res.body));
     } else {
       String _message =
-          "AuthorisationProvider(generatePasscode):${res.statusCode}";
+          "AuthorizationProvider(generatePasscode):${res.statusCode}";
       log(_message);
       notifyListeners();
       return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 
-  Future<ResponseModel> updateFcmToken(
+  // Future<ResponseModel> saveUnregisteredUser(
+  //   String? baseURL,
+  //   String? fcmToken,
+  //   String? deviceID,
+  // ) async {
+  //   var _url = Uri.parse("$baseURL/save/unregistered/user");
+  //   final res = await http.post(_url, body: {
+  //     "fcm_token": fcmToken ?? "",
+  //     "device_id": deviceID ?? "",
+  //   });
+  //   if (res.statusCode == 200) {
+  //     notifyListeners();
+  //     return ResponseModel.fromJson(json.decode(res.body));
+  //   } else {
+  //     String _message =
+  //         "AuthorizationProvider(generatePasscode):${res.statusCode}";
+  //     log(_message);
+  //     notifyListeners();
+  //     return ResponseModel(message: json.decode(res.body)['message']);
+  //   }
+  // }
+
+  Future<ResponseModel?>? saveUnregisteredUser(
+    String? baseURL,
+    String? fcmToken,
+    String? deviceID,
+  ) async {
+    var _url = Uri.parse("$baseURL/save/unregistered/user");
+    final res = await http.post(_url, body: {
+      "fcm_token": fcmToken ?? "",
+      "device_id": deviceID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      notifyListeners();
+      return _res;
+    } else {
+      log(res.body);
+      notifyListeners();
+      return Future.value();
+    }
+  }
+
+  Future<ResponseModel?>? updateFcmToken(
     String baseURL,
     String? userID,
     String? token,
-    String? location,
-    String? latitude,
-    String? longitude,
     String? platform,
     String? version,
+    String? deviceID,
   ) async {
     var _url = Uri.parse("$baseURL/patient/update/fcm/token");
     if (token != null && token != "" && token != "null") {
       final res = await http.post(_url, body: {
         "user_id": userID,
         "fcm_token": token,
-        "location": location,
-        "latitude": latitude,
-        "longitude": longitude,
         "version": version,
         "platform": platform,
+        "device_id": deviceID,
       });
       String _message = "(${res.statusCode}) $_url";
       log(_message);
@@ -62,7 +103,7 @@ class AuthorisationProvider with ChangeNotifier {
         return ResponseModel(message: json.decode(res.body)['message']);
       }
     } else {
-      String _message = "FCM Token is null!";
+      String _message = "FCMToken is null!";
       log(_message);
       notifyListeners();
       return ResponseModel(message: _message);
