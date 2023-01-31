@@ -69,7 +69,7 @@ class AdaptiveButton extends StatelessWidget {
               ? Padding(
                   padding: label != null
                       ? EdgeInsets.only(
-                          right: padding != null ? padding!.right : 16,
+                          right: padding != null ? padding!.right / 2 : 16,
                         )
                       : EdgeInsets.zero,
                   child: Icon(
