@@ -50,7 +50,7 @@ class AppointmentData {
   String? consText;
   String? docDiscount;
   String? discount;
-  String? couponId;
+  int? couponId;
   int? appointmentType;
   String? campId;
   String? campDoctorId;
