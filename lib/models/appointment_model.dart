@@ -54,7 +54,7 @@ class AppointmentData {
   int? appointmentType;
   String? campId;
   String? campDoctorId;
-  String? procedureId;
+  int? procedureId;
   String? procedureCost;
   dynamic patientBundlesId;
   String? appointmentDate;
