@@ -33,6 +33,7 @@ class ConnectLoginData {
   String? password;
   int? role;
   int? clinicId;
+  String? aartasId;
   Roles? roles;
   Clinic? clinic;
 
@@ -44,6 +45,7 @@ class ConnectLoginData {
       this.password,
       this.role,
       this.clinicId,
+      this.aartasId,
       this.roles,
       this.clinic});
 
@@ -55,6 +57,7 @@ class ConnectLoginData {
     password = json['password'];
     role = json['role'];
     clinicId = json['clinic_id'];
+    aartasId = json['aartas_id'];
     roles = json['roles'] != null ? Roles.fromJson(json['roles']) : null;
     clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
   }
@@ -68,6 +71,7 @@ class ConnectLoginData {
     data['password'] = password;
     data['role'] = role;
     data['clinic_id'] = clinicId;
+    data['aartas_id'] = aartasId;
     if (roles != null) {
       data['roles'] = roles!.toJson();
     }
@@ -82,13 +86,15 @@ class Roles {
   int? id;
   String? title;
   String? permissions;
+  String? image;
 
-  Roles({this.id, this.title, this.permissions});
+  Roles({this.id, this.title, this.permissions, this.image});
 
   Roles.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     permissions = json['permissions'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -96,6 +102,7 @@ class Roles {
     data['id'] = id;
     data['title'] = title;
     data['permissions'] = permissions;
+    data['image'] = image;
     return data;
   }
 }
