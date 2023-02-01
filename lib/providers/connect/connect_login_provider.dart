@@ -26,7 +26,7 @@ class ConnectLoginProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       var _res = ConnectLoginResponse.fromJson(json.decode(res.body));
       _userData = _res.data!;
       notifyListeners();
