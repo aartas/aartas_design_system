@@ -29,8 +29,10 @@ class DoctorProvider with ChangeNotifier {
   Future<DoctorResponse> fetchList(
     String baseURL,
     String patientID,
+    bool? showAll,
   ) async {
-    var _url = Uri.parse("$baseURL/doctors");
+    var _url = Uri.parse(
+        "$baseURL/doctors${showAll != null && showAll ? "?show_all=1" : ""}");
     final res = await http.get(
       _url,
       //  body: {"patient_id": patientID}
