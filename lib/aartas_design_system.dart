@@ -8,6 +8,8 @@ import 'package:aartas_design_system/providers/book_appointment_provider.dart';
 import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/clinics_provider.dart';
 import 'package:aartas_design_system/providers/complaint_provider.dart';
+import 'package:aartas_design_system/providers/connect/connect_attendance_provider.dart';
+import 'package:aartas_design_system/providers/connect/connect_login_provider.dart';
 import 'package:aartas_design_system/providers/consultation_provider.dart';
 import 'package:aartas_design_system/providers/coupons_provider.dart';
 import 'package:aartas_design_system/providers/diagnosis_provider.dart';
@@ -84,6 +86,8 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => AddressProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => ClinicProvider()),
+        ChangeNotifierProvider(create: (_) => ConnectLoginProvider()),
+        ChangeNotifierProvider(create: (_) => ConnectAttendanceProvider()),
       ],
       builder: (_, child) {
         return widget.child;
