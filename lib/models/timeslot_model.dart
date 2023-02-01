@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/doctor_model.dart';
+
 class Timeslot {
   int? id;
   int? doctorId;
@@ -71,79 +73,6 @@ class Timeslot {
     if (room != null) {
       data['room'] = room!.toJson();
     }
-    return data;
-  }
-}
-
-class Clinic {
-  int? id;
-  String? title;
-  String? address;
-  int? totalRoooms;
-  String? phoneNumber;
-  String? gSTIN;
-  String? stateCode;
-  String? ipAddressList;
-  String? latitude;
-  String? longitude;
-  String? createdAt;
-  String? updatedAt;
-  String? createdBy;
-  String? updatedBy;
-  int? status;
-
-  Clinic(
-      {this.id,
-      this.title,
-      this.address,
-      this.totalRoooms,
-      this.phoneNumber,
-      this.gSTIN,
-      this.stateCode,
-      this.ipAddressList,
-      this.latitude,
-      this.longitude,
-      this.createdAt,
-      this.updatedAt,
-      this.createdBy,
-      this.updatedBy,
-      this.status});
-
-  Clinic.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    address = json['address'];
-    totalRoooms = json['total_roooms'];
-    phoneNumber = json['phone_number'];
-    gSTIN = json['GSTIN'];
-    stateCode = json['state_code'];
-    ipAddressList = json['ip_address_list'];
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
-    status = json['status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['address'] = address;
-    data['total_roooms'] = totalRoooms;
-    data['phone_number'] = phoneNumber;
-    data['GSTIN'] = gSTIN;
-    data['state_code'] = stateCode;
-    data['ip_address_list'] = ipAddressList;
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
-    data['status'] = status;
     return data;
   }
 }
