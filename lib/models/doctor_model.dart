@@ -268,6 +268,7 @@ class Timings {
   String? scheduleTimings;
   dynamic timePerPatient;
   int? clinicId;
+  int? clinicRoomsId;
   int? createdBy;
   int? updatedBy;
   String? createdAt;
@@ -282,6 +283,7 @@ class Timings {
       this.scheduleTimings,
       this.timePerPatient,
       this.clinicId,
+      this.clinicRoomsId,
       this.createdBy,
       this.updatedBy,
       this.createdAt,
@@ -296,6 +298,7 @@ class Timings {
     scheduleTimings = json['scheduleTimings'];
     timePerPatient = json['time_per_patient'];
     clinicId = json['clinic_id'];
+    clinicRoomsId = json['clinic_rooms_id'];
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
     createdAt = json['created_at'];
@@ -312,6 +315,7 @@ class Timings {
     data['scheduleTimings'] = scheduleTimings;
     data['time_per_patient'] = timePerPatient;
     data['clinic_id'] = clinicId;
+    data['clinic_rooms_id'] = clinicRoomsId;
     data['created_by'] = createdBy;
     data['updated_by'] = updatedBy;
     data['created_at'] = createdAt;
