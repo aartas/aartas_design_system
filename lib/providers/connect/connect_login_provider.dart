@@ -15,12 +15,12 @@ class ConnectLoginProvider extends ChangeNotifier {
   Future<ConnectLoginResponse> login(
     String baseURL,
     String? email,
-    String? passcode,
+    String? password,
   ) async {
     var _url = Uri.parse("$baseURL/connect/login");
     final res = await http.post(_url, body: {
       "email": email ?? "",
-      "passcode": passcode ?? "",
+      "password": password ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
