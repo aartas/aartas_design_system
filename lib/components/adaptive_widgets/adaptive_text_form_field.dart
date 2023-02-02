@@ -14,31 +14,39 @@ class AdaptiveTextFormField extends StatelessWidget {
   final String? errorText, labelText, initialValue, hintText;
   final TextInputType? keyboardType;
   final TextEditingController? textEditingController;
-  final bool? autoFocus, enabled, filled;
+  final bool? autoFocus,
+      enabled,
+      filled,
+      enableSuggestions,
+      obscureText,
+      autocorrect;
   final TextStyle? textStyle;
   final String? Function(String?)? validator;
-  const AdaptiveTextFormField(
-      {Key? key,
-      this.prefixWidget,
-      this.suffixWidget,
-      this.onChanged,
-      this.maxLength,
-      this.contentPadding,
-      this.border,
-      this.focusedBorder,
-      this.disabledBorder,
-      this.errorText,
-      this.labelText,
-      this.initialValue,
-      this.textEditingController,
-      this.keyboardType,
-      this.autoFocus,
-      this.enabled,
-      this.filled,
-      this.textStyle,
-      this.hintText,
-      this.validator})
-      : super(key: key);
+  const AdaptiveTextFormField({
+    Key? key,
+    this.prefixWidget,
+    this.suffixWidget,
+    this.onChanged,
+    this.maxLength,
+    this.contentPadding,
+    this.border,
+    this.focusedBorder,
+    this.disabledBorder,
+    this.errorText,
+    this.labelText,
+    this.initialValue,
+    this.textEditingController,
+    this.keyboardType,
+    this.autoFocus,
+    this.enabled,
+    this.filled,
+    this.textStyle,
+    this.hintText,
+    this.validator,
+    this.enableSuggestions,
+    this.obscureText,
+    this.autocorrect,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +63,10 @@ class AdaptiveTextFormField extends StatelessWidget {
       height: 80,
       // padding: const EdgeInsets.all(4),
       child: TextFormField(
-        enableSuggestions: true,
+        enableSuggestions:
+            enableSuggestions != null ? enableSuggestions! : false,
+        obscureText: obscureText != null ? obscureText! : false,
+        autocorrect: autocorrect != null ? autocorrect! : false,
         validator: validator,
         controller: textEditingController,
         keyboardType: keyboardType != null ? keyboardType! : null,
