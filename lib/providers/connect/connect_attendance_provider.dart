@@ -48,11 +48,15 @@ class ConnectAttendanceProvider extends ChangeNotifier {
     String baseURL,
     String? adminUserId,
     String? clinicId,
+    String? lat,
+    String? lng,
   ) async {
     var _url = Uri.parse("$baseURL/connect/team/checkin/checkout");
     final res = await http.post(_url, body: {
       "admin_user_id": adminUserId ?? "",
       "clinic_id": clinicId ?? "",
+      "latitude": lat ?? "",
+      "longitude": lng ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
