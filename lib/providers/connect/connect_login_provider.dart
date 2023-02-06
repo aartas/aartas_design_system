@@ -16,11 +16,13 @@ class ConnectLoginProvider extends ChangeNotifier {
     String baseURL,
     String? email,
     String? password,
+    String? fcmToken,
   ) async {
     var _url = Uri.parse("$baseURL/connect/login");
     final res = await http.post(_url, body: {
       "email": email ?? "",
       "password": password ?? "",
+      "fcm_token": fcmToken ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
