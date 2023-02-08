@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CallNurseProvider extends ChangeNotifier {
-  Future<ResponseModel> fetchData(
+  Future<ResponseModel> callNurse(
     String baseURL,
     String? doctorID,
     String? clinicID,
