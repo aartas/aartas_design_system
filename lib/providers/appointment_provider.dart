@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/models/appointment_model.dart';
+import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -81,5 +82,25 @@ class AppointmentProvider extends ChangeNotifier {
 
   AppointmentResponse getAppointmentData() {
     return _appointmentData;
+  }
+
+  Future<ResponseModel> appointmentCallIn(
+    String? baseURL,
+    String? appointmentID,
+  ) async {
+    var _url = Uri.parse("$baseURL/appointment/call/in");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      notifyListeners();
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
   }
 }
