@@ -18,6 +18,7 @@ import 'package:flutter/cupertino.dart';
 //     ),
 //   ],
 // );
+
 Widget getAppointmentStatusChip(context, int status) {
   if (status == 1) {
     return CustomChip(
@@ -139,4 +140,47 @@ Widget getAppointmentStatusChip(context, int status) {
     ),
     backgroundColor: buffColor,
   );
+}
+
+String getAppointmentStatusString(context, int status) {
+  if (status == 1) {
+    return "Confirmation Pending";
+  }
+  if (status == 2) {
+    return "Booked";
+  }
+  if (status == 3) {
+    return "Cancelled";
+  }
+  if (status == 4) {
+    return "Booked";
+    // return CustomChip(
+    //   child: Text(
+    //     "QR Code Generated",
+    //     style: textTheme(context).subtitle2!.apply(
+    //           color: seaShellColor,
+    //         ),
+    //   ),
+    //   backgroundColor: cadetBlueColor,
+    // );
+  }
+  if (status == 5) {
+    return "Check in";
+  }
+  if (status == 6) {
+    return "Vitals Done";
+  }
+  if (status == 7) {
+    return "Currently Consulting...";
+  }
+  if (status == 8) {
+    return "Completed";
+  }
+  if (status == 9) {
+    return "Unattended";
+  }
+  if (status == 10) {
+    return "Payment Pending";
+  }
+  return "...";
 }
