@@ -66,6 +66,7 @@ class AppointmentData {
   int? whatsappSent;
   int? isConfirmed;
   String? prescriptionFile;
+  String? billFile;
   PatientData? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
@@ -111,6 +112,7 @@ class AppointmentData {
     this.followUpDate,
     this.isConfirmed,
     this.prescriptionFile,
+    this.billFile,
     this.patient,
     this.timeslot,
     this.vitals,
@@ -158,6 +160,7 @@ class AppointmentData {
     whatsappSent = json['whatsapp_sent'];
     isConfirmed = json['is_confirmed'];
     prescriptionFile = json['prescription_file'];
+    billFile = json['bill_file'];
     patient =
         json['patient'] != null ? PatientData.fromJson(json['patient']) : null;
     timeslot =
@@ -248,6 +251,7 @@ class AppointmentData {
     data['whatsapp_sent'] = whatsappSent;
     data['is_confirmed'] = isConfirmed;
     data['prescription_file'] = prescriptionFile;
+    data['bill_file'] = billFile;
     if (patient != null) {
       data['patient'] = patient!.toJson();
     }
