@@ -4,7 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData globalThemeData(context) => ThemeData(
       // primaryColor: burntUmberColor,
-      colorScheme: ColorScheme.fromSwatch(accentColor: burntUmberColor),
+      colorScheme: ColorScheme.fromSwatch(
+          accentColor: burntUmberColor, backgroundColor: pearlColor),
       fontFamily: "Urbanist",
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
@@ -84,7 +85,10 @@ ThemeData globalThemeData(context) => ThemeData(
 
 ThemeData lightThemeData(context) => globalThemeData(context).copyWith(
       scaffoldBackgroundColor: seaShellColor,
-      backgroundColor: pearlColor,
+      colorScheme: ColorScheme.fromSwatch(
+        accentColor: burntUmberColor,
+        backgroundColor: pearlColor,
+      ),
       brightness: Brightness.light,
       appBarTheme: AppBarTheme(
         backgroundColor: pearlColor,
@@ -119,7 +123,10 @@ ThemeData lightThemeData(context) => globalThemeData(context).copyWith(
 
 ThemeData darkThemeData(context) => globalThemeData(context).copyWith(
       scaffoldBackgroundColor: charcoalColor,
-      backgroundColor: graphiteColor,
+      colorScheme: ColorScheme.fromSwatch(
+        accentColor: burntUmberColor,
+        backgroundColor: graphiteColor,
+      ),
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
         backgroundColor: graphiteColor,
@@ -143,9 +150,7 @@ ThemeData darkThemeData(context) => globalThemeData(context).copyWith(
         subtitle2: textTheme(context).subtitle2!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
         bodyText1: textTheme(context).bodyText1!.copyWith(
-              color: seaShellColor.withOpacity(0.6),
-              fontFamily: "Urbanist",
-            ),
+            color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
         bodyText2: textTheme(context).bodyText2!.copyWith(
             color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
         caption: textTheme(context).caption!.copyWith(
