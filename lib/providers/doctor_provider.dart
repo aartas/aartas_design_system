@@ -94,7 +94,9 @@ class DoctorProvider with ChangeNotifier {
     if (res.statusCode == 200) {
       _loginTime = DateTime.now();
       var _res = DoctorResponse.fromJson(json.decode(res.body));
-      _doctorData = _res.data![0];
+      if (_res.data!.isNotEmpty) {
+        _doctorData = _res.data![0];
+      }
       notifyListeners();
       return _res;
     } else {
