@@ -58,6 +58,7 @@ class DiagnosisProvder extends ChangeNotifier {
     String? durationType,
     String? diagnosisStatus,
     String? medication,
+    String? note,
     String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/save/diagnosis");
@@ -68,10 +69,10 @@ class DiagnosisProvder extends ChangeNotifier {
       "duration_type": durationType ?? "",
       "diagnosis_status": diagnosisStatus ?? "",
       "medication": medication ?? "",
+      "note": note ?? "",
       "old_id": oldID ?? "",
     });
-    String _message =
-        "(${res.statusCode}) $_url: appointmentID:$appointmentID, diagnosisID:$diagnosisID, duration:$duration, durationType:$durationType, diagnosisStatus:$diagnosisStatus, medication:$medication, oldID:$oldID";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
