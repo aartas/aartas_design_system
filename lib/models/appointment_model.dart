@@ -147,8 +147,7 @@ class AppointmentData {
     appointmentType = json['appointment_type'];
     campId = json['camp_id'];
     campDoctorId = json['camp_doctor_id'];
-    followUpDate =
-        json['follow_up_date'] != null ? json['follow_up_date']! : "?";
+    followUpDate = json['follow_up_date'];
     procedureId = json['procedure_id'];
     procedureCost = json['procedure_cost'];
     patientBundlesId = json['patient_bundles_id'];
