@@ -440,6 +440,7 @@ class AppointmentsDiagnosis {
   int? diagnosisId;
   int? duration;
   int? durationType;
+  String? note;
   String? diagnosisStatus;
   int? medication;
   IdTitle? diagnosis;
@@ -450,6 +451,7 @@ class AppointmentsDiagnosis {
       this.diagnosisId,
       this.duration,
       this.durationType,
+      this.note,
       this.diagnosisStatus,
       this.medication,
       this.diagnosis});
@@ -460,6 +462,7 @@ class AppointmentsDiagnosis {
     diagnosisId = json['diagnosis_id'];
     duration = json['duration'];
     durationType = json['duration_type'];
+    note = json['note'];
     diagnosisStatus = json['diagnosis_status'];
     medication = json['medication'];
     diagnosis =
@@ -472,6 +475,7 @@ class AppointmentsDiagnosis {
     data['appointment_id'] = appointmentId;
     data['diagnosis_id'] = diagnosisId;
     data['duration'] = duration;
+    data['note'] = note;
     data['duration_type'] = durationType;
     data['diagnosis_status'] = diagnosisStatus;
     data['medication'] = medication;
