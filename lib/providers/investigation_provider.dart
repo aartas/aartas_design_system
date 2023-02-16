@@ -12,12 +12,16 @@ class InvestigationProvider extends ChangeNotifier {
     String? doctorID,
     String? specialityID,
     String? search,
+    String? limit,
+    String? offset,
   ) async {
     var _url = Uri.parse("$baseURL/investigations/list");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",
       "speciality_id": specialityID ?? "",
       "search": search ?? "",
+      "limit": limit ?? "",
+      "offset": offset ?? "",
     });
     String _message =
         "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search";
