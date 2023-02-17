@@ -1,4 +1,6 @@
 import 'package:aartas_design_system/models/coupon_model.dart';
+import 'package:aartas_design_system/models/doctor_model.dart';
+import 'package:aartas_design_system/models/family_members_model.dart';
 import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
@@ -78,6 +80,7 @@ class AppointmentData {
   List<AppointmentsMedicines>? appointmentsMedicines;
   List<AppointmentsDocuments>? appointmentsDocuments;
   Coupon? coupon;
+  DoctorData? doctor;
 
   AppointmentData({
     this.id,
@@ -124,6 +127,7 @@ class AppointmentData {
     this.appointmentsMedicines,
     this.appointmentsDocuments,
     this.coupon,
+    this.doctor,
   });
 
   AppointmentData.fromJson(Map<String, dynamic> json) {
@@ -214,6 +218,9 @@ class AppointmentData {
       });
     }
     coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
+
+    doctor =
+        json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -290,6 +297,9 @@ class AppointmentData {
     }
     if (coupon != null) {
       data['coupon'] = coupon!.toJson();
+    }
+    if (doctor != null) {
+      data['doctor'] = doctor!.toJson();
     }
     return data;
   }

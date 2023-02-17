@@ -1,4 +1,4 @@
-import 'package:aartas_design_system/models/confirm_appointment_model.dart';
+import 'package:aartas_design_system/models/appointment_model.dart';
 
 class PatientResponse {
   String? message;
