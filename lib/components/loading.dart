@@ -12,7 +12,7 @@ loading(BuildContext context, String? title) {
     context: context,
     builder: (_) => Dialog(
       insetAnimationCurve: Curves.fastLinearToSlowEaseIn,
-      backgroundColor: themeData(context).backgroundColor,
+      backgroundColor: themeData(context).colorScheme.background,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -207,7 +207,7 @@ modal(
   Function()? onTap,
 ) {
   showModalBottomSheet(
-    backgroundColor: themeData(context).backgroundColor,
+    backgroundColor: themeData(context).colorScheme.background,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(32),
