@@ -69,7 +69,7 @@ class PatientAppointmentData {
   String? consEndTime;
   String? followUpDate;
   int? status;
-  AppointmentData? lastAppointment;
+  // AppointmentData? lastAppointment;
   DoctorData? doctor;
   PatientData? patient;
   Timeslot? timeslot;
@@ -79,6 +79,7 @@ class PatientAppointmentData {
   List<AppointmentsMedicines>? appointmentsMedicines;
   SaleEntry? saleEntry;
   Coupon? coupon;
+
   PatientAppointmentData({
     this.id,
     this.doctorId,
@@ -114,7 +115,7 @@ class PatientAppointmentData {
     this.consEndTime,
     this.followUpDate,
     this.status,
-    this.lastAppointment,
+    // this.lastAppointment,
     this.doctor,
     this.patient,
     this.timeslot,
@@ -161,9 +162,9 @@ class PatientAppointmentData {
     consEndTime = json['cons_end_time'];
     followUpDate = json['follow_up_date'];
     status = json['status'];
-    lastAppointment = json['last_appointment'] != null
-        ? AppointmentData.fromJson(json['last_appointment'])
-        : null;
+    // lastAppointment = json['last_appointment'] != null
+    //     ? AppointmentData.fromJson(json['last_appointment'])
+    //     : null;
     doctor =
         json['doctor'] != null ? DoctorData.fromJson(json['doctor']) : null;
     patient =
@@ -231,9 +232,9 @@ class PatientAppointmentData {
     data['cons_end_time'] = consEndTime;
     data['follow_up_date'] = followUpDate;
     data['status'] = status;
-    if (lastAppointment != null) {
-      data['last_appointment'] = lastAppointment!.toJson();
-    }
+    // if (lastAppointment != null) {
+    //   data['last_appointment'] = lastAppointment!.toJson();
+    // }
     if (doctor != null) {
       data['doctor'] = doctor!.toJson();
     }

@@ -1,3 +1,5 @@
+import 'package:aartas_design_system/models/confirm_appointment_model.dart';
+
 class PatientResponse {
   String? message;
   bool? status;
@@ -51,6 +53,7 @@ class PatientData {
   // String? status;
   Membership? membership;
   CheckInDetails? checkInDetails;
+  AppointmentData? lastAppointment;
 
   PatientData({
     this.id,
@@ -76,6 +79,7 @@ class PatientData {
     // this.status,
     this.membership,
     this.checkInDetails,
+    this.lastAppointment,
   });
 
   PatientData.fromJson(Map<String, dynamic> json) {
@@ -105,6 +109,9 @@ class PatientData {
         : null;
     checkInDetails = json['check_in_details'] != null
         ? CheckInDetails.fromJson(json['check_in_details'])
+        : null;
+    lastAppointment = json['last_appointment'] != null
+        ? AppointmentData.fromJson(json['last_appointment'])
         : null;
   }
 
@@ -136,6 +143,9 @@ class PatientData {
     }
     if (checkInDetails != null) {
       data['check_in_details'] = checkInDetails!.toJson();
+    }
+    if (lastAppointment != null) {
+      data['last_appointment'] = lastAppointment!.toJson();
     }
     return data;
   }
