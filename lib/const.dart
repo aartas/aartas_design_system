@@ -242,59 +242,59 @@ Gradient bgGradient(context, bool reverse) {
 // }
 enum MessageStyle { success, danger }
 
-snackBar(
-  context,
-  String? title,
-  String? subtitle,
-  MessageStyle? messageStyle,
-) {
-  Color _messageStyleColor =
-      messageStyle == MessageStyle.success ? cadetGreyColor : copperRedColor;
-  return ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      behavior: SnackBarBehavior.floating,
-      width: mediaQuery(context).size.width / 3.5,
-      // margin: EdgeInsets.only(bottom: 32),
-      padding: EdgeInsets.zero,
-      duration: duration * 10,
-      backgroundColor: Colors.transparent,
-      elevation: 6,
-      // backgroundColor: backgroundColor ?? Color(0xFF3C3C3E),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius / 2),
-      ),
-      content: GlassMorphism(
-        color: _messageStyleColor,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              FittedBox(
-                child: Text(
-                  title ?? "",
-                  style: textTheme(context).subtitle1?.apply(
-                        fontWeightDelta: 1,
-                      ),
-                ),
-              ),
-              subtitle != null && subtitle.isNotEmpty
-                  ? Text(
-                      subtitle,
-                      style: textTheme(context).caption?.apply(),
-                      overflow: TextOverflow.fade,
-                      maxLines: 2,
-                    )
-                  : const SizedBox(),
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
-}
+// snackBar(
+//   context,
+//   String? title,
+//   String? subtitle,
+//   MessageStyle? messageStyle,
+// ) {
+//   Color _messageStyleColor =
+//       messageStyle == MessageStyle.success ? cadetGreyColor : copperRedColor;
+//   return ScaffoldMessenger.of(context).showSnackBar(
+//     SnackBar(
+//       behavior: SnackBarBehavior.floating,
+//       width: mediaQuery(context).size.width / 3.5,
+//       // margin: EdgeInsets.only(bottom: 32),
+//       padding: EdgeInsets.zero,
+//       duration: duration * 10,
+//       backgroundColor: Colors.transparent,
+//       elevation: 6,
+//       // backgroundColor: backgroundColor ?? Color(0xFF3C3C3E),
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(borderRadius / 2),
+//       ),
+//       content: GlassMorphism(
+//         color: _messageStyleColor,
+//         borderRadius: BorderRadius.circular(12),
+//         child: Padding(
+//           padding: const EdgeInsets.all(12),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               FittedBox(
+//                 child: Text(
+//                   title ?? "",
+//                   style: textTheme(context).subtitle1?.apply(
+//                         fontWeightDelta: 1,
+//                       ),
+//                 ),
+//               ),
+//               subtitle != null && subtitle.isNotEmpty
+//                   ? Text(
+//                       subtitle,
+//                       style: textTheme(context).caption?.apply(),
+//                       overflow: TextOverflow.fade,
+//                       maxLines: 2,
+//                     )
+//                   : const SizedBox(),
+//             ],
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }
 
 //
 Color getMembershipColor(int membershipTypeId) {
