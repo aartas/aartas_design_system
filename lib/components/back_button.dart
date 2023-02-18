@@ -17,7 +17,7 @@ class BButton extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: backgroundColor != null
             ? backgroundColor!
-            : themeData(context).backgroundColor,
+            : themeData(context).colorScheme.background,
         child: IconButton(
           padding: EdgeInsets.zero,
           icon: const Icon(Icons.arrow_back),
