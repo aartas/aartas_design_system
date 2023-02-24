@@ -26,7 +26,14 @@ class PatientCartProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      var _res = PatientCartResponse.fromJson(json.decode(res.body));
+      var _res = PatientCartResponse(
+        status: json.decode(res.body)['status'],
+        message: json.decode(res.body)['message'],
+        data: json.decode(res.body)['status'] != null &&
+                json.decode(res.body)['status']
+            ? json.decode(res.body)['data']
+            : null,
+      );
       _data = _res.data!;
       notifyListeners();
       return _res;
