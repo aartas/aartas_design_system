@@ -31,7 +31,7 @@ class PatientCartProvider extends ChangeNotifier {
         message: json.decode(res.body)['message'],
         data: json.decode(res.body)['status'] != null &&
                 json.decode(res.body)['status']
-            ? json.decode(res.body)['data']
+            ? PatientCartData.fromJson(json.decode(res.body)['data'])
             : null,
       );
       _data = _res.data!;
