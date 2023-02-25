@@ -75,6 +75,7 @@ class AppointmentProvider extends ChangeNotifier {
       _appointmentData = _res;
       return _res;
     } else {
+      log(res.body);
       notifyListeners();
       return AppointmentResponse(message: json.decode(res.body)['message']);
     }
@@ -99,6 +100,49 @@ class AppointmentProvider extends ChangeNotifier {
       final _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
     } else {
+      log(res.body);
+      notifyListeners();
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
+
+  Future<ResponseModel> startConsultation(
+    String? baseURL,
+    String? appointmentID,
+  ) async {
+    var _url = Uri.parse("$baseURL/appointment/start/consultation/time");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      notifyListeners();
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
+
+  Future<ResponseModel> endConsultation(
+    String? baseURL,
+    String? appointmentID,
+  ) async {
+    var _url = Uri.parse("$baseURL/appointment/end/consultation/time");
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
       notifyListeners();
       return ResponseModel(message: json.decode(res.body)['message']);
     }
