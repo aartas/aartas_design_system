@@ -69,13 +69,13 @@ class AppointmentData {
   int? isConfirmed;
   String? prescriptionFile;
   String? billFile;
+  String? notes;
   PatientData? patient;
   Timeslot? timeslot;
   List<Vitals>? vitals;
   List<AppointmentsComplaints>? appointmentsComplaints;
   List<AppointmentsDiagnosis>? appointmentsDiagnosis;
   List<AppointmentsInvestigations>? appointmentsInvestigations;
-  List<AppointmentsNotes>? appointmentsNotes;
   List<AppointmentsSuggestedProcedures>? appointmentsSuggestedProcedures;
   List<AppointmentsMedicines>? appointmentsMedicines;
   List<AppointmentsDocuments>? appointmentsDocuments;
@@ -116,13 +116,13 @@ class AppointmentData {
     this.isConfirmed,
     this.prescriptionFile,
     this.billFile,
+    this.notes,
     this.patient,
     this.timeslot,
     this.vitals,
     this.appointmentsComplaints,
     this.appointmentsDiagnosis,
     this.appointmentsInvestigations,
-    this.appointmentsNotes,
     this.appointmentsSuggestedProcedures,
     this.appointmentsMedicines,
     this.appointmentsDocuments,
@@ -164,6 +164,7 @@ class AppointmentData {
     isConfirmed = json['is_confirmed'];
     prescriptionFile = json['prescription_file'];
     billFile = json['bill_file'];
+    notes = json['notes'];
     patient =
         json['patient'] != null ? PatientData.fromJson(json['patient']) : null;
     timeslot =
@@ -192,12 +193,7 @@ class AppointmentData {
         appointmentsInvestigations!.add(AppointmentsInvestigations.fromJson(v));
       });
     }
-    if (json['appointments_notes'] != null) {
-      appointmentsNotes = <AppointmentsNotes>[];
-      json['appointments_notes'].forEach((v) {
-        appointmentsNotes!.add(AppointmentsNotes.fromJson(v));
-      });
-    }
+
     if (json['appointments_suggested_procedures'] != null) {
       appointmentsSuggestedProcedures = <AppointmentsSuggestedProcedures>[];
       json['appointments_suggested_procedures'].forEach((v) {
@@ -258,6 +254,7 @@ class AppointmentData {
     data['is_confirmed'] = isConfirmed;
     data['prescription_file'] = prescriptionFile;
     data['bill_file'] = billFile;
+    data['notes'] = notes;
     if (patient != null) {
       data['patient'] = patient!.toJson();
     }
@@ -279,10 +276,7 @@ class AppointmentData {
       data['appointments_investigations'] =
           appointmentsInvestigations!.map((v) => v.toJson()).toList();
     }
-    if (appointmentsNotes != null) {
-      data['appointments_notes'] =
-          appointmentsNotes!.map((v) => v.toJson()).toList();
-    }
+
     if (appointmentsSuggestedProcedures != null) {
       data['appointments_suggested_procedures'] =
           appointmentsSuggestedProcedures!.map((v) => v.toJson()).toList();
