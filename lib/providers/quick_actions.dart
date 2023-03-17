@@ -46,7 +46,10 @@ class QuickActionProvider extends ChangeNotifier {
     log("${res.statusCode} - $_url");
     if (res.statusCode == 200) {
       _isLoading = false;
-      return ResponseModel.fromJson(json.decode(res.body));
+      return ResponseModel(
+        status: json.decode(res.body)['status'],
+        message: json.decode(res.body)['message'],
+      );
     } else {
       _isLoading = false;
       log(res.body);
