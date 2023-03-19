@@ -22,6 +22,7 @@ class AdaptiveButton extends StatelessWidget {
   final String? label;
   final String? buttonType;
   final IconData? icon;
+  final bool? iconRight;
   final double? elevation;
   final String? shape;
   final double? width;
@@ -37,6 +38,7 @@ class AdaptiveButton extends StatelessWidget {
     this.label,
     this.buttonType,
     this.icon,
+    this.iconRight,
     this.elevation,
     this.shape,
     this.width,
@@ -65,27 +67,8 @@ class AdaptiveButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          icon != null
-              ? Padding(
-                  padding: label != null
-                      ? EdgeInsets.only(
-                          right: padding != null ? padding!.right / 2 : 16,
-                        )
-                      : EdgeInsets.zero,
-                  child: Icon(
-                    icon,
-                    size: textTheme(context).headline6!.fontSize!,
-                    color: onTap != null
-                        ? textColor != null
-                            ? textColor!
-                            : themeData(context).scaffoldBackgroundColor
-                        : textColor != null
-                            ? textColor!.withOpacity(0.4)
-                            : themeData(context)
-                                .scaffoldBackgroundColor
-                                .withOpacity(0.3),
-                  ),
-                )
+          iconRight != null && !iconRight! && icon != null
+              ? buttonIcon(context)
               : const SizedBox(),
           label != null
               ? FittedBox(
@@ -107,6 +90,9 @@ class AdaptiveButton extends StatelessWidget {
                     ),
                   ),
                 )
+              : const SizedBox(),
+          iconRight != null && iconRight! && icon != null
+              ? buttonIcon(context)
               : const SizedBox(),
         ],
       ),
@@ -170,5 +156,26 @@ class AdaptiveButton extends StatelessWidget {
     //     ],
     //   ),
     // );
+  }
+
+  Padding buttonIcon(BuildContext context) {
+    return Padding(
+      padding: label != null
+          ? EdgeInsets.only(
+              right: padding != null ? padding!.right / 2 : 16,
+            )
+          : EdgeInsets.zero,
+      child: Icon(
+        icon,
+        size: textTheme(context).headline6!.fontSize!,
+        color: onTap != null
+            ? textColor != null
+                ? textColor!
+                : themeData(context).scaffoldBackgroundColor
+            : textColor != null
+                ? textColor!.withOpacity(0.4)
+                : themeData(context).scaffoldBackgroundColor.withOpacity(0.3),
+      ),
+    );
   }
 }
