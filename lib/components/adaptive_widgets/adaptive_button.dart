@@ -158,7 +158,6 @@ class AdaptiveButton extends StatelessWidget {
     // );
   }
 
-//
   Padding buttonIcon(BuildContext context) {
     return Padding(
       padding: label != null

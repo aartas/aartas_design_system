@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/quick_action.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +31,7 @@ class QuickActionProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> addQuickAction(
+  Future<QuickActionResponse?> addQuickAction(
     String baseURL,
     String? doctorID,
     String? title,
@@ -45,17 +46,10 @@ class QuickActionProvider extends ChangeNotifier {
 
     log("${res.statusCode} - $_url");
     if (res.statusCode == 200) {
-      _isLoading = false;
-      return ResponseModel(
-        status: json.decode(res.body)['status'],
-        message: json.decode(res.body)['message'],
-      );
+      return QuickActionResponse.fromJson(json.decode(res.body));
     } else {
-      _isLoading = false;
       log(res.body);
-      return ResponseModel(
-        message: "(${res.statusCode}) Something went wrong.",
-      );
+      return null;
     }
   }
 
