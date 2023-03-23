@@ -33,7 +33,7 @@ class QuickActionProvider extends ChangeNotifier {
   Future<ResponseModel> fetchQuickAction(
     String baseURL,
     String? doctorID,
-    Category? categoryType,
+    String? categoryType,
   ) async {
     var _url = Uri.parse("$baseURL/get/doctor/quickaction/$categoryType");
     final res = await http.post(_url, body: {
