@@ -6,6 +6,25 @@ import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+enum Category {
+  complaints,
+  diagnosis,
+  investigations,
+  medicines,
+  procedures,
+}
+
+extension CategoryExtension on Category {
+  static const categories = {
+    Category.complaints: "complaints",
+    Category.diagnosis: "diagnosis",
+    Category.investigations: "investigations",
+    Category.medicines: "medicines",
+    Category.procedures: "procedures",
+  };
+  String? get name => categories[this];
+}
+
 class QuickActionProvider extends ChangeNotifier {
   bool _isLoading = true;
 
@@ -14,7 +33,7 @@ class QuickActionProvider extends ChangeNotifier {
   Future<ResponseModel> fetchQuickAction(
     String baseURL,
     String? doctorID,
-    String? categoryType,
+    Category? categoryType,
   ) async {
     var _url = Uri.parse("$baseURL/get/doctor/quickaction/$categoryType");
     final res = await http.post(_url, body: {
