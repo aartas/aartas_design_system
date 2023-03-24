@@ -14,6 +14,7 @@
 
 import 'package:aartas_design_system/const.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AdaptiveButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -21,15 +22,16 @@ class AdaptiveButton extends StatelessWidget {
   final Color? textColor;
   final String? label;
   final String? buttonType;
-  final IconData? icon;
-  final bool? iconRight;
+  final IconData? leftIcon;
+  final IconData? rightIcon;
+  final MainAxisAlignment? mainAxisAlignment;
+  final MainAxisSize? mainAxisSize;
   final double? elevation;
-  final String? shape;
-  final double? width;
   final EdgeInsets? padding;
   final BorderRadius? borderRadius;
   final Alignment? alignment;
   final TextDecoration? decoration;
+  final bool? isLoading;
   const AdaptiveButton({
     Key? key,
     this.onTap,
@@ -37,15 +39,16 @@ class AdaptiveButton extends StatelessWidget {
     this.textColor,
     this.label,
     this.buttonType,
-    this.icon,
-    this.iconRight,
+    this.leftIcon,
+    this.rightIcon,
+    this.mainAxisAlignment,
+    this.mainAxisSize,
     this.elevation,
-    this.shape,
-    this.width,
     this.padding,
     this.borderRadius,
     this.alignment,
     this.decoration,
+    this.isLoading,
   }) : super(key: key);
 
   @override
@@ -54,115 +57,85 @@ class AdaptiveButton extends StatelessWidget {
       alignment: alignment != null ? alignment! : Alignment.center,
       minSize: 16,
       borderRadius:
-          borderRadius != null ? borderRadius! : BorderRadius.circular(12),
+          borderRadius != null ? borderRadius! : BorderRadius.circular(4), // 12
       padding: padding != null
           ? padding!
-          : const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          : const EdgeInsets.symmetric(horizontal: 24, vertical: 16), // 24 20
       onPressed: onTap,
       color: bgColor != null ? bgColor! : textTheme(context).subtitle1!.color!,
       disabledColor: bgColor != null
-          ? bgColor!.withOpacity(0.4)
+          ? bgColor!.withOpacity(0.3)
           : textTheme(context).subtitle1!.color!.withOpacity(0.3),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          iconRight != null && !iconRight! && icon != null
-              ? buttonIcon(context)
-              : const SizedBox(),
-          label != null
-              ? FittedBox(
-                  child: Text(
-                    label != null ? label! : "",
-                    style: TextStyle(
-                      fontSize: textTheme(context).subtitle1!.fontSize,
-                      fontWeight: FontWeight.w600,
-                      decoration: decoration != null ? decoration! : null,
-                      color: onTap != null
-                          ? textColor != null
-                              ? textColor!
-                              : themeData(context).scaffoldBackgroundColor
-                          : textColor != null
-                              ? textColor!.withOpacity(0.4)
-                              : themeData(context)
-                                  .scaffoldBackgroundColor
-                                  .withOpacity(0.3),
-                    ),
-                  ),
-                )
-              : const SizedBox(),
-          iconRight != null && iconRight! && icon != null
-              ? buttonIcon(context)
-              : const SizedBox(),
-        ],
-      ),
+
+      child: isLoading != null && isLoading!
+          ? Center(
+              child: SizedBox(
+                // padding: const EdgeInsets.symmetric(vertical: 8),
+                height: 24,
+                width: 24,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  backgroundColor: Colors.transparent,
+                  color: burntUmberColor,
+                ),
+              ),
+            )
+          : Row(
+              mainAxisAlignment: mainAxisAlignment != null
+                  ? mainAxisAlignment!
+                  : MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize:
+                  mainAxisSize != null ? mainAxisSize! : MainAxisSize.max,
+              children: [
+                leftIcon != null
+                    ? buttonIcon(context, leftIcon!)
+                    : const SizedBox(),
+                label != null
+                    ? FittedBox(
+                        child: Text(
+                          label != null ? label! : "",
+                          style: TextStyle(
+                            fontSize: textTheme(context).subtitle1!.fontSize,
+                            fontWeight: FontWeight.w600,
+                            decoration: decoration != null ? decoration! : null,
+                            color: onTap != null
+                                ? textColor != null
+                                    ? textColor!
+                                    : themeData(context).scaffoldBackgroundColor
+                                : textColor != null
+                                    ? textColor!.withOpacity(0.4)
+                                    : themeData(context)
+                                        .scaffoldBackgroundColor
+                                        .withOpacity(0.3),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                rightIcon != null
+                    ? buttonIcon(context, rightIcon!)
+                    : const SizedBox(),
+              ],
+            ),
     );
-    // }
-    // return ElevatedButton(
-    //   style: ButtonStyle(
-    //     elevation: bgColor == Colors.transparent
-    //         ? MaterialStateProperty.all(0)
-    //         : elevation != null
-    //             ? MaterialStateProperty.all(elevation)
-    //             : null,
-    //     shape: MaterialStateProperty.all(
-    //       RoundedRectangleBorder(
-    //         borderRadius: BorderRadius.circular(borderRadius / 4),
-    //       ),
-    //     ),
-    //     padding: MaterialStateProperty.all(
-    //       padding != null ? padding! : EdgeInsets.all(defaultPadding / 1.5),
-    //     ),
-    //     backgroundColor: onTap != null
-    //         ? MaterialStateProperty.all<Color?>(
-    //             bgColor != null ? bgColor! : brandyColor,
-    //           )
-    //         : MaterialStateProperty.all<Color?>(
-    //             bgColor != null
-    //                 ? bgColor!.withOpacity(0.4)
-    //                 : brandyColor.withOpacity(0.3),
-    //           ),
-    //   ),
-    //   onPressed: onTap,
-    //   child: Row(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     children: [
-    //       icon != null && label != null
-    //           ? Padding(
-    //               padding: const EdgeInsets.only(right: 10),
-    //               child: Icon(
-    //                 icon,
-    //                 size: textTheme(context).button!.fontSize! + 2,
-    //                 color: onTap != null
-    //                     ? textColor != null
-    //                         ? textColor!
-    //                         : pearlColor
-    //                     : textColor != null
-    //                         ? textColor!.withOpacity(0.4)
-    //                         : pearlColor.withOpacity(0.3),
-    //               ),
-    //             )
-    //           : Container(),
-    //       FittedBox(
-    //         child: Text(
-    //           label != null ? label! : "",
-    //           style: TextStyle(
-    //               fontSize: 18,
-    //               fontWeight: FontWeight.w600,
-    //               color: textColor != null ? textColor! : null),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
-  Padding buttonIcon(BuildContext context) {
+  Widget buttonIcon(BuildContext context, IconData icon) {
     return Padding(
       padding: label != null
           ? EdgeInsets.only(
-              right: padding != null ? padding!.right / 2 : 16,
+              right: ((leftIcon == null)
+                      ? 0
+                      : padding != null
+                          ? padding!.left
+                          : 16) /
+                  1.2,
+              left: ((rightIcon == null)
+                      ? 0
+                      : padding != null
+                          ? padding!.right
+                          : 16) /
+                  1.2,
             )
           : EdgeInsets.zero,
       child: Icon(

@@ -6,24 +6,24 @@ import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-enum Category {
-  complaints,
-  diagnosis,
-  investigations,
-  medicines,
-  procedures,
-}
+// enum Category {
+//   complaints,
+//   diagnosis,
+//   investigations,
+//   medicines,
+//   procedures,
+// }
 
-extension CategoryExtension on Category {
-  static const categories = {
-    Category.complaints: "complaints",
-    Category.diagnosis: "diagnosis",
-    Category.investigations: "investigations",
-    Category.medicines: "medicines",
-    Category.procedures: "procedures",
-  };
-  String? get name => categories[this];
-}
+// extension CategoryExtension on Category {
+//   static const categories = {
+//     Category.complaints: "complaints",
+//     Category.diagnosis: "diagnosis",
+//     Category.investigations: "investigations",
+//     Category.medicines: "medicines",
+//     Category.procedures: "procedures",
+//   };
+//   String? get name => categories[this];
+// }
 
 class QuickActionProvider extends ChangeNotifier {
   bool _isLoading = true;
