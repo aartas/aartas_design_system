@@ -136,7 +136,7 @@ class MedicineProvider extends ChangeNotifier {
     String? timeRange,
     String? oldID,
   ) async {
-    var _url = Uri.parse("$baseURL/doctor/save/quickaction/investigation");
+    var _url = Uri.parse("$baseURL/doctor/save/quickaction/medicine");
     final res = await http.post(_url, body: {
       "doctor_quickaction_id": doctorQuickActionID ?? "",
       "medicine_id": medicineID ?? "",
