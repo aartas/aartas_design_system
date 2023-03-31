@@ -112,6 +112,25 @@ class InvestigationProvider extends ChangeNotifier {
     return ResponseModel(message: json.decode(res.body)['message']);
   }
 
+  Future<ResponseModel> removeQuickActionInvestigation(
+    String baseURL,
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/delete/doctor/quickaction/investigation");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
+
   Future<ResponseModel> removeInvestigation(
     String baseURL,
     String? id,

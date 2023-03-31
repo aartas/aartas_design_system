@@ -119,7 +119,26 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> saveQuickActionMedicine(
+  Future<ResponseModel> removeMedicine(
+    String baseURL,
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/remove/medicine");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
+
+  Future<ResponseModel> addQuickActionMedicine(
     String baseURL,
     String? doctorQuickActionID,
     String? medicineID,
@@ -164,11 +183,11 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> removeMedicine(
+  Future<ResponseModel> removeQuickActionMedicine(
     String baseURL,
     String? id,
   ) async {
-    var _url = Uri.parse("$baseURL/remove/medicine");
+    var _url = Uri.parse("$baseURL/delete/doctor/quickaction/medicine");
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });

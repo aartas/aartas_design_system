@@ -148,6 +148,24 @@ class ComplaintProvider extends ChangeNotifier {
     }
   }
 
+  Future<ResponseModel> removeQuickActionComplaint(
+    String baseURL,
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/delete/doctor/quickaction/complaint");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
   // Future<ResponseModel> fetchQuickActionList(String baseURL) async {
   //   var _url = Uri.parse("$baseURL/quick/action/list");
   //   final res = await http.post(_url);

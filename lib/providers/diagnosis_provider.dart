@@ -87,7 +87,7 @@ class DiagnosisProvder extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> saveQuickActionDiagnosis(
+  Future<ResponseModel> addQuickActionDiagnosis(
     String baseURL,
     String? doctorQuickActionID,
     String? diagnosisID,
@@ -108,6 +108,25 @@ class DiagnosisProvder extends ChangeNotifier {
       "old_id": oldID ?? "",
     });
     String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: json.decode(res.body)['message']);
+    }
+  }
+
+  Future<ResponseModel> removeQuickActionDiagnosis(
+    String baseURL,
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/delete/doctor/quickaction/diagnosis");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
     log(_message);
 
     if (res.statusCode == 200) {
