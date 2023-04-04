@@ -74,7 +74,7 @@ class Coupon {
   Coupon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    name = json['name'];
+    image = json['image'];
     description = json['description'];
     couponType = json['coupon_type'];
     patientId = json['patient_id'];
