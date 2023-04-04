@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/coupon_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
 class RewardHistoryResponse {
@@ -38,16 +39,19 @@ class RewardHistoryData {
   int? isPending;
   int? status;
   PatientAppointmentData? appointment;
+  CouponData? coupon;
 
-  RewardHistoryData(
-      {this.id,
-      this.rewardsId,
-      this.points,
-      this.plusOrMinus,
-      this.patientId,
-      this.isPending,
-      this.status,
-      this.appointment});
+  RewardHistoryData({
+    this.id,
+    this.rewardsId,
+    this.points,
+    this.plusOrMinus,
+    this.patientId,
+    this.isPending,
+    this.status,
+    this.appointment,
+    this.coupon,
+  });
 
   RewardHistoryData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,6 +64,8 @@ class RewardHistoryData {
     appointment = json['appointment'] != null
         ? PatientAppointmentData.fromJson(json['appointment'])
         : null;
+    coupon =
+        json['coupon'] != null ? CouponData.fromJson(json['coupon']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -73,6 +79,9 @@ class RewardHistoryData {
     data['status'] = status;
     if (appointment != null) {
       data['appointment'] = appointment!.toJson();
+    }
+    if (coupon != null) {
+      data['coupon'] = coupon!.toJson();
     }
     return data;
   }
