@@ -48,6 +48,7 @@ class CouponData {
 class Coupon {
   int? id;
   String? name;
+  String? image;
   String? description;
   int? couponType;
   int? patientId;
@@ -60,6 +61,7 @@ class Coupon {
   Coupon(
       {this.id,
       this.name,
+      this.image,
       this.description,
       this.couponType,
       this.patientId,
@@ -71,6 +73,7 @@ class Coupon {
 
   Coupon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    name = json['name'];
     name = json['name'];
     description = json['description'];
     couponType = json['coupon_type'];
@@ -86,6 +89,7 @@ class Coupon {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['image'] = image;
     data['description'] = description;
     data['coupon_type'] = couponType;
     data['patient_id'] = patientId;
