@@ -39,7 +39,7 @@ class RewardHistoryData {
   int? isPending;
   int? status;
   PatientAppointmentData? appointment;
-  CouponData? coupon;
+  Coupon? coupon;
 
   RewardHistoryData({
     this.id,
@@ -64,8 +64,7 @@ class RewardHistoryData {
     appointment = json['appointment'] != null
         ? PatientAppointmentData.fromJson(json['appointment'])
         : null;
-    coupon =
-        json['coupon'] != null ? CouponData.fromJson(json['coupon']) : null;
+    coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
   }
 
   Map<String, dynamic> toJson() {
