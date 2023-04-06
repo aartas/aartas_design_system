@@ -277,8 +277,9 @@ class _ModalLoadingDialogState extends State<ModalLoadingDialog> {
         padding: EdgeInsets.fromLTRB(
             32, 16, 32, mediaQuery(context).padding.bottom + 8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             widget.icon != null
                 ? Padding(
@@ -292,37 +293,43 @@ class _ModalLoadingDialogState extends State<ModalLoadingDialog> {
                       size: 48,
                     ),
                   ),
-            Text(
-              widget.title != null
-                  ? "${widget.title}"
-                  : "Something went wrong.",
-              style: textTheme(context).headline5!.apply(fontWeightDelta: 2),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+              child: Text(
+                widget.title != null
+                    ? "${widget.title}"
+                    : "Something went wrong.",
+                textAlign: TextAlign.center,
+                style: textTheme(context)
+                    .headlineMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
             ),
-            const SizedBox(
-              height: 8,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+              child: Text(
+                widget.discription != null
+                    ? "${widget.discription}"
+                    : "Sorry for the inconvenience, look like we got some error here. Please retry.",
+                textAlign: TextAlign.center,
+                style: textTheme(context)
+                    .titleMedium!
+                    .copyWith(fontWeight: FontWeight.w600),
+              ),
             ),
-            Text(
-              widget.discription != null
-                  ? "${widget.discription}"
-                  : "Sorry for the inconvenience, look like we got some error here. Please retry.",
-              style: textTheme(context).subtitle1!.apply(
-                  fontWeightDelta: 1,
-                  color: textTheme(context).subtitle1!.color!.withOpacity(0.5)),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+              child: AdaptiveButton(
+                label: widget.buttonName != null
+                    ? widget.buttonName!
+                    : "Ok, Got it!",
+                onTap: widget.onTap != null
+                    ? () {
+                        widget.onTap!();
+                      }
+                    : () => Navigator.pop(context),
+              ),
             ),
-            const SizedBox(
-              height: 24,
-            ),
-            AdaptiveButton(
-              label: widget.buttonName != null
-                  ? widget.buttonName!
-                  : "Ok, Got it!",
-              onTap: widget.onTap != null
-                  ? () {
-                      widget.onTap!();
-                    }
-                  : () => Navigator.pop(context),
-            )
           ],
         ),
       ),
