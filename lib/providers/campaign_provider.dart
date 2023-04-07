@@ -8,6 +8,10 @@ import 'package:http/http.dart' as http;
 class CampaignProvider extends ChangeNotifier {
   CampaignData campaignData = CampaignData();
 
+  CampaignData getData() {
+    return campaignData;
+  }
+
   Future<CampaignData?> fetchData(
     String? baseURL,
     String? slug,
