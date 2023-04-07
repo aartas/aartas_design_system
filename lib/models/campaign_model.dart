@@ -32,11 +32,6 @@ class CampaignData {
   int? type;
   int? couponId;
   String? expiryDate;
-  String? createdAt;
-  String? updatedAt;
-  Null? createdBy;
-  Null? updatedBy;
-  int? status;
   Coupon? coupon;
 
   CampaignData(
@@ -47,11 +42,6 @@ class CampaignData {
       this.type,
       this.couponId,
       this.expiryDate,
-      this.createdAt,
-      this.updatedAt,
-      this.createdBy,
-      this.updatedBy,
-      this.status,
       this.coupon});
 
   CampaignData.fromJson(Map<String, dynamic> json) {
@@ -62,11 +52,6 @@ class CampaignData {
     type = json['type'];
     couponId = json['coupon_id'];
     expiryDate = json['expiry_date'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
-    status = json['status'];
     coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
   }
 
@@ -79,11 +64,6 @@ class CampaignData {
     data['type'] = type;
     data['coupon_id'] = couponId;
     data['expiry_date'] = expiryDate;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
-    data['status'] = status;
     if (coupon != null) {
       data['coupon'] = coupon!.toJson();
     }
