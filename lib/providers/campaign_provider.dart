@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CampaignProvider extends ChangeNotifier {
-  CampaignData campaignData = CampaignData();
+  CampaignData? campaignData;
 
-  CampaignData getData() {
+  CampaignData? getData() {
     return campaignData;
   }
 
