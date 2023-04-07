@@ -24,9 +24,9 @@ class CampaignProvider extends ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       notifyListeners();
-      final _res = CampaignData.fromJson(json.decode(res.body));
-      campaignData = _res;
-      return _res;
+      final _res = CampaignResponse.fromJson(json.decode(res.body));
+      campaignData = _res.data!;
+      return campaignData;
     } else {
       log(res.body);
       notifyListeners();
