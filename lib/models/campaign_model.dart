@@ -28,6 +28,7 @@ class CampaignData {
   int? id;
   String? title;
   String? slug;
+  String? image;
   String? description;
   int? type;
   int? couponId;
@@ -38,6 +39,7 @@ class CampaignData {
       {this.id,
       this.title,
       this.slug,
+      this.image,
       this.description,
       this.type,
       this.couponId,
@@ -48,6 +50,7 @@ class CampaignData {
     id = json['id'];
     title = json['title'];
     slug = json['slug'];
+    image = json['image'];
     description = json['description'];
     type = json['type'];
     couponId = json['coupon_id'];
@@ -60,6 +63,7 @@ class CampaignData {
     data['id'] = id;
     data['title'] = title;
     data['slug'] = slug;
+    data['image'] = image;
     data['description'] = description;
     data['type'] = type;
     data['coupon_id'] = couponId;
