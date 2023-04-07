@@ -71,8 +71,10 @@ class CouponProvider with ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       var _res = CouponResponse.fromJson(json.decode(res.body));
-      _couponData = _res.data!.coupon![0];
-      notifyListeners();
+      if (_res.data != null) {
+        _couponData = _res.data!.coupon![0];
+        notifyListeners();
+      }
       return _res;
     } else {
       log(res.body);
