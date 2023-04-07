@@ -53,6 +53,7 @@ class Coupon {
   int? couponType;
   int? patientId;
   String? value;
+  int? privateCoupon;
   int? doctorId;
   int? specialityId;
   String? referenceBy;
@@ -66,6 +67,7 @@ class Coupon {
       this.couponType,
       this.patientId,
       this.value,
+      this.privateCoupon,
       this.doctorId,
       this.specialityId,
       this.referenceBy,
@@ -79,6 +81,7 @@ class Coupon {
     couponType = json['coupon_type'];
     patientId = json['patient_id'];
     value = json['value'];
+    privateCoupon = json['private_coupon'];
     doctorId = json['doctor_id'];
     specialityId = json['speciality_id'];
     referenceBy = json['reference_by'];
@@ -94,6 +97,7 @@ class Coupon {
     data['coupon_type'] = couponType;
     data['patient_id'] = patientId;
     data['value'] = value;
+    data['private_coupon'] = privateCoupon;
     data['doctor_id'] = doctorId;
     data['speciality_id'] = specialityId;
     data['reference_by'] = referenceBy;
