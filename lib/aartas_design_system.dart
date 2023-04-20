@@ -34,6 +34,7 @@ import 'package:aartas_design_system/providers/procedure_provider.dart';
 import 'package:aartas_design_system/providers/rewards_provider.dart';
 import 'package:aartas_design_system/providers/search_provider.dart';
 import 'package:aartas_design_system/providers/speciality_provider.dart';
+import 'package:aartas_design_system/providers/vaccines_provider.dart';
 import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:aartas_design_system/themes_provider.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +93,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => ConnectAttendanceProvider()),
         ChangeNotifierProvider(create: (_) => CallNurseProvider()),
         ChangeNotifierProvider(create: (_) => CampaignProvider()),
+        ChangeNotifierProvider(create: (_) => VaccinesProvider()),
       ],
       builder: (_, child) {
         return widget.child;

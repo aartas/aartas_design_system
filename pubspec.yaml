@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.4
+  http_parser: ^4.0.2
   intl: ^0.17.0
   path_provider: ^2.0.11
   provider: ^6.0.3
@@ -26,10 +27,10 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter: null
 # git add . && git commit -m "Modified" && git push origin main && git pull origin main
-
 # To add assets to your package, add an assets section, like this:
 assets:
   - assets/
+
 #   - images/a_dot_ham.jpeg
 #
 # For details regarding assets in packages, see
