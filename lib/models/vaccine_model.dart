@@ -31,12 +31,22 @@ class VaccineData {
   int? id;
   String? title;
   List<Vaccines>? vaccines;
+  int? weekFrom;
+  int? weekTo;
 
-  VaccineData({this.id, this.title, this.vaccines});
+  VaccineData({
+    this.id,
+    this.title,
+    this.vaccines,
+    this.weekFrom,
+    this.weekTo,
+  });
 
   VaccineData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
+    weekFrom = json['week_from'];
+    weekTo = json['week_to'];
     if (json['vaccines'] != null) {
       vaccines = <Vaccines>[];
       json['vaccines'].forEach((v) {
@@ -49,6 +59,8 @@ class VaccineData {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
+    data['week_from'] = weekFrom;
+    data['week_to'] = weekTo;
     if (vaccines != null) {
       data['vaccines'] = vaccines!.map((v) => v.toJson()).toList();
     }
