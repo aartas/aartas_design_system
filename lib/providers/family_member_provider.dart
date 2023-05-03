@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/models/family_members_model.dart';
+import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class FamilyMembersProvider extends ChangeNotifier {
-  List<FamilyMemberData> _familyMemberDataList = [];
+  List<PatientData> _familyMemberDataList = [];
 
-  List<FamilyMemberData> getList() {
+  List<PatientData> getList() {
     return _familyMemberDataList;
   }
 
