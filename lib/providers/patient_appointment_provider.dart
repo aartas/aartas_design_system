@@ -79,6 +79,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       if (manageState == null || manageState == true) {
         _list.clear();
         _list = _res.data!;
+        notifyListeners();
         updateFilterAppointments(0);
       }
       return _res;
