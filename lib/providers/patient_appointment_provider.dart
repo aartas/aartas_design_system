@@ -92,26 +92,27 @@ class PatientAppointmentProvider extends ChangeNotifier {
   }
 
   updateFilterAppointments(int _selected) {
+    List<PatientAppointmentData> tempList = [..._list];
     _filteredList.clear();
     if (_selected == 0) {
       // Upcoming
-      for (var i = 0; i < _list.length; i++) {
-        if (_list[i].appointmentStatus != 1 &&
-            _list[i].appointmentStatus != 3 &&
-            _list[i].appointmentStatus != 8 &&
-            _list[i].appointmentStatus != 9) {
-          _filteredList.add(_list[i]);
+      for (var i = 0; i < tempList.length; i++) {
+        if (tempList[i].appointmentStatus != 1 &&
+            tempList[i].appointmentStatus != 3 &&
+            tempList[i].appointmentStatus != 8 &&
+            tempList[i].appointmentStatus != 9) {
+          _filteredList.add(tempList[i]);
           notifyListeners();
         }
       }
     }
     if (_selected == 1) {
       // Completed , Payment Done, Cancelled
-      for (var i = 0; i < _list.length; i++) {
-        if (_list[i].appointmentStatus == 8 ||
-            _list[i].appointmentStatus == 9 ||
-            _list[i].appointmentStatus == 3) {
-          _filteredList.add(_list[i]);
+      for (var i = 0; i < tempList.length; i++) {
+        if (tempList[i].appointmentStatus == 8 ||
+            tempList[i].appointmentStatus == 9 ||
+            tempList[i].appointmentStatus == 3) {
+          _filteredList.add(tempList[i]);
           notifyListeners();
         }
       }
