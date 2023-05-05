@@ -32,6 +32,7 @@ import 'package:aartas_design_system/providers/patient_vitals_trend_provider.dar
 import 'package:aartas_design_system/providers/pdf_provider.dart';
 import 'package:aartas_design_system/providers/procedure_provider.dart';
 import 'package:aartas_design_system/providers/rewards_provider.dart';
+import 'package:aartas_design_system/providers/screen_app/screen_app_provider.dart';
 import 'package:aartas_design_system/providers/search_provider.dart';
 import 'package:aartas_design_system/providers/speciality_provider.dart';
 import 'package:aartas_design_system/providers/vaccines_provider.dart';
@@ -94,6 +95,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => CallNurseProvider()),
         ChangeNotifierProvider(create: (_) => CampaignProvider()),
         ChangeNotifierProvider(create: (_) => VaccinesProvider()),
+        ChangeNotifierProvider(create: (_) => ScreenAppProvider()),
       ],
       builder: (_, child) {
         return widget.child;
