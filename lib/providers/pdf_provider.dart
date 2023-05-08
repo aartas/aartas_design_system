@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class PDFProvider extends ChangeNotifier {
-  Future<PdfGenerateResponse> generate(
+  Future<PdfGenerateResponse?> generatePrescription(
     String baseURL,
     String? appointmentID,
   ) async {
@@ -17,11 +17,29 @@ class PDFProvider extends ChangeNotifier {
     });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
-    if (res.statusCode == 200 && json.decode(res.body)['status']) {
+    if (res.statusCode == 200) {
       return PdfGenerateResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return PdfGenerateResponse(message: json.decode(res.body)['message']);
+      return null;
+    }
+  }
+
+  Future<PdfGenerateResponse?> generateVaccines(
+    String baseURL,
+    String? patientID,
+  ) async {
+    var _url = Uri.parse("$baseURL/vaccine/pdf");
+    final res = await http.post(_url, body: {
+      "patient_id": patientID ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      return PdfGenerateResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return null;
     }
   }
 }
