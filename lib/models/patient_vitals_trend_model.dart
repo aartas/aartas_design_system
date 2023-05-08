@@ -27,20 +27,20 @@ class PatientVitalsTrendResponse {
 }
 
 class PatientVitalsTrendData {
-  List<Vitals>? sBP;
-  List<Vitals>? dBP;
-  List<Vitals>? temperature;
-  List<Vitals>? heartRate;
-  List<Vitals>? weight;
-  List<Vitals>? height;
-  List<Vitals>? bMI;
-  List<Vitals>? spO2;
-  List<Vitals>? glucose;
-  List<Vitals>? headCircumference;
+  VitalsTrends? systolicBP;
+  VitalsTrends? diastolicBP;
+  VitalsTrends? temperature;
+  VitalsTrends? heartRate;
+  VitalsTrends? weight;
+  VitalsTrends? height;
+  VitalsTrends? bMI;
+  VitalsTrends? spO2;
+  VitalsTrends? glucose;
+  VitalsTrends? headCircumference;
 
   PatientVitalsTrendData(
-      {this.sBP,
-      this.dBP,
+      {this.systolicBP,
+      this.diastolicBP,
       this.temperature,
       this.heartRate,
       this.weight,
@@ -51,100 +51,90 @@ class PatientVitalsTrendData {
       this.headCircumference});
 
   PatientVitalsTrendData.fromJson(Map<String, dynamic> json) {
-    if (json['SBP'] != null) {
-      sBP = <Vitals>[];
-      json['SBP'].forEach((v) {
-        sBP!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['DBP'] != null) {
-      dBP = <Vitals>[];
-      json['DBP'].forEach((v) {
-        dBP!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['Temperature'] != null) {
-      temperature = <Vitals>[];
-      json['Temperature'].forEach((v) {
-        temperature!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['Heart Rate'] != null) {
-      heartRate = <Vitals>[];
-      json['Heart Rate'].forEach((v) {
-        heartRate!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['Weight'] != null) {
-      weight = <Vitals>[];
-      json['Weight'].forEach((v) {
-        weight!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['Height'] != null) {
-      height = <Vitals>[];
-      json['Height'].forEach((v) {
-        height!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['BMI'] != null) {
-      bMI = <Vitals>[];
-      json['BMI'].forEach((v) {
-        bMI!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['SpO2'] != null) {
-      spO2 = <Vitals>[];
-      json['SpO2'].forEach((v) {
-        spO2!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['glucose '] != null) {
-      glucose = <Vitals>[];
-      json['glucose '].forEach((v) {
-        glucose!.add(Vitals.fromJson(v));
-      });
-    }
-    if (json['Head circumference'] != null) {
-      headCircumference = <Vitals>[];
-      json['Head circumference'].forEach((v) {
-        headCircumference!.add(Vitals.fromJson(v));
-      });
-    }
+    systolicBP = json['Systolic BP'] != null
+        ? VitalsTrends.fromJson(json['Systolic BP'])
+        : null;
+    diastolicBP = json['Diastolic BP'] != null
+        ? VitalsTrends.fromJson(json['Diastolic BP'])
+        : null;
+    temperature = json['Temperature'] != null
+        ? VitalsTrends.fromJson(json['Temperature'])
+        : null;
+    heartRate = json['Heart Rate'] != null
+        ? VitalsTrends.fromJson(json['Heart Rate'])
+        : null;
+    weight =
+        json['Weight'] != null ? VitalsTrends.fromJson(json['Weight']) : null;
+    height =
+        json['Height'] != null ? VitalsTrends.fromJson(json['Height']) : null;
+    bMI = json['BMI'] != null ? VitalsTrends.fromJson(json['BMI']) : null;
+    spO2 = json['SpO2'] != null ? VitalsTrends.fromJson(json['SpO2']) : null;
+    glucose =
+        json['Glucose'] != null ? VitalsTrends.fromJson(json['Glucose']) : null;
+    headCircumference = json['Head Circumference'] != null
+        ? VitalsTrends.fromJson(json['Head Circumference'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (sBP != null) {
-      data['SBP'] = sBP!.map((v) => v.toJson()).toList();
+    if (systolicBP != null) {
+      data['Systolic BP'] = systolicBP!.toJson();
     }
-    if (dBP != null) {
-      data['DBP'] = dBP!.map((v) => v.toJson()).toList();
+    if (diastolicBP != null) {
+      data['Diastolic BP'] = diastolicBP!.toJson();
     }
     if (temperature != null) {
-      data['Temperature'] = temperature!.map((v) => v.toJson()).toList();
+      data['Temperature'] = temperature!.toJson();
     }
     if (heartRate != null) {
-      data['Heart Rate'] = heartRate!.map((v) => v.toJson()).toList();
+      data['Heart Rate'] = heartRate!.toJson();
     }
     if (weight != null) {
-      data['Weight'] = weight!.map((v) => v.toJson()).toList();
+      data['Weight'] = weight!.toJson();
     }
     if (height != null) {
-      data['Height'] = height!.map((v) => v.toJson()).toList();
+      data['Height'] = height!.toJson();
     }
     if (bMI != null) {
-      data['BMI'] = bMI!.map((v) => v.toJson()).toList();
+      data['BMI'] = bMI!.toJson();
     }
     if (spO2 != null) {
-      data['SpO2'] = spO2!.map((v) => v.toJson()).toList();
+      data['SpO2'] = spO2!.toJson();
     }
     if (glucose != null) {
-      data['glucose '] = glucose!.map((v) => v.toJson()).toList();
+      data['Glucose'] = glucose!.toJson();
     }
     if (headCircumference != null) {
-      data['Head circumference'] =
-          headCircumference!.map((v) => v.toJson()).toList();
+      data['Head Circumference'] = headCircumference!.toJson();
+    }
+    return data;
+  }
+}
+
+class VitalsTrends {
+  List<Vital>? trends;
+  Vitals? details;
+
+  VitalsTrends({this.trends, this.details});
+
+  VitalsTrends.fromJson(Map<String, dynamic> json) {
+    if (json['trends'] != null) {
+      trends = <Vital>[];
+      json['trends'].forEach((v) {
+        trends!.add(Vital.fromJson(v));
+      });
+    }
+    details = json['details'] != null ? Vitals.fromJson(json['details']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (trends != null) {
+      data['trends'] = trends!.map((v) => v.toJson()).toList();
+    }
+    if (details != null) {
+      data['details'] = details!.toJson();
     }
     return data;
   }
