@@ -345,6 +345,8 @@ class Vital {
   int? id;
   String? title;
   String? unit;
+  String? lowValue;
+  String? highValue;
 
   Vital({this.id, this.title, this.unit});
 
@@ -352,6 +354,8 @@ class Vital {
     id = json['id'];
     title = json['title'];
     unit = json['unit'];
+    lowValue = json['low_value'];
+    highValue = json['high_value'];
   }
 
   Map<String, dynamic> toJson() {
@@ -359,6 +363,8 @@ class Vital {
     data['id'] = id;
     data['title'] = title;
     data['unit'] = unit;
+    data['low_value'] = lowValue;
+    data['high_value'] = highValue;
     return data;
   }
 }
