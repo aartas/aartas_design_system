@@ -113,19 +113,19 @@ class PatientVitalsTrendData {
 }
 
 class VitalsTrends {
-  List<Vital>? trends;
-  Vitals? details;
+  List<Vitals>? trends;
+  Vital? details;
 
   VitalsTrends({this.trends, this.details});
 
   VitalsTrends.fromJson(Map<String, dynamic> json) {
     if (json['trends'] != null) {
-      trends = <Vital>[];
+      trends = <Vitals>[];
       json['trends'].forEach((v) {
-        trends!.add(Vital.fromJson(v));
+        trends!.add(Vitals.fromJson(v));
       });
     }
-    details = json['details'] != null ? Vitals.fromJson(json['details']) : null;
+    details = json['details'] != null ? Vital.fromJson(json['details']) : null;
   }
 
   Map<String, dynamic> toJson() {
