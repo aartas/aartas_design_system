@@ -36,18 +36,21 @@ class ConnectLoginData {
   String? aartasId;
   Roles? roles;
   Clinic? clinic;
+  String? expiryDate;
 
-  ConnectLoginData(
-      {this.id,
-      this.name,
-      this.email,
-      this.mobileNumber,
-      this.password,
-      this.role,
-      this.clinicId,
-      this.aartasId,
-      this.roles,
-      this.clinic});
+  ConnectLoginData({
+    this.id,
+    this.name,
+    this.email,
+    this.mobileNumber,
+    this.password,
+    this.role,
+    this.clinicId,
+    this.aartasId,
+    this.roles,
+    this.clinic,
+    this.expiryDate,
+  });
 
   ConnectLoginData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,6 +61,7 @@ class ConnectLoginData {
     role = json['role'];
     clinicId = json['clinic_id'];
     aartasId = json['aartas_id'];
+    expiryDate = json['expiry_date'];
     roles = json['roles'] != null ? Roles.fromJson(json['roles']) : null;
     clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
   }
@@ -72,6 +76,7 @@ class ConnectLoginData {
     data['role'] = role;
     data['clinic_id'] = clinicId;
     data['aartas_id'] = aartasId;
+    data['expiry_date'] = expiryDate;
     if (roles != null) {
       data['roles'] = roles!.toJson();
     }
