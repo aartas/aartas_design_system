@@ -43,6 +43,7 @@ class ConnectAttendanceDetailsData {
   String? purposeDetails;
   String? visitCheckoutDetails;
   AdminUser? adminUser;
+  Clinic? clinic;
 
   ConnectAttendanceDetailsData(
       {this.id,
@@ -56,7 +57,8 @@ class ConnectAttendanceDetailsData {
       this.purpose,
       this.purposeDetails,
       this.visitCheckoutDetails,
-      this.adminUser});
+      this.adminUser,
+      this.clinic});
 
   ConnectAttendanceDetailsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -70,6 +72,7 @@ class ConnectAttendanceDetailsData {
     purpose = json['purpose'];
     purposeDetails = json['purpose_details'];
     visitCheckoutDetails = json['visit_checkout_details'];
+    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
     adminUser = json['admin_user'] != null
         ? AdminUser.fromJson(json['admin_user'])
         : null;
@@ -90,6 +93,9 @@ class ConnectAttendanceDetailsData {
     data['visit_checkout_details'] = visitCheckoutDetails;
     if (adminUser != null) {
       data['admin_user'] = adminUser!.toJson();
+    }
+    if (clinic != null) {
+      data['clinic'] = clinic!.toJson();
     }
     return data;
   }
