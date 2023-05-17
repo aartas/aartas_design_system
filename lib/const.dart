@@ -21,6 +21,23 @@ MediaQueryData mediaQuery(context) {
 //-----------------URLS--------------------
 String apiKey = "AIzaSyC4wk5k8E6jKkpJClZlXZ8oavuPyi0AMVE";
 
+String appAssets(url) => "$url/../assets/app";
+
+String documentImageURL(url) => "$url/../assets/scanned_documents";
+String labelImageURL(url) => "$url/../assets/vaccine_labels";
+String iconImageUrl(url) => "$url/../assets/icons";
+String doctorImageUrl(url) => "$url/../assets/doctor";
+String homeFeedImageUrl(url) => "$url/../assets/home_feed";
+String onBoardingImageUrl(url) => "$url/../assets/onboarding";
+String bundlesImageUrl(url) => "$url/../assets/bundles";
+String membershipImageUrl(url) => "$url/../assets/membership";
+String journeyImageUrl(url) => "$url/../assets/journey_images";
+String clinicRoomImageUrl(url) => "$url/../assets/clinic_rooms";
+String couponImageUrl(url) => "$url/../assets/coupon";
+String customNotificationImageUrl(url) =>
+    "$url/../assets/custom_notification_images";
+String customImageUrl(url) => "$url/../assets/custom_images";
+
 // String iconImageURL = "$baseURL/../assets/icons";
 // String doctorImageURL = "$baseURL/../assets/doctor";
 // String homeFeedImageURL = "$baseURL/../assets/home_feed";
