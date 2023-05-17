@@ -339,19 +339,21 @@ class _ModalLoadingDialogState extends State<ModalLoadingDialog> {
 
 // ------------------- Modal ---------------------
 
-showSnackbar(BuildContext context, String content, Color backgroundColor) {
+showSnackbar(BuildContext context, String content, Color? backgroundColor) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
+      showCloseIcon: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
       ),
-      backgroundColor: backgroundColor,
+      backgroundColor:
+          backgroundColor ?? themeData(context).scaffoldBackgroundColor,
       content: Text(
         content,
-        style: textTheme(context)
-            .subtitle1
-            ?.apply(color: charcoalColor, fontWeightDelta: 2),
+        style: textTheme(context).titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
       ),
     ),
   );
