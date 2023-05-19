@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:aartas_design_system/models/response_model.dart';
+import 'package:aartas_design_system/models/screen_app/screen_app_response_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 class ScreenAppProvider with ChangeNotifier {
-  Future<ResponseModel?> registerScreenDevice(
+  Future<ScreenAppResponse?> registerScreenDevice(
     String baseURL,
     String? title,
     String? deviceID,
@@ -31,7 +32,7 @@ class ScreenAppProvider with ChangeNotifier {
     log("(${res.statusCode}) $_url");
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return ScreenAppResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
       return null;
