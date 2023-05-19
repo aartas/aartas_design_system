@@ -32,7 +32,6 @@ class ScreenAppProvider with ChangeNotifier {
     log("(${res.statusCode}) $_url");
 
     if (res.statusCode == 200) {
-      log(res.body);
       return ScreenAppResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
@@ -62,7 +61,7 @@ class ScreenAppProvider with ChangeNotifier {
     }
   }
 
-  Future<ResponseModel?> getDeviceStatus(
+  Future<int?> checkDeviceStatus(
     String baseURL,
     String? deviceID,
   ) async {
@@ -73,20 +72,20 @@ class ScreenAppProvider with ChangeNotifier {
     log("(${res.statusCode}) $_url");
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return int.parse(res.body);
     } else {
       log(res.body);
       return null;
     }
   }
 
-  Future<int?> setDeviceStatus(
+  Future<int?> changeDeviceStatus(
     String baseURL,
     String? deviceID,
-    // bool?
+    int? status,
   ) async {
     var _url = Uri.parse(
-        "$baseURL/flap/barrier/change/status?device_id=$deviceID&gate_status=1");
+        "$baseURL/flap/barrier/change/status?device_id=$deviceID&gate_status=${status ?? 1}");
     final res = await http.get(_url);
 
     log("(${res.statusCode}) $_url");
