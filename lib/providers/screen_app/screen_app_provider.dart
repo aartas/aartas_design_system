@@ -32,7 +32,7 @@ class ScreenAppProvider with ChangeNotifier {
     log("(${res.statusCode}) $_url");
 
     if (res.statusCode == 200) {
-      print(res.body);
+      log(res.body);
       return ScreenAppResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
