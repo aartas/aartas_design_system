@@ -53,7 +53,7 @@ class AdaptiveTextFormField extends StatelessWidget {
     var _inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide(
-        color: textTheme(context).headline6!.color!,
+        color: textTheme(context).titleLarge!.color!,
         width: 0.5,
       ),
     );

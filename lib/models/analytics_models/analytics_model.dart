@@ -8,7 +8,7 @@ class AnalyticsResponse {
   AnalyticsResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     status = json['status'];
-    data = json['data'] != null ? data : null;
+    data = json['data'] != null ? json['data']! : null;
   }
 
   Map<String, dynamic> toJson() {
