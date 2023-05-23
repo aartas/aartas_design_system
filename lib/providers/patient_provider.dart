@@ -149,4 +149,43 @@ class PatientProvider with ChangeNotifier {
     _patientData = PatientData();
     notifyListeners();
   }
+
+  Future<PatientResponse?> register(
+    String? baseURL,
+    String? fullName,
+    String? gender,
+    String? dob,
+    String? phoneNumber,
+    String? phoneCountryCode,
+    String? relation,
+    String? linkId,
+    String? location,
+    String? email,
+  ) async {
+    var url = Uri.parse("$baseURL/register");
+
+    final res = await http.post(
+      url,
+      body: {
+        "full_name": fullName,
+        "phone_number": phoneNumber ?? "",
+        "phone_country_code": phoneCountryCode ?? "",
+        "gender": gender ?? "",
+        "dob": dob ?? "",
+        "relation": relation ?? "",
+        "link_id": linkId ?? "",
+        "location": location ?? "",
+        "email": email ?? "",
+      },
+    );
+
+    log("(${res.statusCode}) $url");
+    if (res.statusCode == 200) {
+      notifyListeners();
+      return PatientResponse.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
 }
