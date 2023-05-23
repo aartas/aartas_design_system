@@ -4,9 +4,11 @@ import 'dart:developer';
 import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
+import 'package:aartas_design_system/models/version_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:package_info_plus/package_info_plus.dart';
 
 class PatientProvider with ChangeNotifier {
   PatientData _patientData = PatientData();
@@ -188,4 +190,87 @@ class PatientProvider with ChangeNotifier {
       return null;
     }
   }
+
+  Future<ResponseModel?> customEvent(
+    String baseURL,
+    String patientId,
+    String event,
+    String appointmentId,
+    String specialityId,
+    String doctorId,
+    String homeFeedId,
+  ) async {
+    var url = Uri.parse("$baseURL/patient/history/add");
+
+    return verifyVersion(baseURL).then((value) async {
+      final res = await http.post(
+        url,
+        body: {
+          "patient_id": patientId,
+          "event": event,
+          "appointment_id": appointmentId,
+          "speciality_id": specialityId,
+          "doctor_id": doctorId,
+          "home_feed_id": homeFeedId,
+        },
+      );
+
+      log("(${res.statusCode}) $url");
+      if (res.statusCode == 200) {
+        notifyListeners();
+        return ResponseModel.fromJson(json.decode(res.body));
+      } else {
+        return null;
+      }
+    });
+  }
+}
+
+Future<Version> getVersion(baseURL) async {
+  var url = Uri.parse("$baseURL/version/list");
+  final res = await http.get(url);
+  log("(${res.statusCode}) $url");
+  if (res.statusCode == 200) {
+    return Version.fromJson(json.decode(res.body));
+  } else {
+    return Version(
+      status: true,
+      message: "${res.statusCode}",
+      data: VersionData(
+        versionList: [
+          VersionList(
+            value: "0.0.0",
+          )
+        ],
+      ),
+    );
+  }
+}
+
+enum VersionStatus { none, minor, major, testing }
+
+Future<VersionStatus> verifyVersion(baseURL) async {
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return getVersion(baseURL).then((value) {
+    String current = packageInfo.version;
+    String latest = value.data!.versionList![0].value!;
+
+    if (int.parse(latest.split(".")[0]) < int.parse(current.split(".")[0]) &&
+        int.parse(latest.split(".")[1]) < int.parse(current.split(".")[1]) &&
+        int.parse(latest.split(".")[2]) < int.parse(current.split(".")[2])) {
+      return VersionStatus.testing;
+    }
+
+    if (int.parse(latest.split(".")[0]) > int.parse(current.split(".")[0]) &&
+        int.parse(latest.split(".")[1]) >= int.parse(current.split(".")[1])) {
+      return VersionStatus.major;
+    }
+
+    if (int.parse(latest.split(".")[0]) == int.parse(current.split(".")[0]) &&
+        int.parse(latest.split(".")[1]) == int.parse(current.split(".")[1]) &&
+        int.parse(latest.split(".")[2]) > int.parse(current.split(".")[2])) {
+      return VersionStatus.minor;
+    }
+    return VersionStatus.none;
+  });
 }
