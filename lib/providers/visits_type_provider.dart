@@ -42,7 +42,7 @@ class VisitPurposeProvider extends ChangeNotifier {
     final res = await http.post(
       url,
       body: {
-        "full_name": fullName,
+        "name": fullName ?? "",
         "phone_number": phoneNumber ?? "",
       },
     );
