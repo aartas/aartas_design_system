@@ -37,6 +37,7 @@ import 'package:aartas_design_system/providers/screen_app/screen_app_provider.da
 import 'package:aartas_design_system/providers/search_provider.dart';
 import 'package:aartas_design_system/providers/speciality_provider.dart';
 import 'package:aartas_design_system/providers/vaccines_provider.dart';
+import 'package:aartas_design_system/providers/visits_type_provider.dart';
 import 'package:aartas_design_system/providers/vitals_provider.dart';
 import 'package:aartas_design_system/themes_provider.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => VaccinesProvider()),
         ChangeNotifierProvider(create: (_) => ScreenAppProvider()),
         ChangeNotifierProvider(create: (_) => AnalyticsProvider()),
+        ChangeNotifierProvider(create: (_) => VisitPurposeProvider()),
       ],
       builder: (_, child) {
         return widget.child;
