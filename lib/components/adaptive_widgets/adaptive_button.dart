@@ -77,7 +77,7 @@ class AdaptiveButton extends StatelessWidget {
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   backgroundColor: Colors.transparent,
-                  color: burntUmberColor,
+                  color: themeData(context).scaffoldBackgroundColor,
                 ),
               ),
             )
