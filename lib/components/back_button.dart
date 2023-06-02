@@ -21,7 +21,7 @@ class BButton extends StatelessWidget {
         child: IconButton(
           padding: EdgeInsets.zero,
           icon: const Icon(Icons.arrow_back),
-          color: textTheme(context).headline6?.color,
+          color: textTheme(context).titleLarge?.color,
           iconSize: 24,
           onPressed: () =>
               onPressed != null ? onPressed! : Navigator.pop(context),

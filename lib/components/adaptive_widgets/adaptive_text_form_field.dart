@@ -70,7 +70,7 @@ class AdaptiveTextFormField extends StatelessWidget {
         validator: validator,
         controller: textEditingController,
         keyboardType: keyboardType != null ? keyboardType! : null,
-        cursorColor: textTheme(context).subtitle1!.color!,
+        cursorColor: textTheme(context).titleMedium!.color!,
         maxLength: maxLength != null ? maxLength! : null,
         autofocus: autoFocus != null ? autoFocus! : false,
         onChanged: onChanged,
@@ -89,7 +89,7 @@ class AdaptiveTextFormField extends StatelessWidget {
               : OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide(
-                    color: textTheme(context).subtitle1!.color!,
+                    color: textTheme(context).titleMedium!.color!,
                     width: 1,
                   ),
                 ),
@@ -100,24 +100,28 @@ class AdaptiveTextFormField extends StatelessWidget {
           prefixIcon: prefixWidget,
           labelStyle: textStyle != null
               ? textStyle!
-              : textTheme(context).subtitle1?.apply(
+              : textTheme(context).titleMedium?.apply(
                     fontSizeDelta: 4,
                     color: enabled != null && !enabled!
-                        ? textTheme(context).subtitle1!.color!.withOpacity(0.6)
-                        : textTheme(context).subtitle1!.color!,
+                        ? textTheme(context)
+                            .titleMedium!
+                            .color!
+                            .withOpacity(0.6)
+                        : textTheme(context).titleMedium!.color!,
                   ),
           hintStyle: textStyle != null
               ? textStyle!
-              : textTheme(context).subtitle1?.apply(
+              : textTheme(context).titleMedium?.apply(
                     fontSizeDelta: 2,
                     color:
-                        textTheme(context).subtitle1!.color!.withOpacity(0.6),
+                        textTheme(context).titleMedium!.color!.withOpacity(0.6),
                   ),
         ),
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: textTheme(context).headline6?.fontSize,
-        ),
+        style: textStyle != null
+            ? textStyle!
+            : textTheme(context).titleLarge!.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
       ),
     );
   }

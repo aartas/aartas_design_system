@@ -1,6 +1,6 @@
 class Version {
-  String? message;
-  bool? status;
+  String? message = "";
+  bool? status = true;
   VersionData? data;
 
   Version({this.message, this.status, this.data});

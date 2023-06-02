@@ -62,10 +62,11 @@ class AdaptiveButton extends StatelessWidget {
           ? padding!
           : const EdgeInsets.symmetric(horizontal: 24, vertical: 16), // 24 20
       onPressed: onTap,
-      color: bgColor != null ? bgColor! : textTheme(context).subtitle1!.color!,
+      color:
+          bgColor != null ? bgColor! : textTheme(context).titleMedium!.color!,
       disabledColor: bgColor != null
           ? bgColor!.withOpacity(0.3)
-          : textTheme(context).subtitle1!.color!.withOpacity(0.3),
+          : textTheme(context).titleMedium!.color!.withOpacity(0.3),
 
       child: isLoading != null && isLoading!
           ? Center(
@@ -96,7 +97,7 @@ class AdaptiveButton extends StatelessWidget {
                         child: Text(
                           label != null ? label! : "",
                           style: TextStyle(
-                            fontSize: textTheme(context).subtitle1!.fontSize,
+                            fontSize: textTheme(context).titleMedium!.fontSize,
                             fontWeight: FontWeight.w600,
                             decoration: decoration != null ? decoration! : null,
                             color: onTap != null
@@ -140,7 +141,7 @@ class AdaptiveButton extends StatelessWidget {
           : EdgeInsets.zero,
       child: Icon(
         icon,
-        size: textTheme(context).headline6!.fontSize!,
+        size: textTheme(context).titleLarge!.fontSize!,
         color: onTap != null
             ? textColor != null
                 ? textColor!
