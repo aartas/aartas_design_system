@@ -1,4 +1,3 @@
-import 'package:aartas_design_system/components/glassmorphism.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
@@ -292,7 +291,7 @@ enum MessageStyle { success, danger }
 //               FittedBox(
 //                 child: Text(
 //                   title ?? "",
-//                   style: textTheme(context).subtitle1?.apply(
+//                   style: textTheme(context).titleMedium?.apply(
 //                         fontWeightDelta: 1,
 //                       ),
 //                 ),
@@ -375,13 +374,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirmation Pending",
-            style: textTheme(context).subtitle1?.apply(color: pearlColor),
+            style: textTheme(context).titleMedium?.apply(color: pearlColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
           color: pearlColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -393,13 +392,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirm",
-            style: textTheme(context).subtitle1?.apply(color: pearlColor),
+            style: textTheme(context).titleMedium?.apply(color: pearlColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
           color: pearlColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -411,13 +410,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Cancelled",
-            style: textTheme(context).subtitle1?.apply(color: copperRedColor),
+            style: textTheme(context).titleMedium?.apply(color: copperRedColor),
           ),
         ),
         Icon(
           CupertinoIcons.clear_circled,
           color: copperRedColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -429,13 +428,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Confirm",
-            style: textTheme(context).subtitle1?.apply(color: cadetGreyColor),
+            style: textTheme(context).titleMedium?.apply(color: cadetGreyColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
           color: cadetGreyColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -444,7 +443,7 @@ Widget getAppointmentStatus(context, int status) {
     return Text(
       // "Check In",
       "",
-      style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
+      style: textTheme(context).titleMedium?.apply(color: cadetBlueColor),
     );
   }
   if (status == 6) {
@@ -454,13 +453,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Vitals Done",
-            style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
+            style: textTheme(context).titleMedium?.apply(color: cadetBlueColor),
           ),
         ),
         Icon(
           CupertinoIcons.thermometer,
           color: cadetBlueColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -469,7 +468,7 @@ Widget getAppointmentStatus(context, int status) {
     return Text(
       // "In Appointment",
       "Currently Consulting...",
-      style: textTheme(context).subtitle1?.apply(color: cadetBlueColor),
+      style: textTheme(context).titleMedium?.apply(color: cadetBlueColor),
     );
   }
   if (status == 8) {
@@ -479,13 +478,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Completed",
-            style: textTheme(context).subtitle1?.apply(color: cadetGreyColor),
+            style: textTheme(context).titleMedium?.apply(color: cadetGreyColor),
           ),
         ),
         Icon(
           CupertinoIcons.check_mark_circled,
           color: cadetGreyColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );
@@ -497,13 +496,13 @@ Widget getAppointmentStatus(context, int status) {
         Expanded(
           child: Text(
             "Unattainted",
-            style: textTheme(context).subtitle1?.apply(color: greyColor),
+            style: textTheme(context).titleMedium?.apply(color: greyColor),
           ),
         ),
         Icon(
           CupertinoIcons.clear,
           color: greyColor,
-          size: textTheme(context).headline6?.apply().fontSize,
+          size: textTheme(context).titleLarge?.apply().fontSize,
         ),
       ],
     );

@@ -8,13 +8,13 @@ import 'package:flutter/cupertino.dart';
 //     Expanded(
 //       child: Text(
 //         "Confirmation Pending",
-//         style: textTheme(context).subtitle1?.apply(color: pearlColor),
+//         style: textTheme(context).titleMedium?.apply(color: pearlColor),
 //       ),
 //     ),
 //     Icon(
 //       CupertinoIcons.check_mark_circled,
 //       color: pearlColor,
-//       size: textTheme(context).headline6?.apply().fontSize,
+//       size: textTheme(context).titleLarge?.apply().fontSize,
 //     ),
 //   ],
 // );
@@ -24,7 +24,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Confirmation Pending",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: charcoalColor,
             ),
       ),
@@ -35,7 +35,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Confirm",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -46,7 +46,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Cancelled",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -58,7 +58,7 @@ Widget getAppointmentStatusChip(context, int status) {
     // return CustomChip(
     //   child: Text(
     //     "QR Code Generated",
-    //     style: textTheme(context).subtitle2!.apply(
+    //     style: textTheme(context).titleSmall!.apply(
     //           color: seaShellColor,
     //         ),
     //   ),
@@ -69,7 +69,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Check in",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -80,7 +80,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Vitals Done",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -91,7 +91,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Currently Consulting...",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -102,7 +102,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Completed",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -113,7 +113,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "unattended",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: seaShellColor,
             ),
       ),
@@ -124,7 +124,7 @@ Widget getAppointmentStatusChip(context, int status) {
     return CustomChip(
       child: Text(
         "Payment Pending",
-        style: textTheme(context).subtitle2!.apply(
+        style: textTheme(context).titleSmall!.apply(
               color: charcoalColor,
             ),
       ),
@@ -134,7 +134,7 @@ Widget getAppointmentStatusChip(context, int status) {
   return CustomChip(
     child: Text(
       "...",
-      style: textTheme(context).subtitle2!.apply(
+      style: textTheme(context).titleSmall!.apply(
             color: charcoalColor,
           ),
     ),
@@ -157,7 +157,7 @@ String getAppointmentStatusString(context, int status) {
     // return CustomChip(
     //   child: Text(
     //     "QR Code Generated",
-    //     style: textTheme(context).subtitle2!.apply(
+    //     style: textTheme(context).titleSmall!.apply(
     //           color: seaShellColor,
     //         ),
     //   ),

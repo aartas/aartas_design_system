@@ -75,9 +75,9 @@ class _LoadingDialogState extends State<LoadingDialog> {
               child: _showBypassMessage.isNotEmpty
                   ? Text(
                       _showBypassMessage,
-                      style: textTheme(context).subtitle1?.apply(
+                      style: textTheme(context).titleMedium?.apply(
                             color: textTheme(context)
-                                .subtitle1!
+                                .titleMedium!
                                 .color!
                                 .withOpacity(0.5),
                             fontStyle: FontStyle.italic,
@@ -88,7 +88,7 @@ class _LoadingDialogState extends State<LoadingDialog> {
                           ? "${widget.title}"
                           : "Loading Please wait...",
                       style: textTheme(context)
-                          .subtitle1
+                          .titleMedium
                           ?.apply(fontWeightDelta: 2),
                     ),
             ),
@@ -96,7 +96,7 @@ class _LoadingDialogState extends State<LoadingDialog> {
               width: 16,
             ),
             CupertinoActivityIndicator(
-              color: textTheme(context).headline6!.color,
+              color: textTheme(context).titleLarge!.color,
             ),
 
             // const SizedBox(
@@ -105,7 +105,7 @@ class _LoadingDialogState extends State<LoadingDialog> {
             // Align(
             //   alignment: Alignment.centerRight,
             //   child: AartasLogo(
-            //     color: textTheme(context).headline6!.color!,
+            //     color: textTheme(context).titleLarge!.color!,
             //     size: 14,
             //   ),
             // ),
@@ -141,7 +141,7 @@ class _LoadingDialogState extends State<LoadingDialog> {
     //                       ? "${widget.subtitle}"
     //                       : "Loading Please wait...",
     //                   textAlign: TextAlign.center,
-    //                   style: textTheme(context).subtitle1,
+    //                   style: textTheme(context).titleMedium,
     //                 )
     //         ],
     //       ),
@@ -381,7 +381,7 @@ showSnackbar(BuildContext context, String content, Color? backgroundColor) {
   //           Text(
   //             text != "" ? text : "Loading. Please wait... :)",
   //             style: textTheme(context)
-  //                 .subtitle1
+  //                 .titleMedium
   //                 ?.apply(fontWeightDelta: 2, color: whiteColor),
   //           ),
   //         ],
@@ -397,7 +397,7 @@ showSnackbar(BuildContext context, String content, Color? backgroundColor) {
 //       content: Text(
 //         text,
 //         style: textTheme(context)
-//             .subtitle1
+//             .titleMedium
 //             ?.apply(fontWeightDelta: 2, color: color),
 //       ),
 //     ),

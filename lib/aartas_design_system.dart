@@ -30,6 +30,7 @@ import 'package:aartas_design_system/providers/patient_location_provider.dart';
 import 'package:aartas_design_system/providers/patient_provider.dart';
 import 'package:aartas_design_system/providers/patient_tracker_provider.dart';
 import 'package:aartas_design_system/providers/patient_vitals_trend_provider.dart';
+import 'package:aartas_design_system/providers/paytm/paytm_apis_provider.dart';
 import 'package:aartas_design_system/providers/pdf_provider.dart';
 import 'package:aartas_design_system/providers/procedure_provider.dart';
 import 'package:aartas_design_system/providers/rewards_provider.dart';
@@ -100,6 +101,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => ScreenAppProvider()),
         ChangeNotifierProvider(create: (_) => AnalyticsProvider()),
         ChangeNotifierProvider(create: (_) => VisitPurposeProvider()),
+        ChangeNotifierProvider(create: (_) => PaytmApiProvider()),
       ],
       builder: (_, child) {
         return widget.child;

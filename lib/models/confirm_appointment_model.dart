@@ -1,9 +1,6 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
-import 'package:aartas_design_system/models/coupon_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
-import 'package:aartas_design_system/models/family_members_model.dart';
 import 'package:aartas_design_system/models/home_feed_model.dart';
-import 'package:aartas_design_system/models/timeslot_model.dart';
 
 class ConfirmAppointment {
   String? message;

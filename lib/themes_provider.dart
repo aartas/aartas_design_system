@@ -13,13 +13,13 @@ ThemeData globalThemeData(context) => ThemeData(
             const EdgeInsets.all(16),
           ),
           textStyle: MaterialStateProperty.all(
-            textTheme(context).subtitle1?.apply(fontWeightDelta: 2),
+            textTheme(context).titleMedium?.apply(fontWeightDelta: 2),
           ),
           foregroundColor: MaterialStateProperty.all(
             themeData(context).scaffoldBackgroundColor,
           ),
           overlayColor: MaterialStateProperty.all(
-            textTheme(context).headline6!.color!.withOpacity(0.05),
+            textTheme(context).titleLarge!.color!.withOpacity(0.05),
           ),
         ),
       ),
@@ -29,12 +29,12 @@ ThemeData globalThemeData(context) => ThemeData(
             const EdgeInsets.all(16),
           ),
           textStyle: MaterialStateProperty.all(
-            textTheme(context).subtitle1?.apply(
+            textTheme(context).titleMedium?.apply(
                   fontWeightDelta: 2,
                 ),
           ),
           backgroundColor: MaterialStateProperty.all(
-            textTheme(context).headline6!.color!,
+            textTheme(context).titleLarge!.color!,
           ),
           foregroundColor: MaterialStateProperty.all(
             themeData(context).scaffoldBackgroundColor,
@@ -53,7 +53,7 @@ ThemeData globalThemeData(context) => ThemeData(
           ),
           side: MaterialStateProperty.all(
             BorderSide(
-              color: textTheme(context).headline6!.color!.withOpacity(0.5),
+              color: textTheme(context).titleLarge!.color!.withOpacity(0.5),
               width: 1,
               style: BorderStyle.solid,
             ),
@@ -64,13 +64,13 @@ ThemeData globalThemeData(context) => ThemeData(
             ),
           ),
           textStyle: MaterialStateProperty.all(
-            textTheme(context).subtitle1?.apply(fontWeightDelta: 2),
+            textTheme(context).titleMedium?.apply(fontWeightDelta: 2),
           ),
           foregroundColor: MaterialStateProperty.all(
             themeData(context).scaffoldBackgroundColor,
           ),
           overlayColor: MaterialStateProperty.all(
-            textTheme(context).headline6!.color!.withOpacity(0.05),
+            textTheme(context).titleLarge!.color!.withOpacity(0.05),
           ),
         ),
       ),
@@ -79,7 +79,7 @@ ThemeData globalThemeData(context) => ThemeData(
           borderRadius: BorderRadius.circular(4),
         ),
         fillColor:
-            MaterialStateProperty.all(textTheme(context).headline6!.color!),
+            MaterialStateProperty.all(textTheme(context).titleLarge!.color!),
       ),
     );
 
@@ -95,27 +95,27 @@ ThemeData lightThemeData(context) => globalThemeData(context).copyWith(
         iconTheme: IconThemeData(color: charcoalColor),
       ),
       textTheme: TextTheme(
-        headline1: textTheme(context).headline1!.copyWith(
+        displayLarge: textTheme(context).displayLarge!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline2: textTheme(context).headline2!.copyWith(
+        displayMedium: textTheme(context).displayMedium!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline3: textTheme(context).headline3!.copyWith(
+        displaySmall: textTheme(context).displaySmall!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline4: textTheme(context).headline4!.copyWith(
+        headlineMedium: textTheme(context).headlineMedium!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline5: textTheme(context).headline5!.copyWith(
+        headlineSmall: textTheme(context).headlineSmall!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline6: textTheme(context).headline6!.copyWith(
+        titleLarge: textTheme(context).titleLarge!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        subtitle1: textTheme(context).subtitle1!.copyWith(
+        titleMedium: textTheme(context).titleMedium!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        subtitle2: textTheme(context).subtitle2!.copyWith(
+        titleSmall: textTheme(context).titleSmall!.copyWith(
             color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        bodyText1: textTheme(context).bodyText1!.copyWith(
+        bodyLarge: textTheme(context).bodyLarge!.copyWith(
             color: charcoalColor.withOpacity(0.6), fontFamily: "Urbanist"),
-        bodyText2: textTheme(context).bodyText2!.copyWith(
+        bodyMedium: textTheme(context).bodyMedium!.copyWith(
             color: charcoalColor.withOpacity(0.6), fontFamily: "Urbanist"),
-        caption: textTheme(context).caption!.copyWith(
+        bodySmall: textTheme(context).bodySmall!.copyWith(
             color: charcoalColor.withOpacity(0.4), fontFamily: "Urbanist"),
       ),
       iconTheme: IconThemeData(color: charcoalColor),
@@ -133,27 +133,27 @@ ThemeData darkThemeData(context) => globalThemeData(context).copyWith(
         iconTheme: IconThemeData(color: seaShellColor),
       ),
       textTheme: TextTheme(
-        headline1: textTheme(context).headline1!.copyWith(
+        displayLarge: textTheme(context).displayLarge!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline2: textTheme(context).headline2!.copyWith(
+        displayMedium: textTheme(context).displayMedium!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline3: textTheme(context).headline3!.copyWith(
+        displaySmall: textTheme(context).displaySmall!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline4: textTheme(context).headline4!.copyWith(
+        headlineMedium: textTheme(context).headlineMedium!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline5: textTheme(context).headline5!.copyWith(
+        headlineSmall: textTheme(context).headlineSmall!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        headline6: textTheme(context).headline6!.copyWith(
+        titleLarge: textTheme(context).titleLarge!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        subtitle1: textTheme(context).subtitle1!.copyWith(
+        titleMedium: textTheme(context).titleMedium!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        subtitle2: textTheme(context).subtitle2!.copyWith(
+        titleSmall: textTheme(context).titleSmall!.copyWith(
             color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
-        bodyText1: textTheme(context).bodyText1!.copyWith(
+        bodyLarge: textTheme(context).bodyLarge!.copyWith(
             color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
-        bodyText2: textTheme(context).bodyText2!.copyWith(
+        bodyMedium: textTheme(context).bodyMedium!.copyWith(
             color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
-        caption: textTheme(context).caption!.copyWith(
+        bodySmall: textTheme(context).bodySmall!.copyWith(
             color: seaShellColor.withOpacity(0.4), fontFamily: "Urbanist"),
       ),
       iconTheme: IconThemeData(color: seaShellColor.withOpacity(0.9)),

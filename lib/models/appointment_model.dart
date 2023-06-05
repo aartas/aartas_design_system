@@ -1,6 +1,5 @@
 import 'package:aartas_design_system/models/coupon_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
-import 'package:aartas_design_system/models/family_members_model.dart';
 import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/patient_response_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
