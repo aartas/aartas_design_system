@@ -32,6 +32,7 @@ class AdaptiveButton extends StatelessWidget {
   final Alignment? alignment;
   final TextDecoration? decoration;
   final bool? isLoading;
+  final TextStyle? textStyle;
   const AdaptiveButton({
     Key? key,
     this.onTap,
@@ -49,6 +50,7 @@ class AdaptiveButton extends StatelessWidget {
     this.alignment,
     this.decoration,
     this.isLoading,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -96,20 +98,35 @@ class AdaptiveButton extends StatelessWidget {
                     ? FittedBox(
                         child: Text(
                           label != null ? label! : "",
-                          style: TextStyle(
-                            fontSize: textTheme(context).titleMedium!.fontSize,
-                            fontWeight: FontWeight.w600,
-                            decoration: decoration != null ? decoration! : null,
-                            color: onTap != null
-                                ? textColor != null
-                                    ? textColor!
-                                    : themeData(context).scaffoldBackgroundColor
-                                : textColor != null
-                                    ? textColor!.withOpacity(0.4)
-                                    : themeData(context)
-                                        .scaffoldBackgroundColor
-                                        .withOpacity(0.3),
-                          ),
+                          style: textStyle != null
+                              ? textStyle!.copyWith(
+                                  color: onTap != null
+                                      ? textColor != null
+                                          ? textColor!
+                                          : themeData(context)
+                                              .scaffoldBackgroundColor
+                                      : textColor != null
+                                          ? textColor!.withOpacity(0.4)
+                                          : themeData(context)
+                                              .scaffoldBackgroundColor
+                                              .withOpacity(0.3))
+                              : TextStyle(
+                                  fontSize:
+                                      textTheme(context).titleMedium!.fontSize,
+                                  fontWeight: FontWeight.w600,
+                                  decoration:
+                                      decoration != null ? decoration! : null,
+                                  color: onTap != null
+                                      ? textColor != null
+                                          ? textColor!
+                                          : themeData(context)
+                                              .scaffoldBackgroundColor
+                                      : textColor != null
+                                          ? textColor!.withOpacity(0.4)
+                                          : themeData(context)
+                                              .scaffoldBackgroundColor
+                                              .withOpacity(0.3),
+                                ),
                         ),
                       )
                     : const SizedBox(),
