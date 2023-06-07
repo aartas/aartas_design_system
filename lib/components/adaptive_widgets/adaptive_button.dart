@@ -158,7 +158,9 @@ class AdaptiveButton extends StatelessWidget {
           : EdgeInsets.zero,
       child: Icon(
         icon,
-        size: textTheme(context).titleLarge!.fontSize!,
+        size: textStyle != null
+            ? textStyle!.fontSize!
+            : textTheme(context).titleLarge!.fontSize!,
         color: onTap != null
             ? textColor != null
                 ? textColor!
