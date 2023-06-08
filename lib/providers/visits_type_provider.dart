@@ -33,7 +33,7 @@ class VisitPurposeProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel?> register(
+  Future<VisitUserResponse?> register(
     String? baseURL,
     String? fullName,
     String? phoneNumber,
@@ -51,7 +51,7 @@ class VisitPurposeProvider extends ChangeNotifier {
     log("(${res.statusCode}) $url");
     if (res.statusCode == 200) {
       notifyListeners();
-      return ResponseModel.fromJson(json.decode(res.body));
+      return VisitUserResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
       return null;
