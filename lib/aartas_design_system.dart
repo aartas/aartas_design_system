@@ -23,6 +23,7 @@ import 'package:aartas_design_system/providers/health_program_provider.dart';
 import 'package:aartas_design_system/providers/home_feed_provider.dart';
 import 'package:aartas_design_system/providers/instruction_provider.dart';
 import 'package:aartas_design_system/providers/investigation_provider.dart';
+import 'package:aartas_design_system/providers/kiosk/kiosk_app_provider.dart';
 import 'package:aartas_design_system/providers/medicine_provider.dart';
 import 'package:aartas_design_system/providers/patient_appointment_provider.dart';
 import 'package:aartas_design_system/providers/patient_cart_provider.dart';
@@ -102,6 +103,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => AnalyticsProvider()),
         ChangeNotifierProvider(create: (_) => VisitPurposeProvider()),
         ChangeNotifierProvider(create: (_) => PaytmApiProvider()),
+        ChangeNotifierProvider(create: (_) => KioskApiProvider()),
       ],
       builder: (_, child) {
         return widget.child;

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/models/response_model.dart';
 import 'package:aartas_design_system/models/visit_user_response.dart';
 import 'package:aartas_design_system/models/visits_model.dart';
 import 'package:flutter/material.dart';
