@@ -19,7 +19,11 @@ class KioskApiProvider extends ChangeNotifier {
   ) async {
     var url = Uri.parse("$baseURL/kiosk/register");
 
-    final res = await http.get(url);
+    final res = await http.post(url, body: {
+      "device_id": deviceID ?? "",
+      "fcm_token": fcmToken ?? "",
+    });
+
     log("(${res.statusCode}) $url");
 
     if (res.statusCode == 200) {
