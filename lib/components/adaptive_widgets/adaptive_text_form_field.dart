@@ -22,8 +22,11 @@ class AdaptiveTextFormField extends StatelessWidget {
       autocorrect;
   final TextStyle? textStyle;
   final String? Function(String?)? validator;
+  final FocusNode? focusNode;
+
   const AdaptiveTextFormField({
     Key? key,
+    this.focusNode,
     this.prefixWidget,
     this.suffixWidget,
     this.onChanged,
@@ -63,6 +66,7 @@ class AdaptiveTextFormField extends StatelessWidget {
       height: 80,
       // padding: const EdgeInsets.all(4),
       child: TextFormField(
+        focusNode: focusNode != null ? focusNode! : null,
         enableSuggestions:
             enableSuggestions != null ? enableSuggestions! : false,
         obscureText: obscureText != null ? obscureText! : false,
