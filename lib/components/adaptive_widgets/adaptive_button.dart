@@ -74,8 +74,13 @@ class AdaptiveButton extends StatelessWidget {
           ? Center(
               child: SizedBox(
                 // padding: const EdgeInsets.symmetric(vertical: 8),
-                height: 24,
-                width: 24,
+                height: textStyle != null
+                    ? textStyle!.fontSize!
+                    : textTheme(context).titleLarge!.fontSize!,
+                width: textStyle != null
+                    ? textStyle!.fontSize!
+                    : textTheme(context).titleLarge!.fontSize!,
+
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   backgroundColor: Colors.transparent,
