@@ -8,6 +8,7 @@ class GlassMorphism extends StatelessWidget {
   final BlendMode? blendMode;
   final Color? color;
   final bool? enabled;
+  final List<BoxShadow>? boxShadow;
   const GlassMorphism({
     Key? key,
     required this.child,
@@ -15,6 +16,7 @@ class GlassMorphism extends StatelessWidget {
     this.blendMode,
     this.color,
     this.enabled,
+    this.boxShadow,
   }) : super(key: key);
 
   @override
@@ -45,6 +47,7 @@ class GlassMorphism extends StatelessWidget {
                             ? color!.withOpacity(0.1)
                             : const Color(0xFF1F1F1F).withOpacity(0.45),
                         borderRadius: _borderRadius,
+                        boxShadow: boxShadow != null ? boxShadow! : null,
                         // border: Border.all(
                         //   width: 1.5,
                         //   color: color != null
