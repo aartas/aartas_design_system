@@ -144,4 +144,25 @@ class DoctorProvider with ChangeNotifier {
       return DoctorResponse(message: json.decode(res.body)['message']);
     }
   }
+
+  Future<ResponseModel?> scanToLoginCliniShare(
+    String baseURL,
+    String? fcmToken,
+    String? doctorID,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/qr/login");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "fcm_token": fcmToken ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
 }
