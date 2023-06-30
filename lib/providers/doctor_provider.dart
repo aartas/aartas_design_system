@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:aartas_design_system/models/doctor_model.dart';
+import 'package:aartas_design_system/models/doctor_timeslots_model.dart';
+
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
 
@@ -159,6 +161,32 @@ class DoctorProvider with ChangeNotifier {
     log(_message);
     if (res.statusCode == 200) {
       var _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
+
+  List<DoctorTimeslotData> timeslots = [];
+
+  Future<DoctorTimeslots?> fetchTimeSlots(
+    String baseURL,
+    String? doctorID,
+    String? fromDate,
+    String? toDate,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/all/timeslots");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "from_date": fromDate ?? "",
+      "to_date": toDate ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = DoctorTimeslots.fromJson(json.decode(res.body));
+      timeslots = _res.data!;
       return _res;
     } else {
       log(res.body);
