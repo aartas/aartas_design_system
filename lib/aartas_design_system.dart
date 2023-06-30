@@ -4,7 +4,6 @@ import 'package:aartas_design_system/apis/authentication_apis.dart';
 import 'package:aartas_design_system/providers/address_provider.dart';
 import 'package:aartas_design_system/providers/appointment_provider.dart';
 import 'package:aartas_design_system/providers/authorization_provider.dart';
-import 'package:aartas_design_system/providers/book_appointment_provider.dart';
 import 'package:aartas_design_system/providers/campaign_provider.dart';
 import 'package:aartas_design_system/providers/category_provider.dart';
 import 'package:aartas_design_system/providers/clinics_provider.dart';
@@ -83,7 +82,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => SpecialityProvider()),
         ChangeNotifierProvider(create: (_) => HomeFeedProvider()),
         ChangeNotifierProvider(create: (_) => FamilyMembersProvider()),
-        ChangeNotifierProvider(create: (_) => BookAppointmentProvider()),
+        // ChangeNotifierProvider(create: (_) => BookAppointmentProvider()),
         ChangeNotifierProvider(create: (_) => RewardProvider()),
         ChangeNotifierProvider(create: (_) => PatientAppointmentProvider()),
         ChangeNotifierProvider(create: (_) => PatientLocationProvider()),

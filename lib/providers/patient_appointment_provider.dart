@@ -25,7 +25,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     return _filteredList;
   }
 
-  Future<PatientAppointmentResponse> fetchData(
+  Future<PatientAppointmentResponse?> fetchData(
     String baseUrl,
     String? appointmentID,
   ) async {
@@ -43,12 +43,11 @@ class PatientAppointmentProvider extends ChangeNotifier {
     } else {
       log(res.body);
       notifyListeners();
-      return PatientAppointmentResponse(
-          message: json.decode(res.body)['message']);
+      return null;
     }
   }
 
-  Future<PatientAppointmentResponse> fetchList(
+  Future<PatientAppointmentResponse?> fetchList(
     String baseUrl,
     String? patientID,
     String? doctorID,
@@ -85,9 +84,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       return _res;
     } else {
       log(res.body);
-
-      return PatientAppointmentResponse(
-          message: json.decode(res.body)['message']);
+      return null;
     }
   }
 
@@ -119,7 +116,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     }
   }
 
-  Future<UnconfirmedAppointment> unconfirmedAppointment(
+  Future<UnconfirmedAppointment?> unconfirmedAppointment(
     String? baseURL,
     String? patientId,
     String? doctorId,
@@ -127,18 +124,24 @@ class PatientAppointmentProvider extends ChangeNotifier {
   ) async {
     var _url = Uri.parse("$baseURL/book/appointment");
     log("Unconfirm Appointment: $patientId, $doctorId, $slotId");
-    final res = (await http.post(_url, body: {
+    final res = await http.post(_url, body: {
       "doctor_id": doctorId,
       "patient_id": patientId,
       "timeslot_id": slotId
-    }))
-        .body;
-    log("Network:${json.decode(res)['message']}");
-    notifyListeners();
-    return UnconfirmedAppointment.fromJson(json.decode(res));
+    });
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = UnconfirmedAppointment.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
   }
 
-  Future<ConfirmAppointment> confirmedAppointment(
+  Future<ConfirmAppointment?> confirmedAppointment(
     String? baseURL,
     String? appointmentId,
     String? couponId,
@@ -147,53 +150,65 @@ class PatientAppointmentProvider extends ChangeNotifier {
   ) async {
     var _url = Uri.parse("$baseURL/confirm/appointment");
     // print("BUNDLE ID: $bundleId");
-    final res = (await http.post(_url, body: {
+    final res = await http.post(_url, body: {
       "appointment_id": appointmentId,
       "coupon_id": couponId,
       "bundle_id": bundleId != 'null' ? bundleId : "",
       "redeem_points": rewardAmount != "null" ? rewardAmount : ""
-    }))
-        .body;
-
-    log("Network:$res");
-    notifyListeners();
-    return ConfirmAppointment.fromJson(json.decode(res));
+    });
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ConfirmAppointment.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
   }
 
-  Future rescheduleAppointment(
+  Future<ResponseModel?> rescheduleAppointment(
     String? baseURL,
     String? appointmentId,
     String? timeslotId,
   ) async {
     var _url = Uri.parse("$baseURL/reschedule/appointment");
-    final res = (await http.post(
-      _url,
-      body: {
-        "appointment_id": appointmentId,
-        "timeslot_id": timeslotId,
-      },
-    ))
-        .body;
-    log("Network:${json.decode(res)['message']}");
-    notifyListeners();
-    return json.decode(res);
+    final res = await http.post(_url, body: {
+      "appointment_id": appointmentId,
+      "timeslot_id": timeslotId,
+    });
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
   }
 
-  Future cancelAppointment(
+  Future<ResponseModel?> cancelAppointment(
     String? baseURL,
     String? appointmentId,
   ) async {
     var _url = Uri.parse("$baseURL/cancel/appointment");
-    final res = (await http.post(
+    final res = await http.post(
       _url,
-      body: {
-        "appointment_id": appointmentId ?? "",
-      },
-    ))
-        .body;
-    log("Network:${json.decode(res)['message']}");
-    notifyListeners();
-    return json.decode(res);
+      body: {"appointment_id": appointmentId ?? ""},
+    );
+    String _message = "(${res.statusCode}) $_url:";
+    log(_message);
+    if (res.statusCode == 200) {
+      notifyListeners();
+      final _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
   }
 
   Future<PatientAheadResponse> getPatientsAhead(
@@ -201,9 +216,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? appointmentID,
   ) async {
     var _url = Uri.parse("$baseUrl/appointment/get/patient/ahead");
-    final res = await http.post(_url, body: {
-      "appointment_id": appointmentID ?? "",
-    });
+    final res =
+        await http.post(_url, body: {"appointment_id": appointmentID ?? ""});
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
     if (res.statusCode == 200) {
