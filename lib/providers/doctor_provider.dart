@@ -145,7 +145,7 @@ class DoctorProvider with ChangeNotifier {
     }
   }
 
-  Future<ResponseModel?> scanToLoginCliniShare(
+  Future<ResponseModel?> clinishareLogin(
     String baseURL,
     String? fcmToken,
     String? doctorID,
