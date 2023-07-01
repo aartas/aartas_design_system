@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/doctor_check_in_out_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/doctor_timeslots_model.dart';
 
@@ -187,6 +188,53 @@ class DoctorProvider with ChangeNotifier {
     if (res.statusCode == 200) {
       var _res = DoctorTimeslots.fromJson(json.decode(res.body));
       timeslots = _res.data!;
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
+
+  Future<ResponseModel?> doctorCheckInOut(
+    String baseURL,
+    String? doctorID,
+    String? clinicId,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/check/in/out");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "clinic_id": clinicId ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = ResponseModel.fromJson(json.decode(res.body));
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
+
+  List<DoctorCheckInOutData> checkInOutHistory = [];
+
+  Future<DoctorCheckInOutHistory?> doctorCheckInOutHistory(
+    String baseURL,
+    String? doctorID,
+    String? fromDate,
+    String? toDate,
+  ) async {
+    var _url = Uri.parse("$baseURL/doctor/check/in/history");
+    final res = await http.post(_url, body: {
+      "doctor_id": doctorID ?? "",
+      "from": fromDate ?? "",
+      "to": toDate ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = DoctorCheckInOutHistory.fromJson(json.decode(res.body));
+      checkInOutHistory = _res.data!;
       return _res;
     } else {
       log(res.body);
