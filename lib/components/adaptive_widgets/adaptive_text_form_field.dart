@@ -14,6 +14,7 @@ class AdaptiveTextFormField extends StatelessWidget {
   final String? errorText, labelText, initialValue, hintText;
   final TextInputType? keyboardType;
   final TextEditingController? textEditingController;
+  final TextAlign? textAlign;
   final bool? autoFocus,
       enabled,
       filled,
@@ -49,6 +50,7 @@ class AdaptiveTextFormField extends StatelessWidget {
     this.enableSuggestions,
     this.obscureText,
     this.autocorrect,
+    this.textAlign,
   }) : super(key: key);
 
   @override
@@ -66,6 +68,7 @@ class AdaptiveTextFormField extends StatelessWidget {
       height: 80,
       // padding: const EdgeInsets.all(4),
       child: TextFormField(
+        textAlign: textAlign != null ? textAlign! : TextAlign.center,
         focusNode: focusNode != null ? focusNode! : null,
         enableSuggestions:
             enableSuggestions != null ? enableSuggestions! : false,
