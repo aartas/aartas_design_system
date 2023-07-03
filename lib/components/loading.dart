@@ -44,7 +44,7 @@ class _LoadingDialogState extends State<LoadingDialog> {
   }
 
   _initializeTimer() {
-    _timer = Timer(const Duration(seconds: 10), () {
+    _timer = Timer(const Duration(seconds: 20), () {
       _showBypassMessage =
           "Taking more than usual. Please hold to go back and retry.";
       setState(() {});
