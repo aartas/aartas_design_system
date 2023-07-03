@@ -106,7 +106,12 @@ class AdaptiveTextFormField extends StatelessWidget {
           contentPadding: contentPadding != null ? contentPadding! : null,
           prefixIcon: prefixWidget,
           labelStyle: textStyle != null
-              ? textStyle!
+              ? textStyle!.apply(
+                  fontSizeDelta: 4,
+                  color: enabled != null && !enabled!
+                      ? textTheme(context).titleMedium!.color!.withOpacity(0.6)
+                      : textTheme(context).titleMedium!.color!,
+                )
               : textTheme(context).titleMedium?.apply(
                     fontSizeDelta: 4,
                     color: enabled != null && !enabled!
@@ -117,7 +122,11 @@ class AdaptiveTextFormField extends StatelessWidget {
                         : textTheme(context).titleMedium!.color!,
                   ),
           hintStyle: textStyle != null
-              ? textStyle!
+              ? textStyle!.apply(
+                  fontSizeDelta: 2,
+                  color:
+                      textTheme(context).titleMedium!.color!.withOpacity(0.6),
+                )
               : textTheme(context).titleMedium?.apply(
                     fontSizeDelta: 2,
                     color:
