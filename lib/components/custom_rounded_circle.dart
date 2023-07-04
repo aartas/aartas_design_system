@@ -9,12 +9,14 @@ class CustomRoundedCircle extends StatefulWidget {
   final double radius;
   final double? startAngle, strokeWidth, currentAngle;
   final int? steps;
+  final bool? showThumb;
   const CustomRoundedCircle(
       {this.colors,
       this.steps,
       this.startAngle,
       this.strokeWidth,
       this.currentAngle,
+      this.showThumb,
       required this.radius,
       Key? key})
       : super(key: key);
@@ -68,6 +70,7 @@ class _CustomRoundedCircleState extends State<CustomRoundedCircle> {
         currentAngle: _currentAngle,
         strokeWidth: widget.strokeWidth,
         steps: widget.steps,
+        showThumb: widget.showThumb,
       ),
       child: Container(),
     );
@@ -80,6 +83,7 @@ class SlidePainter extends CustomPainter {
   final List<Color>? colors;
   final double radius;
   final double? startAngle, strokeWidth, currentAngle;
+  final bool? showThumb;
   SlidePainter({
     required this.context,
     this.steps,
@@ -87,6 +91,7 @@ class SlidePainter extends CustomPainter {
     this.startAngle,
     this.strokeWidth,
     this.currentAngle,
+    this.showThumb,
     required this.radius,
     Key? key,
   });
@@ -102,12 +107,9 @@ class SlidePainter extends CustomPainter {
             ? colors!
             : [
                 themeData(context).scaffoldBackgroundColor,
-                // burntUmberColor,
-                // burntUmberColor,
                 textTheme(context).titleLarge!.color!,
                 textTheme(context).titleLarge!.color!,
                 themeData(context).scaffoldBackgroundColor,
-                // themeData(context).colorScheme.background,
               ],
         startAngle: 2.9 * math.pi / 2, // 3
         endAngle: 6.9 * math.pi / 2, // 7
@@ -165,13 +167,15 @@ class SlidePainter extends CustomPainter {
       backgroundPaint,
     );
 
-    canvas.drawArc(
-      rect,
-      ((currentAngle! - 182) * math.pi) / 360,
-      (math.pi) / 360,
-      false,
-      thumb..color = themeData(context).colorScheme.background,
-    );
+    showThumb != null && showThumb!
+        ? canvas.drawArc(
+            rect,
+            ((currentAngle! - 182) * math.pi) / 360,
+            (math.pi) / 360,
+            false,
+            thumb..color = themeData(context).colorScheme.background,
+          )
+        : null;
     // canvas.drawPath(
     //   path,
     //   _backgroundPaint..maskFilter = const MaskFilter.blur(BlurStyle.outer, 2),
