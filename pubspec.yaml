@@ -10,16 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.4
+  
   http_parser: ^4.0.2
-  intl: ^0.17.0
+  intl: ^0.18.1
   package_info_plus: ^4.0.1
   path_provider: ^2.0.15
   provider: ^6.0.3
   shared_preferences: ^2.0.15
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.2
   flutter_test:
     sdk: flutter
 
@@ -27,7 +27,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter: null
-# git add . && git commit -m "Modified" && git push origin main && git pull origin main
+# git add . && git commit -m "Modified" && git push origin dev && git pull origin dev
 # To add assets to your package, add an assets section, like this:
 assets:
   - assets/
