@@ -1,11 +1,26 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class InternetConnection extends ChangeNotifier {
   bool isConnected = false;
+  final Connectivity _connectivity = Connectivity();
+  StreamSubscription<ConnectivityResult>? _connectivitySubscription;
 
-  getConnectionStatus() async {
+  initializeInternetConnectionListener() {
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen((result) {
+      if (result == ConnectivityResult.none) {
+        isConnected = false;
+      } else {
+        _getConnectionStatus();
+      }
+    });
+  }
+
+  _getConnectionStatus() async {
     try {
       final response = await InternetAddress.lookup('www.google.com');
       if (response.isNotEmpty) {
@@ -14,5 +29,13 @@ class InternetConnection extends ChangeNotifier {
     } on SocketException {
       isConnected = false;
     }
+  }
+
+  @override
+  void dispose() {
+    if (_connectivitySubscription != null) {
+      _connectivitySubscription?.cancel();
+    }
+    super.dispose();
   }
 }
