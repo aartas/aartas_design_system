@@ -14,6 +14,7 @@ class InternetConnection extends ChangeNotifier {
         _connectivity.onConnectivityChanged.listen((result) {
       if (result == ConnectivityResult.none) {
         isConnected = false;
+        notifyListeners();
       } else {
         _getConnectionStatus();
       }
@@ -25,9 +26,11 @@ class InternetConnection extends ChangeNotifier {
       final response = await InternetAddress.lookup('www.google.com');
       if (response.isNotEmpty) {
         isConnected = true;
+        notifyListeners();
       }
     } on SocketException {
       isConnected = false;
+      notifyListeners();
     }
   }
 
