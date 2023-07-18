@@ -32,6 +32,7 @@ class ClinicsResponse {
 class ClinicData {
   int? id;
   String? title;
+  String? slug;
   String? address;
   int? totalRoooms;
   String? phoneNumber;
@@ -40,20 +41,24 @@ class ClinicData {
   String? ipAddressList;
   String? latitude;
   String? longitude;
+  int? locationType;
   List<Room>? rooms;
 
-  ClinicData(
-      {this.id,
-      this.title,
-      this.address,
-      this.totalRoooms,
-      this.phoneNumber,
-      this.gSTIN,
-      this.stateCode,
-      this.ipAddressList,
-      this.latitude,
-      this.longitude,
-      this.rooms});
+  ClinicData({
+    this.id,
+    this.title,
+    this.address,
+    this.totalRoooms,
+    this.phoneNumber,
+    this.gSTIN,
+    this.stateCode,
+    this.ipAddressList,
+    this.latitude,
+    this.longitude,
+    this.rooms,
+    this.locationType,
+    this.slug,
+  });
 
   ClinicData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -66,6 +71,8 @@ class ClinicData {
     ipAddressList = json['ip_address_list'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    locationType = json['location_type'];
+    slug = json['slug'];
     if (json['rooms'] != null) {
       rooms = <Room>[];
       json['rooms'].forEach((v) {
@@ -86,6 +93,8 @@ class ClinicData {
     data['ip_address_list'] = ipAddressList;
     data['latitude'] = latitude;
     data['longitude'] = longitude;
+    data['location_type'] = locationType;
+    data['slug'] = slug;
     if (rooms != null) {
       data['rooms'] = rooms!.map((v) => v.toJson()).toList();
     }
