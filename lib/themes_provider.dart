@@ -96,27 +96,53 @@ ThemeData lightThemeData(context) => globalThemeData(context).copyWith(
       ),
       textTheme: TextTheme(
         displayLarge: textTheme(context).displayLarge!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         displayMedium: textTheme(context).displayMedium!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         displaySmall: textTheme(context).displaySmall!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
+        headlineLarge: textTheme(context).headlineLarge!.copyWith(
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         headlineMedium: textTheme(context).headlineMedium!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         headlineSmall: textTheme(context).headlineSmall!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleLarge: textTheme(context).titleLarge!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleMedium: textTheme(context).titleMedium!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleSmall: textTheme(context).titleSmall!.copyWith(
-            color: charcoalColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         bodyLarge: textTheme(context).bodyLarge!.copyWith(
-            color: charcoalColor.withOpacity(0.6), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.6),
+              fontFamily: "Urbanist",
+            ),
         bodyMedium: textTheme(context).bodyMedium!.copyWith(
-            color: charcoalColor.withOpacity(0.6), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.6),
+              fontFamily: "Urbanist",
+            ),
         bodySmall: textTheme(context).bodySmall!.copyWith(
-            color: charcoalColor.withOpacity(0.4), fontFamily: "Urbanist"),
+              color: charcoalColor.withOpacity(0.4),
+              fontFamily: "Urbanist",
+            ),
       ),
       iconTheme: IconThemeData(color: charcoalColor),
     );
@@ -134,27 +160,53 @@ ThemeData darkThemeData(context) => globalThemeData(context).copyWith(
       ),
       textTheme: TextTheme(
         displayLarge: textTheme(context).displayLarge!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         displayMedium: textTheme(context).displayMedium!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         displaySmall: textTheme(context).displaySmall!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
+        headlineLarge: textTheme(context).headlineLarge!.copyWith(
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         headlineMedium: textTheme(context).headlineMedium!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         headlineSmall: textTheme(context).headlineSmall!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleLarge: textTheme(context).titleLarge!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleMedium: textTheme(context).titleMedium!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         titleSmall: textTheme(context).titleSmall!.copyWith(
-            color: seaShellColor.withOpacity(0.9), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.9),
+              fontFamily: "Urbanist",
+            ),
         bodyLarge: textTheme(context).bodyLarge!.copyWith(
-            color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.6),
+              fontFamily: "Urbanist",
+            ),
         bodyMedium: textTheme(context).bodyMedium!.copyWith(
-            color: seaShellColor.withOpacity(0.6), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.6),
+              fontFamily: "Urbanist",
+            ),
         bodySmall: textTheme(context).bodySmall!.copyWith(
-            color: seaShellColor.withOpacity(0.4), fontFamily: "Urbanist"),
+              color: seaShellColor.withOpacity(0.4),
+              fontFamily: "Urbanist",
+            ),
       ),
       iconTheme: IconThemeData(color: seaShellColor.withOpacity(0.9)),
     );
