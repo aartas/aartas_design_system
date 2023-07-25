@@ -48,6 +48,16 @@ String customImageUrl(url) => "$url/../assets/custom_images";
 String rupeeIcon = "₹";
 //
 
+//? New Primary Colors ---------------------------------
+const Color redColor = Color(0xffB44C34);
+const Color yellowColor = Color(0xffE7B968);
+const Color greenColor = Colors.green;
+const Color blueColor = Color(0xff1F385A);
+const Color lightBlueColor = Color(0xffE7F4FC);
+const Color khakiColor = Color(0xffE0DCCC);
+const Color whiteColor = Color(0xffFDFDFB);
+const Color blackColor = Colors.black;
+//? New Primary Colors ---------------------------------
 //? Primary Colors ---------------------------------
 
 // Primary Color - Aartas Design System

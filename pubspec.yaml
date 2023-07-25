@@ -8,14 +8,14 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  connectivity_plus: ^4.0.1
   flutter:
     sdk: flutter
   http_parser: ^4.0.2
-  intl: ^0.17.0
+  intl: ^0.18.0
   package_info_plus: ^4.0.1
   path_provider: ^2.0.15
   provider: ^6.0.3
+  connectivity_plus: ^4.0.1
   shared_preferences: ^2.0.15
 
 dev_dependencies:

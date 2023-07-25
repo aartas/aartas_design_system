@@ -96,51 +96,51 @@ ThemeData lightThemeData(context) => globalThemeData(context).copyWith(
       ),
       textTheme: TextTheme(
         displayLarge: textTheme(context).displayLarge!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         displayMedium: textTheme(context).displayMedium!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         displaySmall: textTheme(context).displaySmall!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         headlineLarge: textTheme(context).headlineLarge!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         headlineMedium: textTheme(context).headlineMedium!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         headlineSmall: textTheme(context).headlineSmall!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         titleLarge: textTheme(context).titleLarge!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         titleMedium: textTheme(context).titleMedium!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         titleSmall: textTheme(context).titleSmall!.copyWith(
-              color: charcoalColor.withOpacity(0.9),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         bodyLarge: textTheme(context).bodyLarge!.copyWith(
-              color: charcoalColor.withOpacity(0.6),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         bodyMedium: textTheme(context).bodyMedium!.copyWith(
-              color: charcoalColor.withOpacity(0.6),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
         bodySmall: textTheme(context).bodySmall!.copyWith(
-              color: charcoalColor.withOpacity(0.4),
+              color: charcoalColor,
               fontFamily: "Urbanist",
             ),
       ),
@@ -160,55 +160,55 @@ ThemeData darkThemeData(context) => globalThemeData(context).copyWith(
       ),
       textTheme: TextTheme(
         displayLarge: textTheme(context).displayLarge!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         displayMedium: textTheme(context).displayMedium!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         displaySmall: textTheme(context).displaySmall!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         headlineLarge: textTheme(context).headlineLarge!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         headlineMedium: textTheme(context).headlineMedium!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         headlineSmall: textTheme(context).headlineSmall!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         titleLarge: textTheme(context).titleLarge!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         titleMedium: textTheme(context).titleMedium!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         titleSmall: textTheme(context).titleSmall!.copyWith(
-              color: seaShellColor.withOpacity(0.9),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         bodyLarge: textTheme(context).bodyLarge!.copyWith(
-              color: seaShellColor.withOpacity(0.6),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         bodyMedium: textTheme(context).bodyMedium!.copyWith(
-              color: seaShellColor.withOpacity(0.6),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
         bodySmall: textTheme(context).bodySmall!.copyWith(
-              color: seaShellColor.withOpacity(0.4),
+              color: seaShellColor,
               fontFamily: "Urbanist",
             ),
       ),
-      iconTheme: IconThemeData(color: seaShellColor.withOpacity(0.9)),
+      iconTheme: IconThemeData(color: seaShellColor),
     );
 
 class ThemeProvider extends ChangeNotifier {
