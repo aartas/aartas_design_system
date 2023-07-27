@@ -10,6 +10,7 @@ class CustomRoundedCircle extends StatefulWidget {
   final double? startAngle, strokeWidth, currentAngle;
   final int? steps;
   final bool? showThumb;
+  final Color? backgroundColor;
   const CustomRoundedCircle(
       {this.colors,
       this.steps,
@@ -17,6 +18,7 @@ class CustomRoundedCircle extends StatefulWidget {
       this.strokeWidth,
       this.currentAngle,
       this.showThumb,
+      this.backgroundColor,
       required this.radius,
       Key? key})
       : super(key: key);
@@ -71,6 +73,7 @@ class _CustomRoundedCircleState extends State<CustomRoundedCircle> {
         strokeWidth: widget.strokeWidth,
         steps: widget.steps,
         showThumb: widget.showThumb,
+        backgroundColor: widget.backgroundColor,
       ),
       child: Container(),
     );
@@ -84,6 +87,7 @@ class SlidePainter extends CustomPainter {
   final double radius;
   final double? startAngle, strokeWidth, currentAngle;
   final bool? showThumb;
+  final Color? backgroundColor;
   SlidePainter({
     required this.context,
     this.steps,
@@ -92,6 +96,7 @@ class SlidePainter extends CustomPainter {
     this.strokeWidth,
     this.currentAngle,
     this.showThumb,
+    this.backgroundColor,
     required this.radius,
     Key? key,
   });
@@ -122,7 +127,9 @@ class SlidePainter extends CustomPainter {
     var foregroundPaint = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth != null ? strokeWidth! : 16
-      ..color = themeData(context).scaffoldBackgroundColor;
+      ..color = backgroundColor != null
+          ? backgroundColor!
+          : themeData(context).scaffoldBackgroundColor;
 
     var thumb = Paint()
       ..strokeWidth = strokeWidth! - 8
