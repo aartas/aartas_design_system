@@ -2,6 +2,7 @@
 
 import 'package:aartas_design_system/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum InputBorderType { underline, outlined, none }
 
@@ -24,6 +25,7 @@ class AdaptiveTextFormField extends StatelessWidget {
   final TextStyle? textStyle;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
+  final List<TextInputFormatter>? inputFormatters;
 
   const AdaptiveTextFormField({
     Key? key,
@@ -51,6 +53,7 @@ class AdaptiveTextFormField extends StatelessWidget {
     this.obscureText,
     this.autocorrect,
     this.textAlign,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -84,6 +87,7 @@ class AdaptiveTextFormField extends StatelessWidget {
         enabled: enabled != null ? enabled! : true,
         initialValue: initialValue != null ? initialValue! : null,
         textInputAction: TextInputAction.next,
+        inputFormatters: inputFormatters != null ? inputFormatters! : null,
         decoration: InputDecoration(
           filled: filled != null ? filled! : null,
           labelText: labelText,
