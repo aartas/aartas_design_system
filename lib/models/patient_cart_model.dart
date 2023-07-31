@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/appointment_model.dart';
 import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/patient_appointment_list_model.dart';
 
@@ -30,7 +31,7 @@ class PatientCartData {
   int? patientId;
   String? cartTotal;
   int? status;
-  List<Appointments>? appointment;
+  List<AppointmentData>? appointment;
   List<Medicines>? medicines;
   List<Vaccines>? vaccines;
 
@@ -49,9 +50,9 @@ class PatientCartData {
     cartTotal = json['cart_total'];
     status = json['status'];
     if (json['appointment'] != null) {
-      appointment = <Appointments>[];
+      appointment = <AppointmentData>[];
       json['appointment'].forEach((v) {
-        appointment!.add(Appointments.fromJson(v));
+        appointment!.add(AppointmentData.fromJson(v));
       });
     }
     if (json['medicines'] != null) {
@@ -82,47 +83,6 @@ class PatientCartData {
     }
     if (vaccines != null) {
       data['vaccines'] = vaccines!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Appointments {
-  int? id;
-  int? patientCartId;
-  int? appointmentId;
-  int? totalAmount;
-  int? status;
-  PatientAppointmentData? appointment;
-
-  Appointments(
-      {this.id,
-      this.patientCartId,
-      this.appointmentId,
-      this.totalAmount,
-      this.status,
-      this.appointment});
-
-  Appointments.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    patientCartId = json['patient_cart_id'];
-    appointmentId = json['appointment_id'];
-    totalAmount = json['total_amount'];
-    status = json['status'];
-    appointment = json['appointment'] != null
-        ? PatientAppointmentData.fromJson(json['appointment'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['patient_cart_id'] = patientCartId;
-    data['appointment_id'] = appointmentId;
-    data['total_amount'] = totalAmount;
-    data['status'] = status;
-    if (appointment != null) {
-      data['appointment'] = appointment!.toJson();
     }
     return data;
   }
