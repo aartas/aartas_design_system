@@ -112,7 +112,7 @@ class ProcedureProvider extends ChangeNotifier {
     String baseURL,
     String? title,
   ) async {
-    var _url = Uri.parse("$baseURL/add/procedure");
+    var _url = Uri.parse("$baseURL/procedure/add");
     final res = await http.post(_url, body: {
       "title": title ?? "",
     });

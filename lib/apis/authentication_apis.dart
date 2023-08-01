@@ -17,8 +17,9 @@ class AuthenticationProvider extends ChangeNotifier {
 
   Future<DoctorResponse> doctorLogin(
     String baseURL,
-    String phoneNumber,
-    String passcode,
+    String? phoneNumber,
+    String? passcode,
+    String? fcmToken,
   ) async {
     var dir = await getTemporaryDirectory();
     File _file = File(dir.path + "/" + doctorDetailsFileName);
@@ -27,8 +28,9 @@ class AuthenticationProvider extends ChangeNotifier {
     final res = await http.post(
       _url,
       body: {
-        "phone_number": phoneNumber,
-        "passcode": passcode,
+        "phone_number": phoneNumber ?? "",
+        "passcode": passcode ?? "",
+        "fcm_token": fcmToken ?? "",
       },
     );
 
