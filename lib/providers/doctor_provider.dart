@@ -85,12 +85,14 @@ class DoctorProvider with ChangeNotifier {
 
   Future<DoctorResponse> login(
     String baseURL,
-    String phoneNumber,
-    String passcode,
+    String? phoneNumber,
+    String? fcmToken,
   ) async {
     var _url = Uri.parse("$baseURL/doctor/login");
-    final res = await http
-        .post(_url, body: {"phone_number": phoneNumber, "passcode": passcode});
+    final res = await http.post(_url, body: {
+      "phone_number": phoneNumber ?? "",
+      "fcm_token": fcmToken ?? "",
+    });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
 
