@@ -1,4 +1,5 @@
 import 'package:aartas_design_system/models/appointment_model.dart';
+import 'package:aartas_design_system/models/clinic_model.dart';
 
 class DoctorTimeslots {
   String? message;
@@ -39,17 +40,20 @@ class DoctorTimeslotData {
   int? clinicRoomsId;
   int? bookingStatus;
   AppointmentData? appointment;
+  ClinicData? clinic;
 
-  DoctorTimeslotData(
-      {this.id,
-      this.doctorId,
-      this.date,
-      this.timeFrom,
-      this.timeTo,
-      this.clinicId,
-      this.clinicRoomsId,
-      this.bookingStatus,
-      this.appointment});
+  DoctorTimeslotData({
+    this.id,
+    this.doctorId,
+    this.date,
+    this.timeFrom,
+    this.timeTo,
+    this.clinicId,
+    this.clinicRoomsId,
+    this.bookingStatus,
+    this.appointment,
+    this.clinic,
+  });
 
   DoctorTimeslotData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -64,6 +68,8 @@ class DoctorTimeslotData {
     appointment = json['appointment'] != null
         ? AppointmentData.fromJson(json['appointment'])
         : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -78,6 +84,9 @@ class DoctorTimeslotData {
     data['booking_status'] = bookingStatus;
     if (appointment != null) {
       data['appointment'] = appointment!.toJson();
+    }
+    if (clinic != null) {
+      data['clinic'] = clinic!.toJson();
     }
     return data;
   }
