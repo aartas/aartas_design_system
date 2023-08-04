@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/doctor_procedure_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,7 @@ class ProcedureProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> addProcedure(
+  Future<DoctorProcedureResponse> addProcedure(
     String baseURL,
     String? doctorId,
     String? name,
@@ -121,9 +122,9 @@ class ProcedureProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return DoctorProcedureResponse.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: json.decode(res.body)['message']);
+    return DoctorProcedureResponse(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> removeProcedure(
