@@ -106,6 +106,8 @@ class AppointmentProvider extends ChangeNotifier {
     }
   }
 
+  int? currentlyConsultingAppointmentID;
+
   Future<ResponseModel> startConsultation(
     String? baseURL,
     String? appointmentID,
@@ -117,6 +119,7 @@ class AppointmentProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
+      currentlyConsultingAppointmentID = int.parse(appointmentID!);
       notifyListeners();
       final _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
@@ -138,6 +141,7 @@ class AppointmentProvider extends ChangeNotifier {
     String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
+      currentlyConsultingAppointmentID = null;
       notifyListeners();
       final _res = ResponseModel.fromJson(json.decode(res.body));
       return _res;
