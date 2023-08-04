@@ -24,8 +24,7 @@ class ProcedureProvider extends ChangeNotifier {
       "offset": offset ?? "",
     });
 
-    String _message =
-        "(${res.statusCode}) $_url: doctorID:$doctorID, specialityID:$specialityID, search:$search, limit:$limit, offset:$offset";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
     if (res.statusCode == 200) {
       return ProcedureResponse.fromJson(json.decode(res.body));
@@ -97,7 +96,7 @@ class ProcedureProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });
-    String _message = "(${res.statusCode}) $_url: id:$id";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
@@ -110,13 +109,15 @@ class ProcedureProvider extends ChangeNotifier {
 
   Future<ResponseModel> addProcedure(
     String baseURL,
-    String? title,
+    String? doctorId,
+    String? name,
   ) async {
     var _url = Uri.parse("$baseURL/procedure/add");
     final res = await http.post(_url, body: {
-      "title": title ?? "",
+      "doctor_id": doctorId ?? "",
+      "name": name ?? "",
     });
-    String _message = "(${res.statusCode}) $_url: title:$title";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
@@ -133,7 +134,7 @@ class ProcedureProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "id": id ?? "",
     });
-    String _message = "(${res.statusCode}) $_url: id:$id";
+    String _message = "(${res.statusCode}) $_url";
     log(_message);
 
     if (res.statusCode == 200) {
