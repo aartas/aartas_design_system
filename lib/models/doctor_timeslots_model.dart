@@ -39,7 +39,7 @@ class DoctorTimeslotData {
   int? clinicId;
   int? clinicRoomsId;
   int? bookingStatus;
-  AppointmentData? appointment;
+  List<AppointmentData>? appointment = [];
   ClinicData? clinic;
 
   DoctorTimeslotData({
@@ -65,9 +65,12 @@ class DoctorTimeslotData {
     clinicRoomsId = json['clinic_rooms_id'];
     bookingStatus = json['booking_status'];
 
-    appointment = json['appointment'] != null
-        ? AppointmentData.fromJson(json['appointment'])
-        : null;
+    if (json['appointment'] != null) {
+      appointment = <AppointmentData>[];
+      json['appointment'].forEach((v) {
+        appointment!.add(AppointmentData.fromJson(v));
+      });
+    }
     clinic =
         json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
   }
@@ -83,7 +86,7 @@ class DoctorTimeslotData {
     data['clinic_rooms_id'] = clinicRoomsId;
     data['booking_status'] = bookingStatus;
     if (appointment != null) {
-      data['appointment'] = appointment!.toJson();
+      data['appointment'] = appointment!.map((v) => v.toJson()).toList();
     }
     if (clinic != null) {
       data['clinic'] = clinic!.toJson();
