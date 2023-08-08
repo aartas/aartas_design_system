@@ -88,7 +88,7 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => PatientAppointmentProvider()),
         ChangeNotifierProvider(create: (_) => PatientLocationProvider()),
         ChangeNotifierProvider(create: (_) => PatientTrackerProvider()),
-        ChangeNotifierProvider(create: (_) => ConsultationProvider()),
+        // ChangeNotifierProvider(create: (_) => ConsultationProvider()),
         ChangeNotifierProvider(create: (_) => PatientVitalsTrendProvider()),
         ChangeNotifierProvider(create: (_) => PatientCartProvider()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
