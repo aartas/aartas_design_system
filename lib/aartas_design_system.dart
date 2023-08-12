@@ -13,7 +13,6 @@ import 'package:aartas_design_system/providers/clinishare/call_nurse_provider.da
 import 'package:aartas_design_system/providers/complaint_provider.dart';
 import 'package:aartas_design_system/providers/connect/connect_attendance_provider.dart';
 import 'package:aartas_design_system/providers/connect/connect_login_provider.dart';
-import 'package:aartas_design_system/providers/consultation_provider.dart';
 import 'package:aartas_design_system/providers/coupons_provider.dart';
 import 'package:aartas_design_system/providers/diagnosis_provider.dart';
 import 'package:aartas_design_system/providers/doctor_provider.dart';
@@ -88,7 +87,6 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
         ChangeNotifierProvider(create: (_) => PatientAppointmentProvider()),
         ChangeNotifierProvider(create: (_) => PatientLocationProvider()),
         ChangeNotifierProvider(create: (_) => PatientTrackerProvider()),
-        // ChangeNotifierProvider(create: (_) => ConsultationProvider()),
         ChangeNotifierProvider(create: (_) => PatientVitalsTrendProvider()),
         ChangeNotifierProvider(create: (_) => PatientCartProvider()),
         ChangeNotifierProvider(create: (_) => AddressProvider()),
@@ -111,4 +109,3 @@ class _AartasApiProviderState extends State<AartasApiProvider> {
     );
   }
 }
-// 

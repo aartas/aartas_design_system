@@ -13,8 +13,10 @@ showCustomBottomSheet(
       maxHeight: mediaQuery(context).size.height -
           (AppBar().preferredSize.height * 1.2),
     ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(20),
+      ),
     ),
     barrierColor: barrierColor,
     isDismissible: false,
