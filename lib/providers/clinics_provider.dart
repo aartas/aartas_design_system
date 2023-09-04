@@ -10,7 +10,10 @@ class ClinicProvider extends ChangeNotifier {
   List<ClinicData> clinicList = [];
   List<RoomTimingData> roomList = [];
 
-  void setClinicData(ClinicData? data) => clinic = data;
+  void setClinicData(ClinicData? data) {
+    clinic = data;
+    notifyListeners();
+  }
 
   List<ClinicData> getClinicList() {
     return clinicList;
