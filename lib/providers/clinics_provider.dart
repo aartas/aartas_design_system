@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ClinicProvider extends ChangeNotifier {
+  ClinicData? clinic;
   List<ClinicData> clinicList = [];
   List<RoomTimingData> roomList = [];
+
+  void setClinicData(ClinicData? data) => clinic = data;
 
   List<ClinicData> getClinicList() {
     return clinicList;
