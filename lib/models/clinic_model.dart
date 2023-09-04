@@ -43,6 +43,7 @@ class ClinicData {
   String? longitude;
   int? locationType;
   List<Room>? rooms;
+  String? fullAddress;
 
   ClinicData({
     this.id,
@@ -58,6 +59,7 @@ class ClinicData {
     this.rooms,
     this.locationType,
     this.slug,
+    this.fullAddress,
   });
 
   ClinicData.fromJson(Map<String, dynamic> json) {
@@ -73,6 +75,7 @@ class ClinicData {
     longitude = json['longitude'];
     locationType = json['location_type'];
     slug = json['slug'];
+    fullAddress = json['full_address'];
     if (json['rooms'] != null) {
       rooms = <Room>[];
       json['rooms'].forEach((v) {
@@ -95,6 +98,7 @@ class ClinicData {
     data['longitude'] = longitude;
     data['location_type'] = locationType;
     data['slug'] = slug;
+    data['full_address'] = fullAddress;
     if (rooms != null) {
       data['rooms'] = rooms!.map((v) => v.toJson()).toList();
     }
