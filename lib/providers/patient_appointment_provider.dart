@@ -147,7 +147,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? couponId,
     String? bundleId,
     String? rewardAmount,
-    int? getAppointmentLink, // 1: Send Link, 0: Don't Send Link
+    String? getAppointmentLink, // 1: Send Link, 0: Don't Send Link
   ) async {
     var _url = Uri.parse("$baseURL/confirm/appointment");
     // print("BUNDLE ID: $bundleId");
@@ -156,7 +156,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "coupon_id": couponId,
       "bundle_id": bundleId != 'null' ? bundleId : "",
       "redeem_points": rewardAmount != "null" ? rewardAmount : "",
-      "get_appointment_link": getAppointmentLink ?? 0,
+      "get_appointment_link": getAppointmentLink ?? "0",
     });
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
