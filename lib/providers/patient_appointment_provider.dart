@@ -127,7 +127,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "doctor_id": doctorId,
       "patient_id": patientId,
-      "timeslot_id": slotId
+      "timeslot_id": slotId,
     });
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
@@ -147,6 +147,7 @@ class PatientAppointmentProvider extends ChangeNotifier {
     String? couponId,
     String? bundleId,
     String? rewardAmount,
+    int? getAppointmentLink, // 1: Send Link, 0: Don't Send Link
   ) async {
     var _url = Uri.parse("$baseURL/confirm/appointment");
     // print("BUNDLE ID: $bundleId");
@@ -154,7 +155,8 @@ class PatientAppointmentProvider extends ChangeNotifier {
       "appointment_id": appointmentId,
       "coupon_id": couponId,
       "bundle_id": bundleId != 'null' ? bundleId : "",
-      "redeem_points": rewardAmount != "null" ? rewardAmount : ""
+      "redeem_points": rewardAmount != "null" ? rewardAmount : "",
+      "get_appointment_link": getAppointmentLink ?? 0,
     });
     String _message = "(${res.statusCode}) $_url:";
     log(_message);
