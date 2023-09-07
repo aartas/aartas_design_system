@@ -36,7 +36,7 @@ class DoctorProvider with ChangeNotifier {
     bool? showAll,
   ) async {
     var _url = Uri.parse(
-        "$baseURL/doctors?${showAll != null && showAll ? "show_all=1" : ""}&location_id=${locationID ?? ""}");
+        "$baseURL/doctors?${showAll != null && showAll ? "show_all=1" : ""}${locationID != null ? "&location_id=$locationID" : ""}");
     final res = await http.get(_url);
 
     String _message = "(${res.statusCode}) $_url";
