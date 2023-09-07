@@ -34,7 +34,7 @@ class ClinicData {
   String? title;
   String? slug;
   String? address;
-  int? totalRoooms;
+  int? totalRooms;
   String? phoneNumber;
   String? gSTIN;
   String? stateCode;
@@ -42,31 +42,35 @@ class ClinicData {
   String? latitude;
   String? longitude;
   int? locationType;
-  List<Room>? rooms;
+  String? mapUrl;
+  String? mapId;
   String? fullAddress;
+  int? status;
 
-  ClinicData({
-    this.id,
-    this.title,
-    this.address,
-    this.totalRoooms,
-    this.phoneNumber,
-    this.gSTIN,
-    this.stateCode,
-    this.ipAddressList,
-    this.latitude,
-    this.longitude,
-    this.rooms,
-    this.locationType,
-    this.slug,
-    this.fullAddress,
-  });
+  ClinicData(
+      {this.id,
+      this.title,
+      this.slug,
+      this.address,
+      this.totalRooms,
+      this.phoneNumber,
+      this.gSTIN,
+      this.stateCode,
+      this.ipAddressList,
+      this.latitude,
+      this.longitude,
+      this.locationType,
+      this.mapUrl,
+      this.mapId,
+      this.fullAddress,
+      this.status});
 
   ClinicData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
+    slug = json['slug'];
     address = json['address'];
-    totalRoooms = json['total_roooms'];
+    totalRooms = json['total_rooms'];
     phoneNumber = json['phone_number'];
     gSTIN = json['GSTIN'];
     stateCode = json['state_code'];
@@ -74,22 +78,19 @@ class ClinicData {
     latitude = json['latitude'];
     longitude = json['longitude'];
     locationType = json['location_type'];
-    slug = json['slug'];
+    mapUrl = json['map_url'];
+    mapId = json['map_id'];
     fullAddress = json['full_address'];
-    if (json['rooms'] != null) {
-      rooms = <Room>[];
-      json['rooms'].forEach((v) {
-        rooms!.add(Room.fromJson(v));
-      });
-    }
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
+    data['slug'] = slug;
     data['address'] = address;
-    data['total_roooms'] = totalRoooms;
+    data['total_rooms'] = totalRooms;
     data['phone_number'] = phoneNumber;
     data['GSTIN'] = gSTIN;
     data['state_code'] = stateCode;
@@ -97,11 +98,10 @@ class ClinicData {
     data['latitude'] = latitude;
     data['longitude'] = longitude;
     data['location_type'] = locationType;
-    data['slug'] = slug;
+    data['map_url'] = mapUrl;
+    data['map_id'] = mapId;
     data['full_address'] = fullAddress;
-    if (rooms != null) {
-      data['rooms'] = rooms!.map((v) => v.toJson()).toList();
-    }
+    data['status'] = status;
     return data;
   }
 }
