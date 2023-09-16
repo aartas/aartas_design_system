@@ -47,14 +47,14 @@ class ConnectAttendanceProvider extends ChangeNotifier {
   Future<ResponseModel> scanQrToCheckInCheckOut(
     String baseURL,
     String? adminUserId,
-    String? clinicId,
+    String? deviceId,
     String? lat,
     String? lng,
   ) async {
     var _url = Uri.parse("$baseURL/connect/team/checkin/checkout");
     final res = await http.post(_url, body: {
       "admin_user_id": adminUserId ?? "",
-      "clinic_id": clinicId ?? "",
+      "device_id": deviceId ?? "",
       "latitude": lat ?? "",
       "longitude": lng ?? "",
     });
