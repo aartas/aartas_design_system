@@ -198,12 +198,12 @@ class DoctorProvider with ChangeNotifier {
   Future<ResponseModel?> doctorCheckInOut(
     String baseURL,
     String? doctorID,
-    String? clinicId,
+    String? deviceID,
   ) async {
     var _url = Uri.parse("$baseURL/doctor/check/in/out");
     final res = await http.post(_url, body: {
       "doctor_id": doctorID ?? "",
-      "clinic_id": clinicId ?? "",
+      "device_id": deviceID ?? "",
     });
     String _message = "(${res.statusCode}) $_url";
     log(_message);

@@ -10,12 +10,12 @@ class PatientTrackerProvider extends ChangeNotifier {
   Future<CheckinQRCodeResponse> scanQR(
     String baseURL,
     String? patientID,
-    String? locationID,
+    String? deviceID,
   ) async {
     var _url = Uri.parse("$baseURL/patient/qr/scan");
     final res = await http.post(_url, body: {
-      "patient_id": patientID,
-      "location_id": locationID,
+      "patient_id": patientID ?? "",
+      "device_id": deviceID ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
@@ -35,12 +35,12 @@ class PatientTrackerProvider extends ChangeNotifier {
   Future<ResponseModel> checkIn(
     String baseURL,
     String? patientID,
-    String? locationID,
+    String? deviceID,
   ) async {
     var _url = Uri.parse("$baseURL/patient/check/in");
     final res = await http.post(_url, body: {
-      "patient_id": patientID,
-      "location_id": locationID,
+      "patient_id": patientID ?? "",
+      "device_id": deviceID ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
@@ -60,12 +60,12 @@ class PatientTrackerProvider extends ChangeNotifier {
   Future<ResponseModel> checkOut(
     String baseURL,
     String? patientID,
-    String? locationID,
+    String? deviceID,
   ) async {
     var _url = Uri.parse("$baseURL/patient/check/out");
     final res = await http.post(_url, body: {
-      "patient_id": patientID,
-      "location_id": locationID,
+      "patient_id": patientID ?? "",
+      "device_id": deviceID ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
