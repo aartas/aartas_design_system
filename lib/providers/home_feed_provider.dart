@@ -22,12 +22,13 @@ class HomeFeedProvider with ChangeNotifier {
 
   Future<HomeFeedResponse> fetchList(
     String baseURL,
-    String? patientId,
+    String? patientID,
+    String? locationID,
   ) async {
     var _url = Uri.parse("$baseURL/home");
     final res = await http.post(
       _url,
-      body: {"user_id": patientId ?? ""},
+      body: {"user_id": patientID ?? "", "location_id": locationID ?? ""},
     );
     String _message = "(${res.statusCode}) $_url";
     log(_message);
