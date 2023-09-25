@@ -6,6 +6,7 @@ import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/doctor_timeslots_model.dart';
 
 import 'package:aartas_design_system/models/response_model.dart';
+import 'package:aartas_design_system/models/speciality_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -14,6 +15,8 @@ class DoctorProvider with ChangeNotifier {
   DoctorData _doctorData = DoctorData();
   List<DoctorData> _list = [];
   List<DoctorData> _recommendedList = [];
+
+  List<Speciality> _specialityList = [];
 
   DateTime _loginTime = DateTime.now();
 
@@ -45,6 +48,7 @@ class DoctorProvider with ChangeNotifier {
     if (res.statusCode == 200) {
       var _res = DoctorResponse.fromJson(json.decode(res.body));
       _list = _res.data!;
+      generateSpecialityList();
       notifyListeners();
       return _res;
     } else {
@@ -238,6 +242,21 @@ class DoctorProvider with ChangeNotifier {
     } else {
       log(res.body);
       return null;
+    }
+  }
+
+  List<Speciality> getSpecialityList() {
+    return _specialityList;
+  }
+
+  generateSpecialityList() {
+    if (_list.isNotEmpty) {
+      _specialityList.clear();
+      for (var i = 0; i < _list.length; i++) {
+        if (!_specialityList.contains(_list[i].speciality!)) {
+          _specialityList.add(_list[i].speciality!);
+        }
+      }
     }
   }
 }
