@@ -60,11 +60,10 @@ class DoctorProvider with ChangeNotifier {
 
   Future<DoctorResponse> fetchRecommendedList(
     String baseURL,
+    String? locationID,
   ) async {
     var _url = Uri.parse("$baseURL/recommended/doctors");
-    final res = await http.post(
-      _url,
-    );
+    final res = await http.post(_url, body: {"location_id": locationID ?? ""});
 
     String _message = "(${res.statusCode}) $_url";
     log(_message);
