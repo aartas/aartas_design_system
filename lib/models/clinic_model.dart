@@ -1,5 +1,3 @@
-import 'package:aartas_design_system/models/timeslot_model.dart';
-
 class ClinicsResponse {
   String? message;
   bool? status;

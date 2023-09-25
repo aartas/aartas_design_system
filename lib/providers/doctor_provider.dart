@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:aartas_design_system/models/doctor_check_in_out_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 import 'package:aartas_design_system/models/doctor_timeslots_model.dart';
+import 'package:aartas_design_system/models/latest_timeslot_model.dart';
 
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:aartas_design_system/models/speciality_model.dart';
@@ -16,7 +17,7 @@ class DoctorProvider with ChangeNotifier {
   List<DoctorData> _list = [];
   List<DoctorData> _recommendedList = [];
 
-  List<Speciality> _specialityList = [];
+  final List<Speciality> _specialityList = [];
 
   DateTime _loginTime = DateTime.now();
 
@@ -238,6 +239,25 @@ class DoctorProvider with ChangeNotifier {
     if (res.statusCode == 200) {
       var _res = DoctorCheckInOutHistory.fromJson(json.decode(res.body));
       checkInOutHistory = _res.data!;
+      return _res;
+    } else {
+      log(res.body);
+      return null;
+    }
+  }
+
+  Future<LatestTimeslotResponse?> fetchlatestTimeslot(
+    String baseURL,
+    String? doctorID,
+    String? locationID,
+  ) async {
+    var _url = Uri.parse(
+        "$baseURL/doctor/get/latest/timeslot?${doctorID != null && doctorID != "" ? "doctor_id=$doctorID" : ""}${locationID != null && locationID != "" ? "&location_id=$locationID" : ""}");
+    final res = await http.get(_url);
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+    if (res.statusCode == 200) {
+      var _res = LatestTimeslotResponse.fromJson(json.decode(res.body));
       return _res;
     } else {
       log(res.body);
