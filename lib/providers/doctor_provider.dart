@@ -271,11 +271,13 @@ class DoctorProvider with ChangeNotifier {
 
   generateSpecialityList() {
     specialityList = [];
+    List<Speciality> tempSpec = [];
     for (var i = 0; i < _list.length; i++) {
-      if (!specialityList.contains(_list[i].speciality!)) {
-        specialityList.add(_list[i].speciality!);
-        notifyListeners();
+      if (!tempSpec.contains(_list[i].speciality!)) {
+        tempSpec.add(_list[i].speciality!);
       }
     }
+    specialityList = tempSpec;
+    notifyListeners();
   }
 }
