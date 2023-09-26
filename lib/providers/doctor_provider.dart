@@ -277,7 +277,7 @@ class DoctorProvider with ChangeNotifier {
         tempSpec.add(docs[i].speciality!);
       }
     }
-    specialityList = tempSpec;
+    specialityList = tempSpec.toSet().toList();
     notifyListeners();
   }
 }
