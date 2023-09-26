@@ -273,8 +273,8 @@ class DoctorProvider with ChangeNotifier {
     List<DoctorData> docs = [..._list];
     List<Speciality> tempSpec = [];
     for (var i = 0; i < docs.length; i++) {
-      if (!tempSpec.contains(_list[i].speciality!)) {
-        tempSpec.add(_list[i].speciality!);
+      if (!tempSpec.contains(docs[i].speciality!)) {
+        tempSpec.add(docs[i].speciality!);
       }
     }
     specialityList = tempSpec;
