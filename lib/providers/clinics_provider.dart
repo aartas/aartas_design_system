@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/room_timings_models.dart';
