@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/room_timings_models.dart';
@@ -23,7 +24,7 @@ class ClinicProvider extends ChangeNotifier {
     return roomList;
   }
 
-  Future<ClinicsResponse> fetchClinicList(
+  Future<ClinicsResponse?> fetchClinicList(
     String? baseUrl,
   ) async {
     var url = Uri.parse("$baseUrl/clinic/list");
@@ -34,7 +35,25 @@ class ClinicProvider extends ChangeNotifier {
       notifyListeners();
       return temp;
     } else {
-      return ClinicsResponse();
+      return null;
+    }
+  }
+
+  Future<ClinicsResponse?> fetchNearestClinic(
+    String baseUrl,
+    String latitude,
+    String longitude,
+  ) async {
+    var url = Uri.parse(
+        "$baseUrl/get/user/nearest/location?latitude=$latitude&longitude=$longitude");
+    final res = await http.get(url);
+    if (res.statusCode == 200) {
+      var temp = ClinicsResponse.fromJson(json.decode(res.body));
+      clinicList = temp.data!;
+      notifyListeners();
+      return temp;
+    } else {
+      return null;
     }
   }
 
