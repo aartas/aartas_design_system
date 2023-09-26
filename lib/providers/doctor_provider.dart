@@ -17,7 +17,7 @@ class DoctorProvider with ChangeNotifier {
   List<DoctorData> _list = [];
   List<DoctorData> _recommendedList = [];
 
-  final List<Speciality> _specialityList = [];
+  List<Speciality> _specialityList = [];
 
   DateTime _loginTime = DateTime.now();
 
@@ -271,7 +271,7 @@ class DoctorProvider with ChangeNotifier {
 
   generateSpecialityList() {
     if (_list.isNotEmpty) {
-      _specialityList.clear();
+      _specialityList = [];
       for (var i = 0; i < _list.length; i++) {
         if (!_specialityList.contains(_list[i].speciality!)) {
           _specialityList.add(_list[i].speciality!);
