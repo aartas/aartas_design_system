@@ -266,6 +266,7 @@ class DoctorProvider with ChangeNotifier {
   }
 
   List<Speciality> getSpecialityList() {
+    generateSpecialityList();
     return specialityList;
   }
 
