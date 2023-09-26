@@ -17,7 +17,7 @@ class DoctorProvider with ChangeNotifier {
   List<DoctorData> _list = [];
   List<DoctorData> _recommendedList = [];
 
-  List<Speciality> _specialityList = [];
+  List<Speciality> specialityList = [];
 
   DateTime _loginTime = DateTime.now();
 
@@ -266,16 +266,15 @@ class DoctorProvider with ChangeNotifier {
   }
 
   List<Speciality> getSpecialityList() {
-    return _specialityList;
+    return specialityList;
   }
 
   generateSpecialityList() {
-    if (_list.isNotEmpty) {
-      _specialityList = [];
-      for (var i = 0; i < _list.length; i++) {
-        if (!_specialityList.contains(_list[i].speciality!)) {
-          _specialityList.add(_list[i].speciality!);
-        }
+    specialityList = [];
+    for (var i = 0; i < _list.length; i++) {
+      if (!specialityList.contains(_list[i].speciality!)) {
+        specialityList.add(_list[i].speciality!);
+        notifyListeners();
       }
     }
   }
