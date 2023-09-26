@@ -49,7 +49,6 @@ class ClinicProvider extends ChangeNotifier {
     final res = await http.get(url);
     if (res.statusCode == 200) {
       var temp = ClinicsResponse.fromJson(json.decode(res.body));
-      clinicList = temp.data!;
       notifyListeners();
       return temp;
     } else {
