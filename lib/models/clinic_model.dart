@@ -43,25 +43,30 @@ class ClinicData {
   String? mapUrl;
   String? mapId;
   String? fullAddress;
+  String? image;
+  String? walkthroughUrl;
   int? status;
 
-  ClinicData(
-      {this.id,
-      this.title,
-      this.slug,
-      this.address,
-      this.totalRooms,
-      this.phoneNumber,
-      this.gSTIN,
-      this.stateCode,
-      this.ipAddressList,
-      this.latitude,
-      this.longitude,
-      this.locationType,
-      this.mapUrl,
-      this.mapId,
-      this.fullAddress,
-      this.status});
+  ClinicData({
+    this.id,
+    this.title,
+    this.slug,
+    this.address,
+    this.totalRooms,
+    this.phoneNumber,
+    this.gSTIN,
+    this.stateCode,
+    this.ipAddressList,
+    this.latitude,
+    this.longitude,
+    this.locationType,
+    this.mapUrl,
+    this.mapId,
+    this.fullAddress,
+    this.status,
+    this.image,
+    this.walkthroughUrl,
+  });
 
   ClinicData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -79,6 +84,8 @@ class ClinicData {
     mapUrl = json['map_url'];
     mapId = json['map_id'];
     fullAddress = json['full_address'];
+    image = json['image'];
+    walkthroughUrl = json['walkthrough_url'];
     status = json['status'];
   }
 
@@ -99,6 +106,8 @@ class ClinicData {
     data['map_url'] = mapUrl;
     data['map_id'] = mapId;
     data['full_address'] = fullAddress;
+    data['walkthrough_url'] = walkthroughUrl;
+    data['image'] = image;
     data['status'] = status;
     return data;
   }
