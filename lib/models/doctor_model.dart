@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/procedure_model.dart';
 import 'package:aartas_design_system/models/speciality_model.dart';
 import 'package:aartas_design_system/models/timeslot_model.dart';
@@ -278,7 +279,7 @@ class Timings {
   String? createdAt;
   String? updatedAt;
   int? status;
-  Clinic? clinic;
+  ClinicData? clinic;
 
   Timings(
       {this.id,
@@ -308,7 +309,8 @@ class Timings {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     status = json['status'];
-    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -328,71 +330,6 @@ class Timings {
     if (clinic != null) {
       data['clinic'] = clinic!.toJson();
     }
-    return data;
-  }
-}
-
-class Clinic {
-  int? id;
-  String? title;
-  String? address;
-  int? totalRoooms;
-  String? phoneNumber;
-  dynamic gSTIN;
-  dynamic stateCode;
-  String? ipAddressList;
-  dynamic createdAt;
-  dynamic updatedAt;
-  dynamic createdBy;
-  dynamic updatedBy;
-  int? status;
-
-  Clinic(
-      {this.id,
-      this.title,
-      this.address,
-      this.totalRoooms,
-      this.phoneNumber,
-      this.gSTIN,
-      this.stateCode,
-      this.ipAddressList,
-      this.createdAt,
-      this.updatedAt,
-      this.createdBy,
-      this.updatedBy,
-      this.status});
-
-  Clinic.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    address = json['address'];
-    totalRoooms = json['total_roooms'];
-    phoneNumber = json['phone_number'];
-    gSTIN = json['GSTIN'];
-    stateCode = json['state_code'];
-    ipAddressList = json['ip_address_list'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    createdBy = json['created_by'];
-    updatedBy = json['updated_by'];
-    status = json['status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['address'] = address;
-    data['total_roooms'] = totalRoooms;
-    data['phone_number'] = phoneNumber;
-    data['GSTIN'] = gSTIN;
-    data['state_code'] = stateCode;
-    data['ip_address_list'] = ipAddressList;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    data['created_by'] = createdBy;
-    data['updated_by'] = updatedBy;
-    data['status'] = status;
     return data;
   }
 }
