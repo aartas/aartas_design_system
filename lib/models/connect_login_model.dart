@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 
 class ConnectLoginResponse {
@@ -35,7 +36,7 @@ class ConnectLoginData {
   int? clinicId;
   String? aartasId;
   Roles? roles;
-  Clinic? clinic;
+  ClinicData? clinic;
   String? expiryDate;
 
   ConnectLoginData({
@@ -63,7 +64,8 @@ class ConnectLoginData {
     aartasId = json['aartas_id'];
     expiryDate = json['expiry_date'];
     roles = json['roles'] != null ? Roles.fromJson(json['roles']) : null;
-    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
   }
 
   Map<String, dynamic> toJson() {

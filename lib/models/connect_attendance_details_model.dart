@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/connect_login_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 
@@ -43,7 +44,7 @@ class ConnectAttendanceDetailsData {
   String? purposeDetails;
   String? visitCheckoutDetails;
   AdminUser? adminUser;
-  Clinic? clinic;
+  ClinicData? clinic;
 
   ConnectAttendanceDetailsData(
       {this.id,
@@ -72,7 +73,8 @@ class ConnectAttendanceDetailsData {
     purpose = json['purpose'];
     purposeDetails = json['purpose_details'];
     visitCheckoutDetails = json['visit_checkout_details'];
-    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
     adminUser = json['admin_user'] != null
         ? AdminUser.fromJson(json['admin_user'])
         : null;
@@ -109,7 +111,7 @@ class AdminUser {
   String? password;
   int? role;
   int? clinicId;
-  Clinic? clinic;
+  ClinicData? clinic;
   Roles? roles;
 
   AdminUser(
@@ -131,7 +133,8 @@ class AdminUser {
     password = json['password'];
     role = json['role'];
     clinicId = json['clinic_id'];
-    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
     roles = json['roles'] != null ? Roles.fromJson(json['roles']) : null;
   }
 

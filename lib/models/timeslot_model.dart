@@ -1,3 +1,4 @@
+import 'package:aartas_design_system/models/clinic_model.dart';
 import 'package:aartas_design_system/models/doctor_model.dart';
 
 class Timeslot {
@@ -14,7 +15,7 @@ class Timeslot {
   String? createdBy;
   String? updatedBy;
   int? status;
-  Clinic? clinic;
+  ClinicData? clinic;
   Room? room;
 
   Timeslot(
@@ -48,7 +49,8 @@ class Timeslot {
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
     status = json['status'];
-    clinic = json['clinic'] != null ? Clinic.fromJson(json['clinic']) : null;
+    clinic =
+        json['clinic'] != null ? ClinicData.fromJson(json['clinic']) : null;
     room = json['room'] != null ? Room.fromJson(json['room']) : null;
   }
 
