@@ -30,7 +30,7 @@ Widget getAvailability(context, String date) {
           maxLines: 1,
         ),
         Text(
-          " Tommorow",
+          " Tomorrow",
           style: textTheme(context).titleSmall?.copyWith(
                 color: fawnColor,
                 fontWeight: FontWeight.w600,
@@ -57,7 +57,7 @@ Widget getAvailabilityOnly(context, String date) {
         style: textTheme(context).titleMedium?.apply(fontWeightDelta: 2));
   }
   if (latestDate == (todaysDate == 7 ? 1 : todaysDate + 1)) {
-    return Text("Tommorow",
+    return Text("Tomorrow",
         style: textTheme(context).titleMedium?.apply(fontWeightDelta: 2));
   }
 
@@ -73,7 +73,7 @@ String getAvailabilityString(context, String date) {
     return "Today";
   }
   if (latestDate == (todaysDate == 7 ? 1 : todaysDate + 1)) {
-    return "Tommorow";
+    return "Tomorrow";
   }
 
   return getWeekDays(latestDate, true);
