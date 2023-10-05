@@ -16,6 +16,7 @@ class DoctorProvider with ChangeNotifier {
   DoctorData _doctorData = DoctorData();
   List<DoctorData> _list = [];
   List<DoctorData> _recommendedList = [];
+  List<DoctorData> todaysList = [];
 
   List<Speciality> specialityList = [];
 
@@ -82,6 +83,28 @@ class DoctorProvider with ChangeNotifier {
       log(res.body);
       notifyListeners();
       return DoctorResponse(message: json.decode(res.body)['message']);
+    }
+  }
+
+  Future<DoctorResponse?> fetchTodayAvailableList(
+    String baseURL,
+    String? locationID,
+  ) async {
+    var _url = Uri.parse("$baseURL/todays/doctors");
+    final res = await http.post(_url, body: {"location_id": locationID ?? ""});
+
+    String _message = "(${res.statusCode}) $_url";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      var _res = DoctorResponse.fromJson(json.decode(res.body));
+      todaysList = _res.data!;
+      notifyListeners();
+      return _res;
+    } else {
+      log(res.body);
+      notifyListeners();
+      return null;
     }
   }
 
