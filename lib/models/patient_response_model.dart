@@ -41,6 +41,7 @@ class PatientData {
   String? dob;
   int? age;
   String? relation;
+  String? deviceID;
   // Null? linkId;
   // String? location;
   // String? latitude;
@@ -67,6 +68,7 @@ class PatientData {
     this.dob,
     this.age,
     this.relation,
+    this.deviceID,
     // this.linkId,
     // this.location,
     // this.latitude,
@@ -94,6 +96,7 @@ class PatientData {
     dob = json['dob'];
     age = json['age'];
     relation = json['relation'];
+    deviceID = json['device_id'];
     // linkId = json['link_id'];
     // location = json['location'];
     // latitude = json['latitude'];
@@ -128,6 +131,7 @@ class PatientData {
     data['dob'] = dob;
     data['age'] = age;
     data['relation'] = relation;
+    data['device_id'] = deviceID;
     // data['link_id'] = linkId;
     // data['location'] = location;
     // data['latitude'] = latitude;
