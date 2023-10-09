@@ -78,7 +78,6 @@ class MedicineProvider extends ChangeNotifier {
     String baseURL,
     String? appointmentID,
     String? medicineID,
-    String? unitID,
     String? frequency,
     String? duration,
     String? durationType,
@@ -94,7 +93,6 @@ class MedicineProvider extends ChangeNotifier {
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "medicine_id": medicineID ?? "",
-      "unit_id": unitID ?? "",
       "frequency": frequency ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",

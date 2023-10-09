@@ -1,5 +1,4 @@
 import 'package:aartas_design_system/models/clinic_model.dart';
-import 'package:aartas_design_system/models/doctor_model.dart';
 
 class ConnectLoginResponse {
   String? message;
