@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/add_category_response_model.dart';
 import 'package:aartas_design_system/models/investigation_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class InvestigationProvider extends ChangeNotifier {
     return InvestigationsResponse(message: json.decode(res.body)['message']);
   }
 
-  Future<ResponseModel> addInvestigation(
+  Future<AddCategoryResponse> addInvestigation(
     String baseURL,
     String? title,
   ) async {
@@ -45,9 +46,9 @@ class InvestigationProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return AddCategoryResponse.fromJson(json.decode(res.body));
     }
-    return ResponseModel(message: json.decode(res.body)['message']);
+    return AddCategoryResponse(message: json.decode(res.body)['message']);
   }
 
   Future<ResponseModel> saveInvestigation(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:aartas_design_system/models/add_category_response_model.dart';
 import 'package:aartas_design_system/models/complaints_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ComplaintProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> addComplaints(
+  Future<AddCategoryResponse> addComplaints(
     String baseURL,
     String? title,
   ) async {
@@ -50,10 +51,10 @@ class ComplaintProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ResponseModel.fromJson(json.decode(res.body));
+      return AddCategoryResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: json.decode(res.body)['message']);
+      return AddCategoryResponse(message: json.decode(res.body)['message']);
     }
   }
 
