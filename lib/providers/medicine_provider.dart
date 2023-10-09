@@ -52,7 +52,7 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
-  Future<ResponseModel> addMedicine(
+  Future<MedicineResponse> addMedicine(
     String baseURL,
     String? title,
   ) async {
@@ -64,13 +64,13 @@ class MedicineProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return ResponseModel(
-        message: json.decode(res.body)['message'],
-        status: json.decode(res.body)['status'],
-      );
+      return MedicineResponse.fromJson(json.decode(res.body));
     } else {
       log(res.body);
-      return ResponseModel(message: json.decode(res.body)['message']);
+      return MedicineResponse(
+        status: false,
+        message: json.decode(res.body)['message'],
+      );
     }
   }
 
@@ -78,9 +78,7 @@ class MedicineProvider extends ChangeNotifier {
     String baseURL,
     String? appointmentID,
     String? medicineID,
-    String? dose,
     String? unitID,
-    String? qty,
     String? frequency,
     String? duration,
     String? durationType,
@@ -90,14 +88,13 @@ class MedicineProvider extends ChangeNotifier {
     String? timeOfTheDay,
     String? timeRange,
     String? oldID,
+    String? mealTake,
   ) async {
     var _url = Uri.parse("$baseURL/save/appointment/medicine");
     final res = await http.post(_url, body: {
       "appointment_id": appointmentID ?? "",
       "medicine_id": medicineID ?? "",
-      "dose": dose ?? "",
       "unit_id": unitID ?? "",
-      "qty": qty ?? "",
       "frequency": frequency ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",
@@ -106,7 +103,8 @@ class MedicineProvider extends ChangeNotifier {
       "time_of_the_day_defaults": timeOfTheDayDefaults ?? "",
       "time_of_the_day": timeOfTheDay ?? "",
       "time_range": timeRange ?? "",
-      "old_id": oldID ?? ""
+      "old_id": oldID ?? "",
+      "meal_take": mealTake ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
