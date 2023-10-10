@@ -53,7 +53,7 @@ class MedicineProvider extends ChangeNotifier {
     }
   }
 
-  Future<AddCategoryResponse> addMedicine(
+  Future<Medicine?> addMedicine(
     String baseURL,
     String? title,
   ) async {
@@ -65,13 +65,10 @@ class MedicineProvider extends ChangeNotifier {
     log(_message);
 
     if (res.statusCode == 200) {
-      return AddCategoryResponse.fromJson(json.decode(res.body));
+      return Medicine.fromJson(json.decode(res.body)['data']['medicine']);
     } else {
       log(res.body);
-      return AddCategoryResponse(
-        status: false,
-        message: json.decode(res.body)['message'],
-      );
+      return null;
     }
   }
 
