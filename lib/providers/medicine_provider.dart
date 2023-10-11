@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aartas_design_system/models/add_category_response_model.dart';
 import 'package:aartas_design_system/models/medicine_model.dart';
 import 'package:aartas_design_system/models/medicine_unit_model.dart';
 import 'package:aartas_design_system/models/response_model.dart';
