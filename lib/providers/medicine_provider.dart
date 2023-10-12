@@ -135,9 +135,6 @@ class MedicineProvider extends ChangeNotifier {
     String baseURL,
     String? doctorQuickActionID,
     String? medicineID,
-    String? dose,
-    String? unitID,
-    String? qty,
     String? frequency,
     String? duration,
     String? durationType,
@@ -147,14 +144,12 @@ class MedicineProvider extends ChangeNotifier {
     String? timeOfTheDay,
     String? timeRange,
     String? oldID,
+    String? mealTake,
   ) async {
     var _url = Uri.parse("$baseURL/doctor/save/quickaction/medicine");
     final res = await http.post(_url, body: {
       "doctor_quickaction_id": doctorQuickActionID ?? "",
       "medicine_id": medicineID ?? "",
-      "dose": dose ?? "",
-      "unit_id": unitID ?? "",
-      "qty": qty ?? "",
       "frequency": frequency ?? "",
       "duration": duration ?? "",
       "duration_type": durationType ?? "",
@@ -163,7 +158,8 @@ class MedicineProvider extends ChangeNotifier {
       "time_of_the_day_defaults": timeOfTheDayDefaults ?? "",
       "time_of_the_day": timeOfTheDay ?? "",
       "time_range": timeRange ?? "",
-      "old_id": oldID ?? ""
+      "old_id": oldID ?? "",
+      "meal_take": mealTake ?? "",
     });
 
     String _message = "(${res.statusCode}) $_url";
