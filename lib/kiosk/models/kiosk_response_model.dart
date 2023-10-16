@@ -29,16 +29,19 @@ class KioskAppData {
   String? title;
   int? clinicId;
   int? inPremises;
+  String? terminalId;
   List<Assets>? assets;
 
-  KioskAppData(
-      {this.id,
-      this.deviceId,
-      this.fcmToken,
-      this.title,
-      this.clinicId,
-      this.inPremises,
-      this.assets});
+  KioskAppData({
+    this.id,
+    this.deviceId,
+    this.fcmToken,
+    this.title,
+    this.clinicId,
+    this.inPremises,
+    this.terminalId,
+    this.assets,
+  });
 
   KioskAppData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,6 +50,7 @@ class KioskAppData {
     title = json['title'];
     clinicId = json['clinic_id'];
     inPremises = json['in_premises'];
+    terminalId = json['terminal_id'];
     if (json['assets'] != null) {
       assets = <Assets>[];
       json['assets'].forEach((v) {
@@ -63,6 +67,7 @@ class KioskAppData {
     data['title'] = title;
     data['clinic_id'] = clinicId;
     data['in_premises'] = inPremises;
+    data['terminal_id'] = terminalId;
     if (assets != null) {
       data['assets'] = assets!.map((v) => v.toJson()).toList();
     }
