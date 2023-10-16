@@ -60,11 +60,13 @@ class NotesProvider extends ChangeNotifier {
     String baseURL,
     String? doctorQuickActionID,
     String? notes,
+    String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/doctor/save/quickaction/notes");
     final res = await http.post(_url, body: {
       "doctor_quickaction_id": doctorQuickActionID ?? "",
       "notes": notes ?? "",
+      "old_id": oldID ?? "",
     });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
