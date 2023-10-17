@@ -11,11 +11,13 @@ class PaytmApiProvider extends ChangeNotifier {
     String baseURL,
     String? terminalID,
     String? transactionAmount,
+    String? paymentType,
   ) async {
     var _url = Uri.parse("$baseURL/paytm/sale/generate");
     final res = await http.post(_url, body: {
       "terminal_id": terminalID ?? "",
       "transaction_amount": transactionAmount ?? "",
+      "payment_type": paymentType ?? "",
     });
 
     log("(${res.statusCode}) $_url");
