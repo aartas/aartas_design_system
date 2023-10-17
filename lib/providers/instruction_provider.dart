@@ -60,11 +60,13 @@ class NotesProvider extends ChangeNotifier {
     String baseURL,
     String? doctorQuickActionID,
     String? notes,
+    String? oldID,
   ) async {
     var _url = Uri.parse("$baseURL/doctor/save/quickaction/notes");
     final res = await http.post(_url, body: {
       "doctor_quickaction_id": doctorQuickActionID ?? "",
       "notes": notes ?? "",
+      "old_id": oldID ?? "",
     });
     String _message = "(${res.statusCode}) $_url";
     log(_message);
@@ -93,6 +95,25 @@ class NotesProvider extends ChangeNotifier {
     } else {
       log(res.body);
       return null;
+    }
+  }
+
+  Future<ResponseModel> removeQuickActionNotes(
+    String baseURL,
+    String? id,
+  ) async {
+    var _url = Uri.parse("$baseURL/delete/doctor/quickaction/notes");
+    final res = await http.post(_url, body: {
+      "id": id ?? "",
+    });
+    String _message = "(${res.statusCode}) $_url: id:$id";
+    log(_message);
+
+    if (res.statusCode == 200) {
+      return ResponseModel.fromJson(json.decode(res.body));
+    } else {
+      log(res.body);
+      return ResponseModel(message: json.decode(res.body)['message']);
     }
   }
 }
