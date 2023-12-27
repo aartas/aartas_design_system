@@ -1,10 +1,36 @@
 class PaytmSaleGenerateResponse {
+  String? message;
+  bool? status;
+  PaytmSaleGenerateResponseData? data;
+
+  PaytmSaleGenerateResponse({this.message, this.status, this.data});
+
+  PaytmSaleGenerateResponse.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    status = json['status'];
+    data = json['data'] != null
+        ? PaytmSaleGenerateResponseData.fromJson(json['data'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
+    data['status'] = status;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class PaytmSaleGenerateResponseData {
   Head? head;
   Body? body;
 
-  PaytmSaleGenerateResponse({this.head, this.body});
+  PaytmSaleGenerateResponseData({this.head, this.body});
 
-  PaytmSaleGenerateResponse.fromJson(Map<String, dynamic> json) {
+  PaytmSaleGenerateResponseData.fromJson(Map<String, dynamic> json) {
     head = json['head'] != null ? Head.fromJson(json['head']) : null;
     body = json['body'] != null ? Body.fromJson(json['body']) : null;
   }
