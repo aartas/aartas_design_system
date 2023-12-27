@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 ThemeData globalThemeData(context) => ThemeData(
       // primaryColor: burntUmberColor,
+      useMaterial3: false,
       colorScheme: ColorScheme.fromSwatch(
           accentColor: burntUmberColor, backgroundColor: pearlColor),
       fontFamily: "Urbanist",
